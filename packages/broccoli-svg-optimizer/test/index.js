@@ -13,15 +13,15 @@ require('mocha-eslint')('.');
 
 describe('broccoli-svg-optimizer', function() {
   var inputNode = __dirname + '/fixtures/input-node';
-  var OPTIMIZED_CONTENT = (
-    '<svg width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">' +
-    '<title>SVG title</title><desc>SVG description</desc>' +
-    '<path d="M7 6V0H6v6H0v1h6v6h1V7h6V6H7z"/></svg>'
-  );
 
   it('optimizes SVG files with persistence', function() {
     var outputNode = fixture.build(new SVGOptimizer(inputNode));
-
+    var OPTIMIZED_CONTENT = (
+      '<svg viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">' +
+      '<title>SVG title</title>' +
+      '<desc>SVG description</desc>' +
+      '<path d="M7 6V0H6v6H0v1h6v6h1V7h6V6H7z"/></svg>'
+    );
     return expect(outputNode).to.eventually.deep.equal({
       'test.svg': OPTIMIZED_CONTENT
     });
@@ -30,6 +30,32 @@ describe('broccoli-svg-optimizer', function() {
   it('optimizes SVG files with without persistence', function() {
     var options = { persist: false };
     var outputNode = fixture.build(new SVGOptimizer(inputNode, options));
+    var OPTIMIZED_CONTENT = (
+      '<svg viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">' +
+      '<title>SVG title</title>' +
+      '<desc>SVG description</desc>' +
+      '<path d="M7 6V0H6v6H0v1h6v6h1V7h6V6H7z"/></svg>'
+    );
+
+    return expect(outputNode).to.eventually.deep.equal({
+      'test.svg': OPTIMIZED_CONTENT
+    });
+  });
+
+  it('accepts SVGO config', function() {
+    var options = {
+      svgoConfig: {
+        plugins: [
+          { removeTitle: true },
+          { removeDesc: { removeAny: true } }
+        ]
+      }
+    };
+    var outputNode = fixture.build(new SVGOptimizer(inputNode, options));
+    var OPTIMIZED_CONTENT = (
+      '<svg viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="M7 6V0H6v6H0v1h6v6h1V7h6V6H7z"/></svg>'
+    );
 
     return expect(outputNode).to.eventually.deep.equal({
       'test.svg': OPTIMIZED_CONTENT

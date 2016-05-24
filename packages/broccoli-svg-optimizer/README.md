@@ -46,7 +46,7 @@ svgoConfig : {
     { removeUselessStrokeAndFill: false },
     { removeAttrs: { attrs: '(fill|fill-rule)' } },
     { removeTitle: true },
-    { removeDesc: true }
+    { removeDesc: { removeAny: true } },
   ]
 }
 ```
