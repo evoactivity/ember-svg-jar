@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Broccoli plugin for optimizing SVG files with SVGO",
   "scripts": {
-    "test": "mocha test/ --timeout 5000"
+    "test": "mocha test/ --timeout 8000"
   },
   "main": "index.js",
   "author": "Ivan Votti",
