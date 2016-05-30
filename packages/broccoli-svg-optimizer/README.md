@@ -24,16 +24,9 @@ var outputNode = new SVGOptimizer(inputNode, {
 
 ## Options
 
-### persist
-
-Type: `Boolean`
-Default: `true`
-
-Enable\disable a persistent cache to improve build performance across restarts. Check out [broccoli-persistent-filter](https://github.com/stefanpenner/broccoli-persistent-filter) for more details.
-
 ### svgoConfig
 
-Type: `Object`
+Type: `Object`  
 Default: `null`
 
 Enable\disable\configure [SVGO](https://github.com/svg/svgo) plugins to customize SVG optimization. Most of the plugins are enabled by default. Check out [SVGO repository](https://github.com/svg/svgo/tree/master/plugins) for available options.
@@ -50,6 +43,13 @@ svgoConfig : {
   ]
 }
 ```
+
+### persist
+
+Type: `Boolean`  
+Default: `true`
+
+Enable\disable a persistent cache to improve build performance across restarts. Check out [broccoli-persistent-filter](https://github.com/stefanpenner/broccoli-persistent-filter) for more details.
 
 ## Running Tests
 
