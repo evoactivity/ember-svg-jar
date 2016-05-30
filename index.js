@@ -6,12 +6,65 @@ var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
 var SVGOptimizer = require('broccoli-svg-optimizer');
 var Symbolizer = require('broccoli-symbolizer');
+var JsonConcat = require('./json-concat');
 var defaults = require('lodash.defaults');
 
-var ajaxingCode = fs.readFileSync(path.join(__dirname, 'ajaxing-code.html'), 'utf8');
+var ajaxingScript = fs.readFileSync(path.join(__dirname, 'ajaxing.html'), 'utf8');
+
+function mergeTreesIfNeeded(trees, options) {
+  return trees.length === 1 ? trees[0] : new MergeTrees(trees, options);
+}
 
 module.exports = {
   name: 'ember-svg-jar',
+
+  isDevelopingAddon: function() {
+    return true;
+  },
+
+  included: function(app) {
+    this._super.included.apply(this, arguments);
+
+    // see: https://github.com/ember-cli/ember-cli/issues/3718
+    if (typeof app.import !== 'function' && app.app) {
+      app = app.app;
+    }
+
+    this.initializeOptions(app.options.svgJar);
+  },
+
+  treeForPublic: function() {
+    var trees = [];
+    var publicTree = this._super.treeForPublic.apply(this, arguments);
+
+    if (publicTree) {
+      trees.push(publicTree);
+    }
+
+    if (this.isSymbolStrategy()) {
+      trees.push(this.getSymbolStrategyTree());
+    }
+
+    return mergeTreesIfNeeded(trees);
+  },
+
+  treeForApp: function(appTree) {
+    var trees = [appTree];
+
+    if (this.isInlineStrategy()) {
+      trees.push(this.getInlineStrategyTree());
+    }
+
+    return mergeTreesIfNeeded(trees, { overwrite: true });
+  },
+
+  contentFor: function(type) {
+    if (type === 'body' && this.isSymbolStrategy() && this.options.injectSymbols) {
+      return ajaxingScript.replace('{{FILE_PATH}}', this.options.symbolsFile);
+    }
+
+    return '';
+  },
 
   initializeOptions: function(options) {
     if (!options || !options.sourceDirs) {
@@ -19,28 +72,25 @@ module.exports = {
     }
 
     this.options = defaults(options || {}, {
-      outputFile: '/assets/symbols.svg',
+      strategy: 'inline',
       optimize: {},
-      prefix: '',
-      ajaxing: false,
+      symbolsFile: '/assets/symbols.svg',
+      symbolsPrefix: '',
+      injectSymbols: true,
       persist: true
     });
   },
 
-  included: function(app) {
-    this.initializeOptions(app.options.svgJar);
-  },
+  getSVGFiles: function() {
+    if (this._svgFiles) {
+      return this._svgFiles;
+    }
 
-  getSourceNodes: function() {
-    var nodes = this.options.sourceDirs.filter(function(sourceDir) {
+    var sourceDirs = this.options.sourceDirs.filter(function(sourceDir) {
       return fs.existsSync(sourceDir);
     });
 
-    return nodes.length === 1 ? nodes[0] : MergeTrees(nodes);
-  },
-
-  treeForPublic: function() {
-    var svgFiles = new Funnel(this.getSourceNodes(), {
+    var svgFiles = new Funnel(mergeTreesIfNeeded(sourceDirs), {
       include: ['**/*.svg']
     });
 
@@ -51,20 +101,32 @@ module.exports = {
       });
     }
 
-    var outputSvgFile = new Symbolizer(svgFiles, {
-      outputFile: this.options.outputFile,
-      prefix: this.options.prefix,
-      persist: this.options.persist
-    });
+    this._svgFiles = svgFiles;
 
-    return outputSvgFile;
+    return svgFiles;
   },
 
-  contentFor: function(type) {
-    if (this.options.ajaxing && type === 'body') {
-      return ajaxingCode.replace('{{SVG_FILE}}', this.options.outputFile);
-    }
+  getSymbolStrategyTree: function() {
+    return new Symbolizer(this.getSVGFiles(), {
+      outputFile: this.options.symbolsFile,
+      prefix: this.options.symbolsPrefix,
+      persist: this.options.persist
+    });
+  },
 
-    return '';
+  getInlineStrategyTree: function() {
+    return new JsonConcat(this.getSVGFiles(), {
+      outputFile: 'svgs.js',
+      moduleExport: true,
+      trimExtensions: true
+    });
+  },
+
+  isSymbolStrategy: function() {
+    return this.options.strategy === 'symbol';
+  },
+
+  isInlineStrategy: function() {
+    return this.options.strategy === 'inline';
   }
 };

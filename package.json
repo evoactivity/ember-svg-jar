@@ -43,12 +43,15 @@
     "ember-addon"
   ],
   "dependencies": {
+    "broccoli-caching-writer": "^2.2.1",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
     "broccoli-svg-optimizer": "1.0.0",
     "broccoli-symbolizer": "0.0.1",
     "ember-cli-babel": "^5.1.6",
-    "lodash.defaults": "^4.0.1"
+    "lodash.defaults": "^4.0.1",
+    "lodash.uniq": "^4.3.0",
+    "mkdirp": "^0.5.1"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

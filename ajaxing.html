@@ -1,6 +1,6 @@
 <script>
   var ajax = new XMLHttpRequest();
-  ajax.open('GET', '{{SVG_FILE}}', true);
+  ajax.open('GET', '{{FILE_PATH}}', true);
   ajax.send();
   ajax.onload = function(e) {
     var div = document.createElement('div');
