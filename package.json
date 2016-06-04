@@ -49,6 +49,7 @@
     "broccoli-svg-optimizer": "1.0.0",
     "broccoli-symbolizer": "0.0.1",
     "ember-cli-babel": "^5.1.6",
+    "handlebars": "^4.0.5",
     "lodash.defaults": "^4.0.1",
     "lodash.uniq": "^4.3.0",
     "mkdirp": "^0.5.1"

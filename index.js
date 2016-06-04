@@ -6,8 +6,9 @@ var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
 var SVGOptimizer = require('broccoli-svg-optimizer');
 var Symbolizer = require('broccoli-symbolizer');
-var JsonConcat = require('./json-concat');
 var defaults = require('lodash.defaults');
+var JsonConcat = require('./lib/json-concat');
+var DemoBuilder = require('./lib/demo-builder');
 
 var ajaxingScript = fs.readFileSync(path.join(__dirname, 'ajaxing.html'), 'utf8');
 
@@ -39,6 +40,10 @@ module.exports = {
 
     if (publicTree) {
       trees.push(publicTree);
+    }
+
+    if (this.options.isDemoEnabled) {
+      trees.push(this.getDemoTree());
     }
 
     if (this.isSymbolStrategy()) {
@@ -73,6 +78,7 @@ module.exports = {
 
     this.options = defaults(options || {}, {
       strategy: 'inline',
+      isDemoEnabled: true,
       optimize: {},
       symbolsFile: '/assets/symbols.svg',
       symbolsPrefix: '',
@@ -104,6 +110,14 @@ module.exports = {
     this._svgFiles = svgFiles;
 
     return svgFiles;
+  },
+
+  getDemoTree: function() {
+    return new DemoBuilder(this.getSVGFiles(), {
+      outputFile: 'svg-jar.html',
+      strategy: this.options.strategy,
+      symbolsPrefix: this.options.symbolsPrefix
+    });
   },
 
   getSymbolStrategyTree: function() {
