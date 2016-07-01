@@ -1,6 +1,6 @@
 {
   "name": "ember-svg-jar",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
@@ -19,6 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
+    "cheerio": "^0.20.0",
     "ember-ajax": "^2.0.1",
     "ember-cli": "2.6.2",
     "ember-cli-app-version": "^1.0.0",
@@ -47,9 +48,8 @@
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
     "broccoli-svg-optimizer": "1.0.0",
-    "broccoli-symbolizer": "0.0.1",
+    "broccoli-symbolizer": "0.1.0",
     "ember-cli-babel": "^5.1.6",
-    "handlebars": "^4.0.5",
     "lodash.defaults": "^4.0.1",
     "lodash.uniq": "^4.3.0",
     "mkdirp": "^0.5.1"

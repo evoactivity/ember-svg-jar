@@ -20,7 +20,7 @@ module.exports = {
   name: 'ember-svg-jar',
 
   isDevelopingAddon: function() {
-    return true;
+    return false;
   },
 
   included: function(app) {
@@ -31,18 +31,14 @@ module.exports = {
       app = app.app;
     }
 
-    this.initializeOptions(app.options.svgJar);
+    this.initializeOptions(app.options.svgJar, app.env);
   },
 
   treeForPublic: function() {
     var trees = [];
-    var publicTree = this._super.treeForPublic.apply(this, arguments);
-
-    if (publicTree) {
-      trees.push(publicTree);
-    }
 
     if (this.options.isDemoEnabled) {
+      trees.push(this._super.treeForPublic.apply(this, arguments));
       trees.push(this.getDemoTree());
     }
 
@@ -71,14 +67,14 @@ module.exports = {
     return '';
   },
 
-  initializeOptions: function(options) {
+  initializeOptions: function(options, env) {
     if (!options || !options.sourceDirs) {
       throw new Error('sourceDirs is required by ember-svg-jar');
     }
 
     this.options = defaults(options || {}, {
       strategy: 'inline',
-      isDemoEnabled: true,
+      isDemoEnabled: env === 'development',
       optimize: {},
       symbolsFile: '/assets/symbols.svg',
       symbolsPrefix: '',
@@ -114,7 +110,7 @@ module.exports = {
 
   getDemoTree: function() {
     return new DemoBuilder(this.getSVGFiles(), {
-      outputFile: 'svg-jar.html',
+      outputFile: 'svg-jar-demo.json',
       strategy: this.options.strategy,
       symbolsPrefix: this.options.symbolsPrefix
     });
