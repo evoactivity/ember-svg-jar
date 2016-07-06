@@ -1,6 +1,8 @@
-# Ember SVG Jar
+# Ember SVG Jar (WIP)
 
-This README outlines the details of collaborating on this Ember addon.
+SVG assets support for your Ember project.
+
+Powered by https://github.com/ivanvotti/svg-jar
 
 ## Installation
 

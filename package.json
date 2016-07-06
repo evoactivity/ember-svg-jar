@@ -1,7 +1,7 @@
 {
   "name": "ember-svg-jar",
   "version": "0.0.3",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "SVG assets support for your Ember project (WIP)",
   "directories": {
     "doc": "doc",
     "test": "tests"
