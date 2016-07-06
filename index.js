@@ -37,8 +37,11 @@ module.exports = {
   treeForPublic: function() {
     var trees = [];
 
-    if (this.options.isDemoEnabled) {
+    if (this.options.embedDemo) {
       trees.push(this._super.treeForPublic.apply(this, arguments));
+    }
+
+    if (this.options.buildDemoData) {
       trees.push(this.getDemoTree());
     }
 
@@ -74,7 +77,8 @@ module.exports = {
 
     this.options = defaults(options || {}, {
       strategy: 'inline',
-      isDemoEnabled: env === 'development',
+      embedDemo: env === 'development',
+      buildDemoData: env === 'development',
       optimize: {},
       symbolsFile: '/assets/symbols.svg',
       symbolsPrefix: '',
@@ -110,7 +114,7 @@ module.exports = {
 
   getDemoTree: function() {
     return new DemoBuilder(this.getSVGFiles(), {
-      outputFile: 'svg-jar-demo.json',
+      outputFile: 'svg-jar.json',
       strategy: this.options.strategy,
       symbolsPrefix: this.options.symbolsPrefix
     });
