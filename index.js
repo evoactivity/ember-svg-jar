@@ -2,11 +2,11 @@
 
 var fs = require('fs');
 var path = require('path');
+var _ = require('lodash');
 var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
 var SVGOptimizer = require('broccoli-svg-optimizer');
 var Symbolizer = require('broccoli-symbolizer');
-var defaults = require('lodash.defaults');
 var JsonConcat = require('./lib/json-concat');
 var DemoBuilder = require('./lib/demo-builder');
 
@@ -75,7 +75,7 @@ module.exports = {
       throw new Error('sourceDirs is required by ember-svg-jar');
     }
 
-    this.options = defaults(options || {}, {
+    this.options = _.defaults(options || {}, {
       strategy: 'inline',
       embedDemo: env === 'development',
       buildDemoData: env === 'development',

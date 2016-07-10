@@ -50,8 +50,7 @@
     "broccoli-svg-optimizer": "1.0.0",
     "broccoli-symbolizer": "0.1.0",
     "ember-cli-babel": "^5.1.6",
-    "lodash.defaults": "^4.0.1",
-    "lodash.uniq": "^4.3.0",
+    "lodash": "^4.13.1",
     "mkdirp": "^0.5.1"
   },
   "ember-addon": {
