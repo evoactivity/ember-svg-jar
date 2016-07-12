@@ -7,7 +7,7 @@ var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
 var SVGOptimizer = require('broccoli-svg-optimizer');
 var Symbolizer = require('broccoli-symbolizer');
-var JsonConcat = require('./lib/json-concat');
+var AssetsPacker = require('./lib/assets-packer');
 var DemoBuilder = require('./lib/demo-builder');
 
 var ajaxingScript = fs.readFileSync(path.join(__dirname, 'ajaxing.html'), 'utf8');
@@ -77,6 +77,7 @@ module.exports = {
 
     this.options = _.defaults(options || {}, {
       strategy: 'inline',
+      trimPath: false,  // remove directories from the inline asset key
       embedDemo: env === 'development',
       buildDemoData: env === 'development',
       optimize: {},
@@ -116,7 +117,8 @@ module.exports = {
     return new DemoBuilder(this.getSVGFiles(), {
       outputFile: 'svg-jar.json',
       strategy: this.options.strategy,
-      symbolsPrefix: this.options.symbolsPrefix
+      symbolsPrefix: this.options.symbolsPrefix,
+      trimPath: this.options.trimPath
     });
   },
 
@@ -129,10 +131,10 @@ module.exports = {
   },
 
   getInlineStrategyTree: function() {
-    return new JsonConcat(this.getSVGFiles(), {
+    return new AssetsPacker(this.getSVGFiles(), {
       outputFile: 'svgs.js',
       moduleExport: true,
-      trimExtensions: true
+      trimPath: this.options.trimPath
     });
   },
 
