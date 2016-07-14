@@ -19,7 +19,6 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
-    "cheerio": "^0.20.0",
     "ember-ajax": "^2.0.1",
     "ember-cli": "2.6.2",
     "ember-cli-app-version": "^1.0.0",
@@ -49,6 +48,7 @@
     "broccoli-merge-trees": "^1.1.1",
     "broccoli-svg-optimizer": "1.0.0",
     "broccoli-symbolizer": "0.1.0",
+    "cheerio": "^0.20.0",
     "ember-cli-babel": "^5.1.6",
     "lodash": "^4.13.1",
     "mkdirp": "^0.5.1"
