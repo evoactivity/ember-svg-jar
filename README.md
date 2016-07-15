@@ -1,6 +1,6 @@
 # Ember SVG Jar (WIP)
 
-Comprehensive SVG support for your Ember application.
+Comprehensive SVG support for Ember applications.
 
 Main features include:
 
@@ -22,7 +22,7 @@ Main features include:
 
 - Run the development server: `$ ember serve`
 
-- Open the link below with Chrome: `http://localhost:4200/ember-svg-jar/index.html`
+- Open this link with Chrome: `http://localhost:4200/ember-svg-jar/index.html`
 
 - You should see your SVG assets there, select one and click `Enter` (it will copy it to the clipboard).
 
