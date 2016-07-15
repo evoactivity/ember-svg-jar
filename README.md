@@ -1,28 +1,42 @@
 # Ember SVG Jar (WIP)
 
-SVG assets support for your Ember project.
+Comprehensive SVG support for your Ember application.
 
-Powered by https://github.com/ivanvotti/svg-jar
+Main features include:
+
+- a kick ass viewer for SVG assets
+- an easy to use helper for embedding SVGs to templates
+- automatic SVG files optimization (it can cut file size by half)
+- support both symbol and inline methods
+- compatibility with postcss-svg-fragments
+
+![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/svg-jar-screen-shot.jpg)
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+`$ ember install ember-svg-jar`
 
-## Running
+## How to try it in 3 minutes?
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+- Install the addon and put some SVG files to any place in your `public` directory.
 
-## Running Tests
+- Run the development server: `$ ember serve`
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+- Open the link below with Chrome: `http://localhost:4200/ember-svg-jar/index.html`
 
-## Building
+- You should see your SVG assets there, select one and click `Enter` (it will copy it to the clipboard).
 
-* `ember build`
+- Paste it into any `hbs` template in your app.
 
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+- Open a page with your browser that will render the modified template. You should see your SVG there.
+
+That's about it! Docs and tests are comming very soon.
+
+## License
+
+This project is distributed under the MIT license.
+
+---
+
+GitHub [@ivanvotti](https://github.com/ivanvotti) &nbsp;&middot;&nbsp;
+Twitter [@ivanvotti](https://twitter.com/ivanvotti)

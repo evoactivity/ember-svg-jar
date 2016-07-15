@@ -71,11 +71,8 @@ module.exports = {
   },
 
   initializeOptions: function(options, env) {
-    if (!options || !options.sourceDirs) {
-      throw new Error('sourceDirs is required by ember-svg-jar');
-    }
-
     this.options = _.defaults(options || {}, {
+      sourceDirs: ['public'],
       strategy: 'inline',
       trimPath: false,  // remove directories from the inline asset key
       embedDemo: env === 'development',
