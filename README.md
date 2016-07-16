@@ -10,7 +10,7 @@ Main features include:
 - support both symbol and inline methods
 - compatibility with postcss-svg-fragments
 
-![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/svg-jar-screen.png)
+![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/svg-jar-0.2.3.png)
 
 ## Installation
 
