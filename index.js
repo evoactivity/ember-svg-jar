@@ -8,7 +8,7 @@ var MergeTrees = require('broccoli-merge-trees');
 var SVGOptimizer = require('broccoli-svg-optimizer');
 var Symbolizer = require('broccoli-symbolizer');
 var AssetsPacker = require('./lib/assets-packer');
-var DemoBuilder = require('./lib/demo-builder');
+var ViewerBuilder = require('./lib/viewer-builder');
 
 var ajaxingScript = fs.readFileSync(path.join(__dirname, 'ajaxing.html'), 'utf8');
 
@@ -37,12 +37,12 @@ module.exports = {
   treeForPublic: function() {
     var trees = [];
 
-    if (this.options.embedDemo) {
+    if (this.options.embedViewer) {
       trees.push(this._super.treeForPublic.apply(this, arguments));
     }
 
-    if (this.options.buildDemoData) {
-      trees.push(this.getDemoTree());
+    if (this.options.addViewerData) {
+      trees.push(this.getViewerTree());
     }
 
     if (this.isSymbolStrategy()) {
@@ -75,8 +75,8 @@ module.exports = {
       sourceDirs: ['public'],
       strategy: 'inline',
       trimPath: false,  // remove directories from the inline asset key
-      embedDemo: env === 'development',
-      buildDemoData: env === 'development',
+      embedViewer: env === 'development',
+      addViewerData: env === 'development',
       optimize: {},
       symbolsFile: '/assets/symbols.svg',
       symbolsPrefix: '',
@@ -110,8 +110,8 @@ module.exports = {
     return svgFiles;
   },
 
-  getDemoTree: function() {
-    return new DemoBuilder(this.getSVGFiles(), {
+  getViewerTree: function() {
+    return new ViewerBuilder(this.getSVGFiles(), {
       outputFile: 'svg-jar.json',
       strategy: this.options.strategy,
       symbolsPrefix: this.options.symbolsPrefix,
