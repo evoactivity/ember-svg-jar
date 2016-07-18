@@ -1,6 +1,6 @@
 {
   "name": "ember-svg-jar",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Comprehensive SVG support for Ember applications (WIP)",
   "directories": {
     "doc": "doc",
