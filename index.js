@@ -7,10 +7,14 @@ var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
 var SVGOptimizer = require('broccoli-svg-optimizer');
 var Symbolizer = require('broccoli-symbolizer');
-var AssetsPacker = require('./lib/assets-packer');
+var InlinePacker = require('./lib/inline-packer');
+var ViewerAssetsBuilder = require('./lib/viewer-assets-builder');
 var ViewerBuilder = require('./lib/viewer-builder');
+var defaultGenerators = require('./lib/generators');
 
-var ajaxingScript = fs.readFileSync(path.join(__dirname, 'ajaxing.html'), 'utf8');
+var symbolsLoaderScript = fs.readFileSync(
+  path.join(__dirname, 'symbols-loader.html'), 'utf8'
+);
 
 function mergeTreesIfNeeded(trees, options) {
   return trees.length === 1 ? trees[0] : new MergeTrees(trees, options);
@@ -37,15 +41,15 @@ module.exports = {
   treeForPublic: function() {
     var trees = [];
 
-    if (this.options.embedViewer) {
-      trees.push(this._super.treeForPublic.apply(this, arguments));
-    }
-
-    if (this.options.addViewerData) {
+    if (this.options.viewer.enabled) {
       trees.push(this.getViewerTree());
+
+      if (this.options.viewer.embed) {
+        trees.push(this._super.treeForPublic.apply(this, arguments));
+      }
     }
 
-    if (this.isSymbolStrategy()) {
+    if (this.hasSymbolStrategy()) {
       trees.push(this.getSymbolStrategyTree());
     }
 
@@ -55,7 +59,7 @@ module.exports = {
   treeForApp: function(appTree) {
     var trees = [appTree];
 
-    if (this.isInlineStrategy()) {
+    if (this.hasInlineStrategy()) {
       trees.push(this.getInlineStrategyTree());
     }
 
@@ -63,36 +67,56 @@ module.exports = {
   },
 
   contentFor: function(type) {
-    if (type === 'body' && this.isSymbolStrategy() && this.options.injectSymbols) {
-      return ajaxingScript.replace('{{FILE_PATH}}', this.options.symbolsFile);
+    var includeLoader =
+        this.hasSymbolStrategy() && this.options.symbol.includeLoader;
+
+    if (type === 'body' && includeLoader) {
+      return symbolsLoaderScript
+        .replace('{{FILE_PATH}}', this.options.symbol.outputFile);
     }
 
     return '';
   },
 
   initializeOptions: function(options, env) {
-    this.options = _.defaults(options || {}, {
-      sourceDirs: ['public'],
-      strategy: 'inline',
-      trimPath: false,  // remove directories from the inline asset key
-      embedViewer: env === 'development',
-      addViewerData: env === 'development',
+    this.options = _.merge({
+      strategies: ['inline'],
+      persist: true,
       optimizer: {},
-      symbolsFile: '/assets/symbols.svg',
-      symbolsPrefix: '',
-      injectSymbols: true,
-      persist: true
-    });
+
+      viewer: {
+        enabled: env === 'development',
+        embed: env === 'development'
+      },
+
+      inline: {
+        sourceDirs: ['public'],
+        idGen: defaultGenerators.inlineIDGen,
+        copypastaGen: defaultGenerators.inlineCopypastaGen
+      },
+
+      symbol: {
+        sourceDirs: ['public'],
+        outputFile: '/assets/symbols.svg',
+        prefix: '',
+        idGen: defaultGenerators.symbolIDGen,
+        copypastaGen: defaultGenerators.symbolCopypastaGen,
+        includeLoader: true
+      }
+    }, options || {});
   },
 
-  getSVGFiles: function() {
-    if (this._svgFiles) {
-      return this._svgFiles;
+  svgFilesFor: function(strategy) {
+    this.svgFilesCache = this.svgFilesCache || {};
+
+    if (this.svgFilesCache[strategy]) {
+      return this.svgFilesCache[strategy];
     }
 
-    var sourceDirs = this.options.sourceDirs.filter(function(sourceDir) {
-      return fs.existsSync(sourceDir);
-    });
+    var sourceDirs = this.options[strategy].sourceDirs
+      .filter(function(sourceDir) {
+        return fs.existsSync(sourceDir);
+      });
 
     var svgFiles = new Funnel(mergeTreesIfNeeded(sourceDirs), {
       include: ['**/*.svg']
@@ -105,41 +129,52 @@ module.exports = {
       });
     }
 
-    this._svgFiles = svgFiles;
+    this.svgFilesCache[strategy] = svgFiles;
 
     return svgFiles;
   },
 
   getViewerTree: function() {
-    return new ViewerBuilder(this.getSVGFiles(), {
-      outputFile: 'svg-jar.json',
-      strategy: this.options.strategy,
-      symbolsPrefix: this.options.symbolsPrefix,
-      trimPath: this.options.trimPath
+    var idGenOptions = {
+      symbol: { prefix: this.options.symbol.prefix }
+    };
+
+    var viewerInputNodes = this.options.strategies.map(function(strategy) {
+      return new ViewerAssetsBuilder(this.svgFilesFor(strategy), {
+        outputFile: strategy + '.json',
+        strategy: strategy,
+        idGen: this.options[strategy].idGen,
+        idGenOptions: idGenOptions[strategy],
+        copypastaGen: this.options[strategy].copypastaGen
+      });
+    }.bind(this));
+
+    return new ViewerBuilder(mergeTreesIfNeeded(viewerInputNodes), {
+      outputFile: 'svg-jar.json'
     });
   },
 
   getSymbolStrategyTree: function() {
-    return new Symbolizer(this.getSVGFiles(), {
-      outputFile: this.options.symbolsFile,
-      prefix: this.options.symbolsPrefix,
+    return new Symbolizer(this.svgFilesFor('symbol'), {
+      outputFile: this.options.symbol.outputFile,
+      idGen: this.options.symbol.idGen,
+      prefix: this.options.symbol.prefix,
       persist: this.options.persist
     });
   },
 
   getInlineStrategyTree: function() {
-    return new AssetsPacker(this.getSVGFiles(), {
+    return new InlinePacker(this.svgFilesFor('inline'), {
       outputFile: 'svgs.js',
-      moduleExport: true,
-      trimPath: this.options.trimPath
+      idGen: this.options.inline.idGen
     });
   },
 
-  isSymbolStrategy: function() {
-    return this.options.strategy === 'symbol';
+  hasSymbolStrategy: function() {
+    return this.options.strategies.indexOf('symbol') !== -1;
   },
 
-  isInlineStrategy: function() {
-    return this.options.strategy === 'inline';
+  hasInlineStrategy: function() {
+    return this.options.strategies.indexOf('inline') !== -1;
   }
 };
