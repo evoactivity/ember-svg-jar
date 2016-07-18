@@ -77,7 +77,7 @@ module.exports = {
       trimPath: false,  // remove directories from the inline asset key
       embedViewer: env === 'development',
       addViewerData: env === 'development',
-      optimize: {},
+      optimizer: {},
       symbolsFile: '/assets/symbols.svg',
       symbolsPrefix: '',
       injectSymbols: true,
@@ -98,9 +98,9 @@ module.exports = {
       include: ['**/*.svg']
     });
 
-    if (this.options.optimize) {
+    if (this.options.optimizer) {
       svgFiles = new SVGOptimizer(svgFiles, {
-        svgoConfig: this.options.optimize,
+        svgoConfig: this.options.optimizer,
         persist: this.options.persist
       });
     }
