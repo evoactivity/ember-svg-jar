@@ -158,7 +158,8 @@ module.exports = {
     }.bind(this));
 
     return new ViewerBuilder(mergeTreesIfNeeded(viewerInputNodes), {
-      outputFile: 'svg-jar.json'
+      outputFile: 'svg-jar.json',
+      hasManyStrategies: this.options.strategy.length > 1
     });
   },
 
