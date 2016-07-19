@@ -80,6 +80,7 @@ module.exports = {
 
   initializeOptions: function(options, env) {
     this.options = _.merge({
+      sourceDirs: ['public'],
       strategy: 'inline',
       persist: true,
       optimizer: {},
@@ -90,13 +91,11 @@ module.exports = {
       },
 
       inline: {
-        sourceDirs: ['public'],
         idGen: defaultGenerators.inlineIDGen,
         copypastaGen: defaultGenerators.inlineCopypastaGen
       },
 
       symbol: {
-        sourceDirs: ['public'],
         outputFile: '/assets/symbols.svg',
         prefix: '',
         idGen: defaultGenerators.symbolIDGen,
@@ -110,6 +109,15 @@ module.exports = {
     }
   },
 
+  sourceDirsFor: function(strategy) {
+    var sourceDirs =
+      this.options[strategy].sourceDirs || this.options.sourceDirs;
+
+    return sourceDirs.filter(function(sourceDir) {
+      return fs.existsSync(sourceDir);
+    });
+  },
+
   svgFilesFor: function(strategy) {
     this.svgFilesCache = this.svgFilesCache || {};
 
@@ -117,11 +125,7 @@ module.exports = {
       return this.svgFilesCache[strategy];
     }
 
-    var sourceDirs = this.options[strategy].sourceDirs
-      .filter(function(sourceDir) {
-        return fs.existsSync(sourceDir);
-      });
-
+    var sourceDirs = this.sourceDirsFor(strategy);
     var svgFiles = new Funnel(mergeTreesIfNeeded(sourceDirs), {
       include: ['**/*.svg']
     });
