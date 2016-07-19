@@ -80,7 +80,7 @@ module.exports = {
 
   initializeOptions: function(options, env) {
     this.options = _.merge({
-      strategies: ['inline'],
+      strategy: 'inline',
       persist: true,
       optimizer: {},
 
@@ -104,6 +104,10 @@ module.exports = {
         includeLoader: true
       }
     }, options || {});
+
+    if (_.isString(this.options.strategy)) {
+      this.options.strategy = [this.options.strategy];
+    }
   },
 
   svgFilesFor: function(strategy) {
@@ -139,7 +143,7 @@ module.exports = {
       symbol: { prefix: this.options.symbol.prefix }
     };
 
-    var viewerInputNodes = this.options.strategies.map(function(strategy) {
+    var viewerInputNodes = this.options.strategy.map(function(strategy) {
       return new ViewerAssetsBuilder(this.svgFilesFor(strategy), {
         outputFile: strategy + '.json',
         strategy: strategy,
@@ -171,10 +175,10 @@ module.exports = {
   },
 
   hasSymbolStrategy: function() {
-    return this.options.strategies.indexOf('symbol') !== -1;
+    return this.options.strategy.indexOf('symbol') !== -1;
   },
 
   hasInlineStrategy: function() {
-    return this.options.strategies.indexOf('inline') !== -1;
+    return this.options.strategy.indexOf('inline') !== -1;
   }
 };
