@@ -11,6 +11,7 @@ var InlinePacker = require('./lib/inline-packer');
 var ViewerAssetsBuilder = require('./lib/viewer-assets-builder');
 var ViewerBuilder = require('./lib/viewer-builder');
 var defaultGenerators = require('./lib/generators');
+var validateOptions = require('./lib/validate-options');
 
 var symbolsLoaderScript = fs.readFileSync(
   path.join(__dirname, 'symbols-loader.html'), 'utf8'
@@ -104,9 +105,9 @@ module.exports = {
       }
     }, options || {});
 
-    if (_.isString(this.options.strategy)) {
-      this.options.strategy = [this.options.strategy];
-    }
+    validateOptions(this.options);
+
+    this.options.strategy = _.castArray(this.options.strategy);
   },
 
   sourceDirsFor: function(strategy) {
