@@ -1,6 +1,13 @@
-# Ember SVG Jar (BETA)
+<h1 align="center">
+  <img src="https://cdn.rawgit.com/ivanvotti/ember-svg-jar/master/svg-jar-logo.svg" alt="Standard" width="132px">
+  <br>
+  Ember SVGJar
+  <br>
+</h1>
 
-The best way to bring SVG goodness to your Ember application.
+<h4 align="center">
+  The best way to bring SVG goodness to your Ember application
+</h4>
 
 ![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/svg-jar-0.4.1.png)
 
@@ -28,7 +35,7 @@ The best way to bring SVG goodness to your Ember application.
 
 ## Advanced usage examples
 
-**Note:** In most of cases, Ember SVG Jar should be useful without any configuration. But it wants to be very configurable when it's time to adjust it for your needs.
+**Note:** In most of cases, Ember SVGJar should be useful without any configuration. But it wants to be very configurable when it's time to adjust it for your needs.
 
 Real documentation with all available options and better examples is coming soon.
 
