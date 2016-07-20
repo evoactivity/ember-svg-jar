@@ -18,7 +18,7 @@ export default Helper.extend({
     let svg;
 
     if (svgName.startsWith('#')) {
-      svg = this.getSpriteSVG(svgName);
+      svg = this.getSymbolUse(svgName);
     } else {
       svg = this.getInlineSVG(svgName);
     }
@@ -30,13 +30,13 @@ export default Helper.extend({
     return htmlSafe(svg);
   },
 
-  getSpriteSVG(svgName) {
+  getSymbolUse(svgName) {
     return `<svg><use xlink:href="${svgName}" /></svg>`;
   },
 
   getInlineSVG(svgName) {
     let svgs = get(this, 'svgJar.svgs');
-    let svg = get(svgs, svgName);
+    let svg = svgs[svgName];  // svgName can content dots
 
     if (!svg) {
       warn(`svg-jar: Missing inline SVG for ${svgName}`);
