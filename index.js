@@ -83,8 +83,9 @@ module.exports = {
     var options = _.merge({
       sourceDirs: ['public'],
       strategy: 'inline',
-      persist: true,
+      stripPath: false,
       optimizer: {},
+      persist: true,
 
       viewer: {
         enabled: env === 'development',
@@ -110,6 +111,10 @@ module.exports = {
     this.options = options;
   },
 
+  /**
+    It's only used for options that can be defined as both a global or
+    strategy specific option.
+  */
   optionFor: function(strategy, optionName) {
     return _.isUndefined(this.options[strategy][optionName])
       ? this.options[optionName]
@@ -149,8 +154,15 @@ module.exports = {
   },
 
   getViewerTree: function() {
-    var idGenOptions = {
-      symbol: { prefix: this.options.symbol.prefix }
+    var idGenOpts = {
+      inline: {
+        stripPath: this.optionFor('inline', 'stripPath')
+      },
+
+      symbol: {
+        stripPath: this.optionFor('symbol', 'stripPath'),
+        prefix: this.options.symbol.prefix
+      }
     };
 
     var viewerInputNodes = this.options.strategy.map(function(strategy) {
@@ -158,7 +170,7 @@ module.exports = {
         outputFile: strategy + '.json',
         strategy: strategy,
         idGen: this.options[strategy].idGen,
-        idGenOptions: idGenOptions[strategy],
+        idGenOpts: idGenOpts[strategy],
         copypastaGen: this.options[strategy].copypastaGen
       });
     }.bind(this));
@@ -169,27 +181,29 @@ module.exports = {
     });
   },
 
+  getInlineStrategyTree: function() {
+    return new InlinePacker(this.svgFilesFor('inline'), {
+      idGen: this.options.inline.idGen,
+      stripPath: this.optionFor('inline', 'stripPath'),
+      outputFile: 'svgs.js'
+    });
+  },
+
   getSymbolStrategyTree: function() {
     return new Symbolizer(this.svgFilesFor('symbol'), {
       idGen: this.options.symbol.idGen,
+      stripPath: this.optionFor('symbol', 'stripPath'),
       outputFile: this.options.symbol.outputFile,
       prefix: this.options.symbol.prefix,
       persist: this.options.persist
     });
   },
 
-  getInlineStrategyTree: function() {
-    return new InlinePacker(this.svgFilesFor('inline'), {
-      idGen: this.options.inline.idGen,
-      outputFile: 'svgs.js'
-    });
+  hasInlineStrategy: function() {
+    return this.options.strategy.indexOf('inline') !== -1;
   },
 
   hasSymbolStrategy: function() {
     return this.options.strategy.indexOf('symbol') !== -1;
-  },
-
-  hasInlineStrategy: function() {
-    return this.options.strategy.indexOf('inline') !== -1;
   }
 };
