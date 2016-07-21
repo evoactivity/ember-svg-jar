@@ -80,7 +80,7 @@ module.exports = {
   },
 
   initializeOptions: function(options, env) {
-    var options = _.merge({
+    this.options = _.merge({
       sourceDirs: ['public'],
       strategy: 'inline',
       stripPath: false,
@@ -106,9 +106,8 @@ module.exports = {
       }
     }, options || {});
 
-    validateOptions(options);
-    options.strategy = _.castArray(options.strategy);
-    this.options = options;
+    validateOptions(this.options);
+    this.options.strategy = _.castArray(this.options.strategy);
   },
 
   /**
@@ -171,7 +170,8 @@ module.exports = {
         strategy: strategy,
         idGen: this.options[strategy].idGen,
         idGenOpts: idGenOpts[strategy],
-        copypastaGen: this.options[strategy].copypastaGen
+        copypastaGen: this.options[strategy].copypastaGen,
+        ui: this.ui
       });
     }.bind(this));
 
