@@ -80,7 +80,7 @@ module.exports = {
   },
 
   initializeOptions: function(options, env) {
-    this.options = _.merge({
+    var options = _.merge({
       sourceDirs: ['public'],
       strategy: 'inline',
       persist: true,
@@ -97,26 +97,30 @@ module.exports = {
       },
 
       symbol: {
-        outputFile: '/assets/symbols.svg',
-        prefix: '',
         idGen: defaultGenerators.symbolIDGen,
         copypastaGen: defaultGenerators.symbolCopypastaGen,
+        outputFile: '/assets/symbols.svg',
+        prefix: '',
         includeLoader: true
       }
     }, options || {});
 
-    validateOptions(this.options);
+    validateOptions(options);
+    options.strategy = _.castArray(options.strategy);
+    this.options = options;
+  },
 
-    this.options.strategy = _.castArray(this.options.strategy);
+  optionFor: function(strategy, optionName) {
+    return _.isUndefined(this.options[strategy][optionName])
+      ? this.options[optionName]
+      : this.options[strategy][optionName];
   },
 
   sourceDirsFor: function(strategy) {
-    var sourceDirs =
-      this.options[strategy].sourceDirs || this.options.sourceDirs;
-
-    return sourceDirs.filter(function(sourceDir) {
-      return fs.existsSync(sourceDir);
-    });
+    return this.optionFor(strategy, 'sourceDirs')
+      .filter(function(sourceDir) {
+        return fs.existsSync(sourceDir);
+      });
   },
 
   svgFilesFor: function(strategy) {
@@ -131,9 +135,10 @@ module.exports = {
       include: ['**/*.svg']
     });
 
-    if (this.options.optimizer) {
+    var svgoConfig = this.optionFor(strategy, 'optimizer');
+    if (svgoConfig) {
       svgFiles = new SVGOptimizer(svgFiles, {
-        svgoConfig: this.options.optimizer,
+        svgoConfig: svgoConfig,
         persist: this.options.persist
       });
     }
@@ -166,8 +171,8 @@ module.exports = {
 
   getSymbolStrategyTree: function() {
     return new Symbolizer(this.svgFilesFor('symbol'), {
-      outputFile: this.options.symbol.outputFile,
       idGen: this.options.symbol.idGen,
+      outputFile: this.options.symbol.outputFile,
       prefix: this.options.symbol.prefix,
       persist: this.options.persist
     });
@@ -175,8 +180,8 @@ module.exports = {
 
   getInlineStrategyTree: function() {
     return new InlinePacker(this.svgFilesFor('inline'), {
-      outputFile: 'svgs.js',
-      idGen: this.options.inline.idGen
+      idGen: this.options.inline.idGen,
+      outputFile: 'svgs.js'
     });
   },
 
