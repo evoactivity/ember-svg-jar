@@ -93,12 +93,12 @@ module.exports = {
       },
 
       inline: {
-        idGen: defaultGenerators.inlineIDGen,
+        idGen: defaultGenerators.inlineIdGen,
         copypastaGen: defaultGenerators.inlineCopypastaGen
       },
 
       symbol: {
-        idGen: defaultGenerators.symbolIDGen,
+        idGen: defaultGenerators.symbolIdGen,
         copypastaGen: defaultGenerators.symbolCopypastaGen,
         outputFile: '/assets/symbols.svg',
         prefix: '',
