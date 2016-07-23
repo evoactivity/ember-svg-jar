@@ -1,26 +1,26 @@
 const path = require('path');
 
-function symbolIdGen(filePath, options) {
-  let assetId = options.stripPath ? path.basename(filePath) : filePath;
-  return options.prefix + assetId.replace(/[\s]/g, '-');
+function symbolIdGen(filePath, options = {}) {
+  let assetId = (options.stripPath ? path.basename(filePath) : filePath)
+    .replace(/[\s]/g, '-');
+  return `${options.prefix}${assetId}`;
 }
 
 function symbolCopypastaGen(assetId) {
-  return '{{svg-jar "#' + assetId + '"}}';
+  return `{{svg-jar "#${assetId}"}}`;
 }
 
-function inlineIdGen(filePath, options) {
-  options = options || {};
+function inlineIdGen(filePath, options = {}) {
   return options.stripPath ? path.basename(filePath) : filePath;
 }
 
 function inlineCopypastaGen(assetId) {
-  return '{{svg-jar "' + assetId + '"}}';
+  return `{{svg-jar "${assetId}"}}`;
 }
 
 module.exports = {
-  symbolIdGen: symbolIdGen,
-  symbolCopypastaGen: symbolCopypastaGen,
-  inlineIdGen: inlineIdGen,
-  inlineCopypastaGen: inlineCopypastaGen
+  symbolIdGen,
+  symbolCopypastaGen,
+  inlineIdGen,
+  inlineCopypastaGen
 };

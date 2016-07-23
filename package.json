@@ -12,6 +12,7 @@
     "prewatch": "rimraf lib",
     "watch": "babel src --out-dir lib --watch",
     "prepublish": "npm run build && npm run test",
+    "lint": "eslint src",
     "test": "ember try:each"
   },
   "homepage": "https://github.com/ivanvotti/ember-svg-jar",
@@ -47,7 +48,11 @@
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
-    "loader.js": "^4.0.1"
+    "eslint": "^3.1.1",
+    "eslint-config-airbnb-base": "^4.0.2",
+    "eslint-plugin-import": "^1.11.1",
+    "loader.js": "^4.0.1",
+    "rimraf": "^2.5.4"
   },
   "keywords": [
     "ember-addon"

@@ -1,25 +1,21 @@
 const _ = require('lodash');
 
-const ERROR_PREFIX = 'ember-svg-jar: ';
 const VALID_STRATEGIES = ['inline', 'symbol'];
 
 function validateStrategy(options) {
-  let strategy = options.strategy;
+  let strategyOpt = options.strategy;
 
-  if (!(_.isString(strategy) || _.isArray(strategy))) {
+  if (!(_.isString(strategyOpt) || _.isArray(strategyOpt))) {
     return 'Invalid strategy value. It must be a string or an array.';
   }
 
-  let isInvalid = _.castArray(strategy).some(function(strategy) {
-    return VALID_STRATEGIES.indexOf(strategy) === -1;
-  });
+  let isInvalid = _
+    .castArray(strategyOpt)
+    .some((strategy) => VALID_STRATEGIES.indexOf(strategy) === -1);
 
   if (isInvalid) {
-    return (
-      'Invalid strategy found. Valid options are ' +
-      VALID_STRATEGIES.join(', ') +
-      '.'
-    );
+    let validOptions = VALID_STRATEGIES.join(', ');
+    return `Invalid strategy found. Valid options are ${validOptions}.`;
   }
 }
 
@@ -28,11 +24,11 @@ function validateOptions(options) {
     validateStrategy
   ];
 
-  validators.forEach(function(validate) {
+  validators.forEach((validate) => {
     let error = validate(options);
 
     if (error) {
-      throw new Error(ERROR_PREFIX + error);
+      throw new Error(`ember-svg-jar: ${error}`);
     }
   });
 }

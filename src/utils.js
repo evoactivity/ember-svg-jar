@@ -2,10 +2,7 @@ const path = require('path');
 const _ = require('lodash');
 
 function ensurePosix(filePath) {
-  if (path.sep !== '/') {
-    return filePath.split(path.sep).join('/');
-  }
-  return filePath;
+  return path.sep !== '/' ? filePath.split(path.sep).join('/') : filePath;
 }
 
 function stripExtension(filePath) {
@@ -17,7 +14,7 @@ function checkForDuplicates(items, strategy, ui) {
     .chain(items)
     .map('id')
     .countBy()
-    .pickBy(function(value) { return value > 1; })
+    .pickBy((value) => value > 1)
     .keys()
     .value();
 
@@ -25,21 +22,20 @@ function checkForDuplicates(items, strategy, ui) {
     return;
   }
 
+  ui.write('\n');
   ui.writeWarnLine(
-    '[ember-svg-jar] Duplicate IDs found for ' + strategy.toUpperCase() + ' strategy!'
+    `[ember-svg-jar] Duplicate IDs found for ${strategy.toUpperCase()} strategy!`
   );
 
-  duplicateIds.forEach(function(id) {
-    _.filter(items, { id: id }).forEach(function(item) {
-      ui.writeWarnLine('ID: "' + item.id + '" PATH: ' + item.path, false, false);
-    });
+  duplicateIds.forEach((id) => {
+    _.filter(items, { id }).forEach((item) => (
+      ui.writeWarnLine(`ID: "${item.id}" PATH: ${item.path}`, false, false)
+    ));
   });
-
-  ui.write('\n');
 }
 
 module.exports = {
-  ensurePosix: ensurePosix,
-  stripExtension: stripExtension,
-  checkForDuplicates: checkForDuplicates
+  ensurePosix,
+  stripExtension,
+  checkForDuplicates
 };

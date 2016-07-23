@@ -5,8 +5,8 @@ const CachingWriter = require('broccoli-caching-writer');
 const mkdirp = require('mkdirp');
 
 function filtersFor(assets, filters) {
-  return filters.map(function(filter) {
-    return {
+  return filters.map((filter) => (
+    {
       name: filter.name,
       key: filter.key,
       items: _
@@ -15,17 +15,15 @@ function filtersFor(assets, filters) {
         .without(undefined)
         .countBy()
         .toPairs()
-        .map(function(pair) {
-          return { name: pair[0], count: pair[1] };
-        })
+        .map(([name, count]) => ({ name, count }))
         .sortBy('name')
         .value()
-    };
-  });
+    }
+  ));
 }
 
-function ViewerBuilder(inputNode, options) {
-  if (!options || !options.outputFile) {
+function ViewerBuilder(inputNode, options = {}) {
+  if (!options.outputFile) {
     throw new Error('the outputFile option is required');
   }
 
@@ -48,9 +46,17 @@ ViewerBuilder.prototype.build = function() {
 };
 
 ViewerBuilder.prototype.getViewerModel = function() {
-  let assets = this.listFiles().reduce(function(assets, filePath) {
-    return assets.concat(JSON.parse(fs.readFileSync(filePath, 'UTF-8')));
-  }, []);
+  let assets = this.listFiles().reduce((items, filePath) => (
+    items.concat(JSON.parse(fs.readFileSync(filePath, 'UTF-8')))
+  ), []);
+
+  let details = [
+    { name: 'File name', key: 'fileName' },
+    { name: 'Directory', key: 'fileDir' },
+    { name: 'File size', key: 'fileSize' },
+    { name: 'Strategy', key: 'strategy' },
+    { name: 'Base size', key: 'baseSize' }
+  ];
 
   let searchKeys = ['fileName', 'fileDir'];
 
@@ -73,21 +79,13 @@ ViewerBuilder.prototype.getViewerModel = function() {
     filterBy.push({ name: 'Base strategy', key: 'strategy' });
   }
 
-  let details = [
-    { name: 'File name', key: 'fileName' },
-    { name: 'Directory', key: 'fileDir' },
-    { name: 'File size', key: 'fileSize'},
-    { name: 'Strategy', key: 'strategy' },
-    { name: 'Base size', key: 'baseSize' }
-  ];
-
   return {
-    assets: assets,
-    searchKeys: searchKeys,
-    sortBy: sortBy,
-    arrangeBy: arrangeBy,
-    filters: filtersFor(assets, filterBy),
-    details: details
+    assets,
+    details,
+    searchKeys,
+    sortBy,
+    arrangeBy,
+    filters: filtersFor(assets, filterBy)
   };
 };
 

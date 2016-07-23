@@ -1,11 +1,9 @@
-const CachingWriter = require('broccoli-caching-writer');
 const path = require('path');
 const fs = require('fs');
 const _ = require('lodash');
+const CachingWriter = require('broccoli-caching-writer');
 const mkdirp = require('mkdirp');
-const utils = require('./utils');
-const ensurePosix = utils.ensurePosix;
-const stripExtension = utils.stripExtension;
+const { ensurePosix, stripExtension } = require('./utils');
 
 /**
   SVG assets packer for `inline` strategy.
@@ -18,12 +16,8 @@ const stripExtension = utils.stripExtension;
 
   The file can optionally include ES6 module export.
 */
-function InlinePacker(inputNode, options) {
-  if (!(this instanceof InlinePacker)) {
-    return new InlinePacker(inputNode, options);
-  }
-
-  if (!options || !options.outputFile) {
+function InlinePacker(inputNode, options = {}) {
+  if (!options.outputFile) {
     throw new Error('the outputFile option is required');
   }
 
@@ -47,7 +41,7 @@ InlinePacker.prototype.build = function() {
 InlinePacker.prototype.getFilePaths = function() {
   let posixFilePaths = this.listFiles().map(ensurePosix);
 
-  return _.uniq(posixFilePaths).filter(function(filePath) {
+  return _.uniq(posixFilePaths).filter((filePath) => {
     // files returned from this.listFiles are directories if they end in /
     let isDirectory = filePath.charAt(filePath.length - 1) === '/';
     return !isDirectory;
@@ -61,8 +55,8 @@ InlinePacker.prototype.buildAssetsStore = function() {
   let idGen = this.options.idGen;
   let idGenOpts = { stripPath: this.options.stripPath };
 
-  this.getFilePaths().forEach(function(posixFilePath) {
-    let relativePath = posixFilePath.replace(posixInputPath + '/', '');
+  this.getFilePaths().forEach((posixFilePath) => {
+    let relativePath = posixFilePath.replace(`${posixInputPath}/`, '');
     let assetId = idGen(stripExtension(relativePath), idGenOpts);
     let filePath = path.join(inputPath, relativePath);
 
@@ -77,7 +71,7 @@ InlinePacker.prototype.saveObjectAsJson = function(outputObj) {
   let outputFilePath = path.join(this.outputPath, this.options.outputFile);
 
   if (this.options.moduleExport) {
-    output = 'export default ' + output;
+    output = `export default ${output}`;
   }
 
   mkdirp.sync(path.dirname(outputFilePath));

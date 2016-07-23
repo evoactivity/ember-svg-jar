@@ -22,22 +22,22 @@ function mergeTreesIfNeeded(trees, options) {
 module.exports = {
   name: 'ember-svg-jar',
 
-  isDevelopingAddon: function() {
+  isDevelopingAddon() {
     return false;
   },
 
-  included: function(app) {
+  included(app) {
     this._super.included.apply(this, arguments);
 
     // see: https://github.com/ember-cli/ember-cli/issues/3718
     if (typeof app.import !== 'function' && app.app) {
-      app = app.app;
+      app = app.app;  // eslint-disable-line no-param-reassign
     }
 
     this.initializeOptions(app.options.svgJar, app.env);
   },
 
-  treeForPublic: function() {
+  treeForPublic() {
     let trees = [];
 
     if (this.options.viewer.enabled) {
@@ -55,7 +55,7 @@ module.exports = {
     return mergeTreesIfNeeded(trees);
   },
 
-  treeForApp: function(appTree) {
+  treeForApp(appTree) {
     let trees = [appTree];
 
     if (this.hasInlineStrategy()) {
@@ -65,7 +65,7 @@ module.exports = {
     return mergeTreesIfNeeded(trees, { overwrite: true });
   },
 
-  contentFor: function(type) {
+  contentFor(type) {
     let includeLoader =
         this.hasSymbolStrategy() && this.options.symbol.includeLoader;
 
@@ -77,7 +77,7 @@ module.exports = {
     return '';
   },
 
-  initializeOptions: function(options, env) {
+  initializeOptions(options, env) {
     this.options = _.merge({
       sourceDirs: ['public'],
       strategy: 'inline',
@@ -112,20 +112,18 @@ module.exports = {
     It's only used for options that can be defined as both a global or
     strategy specific option.
   */
-  optionFor: function(strategy, optionName) {
+  optionFor(strategy, optionName) {
     return _.isUndefined(this.options[strategy][optionName])
       ? this.options[optionName]
       : this.options[strategy][optionName];
   },
 
-  sourceDirsFor: function(strategy) {
+  sourceDirsFor(strategy) {
     return this.optionFor(strategy, 'sourceDirs')
-      .filter(function(sourceDir) {
-        return fs.existsSync(sourceDir);
-      });
+      .filter((sourceDir) => fs.existsSync(sourceDir));
   },
 
-  svgFilesFor: function(strategy) {
+  svgFilesFor(strategy) {
     this.svgFilesCache = this.svgFilesCache || {};
 
     if (this.svgFilesCache[strategy]) {
@@ -140,7 +138,7 @@ module.exports = {
     let svgoConfig = this.optionFor(strategy, 'optimizer');
     if (svgoConfig) {
       svgFiles = new SVGOptimizer(svgFiles, {
-        svgoConfig: svgoConfig,
+        svgoConfig,
         persist: this.options.persist
       });
     }
@@ -150,7 +148,7 @@ module.exports = {
     return svgFiles;
   },
 
-  getViewerTree: function() {
+  getViewerTree() {
     let idGenOpts = {
       inline: {
         stripPath: this.optionFor('inline', 'stripPath')
@@ -162,16 +160,16 @@ module.exports = {
       }
     };
 
-    let viewerInputNodes = this.options.strategy.map(function(strategy) {
-      return new ViewerAssetsBuilder(this.svgFilesFor(strategy), {
-        outputFile: strategy + '.json',
-        strategy: strategy,
+    let viewerInputNodes = this.options.strategy.map((strategy) => (
+      new ViewerAssetsBuilder(this.svgFilesFor(strategy), {
+        strategy,
         idGen: this.options[strategy].idGen,
         idGenOpts: idGenOpts[strategy],
         copypastaGen: this.options[strategy].copypastaGen,
+        outputFile: `${strategy}.json`,
         ui: this.ui
-      });
-    }.bind(this));
+      })
+    ));
 
     return new ViewerBuilder(mergeTreesIfNeeded(viewerInputNodes), {
       outputFile: 'svg-jar.json',
@@ -179,7 +177,7 @@ module.exports = {
     });
   },
 
-  getInlineStrategyTree: function() {
+  getInlineStrategyTree() {
     return new InlinePacker(this.svgFilesFor('inline'), {
       idGen: this.options.inline.idGen,
       stripPath: this.optionFor('inline', 'stripPath'),
@@ -187,7 +185,7 @@ module.exports = {
     });
   },
 
-  getSymbolStrategyTree: function() {
+  getSymbolStrategyTree() {
     return new Symbolizer(this.svgFilesFor('symbol'), {
       idGen: this.options.symbol.idGen,
       stripPath: this.optionFor('symbol', 'stripPath'),
@@ -197,11 +195,11 @@ module.exports = {
     });
   },
 
-  hasInlineStrategy: function() {
+  hasInlineStrategy() {
     return this.options.strategy.indexOf('inline') !== -1;
   },
 
-  hasSymbolStrategy: function() {
+  hasSymbolStrategy() {
     return this.options.strategy.indexOf('symbol') !== -1;
   }
 };
