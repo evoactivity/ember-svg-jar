@@ -1,7 +1,5 @@
-'use strict';
-
-var path = require('path');
-var _ = require('lodash');
+const path = require('path');
+const _ = require('lodash');
 
 function ensurePosix(filePath) {
   if (path.sep !== '/') {
@@ -15,7 +13,7 @@ function stripExtension(filePath) {
 }
 
 function checkForDuplicates(items, strategy, ui) {
-  var duplicateIds = _
+  let duplicateIds = _
     .chain(items)
     .map('id')
     .countBy()

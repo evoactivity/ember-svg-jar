@@ -1,10 +1,8 @@
-'use strict';
-
-var CachingWriter = require('broccoli-caching-writer');
-var path = require('path');
-var fs = require('fs');
-var _ = require('lodash');
-var mkdirp = require('mkdirp');
+const path = require('path');
+const fs = require('fs');
+const _ = require('lodash');
+const CachingWriter = require('broccoli-caching-writer');
+const mkdirp = require('mkdirp');
 
 function filtersFor(assets, filters) {
   return filters.map(function(filter) {
@@ -43,30 +41,30 @@ ViewerBuilder.prototype = Object.create(CachingWriter.prototype);
 ViewerBuilder.prototype.constructor = ViewerBuilder;
 
 ViewerBuilder.prototype.build = function() {
-  var viewerContent = JSON.stringify(this.getViewerModel());
-  var outputFilePath = path.join(this.outputPath, this.options.outputFile);
+  let viewerContent = JSON.stringify(this.getViewerModel());
+  let outputFilePath = path.join(this.outputPath, this.options.outputFile);
   mkdirp.sync(path.dirname(outputFilePath));
   fs.writeFileSync(outputFilePath, viewerContent);
 };
 
 ViewerBuilder.prototype.getViewerModel = function() {
-  var assets = this.listFiles().reduce(function(assets, filePath) {
+  let assets = this.listFiles().reduce(function(assets, filePath) {
     return assets.concat(JSON.parse(fs.readFileSync(filePath, 'UTF-8')));
   }, []);
 
-  var searchKeys = ['fileName', 'fileDir'];
+  let searchKeys = ['fileName', 'fileDir'];
 
-  var sortBy = [
+  let sortBy = [
     { name: 'File name', key: 'fileName' },
     { name: 'Base size', key: 'svg.height' }
   ];
 
-  var arrangeBy = [
+  let arrangeBy = [
     { name: 'Directory', key: 'fileDir' },
     { name: 'Base size', key: 'baseSize' }
   ];
 
-  var filterBy = [
+  let filterBy = [
     { name: 'Directory', key: 'fileDir' },
     { name: 'Base size', key: 'baseSize' }
   ];
@@ -75,7 +73,7 @@ ViewerBuilder.prototype.getViewerModel = function() {
     filterBy.push({ name: 'Base strategy', key: 'strategy' });
   }
 
-  var details = [
+  let details = [
     { name: 'File name', key: 'fileName' },
     { name: 'Directory', key: 'fileDir' },
     { name: 'File size', key: 'fileSize'},

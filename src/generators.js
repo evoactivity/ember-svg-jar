@@ -1,9 +1,7 @@
-'use strict';
-
-var path = require('path');
+const path = require('path');
 
 function symbolIdGen(filePath, options) {
-  var assetId = options.stripPath ? path.basename(filePath) : filePath;
+  let assetId = options.stripPath ? path.basename(filePath) : filePath;
   return options.prefix + assetId.replace(/[\s]/g, '-');
 }
 

@@ -1,13 +1,11 @@
-'use strict';
-
-var CachingWriter = require('broccoli-caching-writer');
-var path = require('path');
-var fs = require('fs');
-var _ = require('lodash');
-var mkdirp = require('mkdirp');
-var utils = require('./utils');
-var ensurePosix = utils.ensurePosix;
-var stripExtension = utils.stripExtension;
+const CachingWriter = require('broccoli-caching-writer');
+const path = require('path');
+const fs = require('fs');
+const _ = require('lodash');
+const mkdirp = require('mkdirp');
+const utils = require('./utils');
+const ensurePosix = utils.ensurePosix;
+const stripExtension = utils.stripExtension;
 
 /**
   SVG assets packer for `inline` strategy.
@@ -47,26 +45,26 @@ InlinePacker.prototype.build = function() {
 };
 
 InlinePacker.prototype.getFilePaths = function() {
-  var posixFilePaths = this.listFiles().map(ensurePosix);
+  let posixFilePaths = this.listFiles().map(ensurePosix);
 
   return _.uniq(posixFilePaths).filter(function(filePath) {
     // files returned from this.listFiles are directories if they end in /
-    var isDirectory = filePath.charAt(filePath.length - 1) === '/';
+    let isDirectory = filePath.charAt(filePath.length - 1) === '/';
     return !isDirectory;
   });
 };
 
 InlinePacker.prototype.buildAssetsStore = function() {
-  var inputPath = this.inputPaths[0];
-  var posixInputPath = ensurePosix(inputPath);
-  var assetsStore = {};
-  var idGen = this.options.idGen;
-  var idGenOpts = { stripPath: this.options.stripPath };
+  let inputPath = this.inputPaths[0];
+  let posixInputPath = ensurePosix(inputPath);
+  let assetsStore = {};
+  let idGen = this.options.idGen;
+  let idGenOpts = { stripPath: this.options.stripPath };
 
   this.getFilePaths().forEach(function(posixFilePath) {
-    var relativePath = posixFilePath.replace(posixInputPath + '/', '');
-    var assetId = idGen(stripExtension(relativePath), idGenOpts);
-    var filePath = path.join(inputPath, relativePath);
+    let relativePath = posixFilePath.replace(posixInputPath + '/', '');
+    let assetId = idGen(stripExtension(relativePath), idGenOpts);
+    let filePath = path.join(inputPath, relativePath);
 
     assetsStore[assetId] = fs.readFileSync(filePath, 'UTF-8');
   });
@@ -75,8 +73,8 @@ InlinePacker.prototype.buildAssetsStore = function() {
 };
 
 InlinePacker.prototype.saveObjectAsJson = function(outputObj) {
-  var output = JSON.stringify(outputObj, null, 2);
-  var outputFilePath = path.join(this.outputPath, this.options.outputFile);
+  let output = JSON.stringify(outputObj, null, 2);
+  let outputFilePath = path.join(this.outputPath, this.options.outputFile);
 
   if (this.options.moduleExport) {
     output = 'export default ' + output;

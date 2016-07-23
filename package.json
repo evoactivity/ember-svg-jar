@@ -7,8 +7,11 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "ember build",
-    "start": "ember server",
+    "prebuild": "rimraf lib",
+    "build": "babel src --out-dir lib",
+    "prewatch": "rimraf lib",
+    "watch": "babel src --out-dir lib --watch",
+    "prepublish": "npm run build && npm run test",
     "test": "ember try:each"
   },
   "homepage": "https://github.com/ivanvotti/ember-svg-jar",
@@ -25,6 +28,8 @@
   "author": "Ivan Votti <ivanvotti@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
     "broccoli-asset-rev": "^2.4.2",
     "ember-ajax": "^2.0.1",
     "ember-cli": "2.6.2",
@@ -51,8 +56,8 @@
     "broccoli-caching-writer": "^2.2.1",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
-    "broccoli-svg-optimizer": "1.0.0",
-    "broccoli-symbolizer": "0.3.2",
+    "broccoli-svg-optimizer": "^1.0.0",
+    "broccoli-symbolizer": "^0.4.1",
     "cheerio": "^0.20.0",
     "ember-cli-babel": "^5.1.6",
     "lodash": "^4.13.1",
@@ -60,5 +65,10 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }
