@@ -48,7 +48,7 @@ Real documentation with all available options and better examples is coming soon
 ##### Setting where to find SVG files at `ember-cli-build.js`:
 
 ```javascript
-var app = new EmberApp(defaults, {
+let app = new EmberApp(defaults, {
   svgJar: {
     sourceDirs: ['svgs', 'public/images/svg']
   }
@@ -58,12 +58,10 @@ var app = new EmberApp(defaults, {
 ##### [`inline` (default) strategy] custom ID generator:
 
 ```javascript
-var app = new EmberApp(defaults, {
+let app = new EmberApp(defaults, {
   svgJar: {
     inline: {
-      idGen: function(filePath) {
-        return filePath.replace(/\./g, '-');
-      }
+      idGen: (filePath) => filePath.replace(/\./g, '-')
     }
   }
 });
@@ -72,7 +70,7 @@ var app = new EmberApp(defaults, {
 ##### Switching to `symbol` strategy:
 
 ```javascript
-var app = new EmberApp(defaults, {
+let app = new EmberApp(defaults, {
   svgJar: {
     strategy: 'symbol'
   }
@@ -82,7 +80,7 @@ var app = new EmberApp(defaults, {
 ##### [`symbol` strategy] ID prefix and a custom source directory:
 
 ```javascript
-var app = new EmberApp(defaults, {
+let app = new EmberApp(defaults, {
   svgJar: {
     strategy: 'symbol',
 
@@ -97,14 +95,12 @@ var app = new EmberApp(defaults, {
 ##### [`symbol` strategy] custom copypasta if you don't want to use the helper:
 
 ```javascript
-var app = new EmberApp(defaults, {
+let app = new EmberApp(defaults, {
   svgJar: {
     strategy: 'symbol',
 
     symbol: {
-      copypastaGen: function(svgID) {
-        return '<svg><use xlink:href="#' + svgID + '"></use></svg>';
-      }
+      copypastaGen: (svgID) => `<svg><use xlink:href="#${svgID}"></use></svg>`
     }
   }
 });
@@ -113,17 +109,14 @@ var app = new EmberApp(defaults, {
 ##### [`symbol` strategy] disabled loader, custom copypasta and output path:
 
 ```javascript
-var app = new EmberApp(defaults, {
+let app = new EmberApp(defaults, {
   svgJar: {
     strategy: 'symbol',
 
     symbol: {
       includeLoader: false,
       outputFile: '/assets/symbol-defs.svg',
-
-      copypastaGen: function(svgID) {
-        return '<svg><use xlink:href="/assets/symbol-defs.svg#' + svgID + '"></use></svg>';
-      }
+      copypastaGen: (svgID) => `<svg><use xlink:href="/assets/symbol-defs.svg#${svgID}"></use></svg>`
     }
   }
 });
@@ -132,7 +125,7 @@ var app = new EmberApp(defaults, {
 ##### Using both `symbol` and `inline` strategies at the same time:
 
 ```javascript
-var app = new EmberApp(defaults, {
+let app = new EmberApp(defaults, {
   svgJar: {
     strategy: ['symbol', 'inline'],
 
@@ -146,6 +139,12 @@ var app = new EmberApp(defaults, {
   }
 });
 ```
+
+## Assets viewer
+
+The viewer is a separate Ember application, which repository can be found at [this link](https://github.com/ivanvotti/svg-jar). It's going to become very configurable, so you can make it more useful for your domain.
+
+The viewer itself doesn't affect your build size at all, as it's just a separate directory in your `public` directory. By default, it's only available in development mode.
 
 ## Docs and tests
 
