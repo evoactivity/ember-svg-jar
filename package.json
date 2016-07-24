@@ -11,7 +11,7 @@
     "build": "babel src --out-dir lib",
     "prewatch": "rimraf lib",
     "watch": "babel src --out-dir lib --watch",
-    "prepublish": "npm run build && npm run test",
+    "prepublish": "npm run build",
     "lint": "eslint src",
     "test": "ember try:each"
   },
@@ -62,7 +62,7 @@
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
     "broccoli-svg-optimizer": "^1.0.0",
-    "broccoli-symbolizer": "^0.4.1",
+    "broccoli-symbolizer": "^0.4.2",
     "cheerio": "^0.20.0",
     "ember-cli-babel": "^5.1.6",
     "lodash": "^4.13.1",
