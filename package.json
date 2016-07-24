@@ -8,9 +8,9 @@
   },
   "scripts": {
     "prebuild": "rimraf lib",
-    "build": "babel src --out-dir lib",
+    "build": "babel src --out-dir lib --presets es2015",
     "prewatch": "rimraf lib",
-    "watch": "babel src --out-dir lib --watch",
+    "watch": "babel src --out-dir lib --watch --presets es2015",
     "prepublish": "npm run build",
     "lint": "eslint src",
     "test": "ember try:each"
@@ -70,10 +70,5 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
   }
 }
