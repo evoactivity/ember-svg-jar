@@ -11,7 +11,7 @@
     "build": "babel src --out-dir lib --presets es2015",
     "prewatch": "rimraf lib",
     "watch": "babel src --out-dir lib --watch --presets es2015",
-    "prepublish": "npm run build",
+    "prepublish": "npm run build && ember test",
     "lint": "eslint src",
     "test": "ember try:each"
   },

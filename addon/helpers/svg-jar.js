@@ -15,9 +15,10 @@ export default Helper.extend({
     }
 
     let svgName = params[0];
+    let isSymbol = svgName.lastIndexOf('#', 0) === 0;
     let svg;
 
-    if (svgName.startsWith('#')) {
+    if (isSymbol) {
       svg = this.getSymbolUse(svgName);
     } else {
       svg = this.getInlineSVG(svgName);
