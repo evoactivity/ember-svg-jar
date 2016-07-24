@@ -4,18 +4,21 @@ const _ = require('lodash');
 const CachingWriter = require('broccoli-caching-writer');
 const mkdirp = require('mkdirp');
 const cheerio = require('cheerio');
-const { ensurePosix, stripExtension, checkForDuplicates } = require('./utils');
+const { ensurePosix, stripExtension } = require('./utils');
+const validateAssets = require('./validate-assets');
 
 function svgDataFor(svgContents) {
   let $svg = cheerio.load(svgContents, { xmlMode: true })('svg');
   let viewBox = $svg.attr('viewBox');
-  let viewBoxValues = viewBox.split(/\s+/);
+  let [viewBoxWidth, viewBoxHeight] = (viewBox || '').split(/\s+/);
+  let width = $svg.attr('width') || viewBoxWidth || 0;
+  let height = $svg.attr('height') || viewBoxHeight || 0;
 
   return {
     content: $svg.html(),
     viewBox,
-    width: parseFloat($svg.attr('width') || viewBoxValues[2]),
-    height: parseFloat($svg.attr('height') || viewBoxValues[3])
+    width: width && parseFloat(width),
+    height: height && parseFloat(height)
   };
 }
 
@@ -59,7 +62,7 @@ ViewerAssetsBuilder.prototype.getFilePaths = function() {
 };
 
 ViewerAssetsBuilder.prototype.getViewerAssets = function() {
-  let itemsToCheck = [];
+  let assetsToValidate = [];
   let assets = this.getFilePaths().map((posixFilePath) => {
     let { strategy, idGen, idGenOpts, copypastaGen } = this.options;
     let inputPath = this.inputPaths[0];
@@ -74,7 +77,11 @@ ViewerAssetsBuilder.prototype.getViewerAssets = function() {
     let fileDir = relativePath.replace(fileName, '');
     let assetId = idGen(stripExtension(relativePath), idGenOpts);
 
-    itemsToCheck.push({ id: assetId, path: relativePath });
+    assetsToValidate.push({
+      id: assetId,
+      viewBox: svgData.viewBox,
+      path: relativePath
+    });
 
     return {
       svg: svgData,
@@ -87,7 +94,7 @@ ViewerAssetsBuilder.prototype.getViewerAssets = function() {
     };
   });
 
-  checkForDuplicates(itemsToCheck, this.options.strategy, this.ui);
+  validateAssets(assetsToValidate, this.options.strategy, this.ui);
   return assets;
 };
 
