@@ -5,6 +5,25 @@
   <br>
 </h1>
 
+<p align="center">
+  <a href="https://travis-ci.org/ivanvotti/ember-svg-jar">
+    <img src="https://travis-ci.org/ivanvotti/ember-svg-jar.svg?branch=master"
+      alt="Build Status">
+  </a>
+  <a href="https://www.npmjs.com/package/ember-svg-jar">
+    <img src="https://badge.fury.io/js/ember-svg-jar.svg"
+      alt="NPM Version">
+  </a>
+  <a href="https://www.npmjs.com/package/ember-svg-jar">
+    <img src="https://img.shields.io/npm/dm/ember-svg-jar.svg"
+      alt="NPM Downloads">
+  </a>
+  <a href="http://emberobserver.com/addons/ember-svg-jar">
+    <img src="http://emberobserver.com/badges/ember-svg-jar.svg"
+      alt="Ember Observer Score">
+  </a>
+</p>
+
 <h4 align="center">
   The best way to bring SVG goodness to your Ember application
 </h4>
