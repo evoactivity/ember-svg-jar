@@ -165,9 +165,30 @@ The viewer is a separate Ember application, which repository can be found at [th
 
 The viewer itself doesn't affect your build size at all, as it's just a separate directory in your `public` directory. By default, it's only available in development mode.
 
-## Docs and tests
+## Development setup
 
-It's still an early beta. Docs and tests are coming soon.
+### Installation
+
+* `git clone git@github.com:ivanvotti/ember-svg-jar.git`
+* `npm install`
+* `bower install`
+
+### Building
+
+* `npm run build`
+
+### Running tests
+
+* `ember try:each`
+* `ember test`
+* `ember test --server`
+
+### Running the dummy app
+
+* `ember server`
+* Visit the app at http://localhost:4200
+
+For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
 
 ## License
 
