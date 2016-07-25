@@ -149,12 +149,7 @@ module.exports = {
 
   getViewerTree() {
     let idGenOpts = {
-      inline: {
-        stripPath: this.optionFor('inline', 'stripPath')
-      },
-
       symbol: {
-        stripPath: this.optionFor('symbol', 'stripPath'),
         prefix: this.optionFor('symbol', 'prefix')
       }
     };
@@ -165,6 +160,7 @@ module.exports = {
         idGen: this.optionFor(strategy, 'idGen'),
         idGenOpts: idGenOpts[strategy],
         copypastaGen: this.optionFor(strategy, 'copypastaGen'),
+        stripPath: this.optionFor(strategy, 'stripPath'),
         outputFile: `${strategy}.json`,
         ui: this.ui
       })

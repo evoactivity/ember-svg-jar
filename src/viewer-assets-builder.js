@@ -64,7 +64,7 @@ ViewerAssetsBuilder.prototype.getFilePaths = function() {
 ViewerAssetsBuilder.prototype.getViewerAssets = function() {
   let assetsToValidate = [];
   let assets = this.getFilePaths().map((posixFilePath) => {
-    let { strategy, idGen, idGenOpts, copypastaGen } = this.options;
+    let { strategy, stripPath, idGen, idGenOpts, copypastaGen } = this.options;
     let inputPath = this.inputPaths[0];
     let posixInputPath = ensurePosix(inputPath);
     let relativePath = posixFilePath.replace(`${posixInputPath}/`, '');
@@ -75,7 +75,8 @@ ViewerAssetsBuilder.prototype.getViewerAssets = function() {
 
     let fileName = path.basename(relativePath);
     let fileDir = relativePath.replace(fileName, '');
-    let assetId = idGen(stripExtension(relativePath), idGenOpts);
+    let idGenPath = stripPath ? path.basename(relativePath) : relativePath;
+    let assetId = idGen(stripExtension(idGenPath), idGenOpts);
 
     assetsToValidate.push({
       id: assetId,

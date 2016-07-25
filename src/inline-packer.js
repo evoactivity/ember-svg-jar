@@ -52,12 +52,12 @@ InlinePacker.prototype.buildAssetsStore = function() {
   let inputPath = this.inputPaths[0];
   let posixInputPath = ensurePosix(inputPath);
   let assetsStore = {};
-  let idGen = this.options.idGen;
-  let idGenOpts = { stripPath: this.options.stripPath };
+  let { idGen, stripPath } = this.options;
 
   this.getFilePaths().forEach((posixFilePath) => {
     let relativePath = posixFilePath.replace(`${posixInputPath}/`, '');
-    let assetId = idGen(stripExtension(relativePath), idGenOpts);
+    let idGenPath = stripPath ? path.basename(relativePath) : relativePath;
+    let assetId = idGen(stripExtension(idGenPath));
     let filePath = path.join(inputPath, relativePath);
 
     assetsStore[assetId] = fs.readFileSync(filePath, 'UTF-8');
