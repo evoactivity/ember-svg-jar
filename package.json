@@ -11,7 +11,7 @@
     "build": "babel src --out-dir lib --presets es2015",
     "prewatch": "rimraf lib",
     "watch": "babel src --out-dir lib --watch --presets es2015",
-    "prepublish": "npm run build && ember test",
+    "prepublish": "npm run build && not-in-install && ember test || not-in-publish",
     "lint": "eslint src",
     "test": "ember try:each"
   },
@@ -51,6 +51,7 @@
     "eslint": "^3.1.1",
     "eslint-config-airbnb-base": "^4.0.2",
     "eslint-plugin-import": "^1.11.1",
+    "in-publish": "^2.0.0",
     "loader.js": "^4.0.1",
     "rimraf": "^2.5.4"
   },
