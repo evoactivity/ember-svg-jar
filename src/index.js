@@ -11,6 +11,9 @@ const ViewerBuilder = require('./viewer-builder');
 const defaultGenerators = require('./generators');
 const validateOptions = require('./validate-options');
 
+// GLOBAL_OPTIONS can be defined as both a root or strategy specific option.
+const GLOBAL_OPTIONS = ['sourceDirs', 'stripPath', 'optimizer'];
+
 const symbolsLoaderScript = fs.readFileSync(
   path.join(__dirname, '../symbols-loader.html'), 'utf8'
 );
@@ -67,11 +70,11 @@ module.exports = {
 
   contentFor(type) {
     let includeLoader =
-        this.hasSymbolStrategy() && this.options.symbol.includeLoader;
+        this.hasSymbolStrategy() && this.optionFor('symbol', 'includeLoader');
 
     if (type === 'body' && includeLoader) {
       return symbolsLoaderScript
-        .replace('{{FILE_PATH}}', this.options.symbol.outputFile);
+        .replace('{{FILE_PATH}}', this.optionFor('symbol', 'outputFile'));
     }
 
     return '';
@@ -108,13 +111,9 @@ module.exports = {
     this.options.strategy = _.castArray(this.options.strategy);
   },
 
-  /**
-    It's only used for options that can be defined as both a global or
-    strategy specific option.
-  */
   optionFor(strategy, optionName) {
     return _.isUndefined(this.options[strategy][optionName])
-      ? this.options[optionName]
+      ? GLOBAL_OPTIONS.indexOf(optionName) !== -1 && this.options[optionName]
       : this.options[strategy][optionName];
   },
 
@@ -156,16 +155,16 @@ module.exports = {
 
       symbol: {
         stripPath: this.optionFor('symbol', 'stripPath'),
-        prefix: this.options.symbol.prefix
+        prefix: this.optionFor('symbol', 'prefix')
       }
     };
 
     let viewerInputNodes = this.options.strategy.map((strategy) => (
       new ViewerAssetsBuilder(this.svgFilesFor(strategy), {
         strategy,
-        idGen: this.options[strategy].idGen,
+        idGen: this.optionFor(strategy, 'idGen'),
         idGenOpts: idGenOpts[strategy],
-        copypastaGen: this.options[strategy].copypastaGen,
+        copypastaGen: this.optionFor(strategy, 'copypastaGen'),
         outputFile: `${strategy}.json`,
         ui: this.ui
       })
@@ -179,7 +178,7 @@ module.exports = {
 
   getInlineStrategyTree() {
     return new InlinePacker(this.svgFilesFor('inline'), {
-      idGen: this.options.inline.idGen,
+      idGen: this.optionFor('inline', 'idGen'),
       stripPath: this.optionFor('inline', 'stripPath'),
       outputFile: 'svgs.js'
     });
@@ -187,10 +186,10 @@ module.exports = {
 
   getSymbolStrategyTree() {
     return new Symbolizer(this.svgFilesFor('symbol'), {
-      idGen: this.options.symbol.idGen,
+      idGen: this.optionFor('symbol', 'idGen'),
       stripPath: this.optionFor('symbol', 'stripPath'),
-      outputFile: this.options.symbol.outputFile,
-      prefix: this.options.symbol.prefix,
+      outputFile: this.optionFor('symbol', 'outputFile'),
+      prefix: this.optionFor('symbol', 'prefix'),
       persist: this.options.persist
     });
   },
