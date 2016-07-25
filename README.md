@@ -44,126 +44,33 @@
 ## Try it in 4 easy steps
 
 - Put some SVG files to any place in your `public` directory.
-
 - Run the development server and open this link with Chrome:
 `http://localhost:4200/ember-svg-jar/index.html`
-
 - Select any SVG there and click `Enter` to copy it to the clipboard.
-
 - Paste it into a template and see it rendered in your browser
 
-## Advanced usage examples
+## Usage
 
-**Note:** In most of cases, Ember SVGJar should be useful without any configuration. But it wants to be very configurable when it's time to adjust it for your needs.
+Just drug and drop SVG images to your source directories and copy/paste them from the assets viewer to your templates.
 
-Real documentation with all available options and better examples is coming soon.
-
-##### Adding CSS classes in the helper:
+The `svg-jar` helper accepts `class` attribute:
 
 ```handlebars
 {{svg-jar "asset-name" class="icon icon-big"}}
 ```
 
-##### Setting where to find SVG files at `ember-cli-build.js`:
+## Configuration
 
-```javascript
-let app = new EmberApp(defaults, {
-  svgJar: {
-    sourceDirs: ['svgs', 'public/images/svg']
-  }
-});
-```
+**Note:** In most of cases, Ember SVGJar should be useful without any configuration. But it wants to be very configurable when it's time to adjust it for your needs.
 
-##### [`inline` (default) strategy] custom ID generator:
-
-```javascript
-let app = new EmberApp(defaults, {
-  svgJar: {
-    inline: {
-      idGen: (filePath) => filePath.replace(/\./g, '-')
-    }
-  }
-});
-```
-
-##### Switching to `symbol` strategy:
-
-```javascript
-let app = new EmberApp(defaults, {
-  svgJar: {
-    strategy: 'symbol'
-  }
-});
-```
-
-##### [`symbol` strategy] ID prefix and a custom source directory:
-
-```javascript
-let app = new EmberApp(defaults, {
-  svgJar: {
-    strategy: 'symbol',
-
-    symbol: {
-      sourceDirs: ['public/images/icons'],
-      prefix: 'icon-'
-    }
-  }
-});
-```
-
-##### [`symbol` strategy] custom copypasta if you don't want to use the helper:
-
-```javascript
-let app = new EmberApp(defaults, {
-  svgJar: {
-    strategy: 'symbol',
-
-    symbol: {
-      copypastaGen: (svgID) => `<svg><use xlink:href="#${svgID}"></use></svg>`
-    }
-  }
-});
-```
-
-##### [`symbol` strategy] disabled loader, custom copypasta and output path:
-
-```javascript
-let app = new EmberApp(defaults, {
-  svgJar: {
-    strategy: 'symbol',
-
-    symbol: {
-      includeLoader: false,
-      outputFile: '/assets/symbol-defs.svg',
-      copypastaGen: (svgID) => `<svg><use xlink:href="/assets/symbol-defs.svg#${svgID}"></use></svg>`
-    }
-  }
-});
-```
-
-##### Using both `symbol` and `inline` strategies at the same time:
-
-```javascript
-let app = new EmberApp(defaults, {
-  svgJar: {
-    strategy: ['symbol', 'inline'],
-
-    symbol: {
-      sourceDirs: ['public/images/svg/icons']
-    },
-
-    inline: {
-      sourceDirs: ['public/images/svg/illustrations']
-    }
-  }
-});
-```
+- [All configuration options](docs/configuration.md)
+- [Advanced usage examples](docs/examples.md)
 
 ## Assets viewer
 
-The viewer is a separate Ember application, which repository can be found at [this link](https://github.com/ivanvotti/svg-jar). It's going to become very configurable, so you can make it more useful for your domain.
+The viewer itself doesn't affect your build size at all, as it's just a separate directory in your `public` directory. By default, it's only available in the `development` mode.
 
-The viewer itself doesn't affect your build size at all, as it's just a separate directory in your `public` directory. By default, it's only available in development mode.
+The viewer is a separate Ember application, which repository can be found at [this link](https://github.com/ivanvotti/svg-jar). It's going to become very configurable, so you can make it more useful for your domain.
 
 ## Development setup
 
