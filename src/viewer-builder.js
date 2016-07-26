@@ -4,6 +4,8 @@ const _ = require('lodash');
 const CachingWriter = require('broccoli-caching-writer');
 const mkdirp = require('mkdirp');
 
+const svgJarRepoUrl = 'https://github.com/ivanvotti/ember-svg-jar';
+
 function filtersFor(assets, filters) {
   return filters.map((filter) => (
     {
@@ -79,13 +81,19 @@ ViewerBuilder.prototype.getViewerModel = function() {
     filterBy.push({ name: 'Base strategy', key: 'strategy' });
   }
 
+  let links = [
+    { text: 'Contribute', url: svgJarRepoUrl },
+    { text: 'About', url: `${svgJarRepoUrl}/blob/master/README.md` }
+  ];
+
   return {
     assets,
     details,
     searchKeys,
     sortBy,
     arrangeBy,
-    filters: filtersFor(assets, filterBy)
+    filters: filtersFor(assets, filterBy),
+    links
   };
 };
 
