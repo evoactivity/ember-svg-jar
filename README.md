@@ -33,7 +33,7 @@
 ### What’s in the Box?
 - “install it and forget it” mode (no configuration needed)
 - automatic SVG optimization (it can cut file size by half or more)
-- a kick ass viewer for SVG assets with keyboard shortcuts
+- a kick ass viewer to find and use your assets the fastest way possible
 - a handy helper `{{svg-jar "asset-name"}}`
 - support for both inline and symbol embedding methods
 
@@ -47,17 +47,23 @@
 - Run the development server and open this link with Chrome:
 `http://localhost:4200/ember-svg-jar/index.html`
 - Select any SVG there and click `Enter` to copy it to the clipboard.
-- Paste it into a template and see it rendered in your browser
+- Paste it into a template and see it rendered in your browser.
 
 ## Usage
 
-Just drug and drop SVG images to your source directories and copy/paste them from the assets viewer to your templates.
+Just drag and drop SVG images to your source directory and copy+paste them from the assets viewer to your templates.
 
-The `svg-jar` helper accepts `class` attribute:
+The viewer is available at: `http://localhost:4200/ember-svg-jar/index.html`
+
+The `svg-jar` helper supports the `class` attribute:
 
 ```handlebars
 {{svg-jar "asset-name" class="icon icon-big"}}
 ```
+
+## Compatibility
+
+The addon is compatible with Ember 1.10.1 and beyond.
 
 ## Configuration
 
@@ -65,12 +71,6 @@ The `svg-jar` helper accepts `class` attribute:
 
 - [All configuration options](docs/configuration.md)
 - [Advanced usage examples](docs/examples.md)
-
-## Assets viewer
-
-The viewer itself doesn't affect your build size at all, as it's just a separate directory in your `public` directory. By default, it's only available in the `development` mode.
-
-The viewer is a separate Ember application, which repository can be found at [this link](https://github.com/ivanvotti/svg-jar). It's going to become very configurable, so you can make it more useful for your domain.
 
 ## Development setup
 
@@ -96,6 +96,10 @@ The viewer is a separate Ember application, which repository can be found at [th
 * Visit the app at http://localhost:4200
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+
+## Assets viewer
+
+The viewer is a separate Ember application, which repository can be found at [this link](https://github.com/ivanvotti/svg-jar).
 
 ## License
 
