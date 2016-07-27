@@ -10,7 +10,7 @@ const validateAssets = require('./validate-assets');
 function svgDataFor(svgContents) {
   let $svg = cheerio.load(svgContents, { xmlMode: true })('svg');
   let viewBox = $svg.attr('viewBox');
-  let [viewBoxWidth, viewBoxHeight] = (viewBox || '').split(/\s+/);
+  let [, , viewBoxWidth, viewBoxHeight] = (viewBox || '').split(/\s+/);
   let width = $svg.attr('width') || viewBoxWidth || 0;
   let height = $svg.attr('height') || viewBoxHeight || 0;
 
