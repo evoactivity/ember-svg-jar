@@ -176,7 +176,7 @@ module.exports = {
     return new InlinePacker(this.svgFilesFor('inline'), {
       idGen: this.optionFor('inline', 'idGen'),
       stripPath: this.optionFor('inline', 'stripPath'),
-      outputFile: 'svgs.js'
+      outputFile: 'inline-assets.js'
     });
   },
 
