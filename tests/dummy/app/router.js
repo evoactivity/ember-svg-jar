@@ -7,6 +7,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('inline-strategy');
+  this.route('symbol-strategy');
 });
 
 export default Router;

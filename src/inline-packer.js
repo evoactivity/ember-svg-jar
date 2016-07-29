@@ -3,15 +3,25 @@ const fs = require('fs');
 const _ = require('lodash');
 const CachingWriter = require('broccoli-caching-writer');
 const mkdirp = require('mkdirp');
+const cheerio = require('cheerio');
 const { ensurePosix, stripExtension } = require('./utils');
+
+function svgDataFor(svgContent) {
+  let $svg = cheerio.load(svgContent, { xmlMode: true })('svg');
+
+  return {
+    content: $svg.html(),
+    attrs: $svg.attr()
+  };
+}
 
 /**
   SVG assets packer for `inline` strategy.
   It concatenates inputNode files into a single JSON file like:
 
   {
-    'asset-1 key': 'asset-1 content',
-    'asset-2 key': 'asset-2 content'
+    'asset-1-id': { content: '<path>', attrs: { viewBox: '' } },
+    'asset-2-id': { content: '<path>', attrs: { viewBox: '' } }
   }
 
   The file can optionally include ES6 module export.
@@ -60,7 +70,7 @@ InlinePacker.prototype.buildAssetsStore = function() {
     let assetId = idGen(stripExtension(idGenPath));
     let filePath = path.join(inputPath, relativePath);
 
-    assetsStore[assetId] = fs.readFileSync(filePath, 'UTF-8');
+    assetsStore[assetId] = svgDataFor(fs.readFileSync(filePath, 'UTF-8'));
   });
 
   return assetsStore;

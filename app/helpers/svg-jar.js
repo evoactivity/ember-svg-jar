@@ -1,32 +1,30 @@
 import Ember from 'ember';
 import { htmlSafe } from 'ember-string';
+import formatAttrs from 'ember-svg-jar/utils/format-attrs';
 import inlineAssets from '../inline-assets';
 
+const { merge } = Ember;
 const { warn } = Ember.Logger;
 
-function symbolFor(assetId) {
-  return `<svg><use xlink:href="${assetId}" /></svg>`;
+export function symbolUseFor(assetId, attrs) {
+  return `<svg ${formatAttrs(attrs)}><use xlink:href="${assetId}" /></svg>`;
 }
 
-function inlineSVGFor(assetId) {
+export function inlineSVGFor(assetId, attrs) {
   let svg = inlineAssets[assetId];
 
   if (!svg) {
     warn(`ember-svg-jar: Missing inline SVG for ${assetId}`);
+    return;
   }
 
-  return svg;
+  let svgAttrs = formatAttrs(merge(svg.attrs, attrs));
+  return `<svg ${svgAttrs}>${svg.content}</svg>`;
 }
 
-export function svgJar(assetId, options = {}) {
+export function svgJar(assetId, attrs = {}) {
   let isSymbol = assetId.lastIndexOf('#', 0) === 0;
-  let svg = isSymbol ? symbolFor(assetId) : inlineSVGFor(assetId);
-
-  if (svg && options.class) {
-    svg = svg.replace('<svg', `<svg class="${options.class}"`);
-  }
-
-  return svg;
+  return isSymbol ? symbolUseFor(assetId, attrs) : inlineSVGFor(assetId, attrs);
 }
 
 let svgJarHelper;
