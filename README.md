@@ -51,14 +51,22 @@
 
 ## Usage
 
-Just drag and drop SVG images to your source directory and copy+paste them from the assets viewer to your templates.
+Just drag and drop SVG images to your source directory and copy & paste them from the assets viewer to your templates.
 
 The viewer is available at: `http://localhost:4200/ember-svg-jar/index.html`
 
-The `svg-jar` helper supports the `class` attribute:
+### Helper
+
+Use the `svg-jar` helper to embed SVG images to your application's templates:
 
 ```handlebars
-{{svg-jar "asset-name" class="icon icon-big"}}
+{{svg-jar "my-cool-icon" class="icon" width="24px"}}
+```
+
+The helper takes an asset ID and optional attributes that will be added to the created SVG element. The example above will create an SVG like this:
+
+```handlebars
+<svg class="icon" width="24px">...</svg>
 ```
 
 ## Compatibility
