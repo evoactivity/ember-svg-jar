@@ -34,7 +34,8 @@ module.exports = {
 
     // see: https://github.com/ember-cli/ember-cli/issues/3718
     if (typeof app.import !== 'function' && app.app) {
-      app = app.app;  // eslint-disable-line no-param-reassign
+      // eslint-disable-next-line no-param-reassign
+      app = app.app;
     }
 
     this.initializeOptions(app.options.svgJar, app.env);

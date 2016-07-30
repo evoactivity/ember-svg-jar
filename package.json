@@ -11,9 +11,9 @@
     "build": "babel src --out-dir lib --presets es2015",
     "prewatch": "rimraf lib",
     "watch": "babel src --out-dir lib --watch --presets es2015",
-    "prepublish": "npm run build && not-in-install && npm run lint && ember test || not-in-publish",
-    "lint": "eslint src",
-    "test": "npm run lint && ember try:each"
+    "prepublish": "npm run build && not-in-install && npm test || not-in-publish",
+    "lint": "eslint src addon app tests",
+    "test": "npm run lint && ember test"
   },
   "homepage": "https://github.com/ivanvotti/ember-svg-jar",
   "repository": {
@@ -36,7 +36,6 @@
     "ember-cli": "^2.7.0",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-dependency-checker": "^1.2.0",
-    "ember-cli-eslint": "github:ivanvotti/ember-cli-eslint",
     "ember-cli-htmlbars": "^1.0.3",
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",
     "ember-cli-inject-live-reload": "^1.4.0",

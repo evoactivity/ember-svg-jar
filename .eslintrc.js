@@ -7,6 +7,8 @@ module.exports = {
   },
 
   rules: {
+    'import/no-unresolved': 0,
+    'import/no-extraneous-dependencies': 0,
     'prefer-const': 0,
     'comma-dangle': 0,
     'prefer-arrow-callback': 0,
@@ -14,7 +16,6 @@ module.exports = {
     'prefer-rest-params': 0,
     'no-underscore-dangle': 0,
     'array-callback-return': 0,
-    'import/no-unresolved': 0,
     'consistent-return': 0,
 
     'space-before-function-paren': [2, {

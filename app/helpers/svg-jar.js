@@ -27,6 +27,7 @@ export function svgJar(assetId, attrs = {}) {
   return isSymbol ? symbolUseFor(assetId, attrs) : inlineSVGFor(assetId, attrs);
 }
 
+// eslint-disable-next-line import/no-mutable-exports
 let svgJarHelper;
 
 if (Ember.Helper && Ember.Helper.helper) {

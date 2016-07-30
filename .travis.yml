@@ -21,4 +21,5 @@ install:
   - bower install
 
 script:
+  - npm run lint
   - ember try:each --skip-cleanup
