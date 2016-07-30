@@ -59,7 +59,7 @@
     "ember-addon"
   ],
   "dependencies": {
-    "broccoli-caching-writer": "^2.2.1",
+    "broccoli-caching-writer": "^2.3.1",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
     "broccoli-svg-optimizer": "^1.0.0",
