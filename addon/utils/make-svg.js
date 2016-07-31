@@ -5,16 +5,10 @@ const { merge } = Ember;
 const { warn } = Ember.Logger;
 
 export function formatAttrs(attrs) {
-  let svgAttrs = [];
-  Object.keys(attrs).forEach((attrName) => {
-    let attrValue = attrs[attrName];
-
-    if (!isNone(attrValue)) {
-      svgAttrs.push(`${attrName}="${attrValue}"`);
-    }
-  });
-
-  return svgAttrs.join(' ');
+  return Object.keys(attrs)
+    .map((key) => !isNone(attrs[key]) && `${key}="${attrs[key]}"`)
+    .filter((attr) => attr)
+    .join(' ');
 }
 
 export function symbolUseFor(assetId, svgAttrs) {
