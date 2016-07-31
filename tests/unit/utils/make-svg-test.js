@@ -43,8 +43,8 @@ test('formatAttrs works', function(assert) {
   let result = formatAttrs({
     attrName: 'attrValue',
     'f:oo': 'bar',
-    'null': null,
-    'undefined': undefined
+    isnull: null,
+    isundefined: undefined
   });
   assert.equal(result, 'attrName="attrValue" f:oo="bar"');
 });

@@ -92,11 +92,16 @@ The addon is compatible with Ember 1.10.1 and beyond.
 
 * `npm run build`
 
+### Linting
+
+* `npm run lint` (it checks `src` `addon` `app` `tests` directories)
+
 ### Running tests
 
-* `ember try:each`
+* `npm test` (it runs `npm run lint && ember test`)
 * `ember test`
 * `ember test --server`
+* `ember try:each`
 
 ### Running the dummy app
 
