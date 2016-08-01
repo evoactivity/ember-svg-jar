@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { isNone } from 'ember-utils';
 
-const { merge } = Ember;
+const { copy, merge } = Ember;
 const { warn } = Ember.Logger;
 
 export function formatAttrs(attrs) {
@@ -23,7 +23,7 @@ export function inlineSvgFor(assetId, svgAttrs, inlineStore) {
     return;
   }
 
-  let attrs = svg.attrs ? merge(svg.attrs, svgAttrs) : svgAttrs;
+  let attrs = svg.attrs ? merge(copy(svg.attrs), svgAttrs) : svgAttrs;
   return `<svg ${formatAttrs(attrs)}>${svg.content}</svg>`;
 }
 
