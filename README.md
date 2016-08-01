@@ -106,7 +106,7 @@ The addon is compatible with Ember 1.10.1 and beyond.
 ### Running the dummy app
 
 * `ember serve`
-* Visit the app at http://localhost:4200
+* Visit the app at [http://localhost:4200](http://localhost:4200)
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
 
