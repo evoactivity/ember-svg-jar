@@ -3,23 +3,21 @@ const fs = require('fs');
 const _ = require('lodash');
 const CachingWriter = require('broccoli-caching-writer');
 const mkdirp = require('mkdirp');
-const cheerio = require('cheerio');
-const { ensurePosix, stripExtension } = require('./utils');
+const { ensurePosix, stripExtension, svgDataFor } = require('./utils');
 const validateAssets = require('./validate-assets');
 
-function svgDataFor(svgContents) {
-  let $svg = cheerio.load(svgContents, { xmlMode: true })('svg');
-  let viewBox = $svg.attr('viewBox');
-  let [, , viewBoxWidth, viewBoxHeight] = (viewBox || '').split(/\s+/);
-  let width = $svg.attr('width') || viewBoxWidth || 0;
-  let height = $svg.attr('height') || viewBoxHeight || 0;
+function svgSizeFor(svgAttrs) {
+  let [, , vbWidth, vgHeight] = (svgAttrs.viewBox || '').split(/\s+/);
 
   return {
-    content: $svg.html(),
-    viewBox,
-    width: width && parseFloat(width),
-    height: height && parseFloat(height)
+    width: parseFloat(svgAttrs.width || vbWidth) || null,
+    height: parseFloat(svgAttrs.height || vgHeight) || null
   };
+}
+
+function stringSizeInKb(string) {
+  let bytes = Buffer.byteLength(string, 'utf8');
+  return parseFloat((bytes / 1024).toFixed(2));
 }
 
 function ViewerAssetsBuilder(inputNode, options = {}) {
@@ -34,11 +32,6 @@ function ViewerAssetsBuilder(inputNode, options = {}) {
 
   this.ui = options.ui;
   this.options = options;
-}
-
-function stringSizeInKb(string) {
-  let bytes = Buffer.byteLength(string, 'utf8');
-  return parseFloat((bytes / 1024).toFixed(2));
 }
 
 ViewerAssetsBuilder.prototype = Object.create(CachingWriter.prototype);
@@ -72,6 +65,7 @@ ViewerAssetsBuilder.prototype.getViewerAssets = function() {
     let filePath = path.join(inputPath, relativePath);
     let svgContents = fs.readFileSync(filePath, 'UTF-8');
     let svgData = svgDataFor(svgContents);
+    let { width, height } = svgSizeFor(svgData.attrs);
 
     let fileName = path.basename(relativePath);
     let fileDir = relativePath.replace(fileName, '');
@@ -80,17 +74,19 @@ ViewerAssetsBuilder.prototype.getViewerAssets = function() {
 
     assetsToValidate.push({
       id: assetId,
-      viewBox: svgData.viewBox,
+      viewBox: svgData.attrs.viewBox,
       path: relativePath
     });
 
     return {
       svg: svgData,
-      copypasta: copypastaGen(assetId),
+      width,
+      height,
       fileName,
       fileDir: `/${fileDir}`,
       fileSize: `${stringSizeInKb(svgContents)} KB`,
-      baseSize: `${svgData.height}px`,
+      baseSize: _.isNull(height) ? 'unknown' : `${height}px`,
+      copypasta: copypastaGen(assetId),
       strategy
     };
   });

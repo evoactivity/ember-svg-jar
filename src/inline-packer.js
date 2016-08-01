@@ -3,17 +3,7 @@ const fs = require('fs');
 const _ = require('lodash');
 const CachingWriter = require('broccoli-caching-writer');
 const mkdirp = require('mkdirp');
-const cheerio = require('cheerio');
-const { ensurePosix, stripExtension } = require('./utils');
-
-function svgDataFor(svgContent) {
-  let $svg = cheerio.load(svgContent, { xmlMode: true })('svg');
-
-  return {
-    content: $svg.html(),
-    attrs: $svg.attr()
-  };
-}
+const { ensurePosix, stripExtension, svgDataFor } = require('./utils');
 
 /**
   SVG assets packer for `inline` strategy.

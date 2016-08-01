@@ -64,7 +64,7 @@ ViewerBuilder.prototype.getViewerModel = function() {
 
   let sortBy = [
     { name: 'File name', key: 'fileName' },
-    { name: 'Base size', key: 'svg.height' }
+    { name: 'Base size', key: 'height' }
   ];
 
   let arrangeBy = [
