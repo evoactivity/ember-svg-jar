@@ -4,7 +4,7 @@
 - [BUGFIX] Custom helper attrs shouldn't affect the inline assets store
 - [DOC] Add CHANGELOG.md
 
-[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.8.3...HEAD)
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.8.2...v0.8.3)
 
 ### v0.8.2
 - [FEATURE] `svg-jar` helper can now bind any passed attributes to created SVG elements
