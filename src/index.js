@@ -85,7 +85,7 @@ module.exports = {
     this.options = _.merge({
       sourceDirs: ['public'],
       strategy: 'inline',
-      stripPath: false,
+      stripPath: true,
       optimizer: {},
       persist: true,
 

@@ -6,7 +6,8 @@ module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
     svgJar: {
       strategy: ['symbol', 'inline'],
-      sourceDirs: ['tests/dummy/public']
+      sourceDirs: ['tests/dummy/public'],
+      stripPath: false
     }
   });
 

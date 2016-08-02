@@ -35,7 +35,7 @@ All global options with their default values:
   svgJar: {
     strategy: 'inline',
     sourceDirs: ['public'],
-    stripPath: false,
+    stripPath: true,
     optimizer: {},
     persist: true
   }
@@ -88,9 +88,9 @@ let app = new EmberApp(defaults, {
 #### stripPath (can be redefined on a strategy level)
 
 Type: `Boolean`  
-Default: `false`
+Default: `true`
 
-Remove SVG filepaths from asset IDs.
+Remove filepaths from asset IDs.
 
 #### optimizer (can be redefined on a strategy level)
 
@@ -138,7 +138,7 @@ All the `inline` strategy options with their default values:
 
       // The options below can be used to rewrite the global onces.
       sourceDirs: ['public'],
-      stripPath: false,
+      stripPath: true,
       optimizer: {}
     }
   }
@@ -177,7 +177,7 @@ All the `symbol` strategy options with their default values:
 
       // The options below can be used to rewrite the global onces.
       sourceDirs: ['public'],
-      stripPath: false,
+      stripPath: true,
       optimizer: {}
     }
   }
