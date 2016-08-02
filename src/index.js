@@ -148,6 +148,15 @@ module.exports = {
     return svgFiles;
   },
 
+  originalSvgFilesFor(strategy) {
+    let sourceDirs = this.sourceDirsFor(strategy);
+
+    return new Funnel(mergeTreesIfNeeded(sourceDirs), {
+      include: ['**/*.svg'],
+      destDir: '__original__'
+    });
+  },
+
   getViewerTree() {
     let idGenOpts = {
       symbol: {
@@ -155,8 +164,13 @@ module.exports = {
       }
     };
 
-    let viewerInputNodes = this.options.strategy.map((strategy) => (
-      new ViewerAssetsBuilder(this.svgFilesFor(strategy), {
+    let viewerBuilderNodes = this.options.strategy.map((strategy) => {
+      let inputNode = new MergeTrees([
+        this.svgFilesFor(strategy),
+        this.originalSvgFilesFor(strategy)
+      ]);
+
+      return new ViewerAssetsBuilder(inputNode, {
         strategy,
         idGen: this.optionFor(strategy, 'idGen'),
         idGenOpts: idGenOpts[strategy],
@@ -164,10 +178,10 @@ module.exports = {
         stripPath: this.optionFor(strategy, 'stripPath'),
         outputFile: `${strategy}.json`,
         ui: this.ui
-      })
-    ));
+      });
+    });
 
-    return new ViewerBuilder(mergeTreesIfNeeded(viewerInputNodes), {
+    return new ViewerBuilder(mergeTreesIfNeeded(viewerBuilderNodes), {
       outputFile: 'svg-jar.json',
       hasManyStrategies: this.options.strategy.length > 1
     });

@@ -54,17 +54,28 @@ ViewerAssetsBuilder.prototype.getFilePaths = function() {
   });
 };
 
+ViewerAssetsBuilder.prototype.getRelativeFilePaths = function() {
+  let inputPath = ensurePosix(this.inputPaths[0]);
+
+  return this.getFilePaths()
+    .map((filePath) => filePath.replace(`${inputPath}/`, ''))
+    .filter((filePath) => filePath.split('/')[0] !== '__original__');
+};
+
 ViewerAssetsBuilder.prototype.getViewerAssets = function() {
   let assetsToValidate = [];
-  let assets = this.getFilePaths().map((posixFilePath) => {
+  let assets = this.getRelativeFilePaths().map((relativePath) => {
     let { strategy, stripPath, idGen, idGenOpts, copypastaGen } = this.options;
-    let inputPath = this.inputPaths[0];
-    let posixInputPath = ensurePosix(inputPath);
-    let relativePath = posixFilePath.replace(`${posixInputPath}/`, '');
 
-    let filePath = path.join(inputPath, relativePath);
-    let svgContents = fs.readFileSync(filePath, 'UTF-8');
-    let svgData = svgDataFor(svgContents);
+    let inputPath = ensurePosix(this.inputPaths[0]);
+    let svgFilePath = path.join(inputPath, relativePath);
+    let optimizedSvg = fs.readFileSync(svgFilePath, 'UTF-8');
+
+    let originalSvgRelativePath = `__original__/${relativePath}`;
+    let originalSvgFilePath = path.join(inputPath, originalSvgRelativePath);
+    let originalSvg = fs.readFileSync(originalSvgFilePath, 'UTF-8');
+
+    let svgData = svgDataFor(optimizedSvg);
     let { width, height } = svgSizeFor(svgData.attrs);
 
     let fileName = path.basename(relativePath);
@@ -80,11 +91,13 @@ ViewerAssetsBuilder.prototype.getViewerAssets = function() {
 
     return {
       svg: svgData,
+      originalSvg,
       width,
       height,
       fileName,
       fileDir: `/${fileDir}`,
-      fileSize: `${stringSizeInKb(svgContents)} KB`,
+      fileSize: `${stringSizeInKb(originalSvg)} KB`,
+      optimizedFileSize: `${stringSizeInKb(optimizedSvg)} KB`,
       baseSize: _.isNull(height) ? 'unknown' : `${height}px`,
       copypasta: copypastaGen(assetId),
       strategy

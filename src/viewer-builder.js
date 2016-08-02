@@ -55,9 +55,10 @@ ViewerBuilder.prototype.getViewerModel = function() {
   let details = [
     { name: 'File name', key: 'fileName' },
     { name: 'Directory', key: 'fileDir' },
-    { name: 'File size', key: 'fileSize' },
-    { name: 'Strategy', key: 'strategy' },
-    { name: 'Base size', key: 'baseSize' }
+    { name: 'Original file size', key: 'fileSize' },
+    { name: 'Optimized file size', key: 'optimizedFileSize' },
+    { name: 'Base size', key: 'baseSize' },
+    { name: 'Strategy', key: 'strategy' }
   ];
 
   let searchKeys = ['fileName', 'fileDir'];

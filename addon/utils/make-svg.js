@@ -27,7 +27,7 @@ export function inlineSvgFor(assetId, svgAttrs, inlineStore) {
   return `<svg ${formatAttrs(attrs)}>${svg.content}</svg>`;
 }
 
-export default function makeSVG(assetId, svgAttrs, inlineStore = {}) {
+export default function makeSvg(assetId, svgAttrs, inlineStore = {}) {
   let isSymbol = assetId.lastIndexOf('#', 0) === 0;
   return isSymbol
     ? symbolUseFor(assetId, svgAttrs)
