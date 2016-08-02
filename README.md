@@ -28,7 +28,7 @@
   The best way to bring SVG goodness to your Ember application
 </h4>
 
-![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/svg-jar-0.4.1.png)
+![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/svg-jar-0.9.0.png)
 
 ### What’s in the Box?
 - “install it and forget it” mode (no configuration needed)
@@ -51,7 +51,7 @@
 
 ## Usage
 
-Just drag and drop SVG images to your source directory and copy & paste them from the assets viewer to your templates.
+Just drag and drop SVG images to your source directory and copy & paste them from the viewer to your templates.
 
 The viewer is available at: `http://localhost:4200/ember-svg-jar/index.html`
 
@@ -110,7 +110,7 @@ The addon is compatible with Ember 1.10.1 and beyond.
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
 
-## Assets viewer
+## Asset viewer
 
 The viewer is a separate Ember application, which repository can be found at [this link](https://github.com/ivanvotti/svg-jar).
 

@@ -1,5 +1,25 @@
 ## SVGJar Change Log
 
+### v0.9.0
+- [FEATURE] The viewer allows downloading selected assets
+- [FEATURE] The viewer allows copying selected assets' code to the clipboard
+- [FEATURE] The viewer now shows original and optimized file sizes
+- [BREAKING ENHANCEMENT] `stripPath` is now `true` by default
+
+This release contains a potentially breaking change. In previous versions of the addon `stripPath` was set to `false` by default. It means that some of your asset IDs could look like `{{svg-jar "icons/filled/twitter"}}`. When `stripPath` is `true` the same helper will look like this `{{svg-jar "twitter"}}`.
+
+If you prefer the old behavior, just add the code below to the `ember-cli-build.js`:
+
+```javascript
+let app = new EmberApp(defaults, {
+  svgJar: {
+    stripPath: false
+  }
+});
+```
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.8.3...v0.9.0)
+
 ### v0.8.3
 - [BUGFIX] Custom helper attrs shouldn't affect the inline assets store
 - [DOC] Add CHANGELOG.md
@@ -14,13 +34,13 @@
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.8.1...v0.8.2)
 
 ### v0.8.1
-- [BUGFIX] Assets viewer correctly shows SVGs with undefined height & width
+- [BUGFIX] The viewer correctly shows SVGs with undefined height & width
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.8.0...v0.8.1)
 
 ### v0.8.0
 - [FEATURE] Add support for old Ember versions
-- [ENHANCEMENT] Add sidebar links to the assets viewer
+- [ENHANCEMENT] Add sidebar links to the viewer
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.7.0...v0.8.0)
 
@@ -41,7 +61,7 @@
 - [CLEANUP] Improve assets validation
 - [CLEANUP] Switch to ES6 for broccoli modules
 - [CLEANUP] Add ESLint and cleanup the code
-- [CLEANUP] Remove compiled files of the assets viewer from the repo
+- [CLEANUP] Remove compiled files of the viewer from the repo
 - [INTERNAL] Upgrade broccoli-symbolizer
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.5.0...v0.6.0)

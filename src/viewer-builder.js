@@ -79,7 +79,7 @@ ViewerBuilder.prototype.getViewerModel = function() {
   ];
 
   if (this.options.hasManyStrategies) {
-    filterBy.push({ name: 'Base strategy', key: 'strategy' });
+    filterBy.push({ name: 'Strategy', key: 'strategy' });
   }
 
   let links = [
