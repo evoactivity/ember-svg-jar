@@ -40,7 +40,7 @@ function validateViewBox(assets) {
   return messages.join('\n');
 }
 
-function validateAssets(assets, strategy, ui) {
+module.exports = function validateAssets(assets, strategy, ui) {
   let validators = [
     checkForDuplicates,
     validateViewBox
@@ -54,6 +54,4 @@ function validateAssets(assets, strategy, ui) {
       ui.writeWarnLine(`[ember-svg-jar][${strategy}] ${message}`);
     }
   });
-}
-
-module.exports = validateAssets;
+};

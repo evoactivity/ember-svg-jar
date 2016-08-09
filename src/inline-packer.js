@@ -3,7 +3,8 @@ const fs = require('fs');
 const _ = require('lodash');
 const CachingWriter = require('broccoli-caching-writer');
 const mkdirp = require('mkdirp');
-const { ensurePosix, stripExtension, svgDataFor } = require('./utils');
+const svgDataFor = require('./utils/svg-data-for');
+const { ensurePosix, stripExtension } = require('./utils/filepath');
 
 /**
   SVG assets packer for `inline` strategy.

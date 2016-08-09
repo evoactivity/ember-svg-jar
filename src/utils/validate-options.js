@@ -19,7 +19,7 @@ function validateStrategy(options) {
   }
 }
 
-function validateOptions(options) {
+module.exports = function validateOptions(options) {
   let validators = [
     validateStrategy
   ];
@@ -31,6 +31,4 @@ function validateOptions(options) {
       throw new Error(`ember-svg-jar: ${error}`);
     }
   });
-}
-
-module.exports = validateOptions;
+};

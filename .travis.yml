@@ -22,4 +22,5 @@ install:
 
 script:
   - npm run lint
+  - npm run nodetest
   - ember try:each --skip-cleanup
