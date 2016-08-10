@@ -3,7 +3,7 @@ const fs = require('fs');
 const _ = require('lodash');
 const CachingWriter = require('broccoli-caching-writer');
 const mkdirp = require('mkdirp');
-const validateAssets = require('./utils/validate-assets');
+const validateAssets = require('./validate-assets');
 const svgDataFor = require('./utils/svg-data-for');
 const { ensurePosix, stripExtension } = require('./utils/filepath');
 
@@ -21,6 +21,18 @@ function stringSizeInKb(string) {
   return parseFloat((bytes / 1024).toFixed(2));
 }
 
+function baseSizeFor({ width, height }) {
+  if (_.isNull(height) && _.isNull(height)) {
+    return 'unknown';
+  }
+
+  if (width !== height) {
+    return `${width}x${height}px`;
+  }
+
+  return `${height}px`;
+}
+
 function ViewerAssetsBuilder(inputNode, options = {}) {
   if (!options.outputFile) {
     throw new Error('the outputFile option is required');
@@ -31,7 +43,6 @@ function ViewerAssetsBuilder(inputNode, options = {}) {
     annotation: options.annotation,
   });
 
-  this.ui = options.ui;
   this.options = options;
 }
 
@@ -99,13 +110,16 @@ ViewerAssetsBuilder.prototype.getViewerAssets = function() {
       fileDir: `/${fileDir}`,
       fileSize: `${stringSizeInKb(originalSvg)} KB`,
       optimizedFileSize: `${stringSizeInKb(optimizedSvg)} KB`,
-      baseSize: _.isNull(height) ? 'unknown' : `${height}px`,
+      baseSize: baseSizeFor({ width, height }),
       copypasta: copypastaGen(assetId),
       strategy
     };
   });
 
-  validateAssets(assetsToValidate, this.options.strategy, this.ui);
+  if (this.options.ui) {
+    validateAssets(assetsToValidate, this.options.strategy, this.options.ui);
+  }
+
   return assets;
 };
 

@@ -8,7 +8,7 @@ const Symbolizer = require('broccoli-symbolizer');
 const InlinePacker = require('./inline-packer');
 const ViewerAssetsBuilder = require('./viewer-assets-builder');
 const ViewerBuilder = require('./viewer-builder');
-const validateOptions = require('./utils/validate-options');
+const validateOptions = require('./validate-options');
 const defaultGenerators = require('./default-generators');
 
 // GLOBAL_OPTIONS can be defined as both a root or strategy specific option.
