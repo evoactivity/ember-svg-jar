@@ -1,5 +1,13 @@
 ## SVGJar Change Log
 
+### v0.9.1
+- [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/13) Helper supports `size` attribute `{{svg-jar "asset-name" size=2}}`
+- [ENHANCEMENT] The viewer now shows asset base size as `24x20px` in details
+- [ENHANCEMENT] The viewer allows to copy optimized asset code to clipboard
+- [CLEANUP] Add node tests to cover all broccoli stuff & improve code
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.9.0...v0.9.1)
+
 ### v0.9.0
 - [FEATURE] The viewer allows downloading selected assets
 - [FEATURE] The viewer allows copying selected assets' code to the clipboard

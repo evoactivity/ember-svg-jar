@@ -28,7 +28,7 @@
   The best way to bring SVG goodness to your Ember application
 </h4>
 
-![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/svg-jar-0.9.0.png)
+![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/SVGJar+0.9.1.png)
 
 ### What’s in the Box?
 - “install it and forget it” mode (no configuration needed)
