@@ -41,11 +41,11 @@ test('inlineSvgFor with original attrs', function(assert) {
 });
 
 test('inlineSvgFor with custom attrs', function(assert) {
-  let customAttrs = { class: 'custom' };
   let originalStore = {
     icon: { content: 'icon', attrs: { class: 'original' } }
   };
 
+  let customAttrs = { class: 'custom' };
   let passedStore = copy(originalStore, true);
   assert.equal(
     inlineSvgFor('icon', customAttrs, passedStore),
@@ -55,6 +55,37 @@ test('inlineSvgFor with custom attrs', function(assert) {
 
   assert.deepEqual(originalStore, passedStore,
     'does not change the assetStore objects'
+  );
+});
+
+test('inlineSvgFor sizeFactor', function(assert) {
+  let sizeFactor;
+  let customAttrs;
+  let assetStore = {
+    icon: { content: 'icon', attrs: { width: '5px', height: '10px' } }
+  };
+
+  customAttrs = {};
+  assert.equal(
+    inlineSvgFor('icon', {}, assetStore),
+    '<svg width="5px" height="10px">icon</svg>',
+    "doesn't change height and width if sizeFactor is undefined"
+  );
+
+  sizeFactor = 2;
+  customAttrs = {};
+  assert.equal(
+    inlineSvgFor('icon', customAttrs, assetStore, sizeFactor),
+    '<svg width="10" height="20">icon</svg>',
+    'can double original height and width'
+  );
+
+  sizeFactor = 3;
+  customAttrs = { height: '1px' };
+  assert.equal(
+    inlineSvgFor('icon', customAttrs, assetStore, sizeFactor),
+    '<svg width="15" height="3">icon</svg>',
+    'can triple original width and custom height'
   );
 });
 

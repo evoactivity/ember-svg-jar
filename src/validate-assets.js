@@ -12,7 +12,7 @@ function checkForDuplicates(assets) {
     return;
   }
 
-  let invalidAssets = _.flatMap(duplicateIds, ((id) => _.filter(assets, { id })));
+  let invalidAssets = _.flatMap(duplicateIds, (id) => _.filter(assets, { id }));
   return ['Duplicate IDs found:']
     .concat(invalidAssets.map((asset) => `ID: "${asset.id}" Path: ${asset.relativePath}`))
     .join('\n');
