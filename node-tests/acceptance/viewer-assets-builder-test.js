@@ -56,6 +56,7 @@ describe('ViewerAssetsBuilder', function() {
         fileSize: '0.05 KB',
         optimizedFileSize: '0.05 KB',
         baseSize: '13px',
+        fullBaseSize: '13x13px',
         copypasta: '{{svg-jar "foo"}}',
         strategy: strategy
       }]
@@ -95,7 +96,8 @@ describe('ViewerAssetsBuilder', function() {
         fileDir: '/',
         fileSize: '0.05 KB',
         optimizedFileSize: '0.05 KB',
-        baseSize: '20x40px',
+        baseSize: '40px',
+        fullBaseSize: '20x40px',
         copypasta: '{{svg-jar "#prefix-foo"}}',
         strategy: strategy
       }]

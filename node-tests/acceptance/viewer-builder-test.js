@@ -20,7 +20,8 @@ describe('ViewerBuilder', function() {
         fileDir: '/',
         fileSize: '0.05 KB',
         optimizedFileSize: '0.05 KB',
-        baseSize: '20x40px',
+        baseSize: '40px',
+        fullBaseSize: '20x40px',
         copypasta: '{{svg-jar "#prefix-foo"}}',
         strategy: 'symbol'
       }]),
@@ -35,6 +36,7 @@ describe('ViewerBuilder', function() {
         fileSize: '0.05 KB',
         optimizedFileSize: '0.05 KB',
         baseSize: '13px',
+        fullBaseSize: '13x13px',
         copypasta: '{{svg-jar "foo"}}',
         strategy: 'inline'
       }])
@@ -64,6 +66,7 @@ describe('ViewerBuilder', function() {
             fileSize: '0.05 KB',
             optimizedFileSize: '0.05 KB',
             baseSize: '13px',
+            fullBaseSize: '13x13px',
             copypasta: '{{svg-jar "foo"}}',
             strategy: 'inline'
           },
@@ -76,7 +79,8 @@ describe('ViewerBuilder', function() {
             fileDir: '/',
             fileSize: '0.05 KB',
             optimizedFileSize: '0.05 KB',
-            baseSize: '20x40px',
+            baseSize: '40px',
+            fullBaseSize: '20x40px',
             copypasta: '{{svg-jar "#prefix-foo"}}',
             strategy: 'symbol'
           }
@@ -85,9 +89,9 @@ describe('ViewerBuilder', function() {
         details: [
           { name: 'File name', key: 'fileName' },
           { name: 'Directory', key: 'fileDir' },
+          { name: 'Base size', key: 'fullBaseSize' },
           { name: 'Original file size', key: 'fileSize' },
           { name: 'Optimized file size', key: 'optimizedFileSize' },
-          { name: 'Base size', key: 'baseSize' },
           { name: 'Strategy', key: 'strategy' }
         ],
 
@@ -105,7 +109,7 @@ describe('ViewerBuilder', function() {
 
         filters: [
           { name: 'Directory', key: 'fileDir', items: [{ count: 2, name: '/' }] },
-          { name: 'Base size', key: 'baseSize', items: [{ count: 1, name: '13px' }, { count: 1, name: '20x40px' }] },
+          { name: 'Base size', key: 'baseSize', items: [{ count: 1, name: '13px' }, { count: 1, name: '40px' }] },
           { name: 'Strategy', key: 'strategy', items: [{ count: 1, name: 'inline' }, { count: 1, name: 'symbol' }] }
         ],
 

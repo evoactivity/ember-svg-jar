@@ -5,7 +5,7 @@ const CachingWriter = require('broccoli-caching-writer');
 const mkdirp = require('mkdirp');
 const validateAssets = require('./validate-assets');
 const svgDataFor = require('./utils/svg-data-for');
-const { ensurePosix, stripExtension } = require('./utils/filepath');
+const { filePathsOnlyFor, idGenPathFor } = require('./utils/filepath');
 
 function svgSizeFor(svgAttrs) {
   let [, , vbWidth, vgHeight] = (svgAttrs.viewBox || '').split(/\s+/);
@@ -19,18 +19,6 @@ function svgSizeFor(svgAttrs) {
 function stringSizeInKb(string) {
   let bytes = Buffer.byteLength(string, 'utf8');
   return parseFloat((bytes / 1024).toFixed(2));
-}
-
-function baseSizeFor({ width, height }) {
-  if (_.isNull(height) && _.isNull(height)) {
-    return 'unknown';
-  }
-
-  if (width !== height) {
-    return `${width}x${height}px`;
-  }
-
-  return `${height}px`;
 }
 
 function ViewerAssetsBuilder(inputNode, options = {}) {
@@ -50,77 +38,63 @@ ViewerAssetsBuilder.prototype = Object.create(CachingWriter.prototype);
 ViewerAssetsBuilder.prototype.constructor = ViewerAssetsBuilder;
 
 ViewerAssetsBuilder.prototype.build = function() {
-  let dataToWite = JSON.stringify(this.getViewerAssets());
+  let { strategy, ui } = this.options;
+  let inputPath = this.inputPaths[0];
+  let assets = this.getAssets(
+    filePathsOnlyFor(this.listFiles()), inputPath, this.options
+  );
+
+  if (ui) {
+    validateAssets(assets, strategy, ui);
+  }
+
+  let viewerItems = this.viewerItemsFor(assets, inputPath, this.options);
   let outputFilePath = path.join(this.outputPath, this.options.outputFile);
   mkdirp.sync(path.dirname(outputFilePath));
-  fs.writeFileSync(outputFilePath, dataToWite);
+  fs.writeFileSync(outputFilePath, JSON.stringify(viewerItems));
 };
 
-ViewerAssetsBuilder.prototype.getFilePaths = function() {
-  let posixFilePaths = this.listFiles().map(ensurePosix);
+ViewerAssetsBuilder.prototype.viewerItemsFor = function(assets, inputPath, options) {
+  let { strategy, copypastaGen } = options;
 
-  return _.uniq(posixFilePaths).filter((filePath) => {
-    // files returned from this.listFiles are directories if they end in /
-    let isDirectory = filePath.charAt(filePath.length - 1) === '/';
-    return !isDirectory;
-  });
-};
-
-ViewerAssetsBuilder.prototype.getRelativeFilePaths = function() {
-  let inputPath = ensurePosix(this.inputPaths[0]);
-
-  return this.getFilePaths()
-    .map((filePath) => filePath.replace(`${inputPath}/`, ''))
-    .filter((filePath) => filePath.split('/')[0] !== '__original__');
-};
-
-ViewerAssetsBuilder.prototype.getViewerAssets = function() {
-  let assetsToValidate = [];
-  let assets = this.getRelativeFilePaths().map((relativePath) => {
-    let { strategy, stripPath, idGen, idGenOpts, copypastaGen } = this.options;
-
-    let inputPath = ensurePosix(this.inputPaths[0]);
-    let svgFilePath = path.join(inputPath, relativePath);
-    let optimizedSvg = fs.readFileSync(svgFilePath, 'UTF-8');
-
-    let originalSvgRelativePath = `__original__/${relativePath}`;
-    let originalSvgFilePath = path.join(inputPath, originalSvgRelativePath);
-    let originalSvg = fs.readFileSync(originalSvgFilePath, 'UTF-8');
-
-    let svgData = svgDataFor(optimizedSvg);
-    let { width, height } = svgSizeFor(svgData.attrs);
-
-    let fileName = path.basename(relativePath);
-    let fileDir = relativePath.replace(fileName, '');
-    let idGenPath = stripPath ? path.basename(relativePath) : relativePath;
-    let assetId = idGen(stripExtension(idGenPath), idGenOpts);
-
-    assetsToValidate.push({
-      id: assetId,
-      viewBox: svgData.attrs.viewBox,
-      path: relativePath
-    });
+  return assets.map((asset) => {
+    let { width, height } = svgSizeFor(asset.svgData.attrs);
+    let originalFilePath = path.join(inputPath, '__original__', asset.relativePath);
+    let originalSvg = fs.readFileSync(originalFilePath, 'UTF-8');
 
     return {
-      svg: svgData,
+      svg: asset.svgData,
       originalSvg,
       width,
       height,
-      fileName,
-      fileDir: `/${fileDir}`,
+      fileName: path.basename(asset.relativePath),
+      fileDir: path.dirname(asset.relativePath).replace('.', '/'),
       fileSize: `${stringSizeInKb(originalSvg)} KB`,
-      optimizedFileSize: `${stringSizeInKb(optimizedSvg)} KB`,
-      baseSize: baseSizeFor({ width, height }),
-      copypasta: copypastaGen(assetId),
+      optimizedFileSize: `${stringSizeInKb(asset.optimizedSvg)} KB`,
+      baseSize: _.isNull(height) ? 'unknown' : `${height}px`,
+      fullBaseSize: `${width}x${height}px`,
+      copypasta: copypastaGen(asset.id),
       strategy
     };
   });
+};
 
-  if (this.options.ui) {
-    validateAssets(assetsToValidate, this.options.strategy, this.options.ui);
-  }
+ViewerAssetsBuilder.prototype.getAssets = function(filePaths, inputPath, options) {
+  let { stripPath, idGen, idGenOpts } = options;
 
-  return assets;
+  return _(filePaths)
+    .filter((filePath) => filePath.indexOf('__original__') === -1)
+    .map((filePath) => {
+      let svg = fs.readFileSync(filePath, 'UTF-8');
+
+      return {
+        id: idGen(idGenPathFor(filePath, inputPath, stripPath), idGenOpts),
+        svgData: svgDataFor(svg),
+        optimizedSvg: svg,
+        relativePath: filePath.replace(`${inputPath}${path.sep}`, '')
+      };
+    })
+    .value();
 };
 
 module.exports = ViewerAssetsBuilder;

@@ -11,8 +11,7 @@ function filtersFor(assets, filters) {
     {
       name: filter.name,
       key: filter.key,
-      items: _
-        .chain(assets)
+      items: _(assets)
         .map(filter.key)
         .without(undefined)
         .countBy()
@@ -55,9 +54,9 @@ ViewerBuilder.prototype.getViewerModel = function() {
   let details = [
     { name: 'File name', key: 'fileName' },
     { name: 'Directory', key: 'fileDir' },
+    { name: 'Base size', key: 'fullBaseSize' },
     { name: 'Original file size', key: 'fileSize' },
     { name: 'Optimized file size', key: 'optimizedFileSize' },
-    { name: 'Base size', key: 'baseSize' },
     { name: 'Strategy', key: 'strategy' }
   ];
 
