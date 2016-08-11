@@ -37,6 +37,18 @@ test('embeds SVGs with inline strategy', function(assert) {
       'can rewrite viewBox attribute');
     assert.equal(customSVG.getAttribute('width'), null,
       'can remove original width attribute');
+
+    let doubleSizeSVG = find('.double-custom-size-wrap svg')[0];
+    assert.equal(doubleSizeSVG.getAttribute('width'), '20',
+      'can double custom width via size attribute');
+    assert.equal(doubleSizeSVG.getAttribute('height'), '26',
+      'can double original height via size attribute');
+
+    let tripleSizeSVG = find('.triple-original-size-wrap svg')[0];
+    assert.equal(tripleSizeSVG.getAttribute('width'), '39',
+      'can triple original width via size attribute');
+    assert.equal(tripleSizeSVG.getAttribute('height'), '39',
+      'can triple original height via size attribute');
   });
 });
 
