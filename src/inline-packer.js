@@ -37,13 +37,10 @@ InlinePacker.prototype.constructor = InlinePacker;
 
 InlinePacker.prototype.build = function() {
   let assetsStore = this.buildAssetsStore(
-    filePathsOnlyFor(this.listFiles()),
-    this.inputPaths[0],
-    this.options
+    filePathsOnlyFor(this.listFiles()), this.inputPaths[0], this.options
   );
 
-  let outputFilePath = path.join(this.outputPath, this.options.outputFile);
-  this.saveAsJson(assetsStore, outputFilePath, this.options.moduleExport);
+  this.saveAsJson(assetsStore, this.outputPath, this.options);
 };
 
 InlinePacker.prototype.buildAssetsStore = function(filePaths, inputPath, options) {
@@ -58,15 +55,17 @@ InlinePacker.prototype.buildAssetsStore = function(filePaths, inputPath, options
     .value();
 };
 
-InlinePacker.prototype.saveAsJson = function(data, outputPath, moduleExport) {
+InlinePacker.prototype.saveAsJson = function(data, outputPath, options) {
+  let { outputFile, moduleExport } = options;
+  let outputFilePath = path.join(outputPath, outputFile);
   let jsonContent = JSON.stringify(data);
 
   if (moduleExport) {
     jsonContent = `export default ${jsonContent}`;
   }
 
-  mkdirp.sync(path.dirname(outputPath));
-  fs.writeFileSync(outputPath, jsonContent);
+  mkdirp.sync(path.dirname(outputFilePath));
+  fs.writeFileSync(outputFilePath, jsonContent);
 };
 
 module.exports = InlinePacker;
