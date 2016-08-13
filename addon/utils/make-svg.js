@@ -11,11 +11,11 @@ export function formatAttrs(attrs) {
     .join(' ');
 }
 
-export function symbolUseFor(assetId, svgAttrs) {
-  return `<svg ${formatAttrs(svgAttrs)}><use xlink:href="${assetId}" /></svg>`;
+export function symbolUseFor(assetId, attrs = {}) {
+  return `<svg ${formatAttrs(attrs)}><use xlink:href="${assetId}" /></svg>`;
 }
 
-export function inlineSvgFor(assetId, svgAttrs, inlineStore, sizeFactor) {
+export function inlineSvgFor(assetId, inlineStore, attrs = {}) {
   let svg = inlineStore[assetId];
 
   if (!svg) {
@@ -23,27 +23,22 @@ export function inlineSvgFor(assetId, svgAttrs, inlineStore, sizeFactor) {
     return;
   }
 
-  let attrs = svg.attrs ? merge(copy(svg.attrs), svgAttrs) : svgAttrs;
+  let svgAttrs = svg.attrs ? merge(copy(svg.attrs), attrs) : attrs;
+  let { size } = attrs;
 
-  if (sizeFactor) {
-    attrs.width = parseFloat(attrs.width) * sizeFactor || attrs.width;
-    attrs.height = parseFloat(attrs.height) * sizeFactor || attrs.height;
+  if (size) {
+    svgAttrs.width = parseFloat(svgAttrs.width) * size || svgAttrs.width;
+    svgAttrs.height = parseFloat(svgAttrs.height) * size || svgAttrs.height;
+    delete svgAttrs.size; // eslint-disable-line no-param-reassign
   }
 
-  return `<svg ${formatAttrs(attrs)}>${svg.content}</svg>`;
+  return `<svg ${formatAttrs(svgAttrs)}>${svg.content}</svg>`;
 }
 
-export default function makeSvg(assetId, svgAttrs, inlineStore = {}) {
+export default function makeSvg(assetId, attrs = {}, inlineStore = {}) {
   let isSymbol = assetId.lastIndexOf('#', 0) === 0;
-  let sizeFactor;
-
-  if (svgAttrs.size) {
-    sizeFactor = svgAttrs.size;
-    // eslint-disable-next-line no-param-reassign
-    delete svgAttrs.size;
-  }
 
   return isSymbol
-    ? symbolUseFor(assetId, svgAttrs)
-    : inlineSvgFor(assetId, svgAttrs, inlineStore, sizeFactor);
+    ? symbolUseFor(assetId, attrs)
+    : inlineSvgFor(assetId, inlineStore, attrs);
 }
