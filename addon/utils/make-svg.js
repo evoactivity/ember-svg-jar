@@ -15,8 +15,8 @@ export function symbolUseFor(assetId, attrs = {}) {
   return `<svg ${formatAttrs(attrs)}><use xlink:href="${assetId}" /></svg>`;
 }
 
-export function inlineSvgFor(assetId, inlineStore, attrs = {}) {
-  let svg = inlineStore[assetId];
+export function inlineSvgFor(assetId, assetStore, attrs = {}) {
+  let svg = assetStore[assetId];
 
   if (!svg) {
     warn(`ember-svg-jar: Missing inline SVG for ${assetId}`);
@@ -35,10 +35,10 @@ export function inlineSvgFor(assetId, inlineStore, attrs = {}) {
   return `<svg ${formatAttrs(svgAttrs)}>${svg.content}</svg>`;
 }
 
-export default function makeSvg(assetId, attrs = {}, inlineStore = {}) {
+export default function makeSvg(assetId, attrs = {}, assetStore = {}) {
   let isSymbol = assetId.lastIndexOf('#', 0) === 0;
 
   return isSymbol
     ? symbolUseFor(assetId, attrs)
-    : inlineSvgFor(assetId, inlineStore, attrs);
+    : inlineSvgFor(assetId, assetStore, attrs);
 }

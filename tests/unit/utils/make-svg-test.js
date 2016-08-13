@@ -9,13 +9,11 @@ import makeSvg, {
 module('Unit | Utility | make svg');
 
 test('makeSvg works', function(assert) {
-  let result = makeSvg('#test');
-  assert.equal(result, '<svg ><use xlink:href="#test" /></svg>');
+  assert.equal(makeSvg('#test'), '<svg ><use xlink:href="#test" /></svg>');
 });
 
 test('symbolUseFor works', function(assert) {
-  let result = symbolUseFor('#test');
-  assert.equal(result, '<svg ><use xlink:href="#test" /></svg>');
+  assert.equal(symbolUseFor('#test'), '<svg ><use xlink:href="#test" /></svg>');
 });
 
 test('inlineSvgFor with original attrs', function(assert) {

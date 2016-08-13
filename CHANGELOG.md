@@ -1,5 +1,11 @@
 ## SVGJar Change Log
 
+### v0.9.2
+- [[ENHANCEMENT]](https://github.com/ivanvotti/ember-svg-jar/pull/16) Ability to import `svgJar` helper to use outside of templates [@djsegal](https://github.com/djsegal)
+- [CLEANUP] Refactor helper's code and tests
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.9.1...v0.9.2)
+
 ### v0.9.1
 - [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/13) Helper supports `size` attribute `{{svg-jar "asset-name" size=2}}`
 - [ENHANCEMENT] The viewer now shows asset base size as `24x20px` in details
