@@ -4,7 +4,7 @@ const _ = require('lodash');
 const CachingWriter = require('broccoli-caching-writer');
 const mkdirp = require('mkdirp');
 const svgDataFor = require('./utils/svg-data-for');
-const { filePathsOnlyFor, idGenPathFor } = require('./utils/filepath');
+const { filePathsOnlyFor, relativePathFor, makeAssetId } = require('./utils/general');
 
 /**
   SVG assets packer for `inline` strategy.
@@ -16,12 +16,17 @@ const { filePathsOnlyFor, idGenPathFor } = require('./utils/filepath');
   }
 
   The file can optionally include ES6 module export.
+
+  Required options:
+    idGen
+    stripPath
+    outputFile
+
+  Optional:
+    moduleExport
+    annotation
 */
 function InlinePacker(inputNode, options = {}) {
-  if (!options.outputFile) {
-    throw new Error('the outputFile option is required');
-  }
-
   CachingWriter.call(this, [inputNode], {
     name: 'InlinePacker',
     annotation: options.annotation,
@@ -36,23 +41,18 @@ InlinePacker.prototype = Object.create(CachingWriter.prototype);
 InlinePacker.prototype.constructor = InlinePacker;
 
 InlinePacker.prototype.build = function() {
-  let assetsStore = this.buildAssetsStore(
-    filePathsOnlyFor(this.listFiles()), this.inputPaths[0], this.options
-  );
-
-  this.saveAsJson(assetsStore, this.outputPath, this.options);
-};
-
-InlinePacker.prototype.buildAssetsStore = function(filePaths, inputPath, options) {
-  let { stripPath, idGen, idGenOpts } = options;
-
-  return _(filePaths)
+  let { stripPath, idGen } = this.options;
+  let inputPath = this.inputPaths[0];
+  let idFor = _.partial(makeAssetId, _, stripPath, idGen);
+  let assetsStore = _(filePathsOnlyFor(this.listFiles()))
     .map((filePath) => [
-      idGen(idGenPathFor(filePath, inputPath, stripPath), idGenOpts),
+      idFor(relativePathFor(filePath, inputPath)),
       svgDataFor(fs.readFileSync(filePath, 'UTF-8'))
     ])
     .fromPairs()
     .value();
+
+  this.saveAsJson(assetsStore, this.outputPath, this.options);
 };
 
 InlinePacker.prototype.saveAsJson = function(data, outputPath, options) {
