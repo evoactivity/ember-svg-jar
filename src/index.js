@@ -22,6 +22,16 @@ function mergeTreesIfNeeded(trees, options) {
   return trees.length === 1 ? trees[0] : new MergeTrees(trees, options);
 }
 
+function memoize(fn) {
+  let cache = {};
+
+  return function() {
+    let cacheKey = JSON.stringify(arguments);
+    cache[cacheKey] = cache[cacheKey] || fn.apply(this, arguments);
+    return cache[cacheKey];
+  };
+}
+
 module.exports = {
   name: 'ember-svg-jar',
 
@@ -123,13 +133,7 @@ module.exports = {
       .filter((sourceDir) => fs.existsSync(sourceDir));
   },
 
-  svgFilesFor(strategy) {
-    this.svgFilesCache = this.svgFilesCache || {};
-
-    if (this.svgFilesCache[strategy]) {
-      return this.svgFilesCache[strategy];
-    }
-
+  optimizedSvgsFor: memoize(function(strategy) {
     let sourceDirs = this.sourceDirsFor(strategy);
     let svgFiles = new Funnel(mergeTreesIfNeeded(sourceDirs), {
       include: ['**/*.svg']
@@ -143,12 +147,10 @@ module.exports = {
       });
     }
 
-    this.svgFilesCache[strategy] = svgFiles;
-
     return svgFiles;
-  },
+  }),
 
-  originalSvgFilesFor(strategy) {
+  originalSvgsFor(strategy) {
     let sourceDirs = this.sourceDirsFor(strategy);
 
     return new Funnel(mergeTreesIfNeeded(sourceDirs), {
@@ -166,8 +168,8 @@ module.exports = {
 
     let viewerBuilderNodes = this.options.strategy.map((strategy) => {
       let inputNode = new MergeTrees([
-        this.svgFilesFor(strategy),
-        this.originalSvgFilesFor(strategy)
+        this.optimizedSvgsFor(strategy),
+        this.originalSvgsFor(strategy)
       ]);
 
       return new ViewerAssetsBuilder(inputNode, {
@@ -188,7 +190,7 @@ module.exports = {
   },
 
   getInlineStrategyTree() {
-    return new InlinePacker(this.svgFilesFor('inline'), {
+    return new InlinePacker(this.optimizedSvgsFor('inline'), {
       idGen: this.optionFor('inline', 'idGen'),
       stripPath: this.optionFor('inline', 'stripPath'),
       outputFile: 'inline-assets.js'
@@ -196,7 +198,7 @@ module.exports = {
   },
 
   getSymbolStrategyTree() {
-    return new Symbolizer(this.svgFilesFor('symbol'), {
+    return new Symbolizer(this.optimizedSvgsFor('symbol'), {
       idGen: this.optionFor('symbol', 'idGen'),
       stripPath: this.optionFor('symbol', 'stripPath'),
       outputFile: this.optionFor('symbol', 'outputFile'),
