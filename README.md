@@ -25,25 +25,48 @@
 </p>
 
 <h4 align="center">
-  The best way to bring SVG goodness to your Ember application
+  The best way to embed SVG images into your Ember application
 </h4>
 
 ![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/SVGJar+0.9.1.png)
 
-### What’s in the Box?
-- “install it and forget it” mode (no configuration needed)
+### Features
+- an easy to use helper `{{svg-jar "asset-name"}}`
 - automatic SVG optimization (it can cut file size by half or more)
-- a kick ass viewer to find and use your assets the fastest way possible
-- a handy helper `{{svg-jar "asset-name"}}`
+- a visual workflow to find and use your assets the fastest way possible
+- work out of the box (no configuration needed)
 - support for both inline and symbol embedding methods
+
+## Why does this matter?
+
+[I know why. Just show me how to get started.](https://github.com/ivanvotti/ember-svg-jar#installation)
+
+### Switching from Font Awesome to SVG will save you 80 Kb or even more:
+
+- original Font Awesome is about `149 KB` as TTF and `88.3 KB` as WOFF
+- it includes `634` icons and you need just some of them usually
+- 20 Font Awesome icons in SVGJar will be about 4.3 KB (you save `84 KB` or `145 KB` as TTF)
+- 50 Font Awesome icons in SVGJar will be about `9 KB`
+
+You can get Font Awesome icons as individual SVG files from [font-awesome-svg](https://github.com/ivanvotti/font-awesome-svg):
+
+`git clone git@github.com:ivanvotti/font-awesome-svg.git`
+
+### SVG vs icon fonts
+
+If you can go IE 9+ and Android 3+, SVG is a better solution than icon fonts. Also if your images are multi-coloured or involved in animation, you actually have to use SVG.
+
+- [Why GitHub switched from an icon font to SVG](https://github.com/blog/2112-delivering-octicons-with-svg)
+- ["Inline SVG vs icon fonts" from css-tricks](https://css-tricks.com/icon-fonts-vs-svg/)
+- [Ten reasons to switch from an icon font to SVG](http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/)
 
 ## Installation
 
 `$ ember install ember-svg-jar`
 
-## Try it in 4 easy steps
+## Start in 4 easy steps
 
-- Put some SVG files to any place in your `public` directory.
+- Put some SVG files to any place in your `public` directory (e.g. get some from [font-awesome-svg](https://github.com/ivanvotti/font-awesome-svg))
 - Run the development server and open this link with Chrome:
 `http://localhost:4200/ember-svg-jar/index.html`
 - Select any SVG there and click `Enter` to copy it to the clipboard.
@@ -51,7 +74,7 @@
 
 ## Usage
 
-Just drag and drop SVG images to your source directory and copy & paste them from the viewer to your templates.
+Drag and drop SVG images to your source directory (`public` by default) and copy & paste them from the viewer to your templates.
 
 The viewer is available at: `http://localhost:4200/ember-svg-jar/index.html`
 
@@ -75,7 +98,7 @@ The addon is compatible with Ember 1.10.1 and beyond.
 
 ## Configuration
 
-**Note:** In most of cases, Ember SVGJar should be useful without any configuration. But it wants to be very configurable when it's time to adjust it for your needs.
+**Note:** Ember SVGJar should be useful without any configuration. But it wants to be very configurable when it's time to adjust it for your needs.
 
 - [All configuration options](docs/configuration.md)
 - [Advanced usage examples](docs/examples.md)

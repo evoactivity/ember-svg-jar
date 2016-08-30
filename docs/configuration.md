@@ -2,7 +2,7 @@
 
 This file still lacks good descriptions and examples. It will be improved soon.
 
-## Initial agreement
+## Setting some expectations
 
 SVGJar is configurable via the `svgJar` object in the `ember-cli-build.js` file:
 
