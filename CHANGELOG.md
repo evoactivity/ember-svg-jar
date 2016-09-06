@@ -1,5 +1,11 @@
 ## SVGJar Change Log
 
+### v0.9.3
+- [INTERNAL] The viewer builder skips emtpy SVG
+- [INTERNAL] Upgrade broccoli-svg-optimizer
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.9.2...v0.9.3)
+
 ### v0.9.2
 - [[ENHANCEMENT]](https://github.com/ivanvotti/ember-svg-jar/pull/16) Ability to import `svgJar` helper to use outside of templates [@djsegal](https://github.com/djsegal)
 - [CLEANUP] Refactor helper's code and tests
