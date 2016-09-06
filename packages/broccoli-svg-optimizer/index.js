@@ -28,6 +28,10 @@ SVGOFilter.prototype.baseDir = function() {
 };
 
 SVGOFilter.prototype.processString = function(svgContent) {
+  if (!svgContent) {
+    return '';
+  }
+
   var svgo = this.svgo;
 
   return new RSVP.Promise(function(resolve, reject) {
