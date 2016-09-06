@@ -28,11 +28,11 @@ SVGOFilter.prototype.baseDir = function() {
 };
 
 SVGOFilter.prototype.processString = function(svgContent) {
+  var svgo = this.svgo;
+
   if (!svgContent) {
     return '';
   }
-
-  var svgo = this.svgo;
 
   return new RSVP.Promise(function(resolve, reject) {
     svgo.optimize(svgContent, function(result) {
