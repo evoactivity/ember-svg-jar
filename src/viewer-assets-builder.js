@@ -75,14 +75,15 @@ ViewerAssetsBuilder.prototype.build = function() {
 ViewerAssetsBuilder.prototype.getAssets = function(filePaths, toRelative, idFor) {
   return _(filePaths)
     .filter((filePath) => filePath.indexOf('__original__') === -1)
-    .map((filePath) => {
+    .map((filePath) => [filePath, fs.readFileSync(filePath, 'UTF-8')])
+    .filter(([, svgContent]) => !!svgContent)
+    .map(([filePath, svgContent]) => {
       let relativePath = toRelative(filePath);
-      let svg = fs.readFileSync(filePath, 'UTF-8');
 
       return {
         id: idFor(relativePath),
-        svgData: svgDataFor(svg),
-        optimizedSvg: svg,
+        svgData: svgDataFor(svgContent),
+        optimizedSvg: svgContent,
         relativePath
       };
     })

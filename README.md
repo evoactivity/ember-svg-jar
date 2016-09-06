@@ -14,10 +14,6 @@
     <img src="https://badge.fury.io/js/ember-svg-jar.svg"
       alt="NPM Version">
   </a>
-  <a href="https://www.npmjs.com/package/ember-svg-jar">
-    <img src="https://img.shields.io/npm/dm/ember-svg-jar.svg"
-      alt="NPM Downloads">
-  </a>
   <a href="http://emberobserver.com/addons/ember-svg-jar">
     <img src="http://emberobserver.com/badges/ember-svg-jar.svg"
       alt="Ember Observer Score">

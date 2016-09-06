@@ -65,7 +65,7 @@
     "broccoli-caching-writer": "^2.3.1",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
-    "broccoli-svg-optimizer": "^1.0.0",
+    "broccoli-svg-optimizer": "^1.0.1",
     "broccoli-symbolizer": "^0.5.0",
     "cheerio": "^0.20.0",
     "ember-cli-babel": "^5.1.6",
