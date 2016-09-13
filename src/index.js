@@ -9,14 +9,17 @@ const InlinePacker = require('./inline-packer');
 const ViewerAssetsBuilder = require('./viewer-assets-builder');
 const ViewerBuilder = require('./viewer-builder');
 const validateOptions = require('./validate-options');
-const defaultGenerators = require('./default-generators');
-
-// GLOBAL_OPTIONS can be defined as both a root or strategy specific option.
-const GLOBAL_OPTIONS = ['sourceDirs', 'stripPath', 'optimizer'];
 
 const symbolsLoaderScript = fs.readFileSync(
   path.join(__dirname, '../symbols-loader.html'), 'utf8'
 );
+
+const defaultGenerators = {
+  symbolIdGen: (svgPath, { prefix }) => `${prefix}${svgPath}`.replace(/[\s]/g, '-'),
+  symbolCopypastaGen: (assetId) => `{{svg-jar "#${assetId}"}}`,
+  inlineIdGen: (svgPath) => svgPath,
+  inlineCopypastaGen: (assetId) => `{{svg-jar "${assetId}"}}`
+};
 
 function mergeTreesIfNeeded(trees, options) {
   return trees.length === 1 ? trees[0] : new MergeTrees(trees, options);
@@ -113,8 +116,11 @@ module.exports = {
   },
 
   optionFor(strategy, optionName) {
+    // globalOptions can be both root or strategy specific.
+    const globalOptions = ['sourceDirs', 'stripPath', 'optimizer'];
+
     return _.isUndefined(this.options[strategy][optionName])
-      ? GLOBAL_OPTIONS.indexOf(optionName) !== -1 && this.options[optionName]
+      ? globalOptions.indexOf(optionName) !== -1 && this.options[optionName]
       : this.options[strategy][optionName];
   },
 
