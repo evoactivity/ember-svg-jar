@@ -4,8 +4,9 @@ const _ = require('lodash');
 const CachingWriter = require('broccoli-caching-writer');
 const mkdirp = require('mkdirp');
 const validateAssets = require('./validate-assets');
-const svgDataFor = require('./utils/svg-data-for');
-const { filePathsOnlyFor, relativePathFor, makeAssetId } = require('./utils/general');
+const {
+  filePathsOnlyFor, relativePathFor, makeAssetId, svgDataFor
+} = require('./utils');
 
 function svgSizeFor(svgAttrs) {
   let [, , vbWidth, vgHeight] = (svgAttrs.viewBox || '').split(/\s+/);
