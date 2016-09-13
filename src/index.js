@@ -22,16 +22,6 @@ function mergeTreesIfNeeded(trees, options) {
   return trees.length === 1 ? trees[0] : new MergeTrees(trees, options);
 }
 
-function memoize(fn) {
-  let cache = {};
-
-  return function() {
-    let cacheKey = JSON.stringify(arguments);
-    cache[cacheKey] = cache[cacheKey] || fn.apply(this, arguments);
-    return cache[cacheKey];
-  };
-}
-
 module.exports = {
   name: 'ember-svg-jar',
 
@@ -133,7 +123,7 @@ module.exports = {
       .filter((sourceDir) => fs.existsSync(sourceDir));
   },
 
-  optimizedSvgsFor: memoize(function(strategy) {
+  optimizedSvgsFor: _.memoize(function(strategy) {
     let sourceDirs = this.sourceDirsFor(strategy);
     let svgFiles = new Funnel(mergeTreesIfNeeded(sourceDirs), {
       include: ['**/*.svg']
