@@ -57,9 +57,9 @@ ViewerAssetsBuilder.prototype.build = function() {
   let { idGen, stripPath, strategy } = this.options;
   let inputPath = this.inputPaths[0];
   let toRelative = _.partial(relativePathFor, _, inputPath);
-  let idFor = _.partial(makeAssetId, _, stripPath, idGen);
+  let pathToAssetId = _.partial(makeAssetId, _, stripPath, idGen);
   let assets = this.getAssets(
-    filePathsOnlyFor(this.listFiles()), toRelative, idFor
+    filePathsOnlyFor(this.listFiles()), toRelative, pathToAssetId
   );
 
   if (this.ui) {
@@ -72,7 +72,7 @@ ViewerAssetsBuilder.prototype.build = function() {
   fs.writeFileSync(outputFilePath, JSON.stringify(viewerItems));
 };
 
-ViewerAssetsBuilder.prototype.getAssets = function(filePaths, toRelative, idFor) {
+ViewerAssetsBuilder.prototype.getAssets = function(filePaths, toRelative, pathToAssetId) {
   return _(filePaths)
     .filter((filePath) => filePath.indexOf('__original__') === -1)
     .map((filePath) => [filePath, fs.readFileSync(filePath, 'UTF-8')])
@@ -81,7 +81,7 @@ ViewerAssetsBuilder.prototype.getAssets = function(filePaths, toRelative, idFor)
       let relativePath = toRelative(filePath);
 
       return {
-        id: idFor(relativePath),
+        id: pathToAssetId(relativePath),
         svgData: svgDataFor(svgContent),
         optimizedSvg: svgContent,
         relativePath

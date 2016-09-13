@@ -43,10 +43,10 @@ InlinePacker.prototype.constructor = InlinePacker;
 InlinePacker.prototype.build = function() {
   let { stripPath, idGen } = this.options;
   let inputPath = this.inputPaths[0];
-  let idFor = _.partial(makeAssetId, _, stripPath, idGen);
+  let pathToAssetId = _.partial(makeAssetId, _, stripPath, idGen);
   let assetsStore = _(filePathsOnlyFor(this.listFiles()))
     .map((filePath) => [
-      idFor(relativePathFor(filePath, inputPath)),
+      pathToAssetId(relativePathFor(filePath, inputPath)),
       svgDataFor(fs.readFileSync(filePath, 'UTF-8'))
     ])
     .fromPairs()
