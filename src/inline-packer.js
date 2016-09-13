@@ -1,12 +1,3 @@
-const path = require('path');
-const fs = require('fs');
-const _ = require('lodash');
-const CachingWriter = require('broccoli-caching-writer');
-const mkdirp = require('mkdirp');
-const {
-  filePathsOnlyFor, relativePathFor, makeAssetId, svgDataFor
-} = require('./utils');
-
 /**
   SVG assets packer for `inline` strategy.
   It concatenates inputNode files into a single JSON file like:
@@ -16,7 +7,7 @@ const {
     'asset-2-id': { content: '<path>', attrs: { viewBox: '' } }
   }
 
-  The file can optionally include ES6 module export.
+  The result file can optionally include ES6 module export.
 
   Required options:
     idGen
@@ -27,46 +18,55 @@ const {
     moduleExport
     annotation
 */
-function InlinePacker(inputNode, options = {}) {
-  CachingWriter.call(this, [inputNode], {
-    name: 'InlinePacker',
-    annotation: options.annotation,
-  });
 
-  this.options = _.defaults(options, {
-    moduleExport: true
-  });
+const path = require('path');
+const fs = require('fs');
+const _ = require('lodash');
+const CachingWriter = require('broccoli-caching-writer');
+const mkdirp = require('mkdirp');
+const {
+  filePathsOnlyFor, relativePathFor, makeAssetId, svgDataFor
+} = require('./utils');
+
+function toJson(data, hasModuleExport) {
+  let json = JSON.stringify(data);
+  return hasModuleExport ? `export default ${json}` : json;
 }
 
-InlinePacker.prototype = Object.create(CachingWriter.prototype);
-InlinePacker.prototype.constructor = InlinePacker;
+function saveToFile(data, directory, filename) {
+  let outputFilePath = path.join(directory, filename);
+  mkdirp.sync(path.dirname(outputFilePath));
+  fs.writeFileSync(outputFilePath, data);
+}
 
-InlinePacker.prototype.build = function() {
-  let { stripPath, idGen } = this.options;
-  let inputPath = this.inputPaths[0];
-  let pathToAssetId = _.partial(makeAssetId, _, stripPath, idGen);
-  let assetsStore = _(filePathsOnlyFor(this.listFiles()))
-    .map((filePath) => [
-      pathToAssetId(relativePathFor(filePath, inputPath)),
-      svgDataFor(fs.readFileSync(filePath, 'UTF-8'))
-    ])
-    .fromPairs()
-    .value();
+class InlinePacker extends CachingWriter {
+  constructor(inputNode, options = {}) {
+    super([inputNode], {
+      name: 'InlinePacker',
+      annotation: options.annotation,
+    });
 
-  this.saveAsJson(assetsStore, this.outputPath, this.options);
-};
-
-InlinePacker.prototype.saveAsJson = function(data, outputPath, options) {
-  let { outputFile, moduleExport } = options;
-  let outputFilePath = path.join(outputPath, outputFile);
-  let jsonContent = JSON.stringify(data);
-
-  if (moduleExport) {
-    jsonContent = `export default ${jsonContent}`;
+    this.options = _.defaults(options, {
+      moduleExport: true
+    });
   }
 
-  mkdirp.sync(path.dirname(outputFilePath));
-  fs.writeFileSync(outputFilePath, jsonContent);
-};
+  build() {
+    let { stripPath, idGen, outputFile, moduleExport } = this.options;
+    let inputPath = this.inputPaths[0];
+    let pathToAssetId = _.partial(makeAssetId, _, stripPath, idGen);
+
+    let assetsStore = _(filePathsOnlyFor(this.listFiles()))
+      .map((filePath) => [
+        pathToAssetId(relativePathFor(filePath, inputPath)),
+        svgDataFor(fs.readFileSync(filePath, 'UTF-8'))
+      ])
+      .fromPairs()
+      .value();
+
+    let assetsStoreJson = toJson(assetsStore, moduleExport);
+    saveToFile(assetsStoreJson, this.outputPath, outputFile);
+  }
+}
 
 module.exports = InlinePacker;
