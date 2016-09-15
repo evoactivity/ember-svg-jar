@@ -18,7 +18,7 @@ const CachingWriter = require('broccoli-caching-writer');
 const mkdirp = require('mkdirp');
 const validateAssets = require('./validate-assets');
 const {
-  filePathsOnlyFor, relativePathFor, makeAssetId, svgDataFor
+  filePathsOnly, relativePathFor, makeAssetId, svgDataFor
 } = require('./utils');
 
 function svgSizeFor(svgAttrs) {
@@ -58,7 +58,7 @@ class ViewerAssetsBuilder extends CachingWriter {
     let toRelative = _.partial(relativePathFor, _, inputPath);
     let pathToAssetId = _.partial(makeAssetId, _, stripPath, idGen);
     let assets = this.getAssets(
-      filePathsOnlyFor(this.listFiles()), toRelative, pathToAssetId
+      filePathsOnly(this.listFiles()), toRelative, pathToAssetId
     );
 
     if (this.ui) {

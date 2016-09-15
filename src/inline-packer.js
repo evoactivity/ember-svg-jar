@@ -21,22 +21,25 @@
 const path = require('path');
 const fs = require('fs');
 const _ = require('lodash');
+const fp = require('lodash/fp');
 const CachingWriter = require('broccoli-caching-writer');
 const mkdirp = require('mkdirp');
 const {
-  filePathsOnlyFor, relativePathFor, makeAssetId, svgDataFor
+  filePathsOnly, relativePathFor, makeAssetId, svgDataFor
 } = require('./utils');
 
-function toJson(data, hasModuleExport) {
-  let json = JSON.stringify(data);
-  return hasModuleExport ? `export default ${json}` : json;
-}
+const readFile = _.partial(fs.readFileSync, _, 'UTF-8');
+const extractSvgData = fp.pipe(readFile, svgDataFor);
 
-function saveToFile(data, directory, filename) {
-  let outputFilePath = path.join(directory, filename);
-  mkdirp.sync(path.dirname(outputFilePath));
-  fs.writeFileSync(outputFilePath, data);
-}
+const toJson = _.curry((hasModuleExport, data) => {
+  const json = JSON.stringify(data);
+  return hasModuleExport ? `export default ${json}` : json;
+});
+
+const saveToFile = _.curry((filePath, data) => {
+  mkdirp.sync(path.dirname(filePath));
+  fs.writeFileSync(filePath, data);
+});
 
 class InlinePacker extends CachingWriter {
   constructor(inputNode, options = {}) {
@@ -51,20 +54,21 @@ class InlinePacker extends CachingWriter {
   }
 
   build() {
-    let { stripPath, idGen, outputFile, moduleExport } = this.options;
-    let inputPath = this.inputPaths[0];
-    let pathToAssetId = _.partial(makeAssetId, _, stripPath, idGen);
+    const { stripPath, idGen, outputFile, moduleExport } = this.options;
+    const inputPath = this.inputPaths[0];
+    const outputFilePath = path.join(this.outputPath, outputFile);
 
-    let assetsStore = _(filePathsOnlyFor(this.listFiles()))
-      .map((filePath) => [
-        pathToAssetId(relativePathFor(filePath, inputPath)),
-        svgDataFor(fs.readFileSync(filePath, 'UTF-8'))
-      ])
-      .fromPairs()
-      .value();
+    const toRelativePath = _.partial(relativePathFor, _, inputPath);
+    const relativePathToId = _.partial(makeAssetId, _, stripPath, idGen);
+    const pathToId = fp.pipe(toRelativePath, relativePathToId);
 
-    let assetsStoreJson = toJson(assetsStore, moduleExport);
-    saveToFile(assetsStoreJson, this.outputPath, outputFile);
+    fp.pipe(
+      filePathsOnly,
+      fp.map((filePath) => [pathToId(filePath), extractSvgData(filePath)]),
+      _.fromPairs,
+      toJson(moduleExport),
+      saveToFile(outputFilePath)
+    )(this.listFiles());
   }
 }
 

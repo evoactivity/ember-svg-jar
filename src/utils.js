@@ -20,7 +20,7 @@ function makeAssetId(relativePath, stripDirs, idGen) {
   )(relativePath);
 }
 
-function filePathsOnlyFor(paths) {
+function filePathsOnly(paths) {
   return _.uniq(paths).filter((filePath) => {
     let isDirectory = filePath.charAt(filePath.length - 1) === path.sep;
     return !isDirectory;
@@ -42,7 +42,7 @@ function svgDataFor(svgContent) {
 
 module.exports = {
   makeAssetId,
-  filePathsOnlyFor,
+  filePathsOnly,
   relativePathFor,
   svgDataFor
 };
