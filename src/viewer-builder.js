@@ -1,10 +1,92 @@
 /**
+  Merge JSON asset stores into a single JSON file and add additional
+  meta data. The output file will be used by the asset viewer as the model
+  in development mode.
+
+  The input node files must be generated with the ViewerAssetsBuilder.
+
   Required options:
     outputFile
     hasManyStrategies
 
-  Optional:
+  Optional options:
     annotation
+
+  Examples of input and output:
+
+  Input node:
+  ├── inline.json
+  └── symbol.json
+
+  Output node:
+  └── output.json
+
+  inline.json can content:
+  [
+    {
+      "svg": { "content": "<path />", "attrs": { ... } },
+      "fileName": "alarm.svg",
+      "strategy": "inline",
+      ...
+    },
+
+    { ... }
+  ]
+
+  symbol.json can content:
+  [
+    {
+      "svg": { "content": "<path />", "attrs": { ... } },
+      "fileName": "cat.svg",
+      "strategy": "symbol",
+      ...
+    },
+
+    { ... }
+  ]
+
+  output.json can content:
+  {
+    "assets": [
+      {
+        "svg": { "content": "<path />", "attrs": { ... } },
+        "fileName": "alarm.svg",
+        "strategy": "inline",
+        ...
+      },
+
+      {
+        "svg": { "content": "<path />", "attrs": { ... } },
+        "fileName": "cat.svg",
+        "strategy": "symbol",
+        ...
+      },
+
+      { ... }
+    ],
+
+    "details": [
+      { "name": "File name", "key": "fileName" }
+    ],
+
+    "searchKeys": ["fileName", "fileDir"],
+
+    "sortBy": [
+      { "name": "File name", "key": "fileName" }
+    ],
+
+    "arrangeBy": [
+      { "name": "Directory", "key": "fileDir" }
+    ],
+
+    "filters": [
+      { "name": "Directory", "key": "fileDir", "items": [{ "name": "/", "count": 74 }] }
+    ],
+
+    "links": [
+      { "text": "Contribute", "url": "https://github.com/ivanvotti/ember-svg-jar" }
+    ]
+  }
 */
 const path = require('path');
 const fs = require('fs');

@@ -19,6 +19,11 @@ module.exports = {
     'array-callback-return': 0,
     'consistent-return': 0,
 
+    'no-irregular-whitespace': [2, {
+      'skipStrings': true,
+      'skipComments': true
+    }],
+
     'space-before-function-paren': [2, {
       'anonymous': 'never',
       'named': 'never'

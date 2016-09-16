@@ -1,22 +1,30 @@
 /**
-  SVG assets packer for `inline` strategy.
-  It concatenates inputNode files into a single JSON file like:
-
-  {
-    'asset-1-id': { content: '<path>', attrs: { viewBox: '' } },
-    'asset-2-id': { content: '<path>', attrs: { viewBox: '' } }
-  }
-
-  The result file can optionally include ES6 module export.
+  Concatenates input node files into a single JS/JSON file that will be
+  used as the assets store for the inline strategy.
 
   Required options:
     idGen
     stripPath
     outputFile
 
-  Optional:
-    moduleExport
+  Optional options:
+    moduleExport (if true, the output file will include ES6 module export)
     annotation
+
+  Examples of input and output:
+
+  Input node:
+  ├── alarm.svg
+  └── cat.svg
+
+  Output node:
+  └── output.js
+
+  output.js can content:
+  export default {
+    'alarm': { content: '<path>', attrs: { viewBox: '' } },
+    'cat': { content: '<path>', attrs: { viewBox: '' } }
+  }
 */
 const path = require('path');
 const fs = require('fs');

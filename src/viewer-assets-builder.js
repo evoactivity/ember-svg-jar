@@ -1,4 +1,7 @@
 /**
+  Concatenates SVG files into a single JSON file.
+  It's only used to generate input files for the ViewerBuilder.
+
   Required options:
     idGen
     idGenOpts
@@ -7,9 +10,48 @@
     strategy
     outputFile
 
-  Optional:
+  Optional options:
     ui
     annotation
+
+  Examples of input and output:
+
+  Input node:
+  ├── __original__
+  │   ├── alarm.svg
+  │   └── ...
+  ├── alarm.svg
+  └── ...
+
+  Output node:
+  └── outputFile.json
+
+  outputFile.json can content:
+  [
+    {
+      "svg": {
+        "content": "<path />",
+        "attrs": {
+          "width": "20",
+          "height": "20",
+          "viewBox": "0 0 20 20"
+        }
+      },
+      "originalSvg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\"><path /></svg>",
+      "width": 20,
+      "height": 20,
+      "fileName": "alarm.svg",
+      "fileDir": "/",
+      "fileSize": "1.16 KB",
+      "optimizedFileSize": "0.62 KB",
+      "baseSize": "20px",
+      "fullBaseSize": "20x20px",
+      "copypasta": "{{svg-jar \"alarm\"}}",
+      "strategy": "inline"
+    },
+
+    { ... }
+  ]
 */
 const path = require('path');
 const fs = require('fs');
