@@ -54,14 +54,12 @@
   ]
 */
 const path = require('path');
-const fs = require('fs');
 const _ = require('lodash');
 const fp = require('lodash/fp');
 const CachingWriter = require('broccoli-caching-writer');
-const mkdirp = require('mkdirp');
 const validateAssets = require('./validate-assets');
 const {
-  filePathsOnly, relativePathFor, makeAssetId, svgDataFor
+  filePathsOnly, relativePathFor, makeAssetId, svgDataFor, readFile, saveToFile
 } = require('./utils');
 
 function svgSizeFor(svgAttrs) {
@@ -77,13 +75,6 @@ function stringSizeInKb(string) {
   const bytes = Buffer.byteLength(string, 'utf8');
   return parseFloat((bytes / 1024).toFixed(2));
 }
-
-const readFile = _.partial(fs.readFileSync, _, 'UTF-8');
-
-const saveToFile = _.curry((filePath, data) => {
-  mkdirp.sync(path.dirname(filePath));
-  fs.writeFileSync(filePath, data);
-});
 
 const svgToAsset = _.curry((relativeToId, [relativePath, svg]) => ({
   id: relativeToId(relativePath),

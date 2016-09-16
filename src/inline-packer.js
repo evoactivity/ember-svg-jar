@@ -1,5 +1,5 @@
 /**
-  Concatenates input node files into a single JS/JSON file that will be
+  Concatenates input node files into a single ES6 module that will be
   used as the assets store for the inline strategy.
 
   Required options:
@@ -8,7 +8,6 @@
     outputFile
 
   Optional options:
-    moduleExport (if true, the output file will include ES6 module export)
     annotation
 
   Examples of input and output:
@@ -27,27 +26,14 @@
   }
 */
 const path = require('path');
-const fs = require('fs');
 const _ = require('lodash');
 const fp = require('lodash/fp');
 const CachingWriter = require('broccoli-caching-writer');
-const mkdirp = require('mkdirp');
 const {
-  filePathsOnly, relativePathFor, makeAssetId, svgDataFor
+  filePathsOnly, relativePathFor, makeAssetId, svgDataFor, readFile, saveToFile
 } = require('./utils');
 
-const readFile = _.partial(fs.readFileSync, _, 'UTF-8');
 const extractSvgData = fp.pipe(readFile, svgDataFor);
-
-const toJson = _.curry((hasModuleExport, data) => {
-  const json = JSON.stringify(data);
-  return hasModuleExport ? `export default ${json}` : json;
-});
-
-const saveToFile = _.curry((filePath, data) => {
-  mkdirp.sync(path.dirname(filePath));
-  fs.writeFileSync(filePath, data);
-});
 
 class InlinePacker extends CachingWriter {
   constructor(inputNode, options = {}) {
@@ -56,13 +42,11 @@ class InlinePacker extends CachingWriter {
       annotation: options.annotation,
     });
 
-    this.options = _.defaults(options, {
-      moduleExport: true
-    });
+    this.options = options;
   }
 
   build() {
-    const { stripPath, idGen, outputFile, moduleExport } = this.options;
+    const { stripPath, idGen, outputFile } = this.options;
     const inputPath = this.inputPaths[0];
     const outputFilePath = path.join(this.outputPath, outputFile);
 
@@ -74,7 +58,8 @@ class InlinePacker extends CachingWriter {
       filePathsOnly,
       fp.map((filePath) => [pathToId(filePath), extractSvgData(filePath)]),
       _.fromPairs,
-      toJson(moduleExport),
+      JSON.stringify,
+      (json) => `export default ${json}`,
       saveToFile(outputFilePath)
     )(this.listFiles());
   }

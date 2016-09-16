@@ -180,8 +180,7 @@ module.exports = {
     });
 
     return new ViewerBuilder(mergeTreesIfNeeded(viewerBuilderNodes), {
-      outputFile: 'svg-jar.json',
-      hasManyStrategies: this.options.strategy.length > 1
+      outputFile: 'svg-jar.json'
     });
   },
 

@@ -1,3 +1,5 @@
+const fs = require('fs');
+const mkdirp = require('mkdirp');
 const cheerio = require('cheerio');
 const path = require('path');
 const _ = require('lodash');
@@ -40,9 +42,18 @@ function svgDataFor(svgContent) {
   };
 }
 
+const readFile = _.partial(fs.readFileSync, _, 'UTF-8');
+
+const saveToFile = _.curry((filePath, data) => {
+  mkdirp.sync(path.dirname(filePath));
+  fs.writeFileSync(filePath, data);
+});
+
 module.exports = {
   makeAssetId,
   filePathsOnly,
   relativePathFor,
-  svgDataFor
+  svgDataFor,
+  readFile,
+  saveToFile
 };
