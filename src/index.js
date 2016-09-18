@@ -25,6 +25,39 @@ function mergeTreesIfNeeded(trees, options) {
   return trees.length === 1 ? trees[0] : new MergeTrees(trees, options);
 }
 
+function buildOptions(customOpts = {}, env) {
+  let defaultOpts = {
+    sourceDirs: ['public'],
+    strategy: 'inline',
+    stripPath: true,
+    optimizer: {},
+    persist: true,
+
+    viewer: {
+      enabled: env === 'development',
+      embed: env === 'development'
+    },
+
+    inline: {
+      idGen: defaultGenerators.inlineIdGen,
+      copypastaGen: defaultGenerators.inlineCopypastaGen
+    },
+
+    symbol: {
+      idGen: defaultGenerators.symbolIdGen,
+      copypastaGen: defaultGenerators.symbolCopypastaGen,
+      outputFile: '/assets/symbols.svg',
+      prefix: '',
+      includeLoader: true
+    }
+  };
+
+  let options = _.merge(defaultOpts, customOpts);
+  options.strategy = _.castArray(options.strategy);
+
+  return options;
+}
+
 module.exports = {
   name: 'ember-svg-jar',
 
@@ -41,7 +74,8 @@ module.exports = {
       app = app.app;
     }
 
-    this.initializeOptions(app.options.svgJar, app.env);
+    this.options = buildOptions(app.options.svgJar, app.env);
+    validateOptions(this.options);
   },
 
   treeForPublic() {
@@ -84,37 +118,6 @@ module.exports = {
     return '';
   },
 
-  initializeOptions(options, env) {
-    this.options = _.merge({
-      sourceDirs: ['public'],
-      strategy: 'inline',
-      stripPath: true,
-      optimizer: {},
-      persist: true,
-
-      viewer: {
-        enabled: env === 'development',
-        embed: env === 'development'
-      },
-
-      inline: {
-        idGen: defaultGenerators.inlineIdGen,
-        copypastaGen: defaultGenerators.inlineCopypastaGen
-      },
-
-      symbol: {
-        idGen: defaultGenerators.symbolIdGen,
-        copypastaGen: defaultGenerators.symbolCopypastaGen,
-        outputFile: '/assets/symbols.svg',
-        prefix: '',
-        includeLoader: true
-      }
-    }, options || {});
-
-    validateOptions(this.options);
-    this.options.strategy = _.castArray(this.options.strategy);
-  },
-
   optionFor(strategy, optionName) {
     // globalOptions can be both root or strategy specific.
     const globalOptions = ['sourceDirs', 'stripPath', 'optimizer'];
@@ -129,30 +132,39 @@ module.exports = {
       .filter((sourceDir) => fs.existsSync(sourceDir));
   },
 
-  optimizedSvgsFor: _.memoize(function(strategy) {
-    let sourceDirs = this.sourceDirsFor(strategy);
-    let svgFiles = new Funnel(mergeTreesIfNeeded(sourceDirs), {
-      include: ['**/*.svg']
-    });
-
-    let svgoConfig = this.optionFor(strategy, 'optimizer');
-    if (svgoConfig) {
-      svgFiles = new SVGOptimizer(svgFiles, {
-        svgoConfig,
-        persist: this.options.persist
-      });
-    }
-
-    return svgFiles;
-  }),
-
-  originalSvgsFor(strategy) {
+  originalSvgsFor: _.memoize(function(strategy) {
     let sourceDirs = this.sourceDirsFor(strategy);
 
     return new Funnel(mergeTreesIfNeeded(sourceDirs), {
-      include: ['**/*.svg'],
-      destDir: '__original__'
+      include: ['**/*.svg']
     });
+  }),
+
+  optimizedSvgsFor: _.memoize(function(strategy, originalSvgs) {
+    return new SVGOptimizer(originalSvgs, {
+      svgoConfig: this.optionFor(strategy, 'optimizer'),
+      persist: this.options.persist
+    });
+  }),
+
+  svgsFor: _.memoize(function(strategy) {
+    let originalSvgs = this.originalSvgsFor(strategy);
+
+    return this.hasOptimizerFor(strategy)
+      ? this.optimizedSvgsFor(strategy, originalSvgs)
+      : originalSvgs;
+  }),
+
+  viewerSvgsFor(strategy) {
+    let originalSvgs = this.originalSvgsFor(strategy);
+    let nodes = [originalSvgs];
+
+    if (this.hasOptimizerFor(strategy)) {
+      let optimizedSvgs = this.optimizedSvgsFor(strategy, originalSvgs);
+      nodes.push(new Funnel(optimizedSvgs, { destDir: '__optimized__' }));
+    }
+
+    return mergeTreesIfNeeded(nodes);
   },
 
   getViewerTree() {
@@ -162,22 +174,18 @@ module.exports = {
       }
     };
 
-    let viewerBuilderNodes = this.options.strategy.map((strategy) => {
-      let inputNode = new MergeTrees([
-        this.optimizedSvgsFor(strategy),
-        this.originalSvgsFor(strategy)
-      ]);
-
-      return new ViewerAssetsBuilder(inputNode, {
+    let viewerBuilderNodes = this.options.strategy.map((strategy) => (
+      new ViewerAssetsBuilder(this.viewerSvgsFor(strategy), {
         strategy,
         idGen: this.optionFor(strategy, 'idGen'),
         idGenOpts: idGenOpts[strategy],
         copypastaGen: this.optionFor(strategy, 'copypastaGen'),
         stripPath: this.optionFor(strategy, 'stripPath'),
+        hasOptimizer: this.hasOptimizerFor(strategy),
         outputFile: `${strategy}.json`,
         ui: this.ui
-      });
-    });
+      })
+    ));
 
     return new ViewerBuilder(mergeTreesIfNeeded(viewerBuilderNodes), {
       outputFile: 'svg-jar.json'
@@ -185,7 +193,7 @@ module.exports = {
   },
 
   getInlineStrategyTree() {
-    return new InlinePacker(this.optimizedSvgsFor('inline'), {
+    return new InlinePacker(this.svgsFor('inline'), {
       idGen: this.optionFor('inline', 'idGen'),
       stripPath: this.optionFor('inline', 'stripPath'),
       outputFile: 'inline-assets.js'
@@ -193,13 +201,17 @@ module.exports = {
   },
 
   getSymbolStrategyTree() {
-    return new Symbolizer(this.optimizedSvgsFor('symbol'), {
+    return new Symbolizer(this.svgsFor('symbol'), {
       idGen: this.optionFor('symbol', 'idGen'),
       stripPath: this.optionFor('symbol', 'stripPath'),
       outputFile: this.optionFor('symbol', 'outputFile'),
       prefix: this.optionFor('symbol', 'prefix'),
       persist: this.options.persist
     });
+  },
+
+  hasOptimizerFor(strategy) {
+    return this.optionFor(strategy, 'optimizer');
   },
 
   hasInlineStrategy() {

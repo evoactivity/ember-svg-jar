@@ -8,6 +8,7 @@
     copypastaGen
     stripPath
     strategy
+    hasOptimizer
     outputFile
 
   Optional options:
@@ -17,7 +18,7 @@
   Examples of input and output:
 
   Input node:
-  ├── __original__
+  ├── __optimized__
   │   ├── alarm.svg
   │   └── ...
   ├── alarm.svg
@@ -76,12 +77,25 @@ function stringSizeInKb(string) {
   return parseFloat((bytes / 1024).toFixed(2));
 }
 
-const svgToAsset = _.curry((relativeToId, [relativePath, svg]) => ({
-  id: relativeToId(relativePath),
-  svgData: svgDataFor(svg),
-  optimizedSvg: svg,
-  relativePath
-}));
+const addOptimizedSvg = _.curry((hasOptimizer, toOptimizedPath, pathAndSvgPair) => {
+  // eslint-disable-next-line comma-spacing
+  const [relativePath,] = pathAndSvgPair;
+  const optimizedPath = toOptimizedPath(relativePath);
+
+  return hasOptimizer
+    ? pathAndSvgPair.concat(readFile(optimizedPath))
+    : pathAndSvgPair;
+});
+
+const svgToAsset = _.curry(
+  (relativeToId, [relativePath, originalSvg, optimizedSvg]) => ({
+    id: relativeToId(relativePath),
+    svgData: svgDataFor(optimizedSvg || originalSvg),
+    originalSvg,
+    optimizedSvg,
+    relativePath
+  })
+);
 
 const assetToViewerItem = _.curry((copypastaGen, strategy, asset) => {
   const { width, height } = svgSizeFor(asset.svgData.attrs);
@@ -109,39 +123,48 @@ class ViewerAssetsBuilder extends CachingWriter {
       annotation: options.annotation,
     });
 
-    this.ui = options.ui;
-    this.options = {
-      idGen: _.partial(options.idGen, _, options.idGenOpts),
-      copypastaGen: options.copypastaGen,
-      stripPath: options.stripPath,
-      strategy: options.strategy,
-      outputFile: options.outputFile
-    };
+    this.options = options;
   }
 
   build() {
-    const { idGen, stripPath, strategy, outputFile, copypastaGen } = this.options;
-    const ui = this.ui;
+    const {
+      idGen,
+      idGenOpts,
+      copypastaGen,
+      stripPath,
+      strategy,
+      hasOptimizer,
+      outputFile,
+      ui
+    } = this.options;
     const outputFilePath = path.join(this.outputPath, outputFile);
     const inputPath = this.inputPaths[0];
-    const originalPath = path.join(inputPath, '__original__');
+    const optimizedPath = path.join(inputPath, '__optimized__');
 
-    const isOriginal = (filePath) => filePath.indexOf(originalPath) !== -1;
-    const toOriginalPath = _.partial(path.join, originalPath);
+    const isOptimizedPath = (filePath) => filePath.indexOf(optimizedPath) !== -1;
+    const toOptimizedPath = _.partial(path.join, optimizedPath);
     const toRelative = _.partial(relativePathFor, _, inputPath);
-    const relativeToId = _.partial(makeAssetId, _, stripPath, idGen);
+    const idGenWithOpts = _.partial(idGen, _, idGenOpts);
+    const relativeToId = _.partial(makeAssetId, _, stripPath, idGenWithOpts);
 
+    /**
+      The flow:
+      [anySvgPath]
+      [originalOnlySvgPath]
+      [ [relativePath, originalSvg] ]
+      [ [relativePath, originalSvg, maybeOptimizedSvg] ]
+      [assetObj]
+      [viewerItem]
+      jsonString
+    */
     fp.pipe(
       filePathsOnly,
-      fp.reject(isOriginal),
-      fp.map((filePath) => [toRelative(filePath), readFile(filePath)]),
-      fp.filter(([, svg]) => !!svg),
+      fp.reject(isOptimizedPath),
+      fp.map(filePath => [toRelative(filePath), readFile(filePath)]),
+      fp.filter(([, originalSvg]) => !!originalSvg),
+      fp.map(addOptimizedSvg(hasOptimizer, toOptimizedPath)),
       fp.map(svgToAsset(relativeToId)),
-      fp.tap((assets) => ui && validateAssets(assets, strategy, ui)),
-      fp.forEach((asset) => (
-        // eslint-disable-next-line no-param-reassign
-        asset.originalSvg = readFile(toOriginalPath(asset.relativePath))
-      )),
+      fp.tap(assets => ui && validateAssets(assets, strategy, ui)),
       fp.map(assetToViewerItem(copypastaGen, strategy)),
       JSON.stringify,
       saveToFile(outputFilePath)

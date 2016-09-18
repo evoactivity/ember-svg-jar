@@ -25,9 +25,9 @@ var copypastaGens = {
 describe('ViewerAssetsBuilder', function() {
   it('works for inline strategy', function() {
     var inputNode = new fixture.Node({
-      'foo.svg': '<svg viewBox="0 0 13 13"><path d="optimized"/></svg>',
-      __original__: {
-        'foo.svg': '<svg viewBox="0 0 13 13"><path d="original"/></svg>'
+      'foo.svg': '<svg viewBox="0 0 13 13"><path d="original"/></svg>',
+      __optimized__: {
+        'foo.svg': '<svg viewBox="0 0 13 13"><path d="optimized"/></svg>'
       }
     });
 
@@ -37,6 +37,7 @@ describe('ViewerAssetsBuilder', function() {
       idGen: idGens[strategy],
       copypastaGen: copypastaGens[strategy],
       stripPath: true,
+      hasOptimizer: true,
       outputFile: strategy + '.json'
     });
 
@@ -65,9 +66,9 @@ describe('ViewerAssetsBuilder', function() {
 
   it('works for symbol strategy', function() {
     var inputNode = new fixture.Node({
-      'foo.svg': '<svg viewBox="0 0 20 40"><path d="optimized"/></svg>',
-      __original__: {
-        'foo.svg': '<svg viewBox="0 0 20 40"><path d="original"/></svg>'
+      'foo.svg': '<svg viewBox="0 0 20 40"><path d="original"/></svg>',
+      __optimized__: {
+        'foo.svg': '<svg viewBox="0 0 20 40"><path d="optimized"/></svg>'
       }
     });
 
@@ -78,6 +79,7 @@ describe('ViewerAssetsBuilder', function() {
       idGenOpts: { prefix: 'prefix-' },
       copypastaGen: copypastaGens[strategy],
       stripPath: true,
+      hasOptimizer: true,
       outputFile: strategy + '.json'
     });
 
