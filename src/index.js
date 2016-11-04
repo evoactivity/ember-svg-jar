@@ -22,7 +22,8 @@ const defaultGenerators = {
 };
 
 function mergeTreesIfNeeded(trees, options) {
-  return trees.length === 1 ? trees[0] : new MergeTrees(trees, options);
+  let mergedOptions = _.assign({ overwrite: true }, options);
+  return trees.length === 1 ? trees[0] : new MergeTrees(trees, mergedOptions);
 }
 
 function buildOptions(customOpts = {}, env) {
