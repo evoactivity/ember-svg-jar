@@ -74,17 +74,17 @@ module.exports = {
       app = app.app;
     }
 
-    this.options = buildOptions(app.options.svgJar, app.env);
-    validateOptions(this.options);
+    this.svgJarOptions = buildOptions(app.options.svgJar, app.env);
+    validateOptions(this.svgJarOptions);
   },
 
   treeForPublic() {
     let trees = [];
 
-    if (this.options.viewer.enabled) {
+    if (this.svgJarOptions.viewer.enabled) {
       trees.push(this.getViewerTree());
 
-      if (this.options.viewer.embed) {
+      if (this.svgJarOptions.viewer.embed) {
         trees.push(this._super.treeForPublic.apply(this, arguments));
       }
     }
@@ -122,9 +122,9 @@ module.exports = {
     // globalOptions can be both root or strategy specific.
     const globalOptions = ['sourceDirs', 'stripPath', 'optimizer'];
 
-    return _.isUndefined(this.options[strategy][optionName])
-      ? globalOptions.indexOf(optionName) !== -1 && this.options[optionName]
-      : this.options[strategy][optionName];
+    return _.isUndefined(this.svgJarOptions[strategy][optionName])
+      ? globalOptions.indexOf(optionName) !== -1 && this.svgJarOptions[optionName]
+      : this.svgJarOptions[strategy][optionName];
   },
 
   sourceDirsFor(strategy) {
@@ -143,7 +143,7 @@ module.exports = {
   optimizedSvgsFor: _.memoize(function(strategy, originalSvgs) {
     return new SVGOptimizer(originalSvgs, {
       svgoConfig: this.optionFor(strategy, 'optimizer'),
-      persist: this.options.persist
+      persist: this.svgJarOptions.persist
     });
   }),
 
@@ -174,7 +174,7 @@ module.exports = {
       }
     };
 
-    let viewerBuilderNodes = this.options.strategy.map((strategy) => (
+    let viewerBuilderNodes = this.svgJarOptions.strategy.map((strategy) => (
       new ViewerAssetsBuilder(this.viewerSvgsFor(strategy), {
         strategy,
         idGen: this.optionFor(strategy, 'idGen'),
@@ -206,7 +206,7 @@ module.exports = {
       stripPath: this.optionFor('symbol', 'stripPath'),
       outputFile: this.optionFor('symbol', 'outputFile'),
       prefix: this.optionFor('symbol', 'prefix'),
-      persist: this.options.persist
+      persist: this.svgJarOptions.persist
     });
   },
 
@@ -215,10 +215,10 @@ module.exports = {
   },
 
   hasInlineStrategy() {
-    return this.options.strategy.indexOf('inline') !== -1;
+    return this.svgJarOptions.strategy.indexOf('inline') !== -1;
   },
 
   hasSymbolStrategy() {
-    return this.options.strategy.indexOf('symbol') !== -1;
+    return this.svgJarOptions.strategy.indexOf('symbol') !== -1;
   }
 };
