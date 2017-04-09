@@ -2,17 +2,14 @@
   "name": "ember-svg-jar",
   "version": "0.9.3",
   "description": "Best way to embed SVG images into Ember application",
+  "keywords": [
+    "ember-addon"
+  ],
+  "author": "Ivan Votti <ivanvotti@gmail.com>",
+  "license": "MIT",
   "directories": {
     "doc": "doc",
     "test": "tests"
-  },
-  "scripts": {
-    "prebuild": "rimraf lib",
-    "build": "babel src --out-dir lib --presets es2015",
-    "prepublish": "npm run build && not-in-install && npm test || not-in-publish",
-    "lint": "eslint src addon app tests node-tests",
-    "nodetest": "node node-tests/runner.js",
-    "test": "npm run lint && npm run nodetest && ember test"
   },
   "homepage": "https://github.com/ivanvotti/ember-svg-jar",
   "repository": {
@@ -22,45 +19,14 @@
   "bugs": {
     "url": "https://github.com/ivanvotti/ember-svg-jar/issues"
   },
-  "engines": {
-    "node": ">= 0.10.0"
+  "scripts": {
+    "prebuild": "rimraf lib",
+    "build": "babel src --out-dir lib --presets es2015",
+    "prepublish": "npm run build && not-in-install && npm test || not-in-publish",
+    "lint": "eslint src addon app tests node-tests",
+    "nodetest": "node node-tests/runner.js",
+    "test": "npm run lint && npm run nodetest && ember test"
   },
-  "author": "Ivan Votti <ivanvotti@gmail.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "babel-cli": "^6.11.4",
-    "babel-preset-es2015": "^6.9.0",
-    "broccoli-asset-rev": "^2.4.2",
-    "broccoli-fixture": "^0.1.0",
-    "chai": "^3.5.0",
-    "chai-as-promised": "^5.3.0",
-    "ember-ajax": "^2.0.1",
-    "ember-cli": "^2.7.0",
-    "ember-cli-app-version": "^1.0.0",
-    "ember-cli-dependency-checker": "^1.2.0",
-    "ember-cli-htmlbars": "^1.0.3",
-    "ember-cli-htmlbars-inline-precompile": "^0.3.1",
-    "ember-cli-inject-live-reload": "^1.4.0",
-    "ember-cli-qunit": "^2.0.0",
-    "ember-cli-release": "^0.2.9",
-    "ember-cli-test-loader": "^1.1.0",
-    "ember-cli-uglify": "^1.2.0",
-    "ember-disable-prototype-extensions": "^1.1.0",
-    "ember-export-application-global": "^1.0.5",
-    "ember-load-initializers": "^0.5.1",
-    "ember-resolver": "^2.0.3",
-    "eslint": "^3.1.1",
-    "eslint-config-airbnb-base": "^5.0.0",
-    "eslint-plugin-import": "^1.12.0",
-    "glob": "^7.0.5",
-    "in-publish": "^2.0.0",
-    "loader.js": "^4.0.1",
-    "mocha": "^3.0.2",
-    "rimraf": "^2.5.4"
-  },
-  "keywords": [
-    "ember-addon"
-  ],
   "dependencies": {
     "broccoli-caching-writer": "^2.3.1",
     "broccoli-funnel": "^1.0.1",
@@ -68,9 +34,43 @@
     "broccoli-svg-optimizer": "^1.0.1",
     "broccoli-symbolizer": "^0.5.0",
     "cheerio": "^0.20.0",
-    "ember-cli-babel": "^5.1.6",
+    "ember-cli-babel": "^5.1.7",
     "lodash": "^4.13.1",
     "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "broccoli-asset-rev": "^2.4.5",
+    "babel-cli": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "broccoli-fixture": "^0.1.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "ember-ajax": "^2.4.1",
+    "ember-cli": "2.12.1",
+    "ember-cli-dependency-checker": "^1.3.0",
+    "ember-cli-eslint": "^3.0.0",
+    "ember-cli-htmlbars": "^1.1.1",
+    "ember-cli-htmlbars-inline-precompile": "^0.3.6",
+    "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-qunit": "^3.1.0",
+    "ember-cli-shims": "^1.0.2",
+    "ember-cli-sri": "^2.1.0",
+    "ember-cli-uglify": "^1.2.0",
+    "ember-disable-prototype-extensions": "^1.1.0",
+    "ember-export-application-global": "^1.0.5",
+    "ember-load-initializers": "^0.6.0",
+    "ember-resolver": "^2.0.3",
+    "ember-source": "~2.12.0",
+    "eslint-config-airbnb-base": "^5.0.0",
+    "eslint-plugin-import": "^1.12.0",
+    "glob": "^7.0.5",
+    "in-publish": "^2.0.0",
+    "loader.js": "^4.2.3",
+    "mocha": "^3.0.2",
+    "rimraf": "^2.5.4"
+  },
+  "engines": {
+    "node": ">= 4"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
