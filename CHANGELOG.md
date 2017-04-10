@@ -1,5 +1,13 @@
 ## SVGJar Change Log
 
+### v0.10.0
+- [[CLEANUP]](https://github.com/ivanvotti/ember-svg-jar/pull/30) Fix treeForAddon deprecation warning #27 [@ef4](https://github.com/ef4)
+- [[BUGFIX]](https://github.com/ivanvotti/ember-svg-jar/pull/21) Fix a problem with .DS_Store #20 [@mupkoo](https://github.com/mupkoo)
+- [CLEANUP] Upgrade ember-cli to 2.12.1 and related packages
+- [CLEANUP] Refactor node.js related modules
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.9.3...v0.10.0)
+
 ### v0.9.3
 - [INTERNAL] The viewer builder skips emtpy SVG
 - [INTERNAL] Upgrade broccoli-svg-optimizer
