@@ -104,7 +104,7 @@ module.exports = {
       trees.push(this.getInlineStrategyTree());
     }
 
-    return mergeTreesIfNeeded(trees, { overwrite: true });
+    return mergeTreesIfNeeded(trees);
   },
 
   contentFor(type) {
