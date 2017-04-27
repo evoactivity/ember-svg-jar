@@ -77,6 +77,21 @@ let app = new EmberApp(defaults, {
 });
 ```
 
+#### [`symbol` strategy] change location of svgJar symbol object into a div IE:ember-testing-container
+
+```javascript
+let app = new EmberApp(defaults, {
+  svgJar: {
+    strategy: ['symbol'],
+
+    symbol: {
+      loaderLocationEnabled: true,
+      loaderLocation: 'ember-testing-container',
+    }
+  }
+});
+```
+
 #### Using both `symbol` and `inline` strategies at the same time:
 
 ```javascript
