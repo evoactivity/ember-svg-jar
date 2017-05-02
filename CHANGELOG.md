@@ -1,5 +1,10 @@
 ## SVGJar Change Log
 
+### v0.10.1
+- [[BUGFIX]](https://github.com/ivanvotti/ember-svg-jar/pull/35) Fix calculating optimizedSvg file size [#32](https://github.com/ivanvotti/ember-svg-jar/issues/32) [@ilucin](https://github.com/ilucin)
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.10.0...v0.10.1)
+
 ### v0.10.0
 - [[CLEANUP]](https://github.com/ivanvotti/ember-svg-jar/pull/30) Fix treeForAddon deprecation warning #27 [@ef4](https://github.com/ef4)
 - [[BUGFIX]](https://github.com/ivanvotti/ember-svg-jar/pull/21) Fix a problem with .DS_Store #20 [@mupkoo](https://github.com/mupkoo)
