@@ -99,6 +99,9 @@ const svgToAsset = _.curry(
 
 const assetToViewerItem = _.curry((copypastaGen, strategy, asset) => {
   const { width, height } = svgSizeFor(asset.svgData.attrs);
+  const fileSize = `${stringSizeInKb(asset.originalSvg)} KB`;
+  const optimizedSvg = asset.optimizedSvg;
+  const optimizedFileSize = optimizedSvg ? `${stringSizeInKb(optimizedSvg)} KB` : fileSize;
 
   return {
     svg: asset.svgData,
@@ -107,8 +110,8 @@ const assetToViewerItem = _.curry((copypastaGen, strategy, asset) => {
     height,
     fileName: path.basename(asset.relativePath),
     fileDir: path.dirname(asset.relativePath).replace('.', '/'),
-    fileSize: `${stringSizeInKb(asset.originalSvg)} KB`,
-    optimizedFileSize: `${stringSizeInKb(asset.optimizedSvg)} KB`,
+    fileSize,
+    optimizedFileSize,
     baseSize: _.isNull(height) ? 'unknown' : `${height}px`,
     fullBaseSize: `${width}x${height}px`,
     copypasta: copypastaGen(asset.id),
