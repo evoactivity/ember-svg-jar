@@ -1,7 +1,7 @@
 <h1 align="center">
   <img src="https://cdn.rawgit.com/ivanvotti/ember-svg-jar/master/svg-jar-logo.svg" alt="Standard" width="132px">
   <br>
-  Ember SVGJar
+  <a href="https://svgjar.firebaseapp.com">Ember SVGJar</a>
   <br>
 </h1>
 
