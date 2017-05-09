@@ -105,7 +105,6 @@ The addon is compatible with Ember 1.10.1 and beyond.
 
 * `git clone git@github.com:ivanvotti/ember-svg-jar.git`
 * `npm install`
-* `bower install`
 
 ### Building
 
