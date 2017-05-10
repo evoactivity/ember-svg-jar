@@ -113,7 +113,9 @@ module.exports = {
 
     if (type === 'body' && includeLoader) {
       return symbolsLoaderScript
-        .replace('{{FILE_PATH}}', this.optionFor('symbol', 'outputFile'));
+        .replace('{{FILE_PATH}}', this.optionFor('symbol', 'outputFile'))
+        .replace('{{LOADER_LOCATION}}', this.optionFor('symbol', 'loaderLocation'))
+        .replace('{{LOADER_LOCATION_ENABLED}}', this.optionFor('symbol', 'loaderLocationEnabled'));
     }
 
     return '';
