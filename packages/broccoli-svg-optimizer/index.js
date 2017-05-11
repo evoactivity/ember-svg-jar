@@ -2,6 +2,7 @@
 
 var Filter = require('broccoli-persistent-filter');
 var stringify = require('json-stable-stringify');
+var sha1 = require('sha1');
 var RSVP = require('rsvp');
 var SVGO = require('svgo');
 
@@ -54,7 +55,7 @@ SVGOFilter.prototype.optionsHash = function() {
 };
 
 SVGOFilter.prototype.cacheKeyProcessString = function(string, relativePath) {
-  return this.optionsHash() +
+  return sha1(this.optionsHash()) +
     Filter.prototype.cacheKeyProcessString.call(this, string, relativePath);
 };
 

@@ -25,6 +25,7 @@
     "broccoli-persistent-filter": "^1.2.0",
     "json-stable-stringify": "^1.0.1",
     "rsvp": "^3.2.1",
+    "sha1": "^1.1.1",
     "svgo": "^0.6.6"
   },
   "devDependencies": {
