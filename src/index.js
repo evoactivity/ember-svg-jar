@@ -5,6 +5,7 @@ const Funnel = require('broccoli-funnel');
 const MergeTrees = require('broccoli-merge-trees');
 const SVGOptimizer = require('broccoli-svg-optimizer');
 const Symbolizer = require('broccoli-symbolizer');
+const broccoliReplace = require('broccoli-string-replace');
 const InlinePacker = require('./inline-packer');
 const ViewerAssetsBuilder = require('./viewer-assets-builder');
 const ViewerBuilder = require('./viewer-builder');
@@ -28,6 +29,7 @@ function mergeTreesIfNeeded(trees, options) {
 
 function buildOptions(customOpts = {}, env) {
   let defaultOpts = {
+    rootURL: '/',
     sourceDirs: ['public'],
     strategy: 'inline',
     stripPath: true,
@@ -86,7 +88,17 @@ module.exports = {
       trees.push(this.getViewerTree());
 
       if (this.svgJarOptions.viewer.embed) {
-        trees.push(this._super.treeForPublic.apply(this, arguments));
+        let svgJarPublicTree = this._super.treeForPublic.apply(this, arguments);
+
+        svgJarPublicTree = broccoliReplace(svgJarPublicTree, {
+          files: ['**/index.html'],
+          pattern: {
+            match: /\{\{ROOT_URL\}\}/g,
+            replacement: this.svgJarOptions.rootURL
+          }
+        });
+
+        trees.push(svgJarPublicTree);
       }
     }
 
@@ -112,8 +124,11 @@ module.exports = {
         this.hasSymbolStrategy() && this.optionFor('symbol', 'includeLoader');
 
     if (type === 'body' && includeLoader) {
-      return symbolsLoaderScript
-        .replace('{{FILE_PATH}}', this.optionFor('symbol', 'outputFile'));
+      let symbolsURL = path.join(
+        this.svgJarOptions.rootURL,
+        this.optionFor('symbol', 'outputFile')
+      );
+      return symbolsLoaderScript.replace('{{SYMBOLS_URL}}', symbolsURL);
     }
 
     return '';

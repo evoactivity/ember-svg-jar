@@ -1,8 +1,11 @@
 <script>
   var ajax = new XMLHttpRequest();
-  ajax.open('GET', '{{FILE_PATH}}', true);
+  ajax.open('GET', '{{SYMBOLS_URL}}', true);
   ajax.send();
   ajax.onload = function(e) {
+    if (this.status === 404) {
+       return;
+    }
     var div = document.createElement('div');
     div.innerHTML = ajax.responseText;
     document.body.insertBefore(div, document.body.childNodes[0]);
