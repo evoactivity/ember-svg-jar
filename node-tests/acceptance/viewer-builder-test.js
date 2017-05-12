@@ -114,6 +114,7 @@ describe('ViewerBuilder', function() {
         ],
 
         links: [
+          { text: 'Configuration', url: 'https://github.com/ivanvotti/ember-svg-jar/blob/master/docs/configuration.md' },
           { text: 'Contribute', url: 'https://github.com/ivanvotti/ember-svg-jar' },
           { text: 'About', url: 'https://svgjar.firebaseapp.com' }
         ]

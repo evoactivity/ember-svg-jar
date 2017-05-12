@@ -37,7 +37,8 @@ All global options with their default values:
     sourceDirs: ['public'],
     stripPath: true,
     optimizer: {},
-    persist: true
+    persist: true,
+    rootURL: '/'
   }
 }
 ```
@@ -122,6 +123,25 @@ Type: `Boolean`
 Default: `true`
 
 Enable or disable a persistent cache to improve build performance across restarts. Check out [broccoli-persistent-filter](https://github.com/stefanpenner/broccoli-persistent-filter) for more details.
+
+#### rootURL
+
+Type: `String`  
+Default: `/`
+
+It's useful in development mode, if you use custom `rootURL` in `config/environment.js`. By default, the SVGJar viewer is available at `http://localhost:4200/ember-svg-jar/index.html`. If you set `rootURL` to `/myapp/`, the viewer URL will change to `http://localhost:4200/myapp/ember-svg-jar/index.html`. If you use the symbol strategy, it will also prefix `outputFilepath` in the [symbols loader script](#includeloader).
+
+Example:
+
+```javascript
+let isDevelopment = EmberApp.env() === 'development';
+
+let app = new EmberApp(defaults, {
+  svgJar: {
+    rootURL: (isDevelopment && '/myapp/') || '/'
+  }
+});
+```
 
 ## Inline strategy options
 
