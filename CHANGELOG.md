@@ -1,5 +1,11 @@
 ## SVGJar Change Log
 
+### v0.10.3
+- [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/37) Add rootURL option
+- [[CLEANUP]](https://github.com/ivanvotti/ember-svg-jar/pull/36) Upgrade to ember-cli 2.13.1 [@john-griffin](https://github.com/john-griffin)
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.10.1...v0.10.3)
+
 ### v0.10.1
 - [[BUGFIX]](https://github.com/ivanvotti/ember-svg-jar/pull/35) Fix calculating optimizedSvg file size [#32](https://github.com/ivanvotti/ember-svg-jar/issues/32) [@ilucin](https://github.com/ilucin)
 

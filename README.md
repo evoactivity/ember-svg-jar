@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://cdn.rawgit.com/ivanvotti/ember-svg-jar/master/svgjar-logo.svg" alt="Standard" width="132px">
+  <img src="https://cdn.rawgit.com/ivanvotti/ember-svg-jar/master/logo.svg" alt="Logo" width="127px" height="131px">
   <br>
   <a href="https://svgjar.firebaseapp.com">Ember SVGJar</a>
   <br>
