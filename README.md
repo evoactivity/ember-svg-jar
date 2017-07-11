@@ -64,7 +64,7 @@ If you can go IE 9+ and Android 3+, SVG is a better solution than icon fonts. Al
 
 - Put some SVG files to any place in your `public` directory (e.g. get some from [font-awesome-svg](https://github.com/ivanvotti/font-awesome-svg))
 - Run the development server and open this link with Chrome:
-`http://localhost:4200/ember-svg-jar/index.html`
+[`http://localhost:4200/ember-svg-jar/index.html`](http://localhost:4200/ember-svg-jar/index.html)
 - Select any SVG there and click `Enter` to copy it to the clipboard.
 - Paste it into a template and see it rendered in your browser.
 
@@ -72,7 +72,7 @@ If you can go IE 9+ and Android 3+, SVG is a better solution than icon fonts. Al
 
 Drag and drop SVG images to your source directory (`public` by default) and copy & paste them from the viewer to your templates.
 
-The viewer is available at: `http://localhost:4200/ember-svg-jar/index.html`
+The viewer is available at: [`http://localhost:4200/ember-svg-jar/index.html`](http://localhost:4200/ember-svg-jar/index.html)
 
 ### Helper
 
