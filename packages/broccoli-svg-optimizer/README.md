@@ -1,6 +1,7 @@
 # broccoli-svg-optimizer
 
 [![Build Status](https://travis-ci.org/ivanvotti/broccoli-svg-optimizer.svg?branch=master)](https://travis-ci.org/ivanvotti/broccoli-svg-optimizer)
+[![Build status](https://ci.appveyor.com/api/projects/status/26lyufkk6ueam952/branch/master?svg=true)](https://ci.appveyor.com/project/ivanvotti/broccoli-svg-optimizer)
 
 Broccoli plugin for optimizing SVG files by [SVGO](https://github.com/svg/svgo) with a persistent cache for fast restarts.
 
