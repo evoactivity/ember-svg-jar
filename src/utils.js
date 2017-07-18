@@ -1,12 +1,15 @@
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 const cheerio = require('cheerio');
-const path = require('path');
+const path = require('path-posix');
+const osPathSep = require('path').sep;
 const _ = require('lodash');
 const fp = require('lodash/fp');
 
-function ensurePosix(filePath) {
-  return path.sep !== '/' ? filePath.split(path.sep).join('/') : filePath;
+const isPosixOS = osPathSep === '/';
+
+function toPosixPath(filePath) {
+  return !isPosixOS ? filePath.split(osPathSep).join('/') : filePath;
 }
 
 function stripExtension(filePath) {
@@ -15,18 +18,10 @@ function stripExtension(filePath) {
 
 function makeAssetId(relativePath, stripDirs, idGen) {
   return fp.pipe(
-    ensurePosix,
     (idGenPath) => (stripDirs ? path.basename(idGenPath) : idGenPath),
     stripExtension,
     idGen
   )(relativePath);
-}
-
-function filePathsOnly(paths) {
-  return _.uniq(paths).filter((filePath) => {
-    let isDirectory = filePath.charAt(filePath.length - 1) === path.sep;
-    return !isDirectory;
-  });
 }
 
 function relativePathFor(filePath, inputPath) {
@@ -51,9 +46,9 @@ const saveToFile = _.curry((filePath, data) => {
 
 module.exports = {
   makeAssetId,
-  filePathsOnly,
   relativePathFor,
   svgDataFor,
   readFile,
-  saveToFile
+  saveToFile,
+  toPosixPath
 };

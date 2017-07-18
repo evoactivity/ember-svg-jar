@@ -25,12 +25,12 @@
     'cat': { content: '<path>', attrs: { viewBox: '' } }
   }
 */
-const path = require('path');
+const path = require('path-posix');
 const _ = require('lodash');
 const fp = require('lodash/fp');
 const CachingWriter = require('broccoli-caching-writer');
 const {
-  filePathsOnly, relativePathFor, makeAssetId, svgDataFor, readFile, saveToFile
+  relativePathFor, makeAssetId, svgDataFor, readFile, saveToFile, toPosixPath
 } = require('./utils');
 
 const extractSvgData = fp.pipe(readFile, svgDataFor);
@@ -46,22 +46,24 @@ class InlinePacker extends CachingWriter {
   }
 
   build() {
+    const inputPath = toPosixPath(this.inputPaths[0]);
+    const outputPath = toPosixPath(this.outputPath);
+    const filePaths = this.listFiles().map(toPosixPath);
+
     const { stripPath, idGen, outputFile } = this.options;
-    const inputPath = this.inputPaths[0];
-    const outputFilePath = path.join(this.outputPath, outputFile);
+    const outputFilePath = path.join(outputPath, outputFile);
 
     const toRelativePath = _.partial(relativePathFor, _, inputPath);
     const relativePathToId = _.partial(makeAssetId, _, stripPath, idGen);
     const pathToId = fp.pipe(toRelativePath, relativePathToId);
 
     fp.pipe(
-      filePathsOnly,
       fp.map((filePath) => [pathToId(filePath), extractSvgData(filePath)]),
       _.fromPairs,
       JSON.stringify,
       (json) => `export default ${json}`,
       saveToFile(outputFilePath)
-    )(this.listFiles());
+    )(filePaths);
   }
 }
 
