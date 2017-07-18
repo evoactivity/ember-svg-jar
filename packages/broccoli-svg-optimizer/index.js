@@ -54,7 +54,8 @@ SVGOFilter.prototype.optionsHash = function() {
 };
 
 SVGOFilter.prototype.cacheKeyProcessString = function(string, relativePath) {
-  return Filter.prototype.cacheKeyProcessString.call(this, string + this.optionsHash(), relativePath);
+  return Filter.prototype.cacheKeyProcessString.call(
+    this, string + this.optionsHash(), relativePath);
 };
 
 module.exports = SVGOFilter;
