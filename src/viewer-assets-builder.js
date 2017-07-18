@@ -54,13 +54,13 @@
     { ... }
   ]
 */
-const path = require('path');
+const path = require('path-posix');
 const _ = require('lodash');
 const fp = require('lodash/fp');
 const CachingWriter = require('broccoli-caching-writer');
 const validateAssets = require('./validate-assets');
 const {
-  filePathsOnly, relativePathFor, makeAssetId, svgDataFor, readFile, saveToFile
+  relativePathFor, makeAssetId, svgDataFor, readFile, saveToFile, toPosixPath
 } = require('./utils');
 
 function svgSizeFor(svgAttrs) {
@@ -140,8 +140,11 @@ class ViewerAssetsBuilder extends CachingWriter {
       outputFile,
       ui
     } = this.options;
-    const outputFilePath = path.join(this.outputPath, outputFile);
-    const inputPath = this.inputPaths[0];
+    const inputPath = toPosixPath(this.inputPaths[0]);
+    const outputPath = toPosixPath(this.outputPath);
+    const filePaths = this.listFiles().map(toPosixPath);
+
+    const outputFilePath = path.join(outputPath, outputFile);
     const optimizedPath = path.join(inputPath, '__optimized__');
 
     const isOptimizedPath = (filePath) => filePath.indexOf(optimizedPath) !== -1;
@@ -161,7 +164,6 @@ class ViewerAssetsBuilder extends CachingWriter {
       jsonString
     */
     fp.pipe(
-      filePathsOnly,
       fp.reject(isOptimizedPath),
       fp.map(filePath => [toRelative(filePath), readFile(filePath)]),
       fp.filter(([, originalSvg]) => !!originalSvg),
@@ -171,7 +173,7 @@ class ViewerAssetsBuilder extends CachingWriter {
       fp.map(assetToViewerItem(copypastaGen, strategy)),
       JSON.stringify,
       saveToFile(outputFilePath)
-    )(this.listFiles());
+    )(filePaths);
   }
 }
 

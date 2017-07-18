@@ -87,11 +87,11 @@
     ]
   }
 */
-const path = require('path');
+const path = require('path-posix');
 const _ = require('lodash');
 const fp = require('lodash/fp');
 const CachingWriter = require('broccoli-caching-writer');
-const { filePathsOnly, readFile, saveToFile } = require('./utils');
+const { toPosixPath, readFile, saveToFile } = require('./utils');
 
 function filtersFor(assets, filters) {
   return filters.map((filter) => (
@@ -169,9 +169,10 @@ class ViewerBuilder extends CachingWriter {
   }
 
   build() {
-    let outputFilePath = path.join(this.outputPath, this.options.outputFile);
-    let filePaths = filePathsOnly(this.listFiles());
-    let hasManyStrategies = filePaths.length > 1;
+    const outputPath = toPosixPath(this.outputPath);
+    const filePaths = this.listFiles().map(toPosixPath);
+    const outputFilePath = path.join(outputPath, this.options.outputFile);
+    const hasManyStrategies = filePaths.length > 1;
 
     fp.pipe(
       fp.flatMap(fp.pipe(readFile, JSON.parse)),

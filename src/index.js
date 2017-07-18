@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = require('path');
+const path = require('path-posix');
 const _ = require('lodash');
 const Funnel = require('broccoli-funnel');
 const MergeTrees = require('broccoli-merge-trees');
