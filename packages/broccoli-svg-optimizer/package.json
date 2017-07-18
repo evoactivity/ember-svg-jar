@@ -1,6 +1,6 @@
 {
   "name": "broccoli-svg-optimizer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Broccoli plugin for optimizing SVG files with SVGO",
   "scripts": {
     "test": "mocha test/ --timeout 8000"
