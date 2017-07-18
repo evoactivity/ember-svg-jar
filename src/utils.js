@@ -30,7 +30,7 @@ function filePathsOnly(paths) {
 }
 
 function relativePathFor(filePath, inputPath) {
-  return filePath.replace(`${inputPath}${path.sep}`, '');
+  return path.relative(inputPath, filePath);
 }
 
 function svgDataFor(svgContent) {
