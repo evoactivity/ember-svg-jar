@@ -1,5 +1,10 @@
 ## SVGJar Change Log
 
+### v0.11.0
+- [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/40) Add basic Windows support
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.10.3...v0.11.0)
+
 ### v0.10.3
 - [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/37) Add rootURL option
 - [[CLEANUP]](https://github.com/ivanvotti/ember-svg-jar/pull/36) Upgrade to ember-cli 2.13.1 [@john-griffin](https://github.com/john-griffin)
