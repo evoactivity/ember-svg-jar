@@ -27,11 +27,11 @@
 ![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/SVGJar+0.9.1.png)
 
 ### Features
-- an easy to use helper `{{svg-jar "asset-name"}}`
-- automatic SVG optimization (it can cut file size by half or more)
 - a visual workflow to find and use your assets the fastest way possible
+- automatic SVG optimization (it can cut file size by half or more)
 - work out of the box (no configuration needed)
-- support for both inline and symbol embedding methods
+- an easy to use helper `{{svg-jar "asset-name"}}`
+- support for both `inline` and `symbol` embedding methods
 
 ## Why does this matter?
 
@@ -62,17 +62,33 @@ If you can go IE 9+ and Android 3+, SVG is a better solution than icon fonts. Al
 
 ## Start in 4 easy steps
 
-- Put some SVG files to any place in your `public` directory (e.g. get some from [font-awesome-svg](https://github.com/ivanvotti/font-awesome-svg))
-- Run the development server and open this link with Chrome:
-[`http://localhost:4200/ember-svg-jar/index.html`](http://localhost:4200/ember-svg-jar/index.html)
-- Select any SVG there and click `Enter` to copy it to the clipboard.
-- Paste it into a template and see it rendered in your browser.
+- Put some SVG files to any place in your project's `public` directory (e.g. get some from [font-awesome-svg](https://github.com/ivanvotti/font-awesome-svg))
+- Run the development server and open this link with Chrome: <a href="http://localhost:4200/ember-svg-jar/index.html" target="_blank">http://localhost:4200/ember-svg-jar/index.html</a>
+- Select any SVG there and press `Enter` to copy it to the clipboard.
+- Paste it into any template and see it rendered in your browser.
 
 ## Usage
 
-Drag and drop SVG images to your source directory (`public` by default) and copy & paste them from the viewer to your templates.
+Drag and drop SVG images to your project's `public` directory and copy & paste them from the <a href="http://localhost:4200/ember-svg-jar/index.html" target="_blank">assets viewer</a> to your templates.
 
-The viewer is available at: [`http://localhost:4200/ember-svg-jar/index.html`](http://localhost:4200/ember-svg-jar/index.html)
+The viewer is available at: <a href="http://localhost:4200/ember-svg-jar/index.html" target="_blank">http://localhost:4200/ember-svg-jar/index.html</a>
+
+### Assets from Node modules
+
+By default `ember-svg-jar` looks for SVGs in the `public` directory. To get SVGs from `node_modules` packages or any other directory you will need to add them to `ember-cli-build.js` like this:
+```js
+  var app = new EmberApp(defaults, {
+    svgJar: {
+      sourceDirs: [
+        'node_modules/material-design-icons/file/svg/design',
+        'node_modules/material-design-icons/action/svg/design',
+        'public/images/icons'
+      ]
+    }
+  });
+```
+
+[Click here for more configuration options](#configuration)
 
 ### Helper
 
@@ -88,16 +104,24 @@ The helper takes an asset ID and optional attributes that will be added to the c
 <svg class="icon" width="24px">...</svg>
 ```
 
-## Compatibility
-
-The addon is compatible with Ember 1.10.1 and beyond.
-
 ## Configuration
 
 **Note:** Ember SVGJar should be useful without any configuration. But it wants to be very configurable when it's time to adjust it for your needs.
 
 - [All configuration options](docs/configuration.md)
 - [Advanced usage examples](docs/examples.md)
+
+## Compatibility
+
+The addon is compatible with Ember 1.10.1 and beyond.
+
+## FAQ
+
+Q: `Will the asset viewer affect my production build size?`  
+A: `No, it won't at all. The asset viewer is included in development mode only.` 
+
+Q: `Can it find SVG icons outside of the public directory, e.g. from node_modules?`  
+A: `Yes, it can import SVGs from any directory defined in the sourceDirs array.`
 
 ## Development setup
 
