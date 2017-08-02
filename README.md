@@ -127,7 +127,8 @@ A: `Yes, it can import SVGs from any directory defined in the sourceDirs array.`
 
 ### Installation
 
-* `git clone git@github.com:ivanvotti/ember-svg-jar.git`
+* `git clone <repository-url>` this repository
+* `cd ember-svg-jar`
 * `npm install`
 
 ### Building
@@ -165,7 +166,7 @@ npm run lint
 * `ember serve`
 * Visit the app at [http://localhost:4200](http://localhost:4200)
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
 ## Asset viewer
 
