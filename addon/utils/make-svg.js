@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { isNone } from 'ember-utils';
+import { isNone } from '@ember/utils';
 
 const { copy, merge } = Ember;
 const { warn } = Ember.Logger;
