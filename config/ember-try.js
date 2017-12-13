@@ -3,22 +3,6 @@ module.exports = {
   useYarn: true,
   scenarios: [
     {
-      name: 'ember-1.10',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#1.10.0'
-        },
-        resolutions: {
-          'ember': '1.10.0'
-        }
-      },
-      npm: {
-        devDependencies: {
-          'ember-source': null
-        }
-      }
-    },
-    {
       name: 'ember-1.13',
       bower: {
         dependencies: {
