@@ -55,7 +55,7 @@ function buildOptions(customOpts = {}, env, isAddon) {
     }
   };
 
-  if(isAddon) {
+  if (isAddon) {
     defaultOpts.sourceDirs.push('tests/dummy/public');
   }
 
