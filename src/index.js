@@ -27,7 +27,7 @@ function mergeTreesIfNeeded(trees, options) {
   return trees.length === 1 ? trees[0] : new MergeTrees(trees, mergedOptions);
 }
 
-function buildOptions(customOpts = {}, env) {
+function buildOptions(customOpts = {}, env, isAddon) {
   let defaultOpts = {
     rootURL: '/',
     sourceDirs: ['public'],
@@ -55,6 +55,10 @@ function buildOptions(customOpts = {}, env) {
     }
   };
 
+  if (isAddon) {
+    defaultOpts.sourceDirs.push('tests/dummy/public');
+  }
+
   let options = _.merge(defaultOpts, customOpts);
   options.strategy = _.castArray(options.strategy);
 
@@ -77,7 +81,8 @@ module.exports = {
       app = app.app;
     }
 
-    this.svgJarOptions = buildOptions(app.options.svgJar, app.env);
+    const isAddon = this.project.isEmberCLIAddon();
+    this.svgJarOptions = buildOptions(app.options.svgJar, app.env, isAddon);
     validateOptions(this.svgJarOptions);
   },
 
