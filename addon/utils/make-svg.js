@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { isNone } from '@ember/utils';
+import { htmlSafe } from '@ember/string';
 
 const { copy, merge } = Ember;
 const { warn } = Ember.Logger;
@@ -37,8 +38,9 @@ export function inlineSvgFor(assetId, assetStore, attrs = {}) {
 
 export default function makeSvg(assetId, attrs = {}, assetStore = {}) {
   let isSymbol = assetId.lastIndexOf('#', 0) === 0;
-
-  return isSymbol
+  let svg = isSymbol
     ? symbolUseFor(assetId, attrs)
     : inlineSvgFor(assetId, assetStore, attrs);
+
+  return htmlSafe(svg);
 }
