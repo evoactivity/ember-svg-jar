@@ -1,5 +1,12 @@
 ## SVGJar Change Log
 
+### v0.12.0
+- [[ENHANCEMENT]](https://github.com/ivanvotti/ember-svg-jar/pull/50) Adding `tests/dummy/public` to `sourceDirs` for addons [#29](https://github.com/ivanvotti/ember-svg-jar/issues/29) + Ember-CLI 2.17.1 [@rwwagner90](https://github.com/rwwagner90)
+- [[CLEANUP]](https://github.com/ivanvotti/ember-svg-jar/pull/48) Fix deprecations [@ryanpatrickcook](https://github.com/ryanpatrickcook)
+- [[CLEANUP]](https://github.com/ivanvotti/ember-svg-jar/pull/42) Latest Ember CLI v2.14.1, Chrome Testing, yarn.lock [@alexdiliberto](https://github.com/alexdiliberto)
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.11.0...v0.12.0)
+
 ### v0.11.0
 - [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/40) Add basic Windows support
 
