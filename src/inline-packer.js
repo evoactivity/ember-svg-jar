@@ -1,11 +1,9 @@
 /**
-  Concatenates input node files into a single ES6 module that will be
-  used as the assets store for the inline strategy.
+  Packages SVGs as ES modules for use with the inline strategy.
 
   Required options:
     idGen
     stripPath
-    outputFile
 
   Optional options:
     annotation
@@ -50,20 +48,19 @@ class InlinePacker extends CachingWriter {
     const outputPath = toPosixPath(this.outputPath);
     const filePaths = this.listFiles().map(toPosixPath);
 
-    const { stripPath, idGen, outputFile } = this.options;
-    const outputFilePath = path.join(outputPath, outputFile);
+    const { stripPath, idGen } = this.options;
+
 
     const toRelativePath = _.partial(relativePathFor, _, inputPath);
     const relativePathToId = _.partial(makeAssetId, _, stripPath, idGen);
     const pathToId = fp.pipe(toRelativePath, relativePathToId);
 
-    fp.pipe(
-      fp.map((filePath) => [pathToId(filePath), extractSvgData(filePath)]),
-      _.fromPairs,
-      JSON.stringify,
-      (json) => `export default ${json}`,
-      saveToFile(outputFilePath)
-    )(filePaths);
+    for (let filePath of filePaths) {
+      let id = pathToId(filePath);
+      let svgData = extractSvgData(filePath);
+      let jsWrapped = `export default ${JSON.stringify(svgData)}`;
+      saveToFile(path.join(outputPath, 'inlined', `${id}.js`), jsWrapped);
+    }
   }
 }
 

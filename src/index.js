@@ -27,18 +27,18 @@ function mergeTreesIfNeeded(trees, options) {
   return trees.length === 1 ? trees[0] : new MergeTrees(trees, mergedOptions);
 }
 
-function buildOptions(customOpts = {}, env, isAddon) {
+function buildOptions(customOpts = {}, viewerDefault, defaultSourceDir) {
   let defaultOpts = {
     rootURL: '/',
-    sourceDirs: ['public'],
+    sourceDirs: [defaultSourceDir],
     strategy: 'inline',
     stripPath: true,
     optimizer: {},
     persist: true,
 
     viewer: {
-      enabled: env === 'development',
-      embed: env === 'development'
+      enabled: viewerDefault,
+      embed: viewerDefault
     },
 
     inline: {
@@ -55,13 +55,8 @@ function buildOptions(customOpts = {}, env, isAddon) {
     }
   };
 
-  if (isAddon) {
-    defaultOpts.sourceDirs.push('tests/dummy/public');
-  }
-
   let options = _.merge(defaultOpts, customOpts);
   options.strategy = _.castArray(options.strategy);
-
   return options;
 }
 
@@ -75,14 +70,29 @@ module.exports = {
   included(app) {
     this._super.included.apply(this, arguments);
 
-    // see: https://github.com/ember-cli/ember-cli/issues/3718
-    if (typeof app.import !== 'function' && app.app) {
-      // eslint-disable-next-line no-param-reassign
-      app = app.app;
+    if (app.parent) {
+      // we are being used by an addon (which is not to be confused
+      // with being used by an addon's dummy app!). In this case,
+      // app.options.svgJar is coming from the addon's index.js. The
+      // viewer defaults to off, and our default source for SVGs is
+      // the addon's public directory.
+      this.svgJarOptions = buildOptions(
+        app.options.svgJar,
+        false,
+        path.join(app.root, app.treePaths.public)
+      );
+    } else {
+      // we are being used by an app (which may also include the dummy
+      // app inside of an addon).  In this case, app.options.svgJar is
+      // coming from the app's ember-cli-build.js, the viewer defaults
+      // to "on in development", and our default source for icons is
+      // the app's public directory.
+      this.svgJarOptions = buildOptions(
+        app.options.svgJar,
+        app.env === 'development',
+        app.options.trees.public
+      );
     }
-
-    const isAddon = this.project.isEmberCLIAddon();
-    this.svgJarOptions = buildOptions(app.options.svgJar, app.env, isAddon);
     validateOptions(this.svgJarOptions);
   },
 
@@ -114,14 +124,14 @@ module.exports = {
     return mergeTreesIfNeeded(trees);
   },
 
-  treeForApp(appTree) {
-    let trees = [appTree];
+  treeForAddon(addonTree) {
+    let trees = [addonTree];
 
     if (this.hasInlineStrategy()) {
       trees.push(this.getInlineStrategyTree());
     }
 
-    return mergeTreesIfNeeded(trees);
+    return this._super.treeForAddon.call(this, mergeTreesIfNeeded(trees));
   },
 
   contentFor(type) {
@@ -150,31 +160,31 @@ module.exports = {
 
   sourceDirsFor(strategy) {
     return this.optionFor(strategy, 'sourceDirs')
-      .filter((sourceDir) => fs.existsSync(sourceDir));
+      .filter((sourceDir) => typeof sourceDir !== 'string' || fs.existsSync(sourceDir));
   },
 
-  originalSvgsFor: _.memoize(function(strategy) {
+  originalSvgsFor(strategy) {
     let sourceDirs = this.sourceDirsFor(strategy);
 
     return new Funnel(mergeTreesIfNeeded(sourceDirs), {
       include: ['**/*.svg']
     });
-  }),
+  },
 
-  optimizedSvgsFor: _.memoize(function(strategy, originalSvgs) {
+  optimizedSvgsFor(strategy, originalSvgs) {
     return new SVGOptimizer(originalSvgs, {
       svgoConfig: this.optionFor(strategy, 'optimizer'),
       persist: this.svgJarOptions.persist
     });
-  }),
+  },
 
-  svgsFor: _.memoize(function(strategy) {
+  svgsFor(strategy) {
     let originalSvgs = this.originalSvgsFor(strategy);
 
     return this.hasOptimizerFor(strategy)
       ? this.optimizedSvgsFor(strategy, originalSvgs)
       : originalSvgs;
-  }),
+  },
 
   viewerSvgsFor(strategy) {
     let originalSvgs = this.originalSvgsFor(strategy);
@@ -216,8 +226,7 @@ module.exports = {
   getInlineStrategyTree() {
     return new InlinePacker(this.svgsFor('inline'), {
       idGen: this.optionFor('inline', 'idGen'),
-      stripPath: this.optionFor('inline', 'stripPath'),
-      outputFile: 'inline-assets.js'
+      stripPath: this.optionFor('inline', 'stripPath')
     });
   },
 
