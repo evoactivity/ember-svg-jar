@@ -1,4 +1,3 @@
-import { copy } from 'ember-metal/utils';
 import { module, test } from 'qunit';
 import makeSvg, {
   formatAttrs,
@@ -17,10 +16,12 @@ test('symbolUseFor works', function(assert) {
 });
 
 test('inlineSvgFor with original attrs', function(assert) {
-  let assetStore = {
-    'with-attrs': { content: 'with-attrs content', attrs: { class: 'foo' } },
-    'no-attrs': { content: 'no-attrs content' }
-  };
+  function assetStore(id) {
+    return {
+      'with-attrs': { content: 'with-attrs content', attrs: { class: 'foo' } },
+      'no-attrs': { content: 'no-attrs content' }
+    }[id];
+  }
 
   assert.equal(
     inlineSvgFor('with-attrs', assetStore),
@@ -36,28 +37,27 @@ test('inlineSvgFor with original attrs', function(assert) {
 });
 
 test('inlineSvgFor with custom attrs', function(assert) {
-  let originalStore = {
-    icon: { content: 'icon', attrs: { class: 'original' } }
-  };
+  function assetStore(id) {
+    return {
+      icon: { content: 'icon', attrs: { class: 'original' } }
+    }[id];
+  }
 
   let customAttrs = { class: 'custom' };
-  let passedStore = copy(originalStore, true);
   assert.equal(
-    inlineSvgFor('icon', passedStore, customAttrs),
+    inlineSvgFor('icon', assetStore, customAttrs),
     '<svg class="custom">icon</svg>',
     'can rewrite original attrs'
-  );
-
-  assert.deepEqual(originalStore, passedStore,
-    'does not change the originalStore'
   );
 });
 
 test('inlineSvgFor with size attr', function(assert) {
   let customAttrs;
-  let assetStore = {
-    icon: { content: 'icon', attrs: { width: '5px', height: '10px' } }
-  };
+  function assetStore(id) {
+    return {
+      icon: { content: 'icon', attrs: { width: '5px', height: '10px' } }
+    }[id];
+  }
 
   assert.equal(
     inlineSvgFor('icon', assetStore),
