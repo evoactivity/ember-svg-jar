@@ -5,7 +5,9 @@ node_js:
   # so that your addon works for all apps
   - "4"
 
-sudo: false
+# This is only needed to workaround https://github.com/travis-ci/travis-ci/issues/8836
+sudo: true
+
 dist: trusty
 
 addons:
