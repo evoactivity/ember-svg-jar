@@ -1,3 +1,6 @@
+/* eslint-env node */
+'use strict';
+
 /**
   Concatenates SVG files into a single JSON file.
   It's only used to generate input files for the ViewerBuilder.

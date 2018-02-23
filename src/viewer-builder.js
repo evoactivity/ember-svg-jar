@@ -1,3 +1,6 @@
+/* eslint-env node */
+'use strict';
+
 /**
   Merge JSON asset stores into a single JSON file and add additional
   meta data. The output file will be used by the asset viewer as the model
