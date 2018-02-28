@@ -1,8 +1,9 @@
+import { copy } from '@ember/object/internals';
+import { merge } from '@ember/polyfills';
 import Ember from 'ember';
 import { isNone } from '@ember/utils';
 import { htmlSafe } from '@ember/string';
 
-const { copy, merge } = Ember;
 const { warn } = Ember.Logger;
 
 export function formatAttrs(attrs) {

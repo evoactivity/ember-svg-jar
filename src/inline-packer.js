@@ -1,3 +1,6 @@
+/* eslint-env node */
+'use strict';
+
 /**
   Packages SVGs as ES modules for use with the inline strategy.
 

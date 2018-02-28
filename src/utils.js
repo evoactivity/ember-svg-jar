@@ -1,3 +1,6 @@
+/* eslint-env node */
+'use strict';
+
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 const cheerio = require('cheerio');

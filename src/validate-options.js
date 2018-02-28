@@ -1,3 +1,6 @@
+/* eslint-env node */
+'use strict';
+
 const _ = require('lodash');
 
 const VALID_STRATEGIES = ['inline', 'symbol'];
