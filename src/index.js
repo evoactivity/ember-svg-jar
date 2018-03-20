@@ -66,6 +66,10 @@ function buildOptions(customOpts = {}, viewerDefault, defaultSourceDir) {
 module.exports = {
   name: 'ember-svg-jar',
 
+  isModuleUnification() {
+    return false;
+  },
+  
   isDevelopingAddon() {
     return false;
   },
