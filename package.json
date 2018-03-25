@@ -23,9 +23,8 @@
     "prebuild": "rimraf lib",
     "build": "babel src --out-dir lib --presets es2015",
     "prepublish": "npm run build && not-in-install && npm test || not-in-publish",
-    "lint": "eslint src addon app tests node-tests",
+    "lint": "eslint ./*.js addon addon-test-support app config src node-tests server test-support tests",
     "nodetest": "node node-tests/runner.js",
-    "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
     "test": "npm run lint && npm run nodetest && ember test"
   },
   "dependencies": {

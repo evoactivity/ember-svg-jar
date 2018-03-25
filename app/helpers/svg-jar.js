@@ -3,7 +3,7 @@ import makeSVG from 'ember-svg-jar/utils/make-svg';
 
 function getInlineAsset(assetId) {
   try {
-    /* eslint-disable no-undef */
+    /* eslint-disable global-require */
     return require(`ember-svg-jar/inlined/${assetId}`).default;
   } catch (err) {
     return null;
