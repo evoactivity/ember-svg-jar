@@ -20,10 +20,8 @@
     "url": "https://github.com/ivanvotti/ember-svg-jar/issues"
   },
   "scripts": {
-    "prebuild": "rimraf lib",
-    "build": "babel src --out-dir lib --presets es2015",
-    "prepublish": "npm run build && not-in-install && npm test || not-in-publish",
-    "lint": "eslint ./*.js addon addon-test-support app config src node-tests server test-support tests",
+    "prepublish": "npm test && not-in-install || not-in-publish",
+    "lint": "eslint ./*.js addon addon-test-support app config lib node-tests server test-support tests",
     "nodetest": "node node-tests/runner.js",
     "test": "npm run lint && npm run nodetest && ember test"
   },
@@ -41,8 +39,6 @@
     "path-posix": "^1.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.11.4",
-    "babel-preset-es2015": "^6.9.0",
     "broccoli-asset-rev": "^2.4.5",
     "broccoli-fixture": "^0.1.0",
     "chai": "^3.5.0",
@@ -73,8 +69,7 @@
     "glob": "^7.0.5",
     "in-publish": "^2.0.0",
     "loader.js": "^4.2.3",
-    "mocha": "^3.0.2",
-    "rimraf": "^2.5.4"
+    "mocha": "^3.0.2"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"

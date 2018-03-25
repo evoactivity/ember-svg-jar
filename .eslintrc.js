@@ -39,7 +39,7 @@ module.exports = {
       ],
 
       excludedFiles: [
-        'src/**',
+        'lib/**',
         'app/**',
         'addon/**',
         'tests/dummy/app/**'
