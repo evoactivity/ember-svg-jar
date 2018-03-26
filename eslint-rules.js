@@ -2,8 +2,6 @@
 
 module.exports = {
   rules: {
-    'import/no-unresolved': 0,
-    'import/no-extraneous-dependencies': 0,
     'prefer-const': 0,
     'comma-dangle': 0,
     'prefer-arrow-callback': 0,
@@ -12,6 +10,14 @@ module.exports = {
     'no-underscore-dangle': 0,
     'array-callback-return': 0,
     'consistent-return': 0,
+    'prefer-destructuring': 0,
+    'function-paren-newline': 0,
+    'import/no-unresolved': 0,
+    'import/no-extraneous-dependencies': 0,
+    'import/extensions': 0,
+    'import/no-dynamic-require': 0,
+
+    'arrow-parens': ['error', 'always'],
 
     'no-irregular-whitespace': [2, {
       'skipStrings': true,

@@ -1,3 +1,5 @@
+/* eslint-disable function-paren-newline */
+
 'use strict';
 
 var chai = require('chai');
