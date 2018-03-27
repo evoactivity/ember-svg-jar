@@ -90,9 +90,18 @@ By default `ember-svg-jar` looks for SVGs in the `public` directory. To get SVGs
 
 [Click here for more configuration options](#configuration)
 
+## Configuration
+
+**Note:** Ember SVGJar should be useful without any configuration. But it wants to be very configurable when it's time to adjust it for your needs.
+
+- [All configuration options](docs/configuration.md)
+- [Advanced usage examples](docs/examples.md)
+
 ### Helper
 
-Use the `svg-jar` helper to embed SVG images to your application's templates:
+Use the `svg-jar` helper to embed SVG images to your application's templates.
+
+For the default `inline` embedding strategy you can write:
 
 ```handlebars
 {{svg-jar "my-cool-icon" class="icon" width="24px"}}
@@ -104,12 +113,17 @@ The helper takes an asset ID and optional attributes that will be added to the c
 <svg class="icon" width="24px">...</svg>
 ```
 
-## Configuration
+For the `symbol` strategy you will need to add `#` to the asset ID like this:
 
-**Note:** Ember SVGJar should be useful without any configuration. But it wants to be very configurable when it's time to adjust it for your needs.
+```handlebars
+{{svg-jar "#my-cool-icon"}}
+```
 
-- [All configuration options](docs/configuration.md)
-- [Advanced usage examples](docs/examples.md)
+In this case the result can look like this:
+
+```handlebars
+<svg><use xlink:href="#my-cool-icon"></use></svg>
+```
 
 ## Compatibility
 
