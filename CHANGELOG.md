@@ -1,5 +1,15 @@
 ## SVGJar Change Log
 
+### v1.0.0
+- [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/52) ember-svg-jar can now be used by addons as a `dependency` [@ef4](https://github.com/ef4)
+- [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/62) Ability to suppress asset validation warnings
+- [CLEANUP] The addon is now fully consumable as a Git dependency, without any build step
+- [[CLEANUP]](https://github.com/ivanvotti/ember-svg-jar/pull/53) Upgrade to ember-cli 3.0.0 [@Dhaulagiri](https://github.com/Dhaulagiri)
+- [CLEANUP] Making addon compatible with the latest Ember CLI `ember-cli@3.2`
+- [[FIX]](https://github.com/ivanvotti/ember-svg-jar/pull/61) Workaround for broccoli-asset-rev bug (fixes [#54](https://github.com/ivanvotti/ember-svg-jar/issues/54))
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.12.0...v1.0.0)
+
 ### v0.12.0
 - [[ENHANCEMENT]](https://github.com/ivanvotti/ember-svg-jar/pull/50) Adding `tests/dummy/public` to `sourceDirs` for addons [#29](https://github.com/ivanvotti/ember-svg-jar/issues/29) + Ember-CLI 2.17.1 [@rwwagner90](https://github.com/rwwagner90)
 - [[CLEANUP]](https://github.com/ivanvotti/ember-svg-jar/pull/48) Fix deprecations [@ryanpatrickcook](https://github.com/ryanpatrickcook)
