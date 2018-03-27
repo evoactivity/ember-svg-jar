@@ -38,7 +38,12 @@ All global options with their default values:
     stripPath: true,
     optimizer: {},
     persist: true,
-    rootURL: '/'
+    rootURL: '/',
+    
+    validations: {
+      validateViewBox: true,
+      checkForDuplicates: true
+    }
   }
 }
 ```
@@ -141,6 +146,32 @@ let app = new EmberApp(defaults, {
     rootURL: (isDevelopment && '/myapp/') || '/'
   }
 });
+```
+
+#### validations
+
+Type: `Object`  
+Default: `{ validateViewBox: true, checkForDuplicates: true }`
+
+By default SVGJar checks your assets with some validations and emits warning
+messages if it finds any problems. You can suppress the warnings by setting
+particular validations to `false`.
+
+`validateViewBox` -- It shows all SVGs without viewBox. SVGs without viewBox are not correctly scalable.
+
+`checkForDuplicates` -- It shows all assets with not unique asset IDs. Asset IDs
+must be unique to embed SVGs correctly.
+
+Example (we only disable `validateViewBox` here):
+
+```javascript
+{
+  svgJar: {
+    validations: {
+      validateViewBox: false
+    }
+  }
+}
 ```
 
 ## Inline strategy options
