@@ -41,8 +41,8 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
     "broccoli-fixture": "^0.1.0",
-    "chai": "^3.5.0",
-    "chai-as-promised": "^5.3.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "ember-cli": "~3.0.0",
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-eslint": "^4.2.3",
@@ -69,7 +69,7 @@
     "glob": "^7.0.5",
     "in-publish": "^2.0.0",
     "loader.js": "^4.2.3",
-    "mocha": "^3.0.2"
+    "mocha": "^5.0.5"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"

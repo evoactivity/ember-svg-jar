@@ -1,10 +1,10 @@
 'use strict';
 
-var glob = require('glob');
-var Mocha = require('mocha');
+const glob = require('glob');
+const Mocha = require('mocha');
 
 function addFiles(mocha, files) {
-  glob.sync('node-tests/' + files)
+  glob.sync(`node-tests/${files}`)
     .forEach(mocha.addFile.bind(mocha));
 }
 
@@ -21,7 +21,7 @@ function runMocha(mocha) {
   });
 }
 
-var mocha = new Mocha({
+let mocha = new Mocha({
   reporter: 'spec'
 });
 

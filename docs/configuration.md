@@ -225,6 +225,14 @@ All the `symbol` strategy options with their default values:
       outputFile: '/assets/symbols.svg',
       prefix: '',
       includeLoader: true,
+      containerAttrs: {
+        style: 'position: absolute; width: 0; height: 0;',
+        width: '0',
+        height: '0',
+        version: '1.1',
+        xmlns: 'http://www.w3.org/2000/svg',
+        'xmlns:xlink': 'http://www.w3.org/1999/xlink'
+      },
 
       // The options below can be used to rewrite the global onces.
       sourceDirs: ['public'],
@@ -296,6 +304,60 @@ The loader example:
     document.body.insertBefore(div, document.body.childNodes[0]);
   };
 </script>
+```
+
+#### containerAttrs
+
+Type: `Object`  
+Default:
+
+```javascript
+{
+  style: 'position: absolute; width: 0; height: 0;',
+  width: '0',
+  height: '0',
+  version: '1.1',
+  xmlns: 'http://www.w3.org/2000/svg',
+  'xmlns:xlink': 'http://www.w3.org/1999/xlink'
+}
+```
+
+It sets attributes for the symbols container. By default it should make the container invisible for most browsers and the result could look like this:
+
+```handlebars
+  <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <symbol id="icon-foo" viewBox="0 0 16 16"><path d=""/></symbol>
+    <symbol id="icon-bar" viewBox="0 0 24 24"><path d=""/></symbol>
+  </svg>
+```
+
+By setting `containerAttrs` you will lose all the default container attributes.
+To preserve them you will have to copy/paste them to your config.
+
+Example of rewriting the default `containerAttrs`:
+
+```javascript
+{
+  svgJar: {
+    strategy: 'symbol',
+
+    symbol: {
+      containerAttrs: {
+        id: 'my-container-id',
+        width: '0'
+      }
+    }
+  }
+}
+```
+
+Then the result could look like:
+
+```handlebars
+  <svg id="my-container-id" width="0">
+    <symbol id="icon-foo" viewBox="0 0 16 16"><path d=""/></symbol>
+    <symbol id="icon-bar" viewBox="0 0 24 24"><path d=""/></symbol>
+  </svg>
 ```
 
 ## Viewer options
