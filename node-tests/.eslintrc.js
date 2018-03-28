@@ -1,20 +1,22 @@
 module.exports = {
-  root: true,
-  extends: 'airbnb-base/legacy',
+  extends: [
+    'airbnb-base',
+    '../eslint-rules.js'
+  ],
 
   env: {
+    browser: false,
+    node: true,
     mocha: true
   },
 
-  rules: {
-    'func-names': 0,
-    'no-unused-expressions': 0,
-    'vars-on-top': 0,
-    'no-param-reassign': 0,
+  parserOptions: {
+    sourceType: 'script',
+    ecmaVersion: 2015
+  },
 
-    'space-before-function-paren': [2, {
-      'anonymous': 'never',
-      'named': 'never'
-    }]
+  rules: {
+    'no-param-reassign': 0,
+    'object-shorthand': 0
   }
 };

@@ -1,47 +1,47 @@
 'use strict';
 
-var chai = require('chai');
-var chaiAsPromised = require('chai-as-promised');
-var fixture = require('broccoli-fixture');
-var ViewerAssetsBuilder = require('../../lib/viewer-assets-builder');
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
+const fixture = require('broccoli-fixture');
+const ViewerAssetsBuilder = require('../../lib/viewer-assets-builder');
 
-var expect = chai.expect;
+let expect = chai.expect;
 chai.use(chaiAsPromised);
 
-var idGens = {
+let idGens = {
   symbol: function(path, options) {
-    var prefix = options.prefix || '';
-    return ('' + prefix + path).replace(/[\s]/g, '-');
+    let prefix = options.prefix || '';
+    return (`${prefix}${path}`).replace(/[\s]/g, '-');
   },
 
   inline: function(path) { return path; }
 };
 
-var copypastaGens = {
-  symbol: function(id) { return '{{svg-jar "#' + id + '"}}'; },
-  inline: function(id) { return '{{svg-jar "' + id + '"}}'; }
+let copypastaGens = {
+  symbol: function(id) { return `{{svg-jar "#${id}"}}`; },
+  inline: function(id) { return `{{svg-jar "${id}"}}`; }
 };
 
 describe('ViewerAssetsBuilder', function() {
   it('works for inline strategy', function() {
-    var inputNode = new fixture.Node({
+    let inputNode = new fixture.Node({
       'foo.svg': '<svg viewBox="0 0 13 13"><path d="original"/></svg>',
       __optimized__: {
         'foo.svg': '<svg viewBox="0 0 13 13"><path d="optimized"/></svg>'
       }
     });
 
-    var strategy = 'inline';
-    var node = new ViewerAssetsBuilder(inputNode, {
+    let strategy = 'inline';
+    let node = new ViewerAssetsBuilder(inputNode, {
       strategy: strategy,
       idGen: idGens[strategy],
       copypastaGen: copypastaGens[strategy],
       stripPath: true,
       hasOptimizer: true,
-      outputFile: strategy + '.json'
+      outputFile: `${strategy}.json`
     });
 
-    var filesHashPromise = fixture.build(node).then(function(filesHash) {
+    let filesHashPromise = fixture.build(node).then(function(filesHash) {
       filesHash['inline.json'] = JSON.parse(filesHash['inline.json']);
       return filesHash;
     });
@@ -65,25 +65,25 @@ describe('ViewerAssetsBuilder', function() {
   });
 
   it('works for symbol strategy', function() {
-    var inputNode = new fixture.Node({
+    let inputNode = new fixture.Node({
       'foo.svg': '<svg viewBox="0 0 20 40"><path d="original"/></svg>',
       __optimized__: {
         'foo.svg': '<svg viewBox="0 0 20 40"><path d="optimized"/></svg>'
       }
     });
 
-    var strategy = 'symbol';
-    var node = new ViewerAssetsBuilder(inputNode, {
+    let strategy = 'symbol';
+    let node = new ViewerAssetsBuilder(inputNode, {
       strategy: strategy,
       idGen: idGens[strategy],
       idGenOpts: { prefix: 'prefix-' },
       copypastaGen: copypastaGens[strategy],
       stripPath: true,
       hasOptimizer: true,
-      outputFile: strategy + '.json'
+      outputFile: `${strategy}.json`
     });
 
-    var filesHashPromise = fixture.build(node).then(function(filesHash) {
+    let filesHashPromise = fixture.build(node).then(function(filesHash) {
       filesHash['symbol.json'] = JSON.parse(filesHash['symbol.json']);
       return filesHash;
     });
