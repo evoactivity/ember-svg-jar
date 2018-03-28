@@ -127,7 +127,11 @@ In this case the result can look like this:
 
 ## Compatibility
 
-The addon is compatible with Ember 1.10.1 and beyond.
+Latest ember-svg-jar `1.X.X` currently supports:
+- Node `4.5` || `6.*` || >= `7.*`
+- Ember >= `1.13.13`
+
+The old addon versions (<= v0.12.0) are compatible with Ember `1.10.1` and beyond.
 
 ## FAQ
 
