@@ -1,10 +1,7 @@
 import { copy } from '@ember/object/internals';
 import { merge } from '@ember/polyfills';
-import Ember from 'ember';
 import { isNone } from '@ember/utils';
 import { htmlSafe } from '@ember/string';
-
-const { warn } = Ember.Logger;
 
 export function formatAttrs(attrs) {
   return Object.keys(attrs)
@@ -21,7 +18,7 @@ export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
   let asset = getInlineAsset(assetId);
 
   if (!asset) {
-    warn(`ember-svg-jar: Missing inline SVG for ${assetId}`);
+    console.warn(`ember-svg-jar: Missing inline SVG for ${assetId}`);
     return;
   }
 
