@@ -1,5 +1,11 @@
 ## SVGJar Change Log
 
+### v1.1.0
+- [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/64) Add `containerAttrs` option for symbol strategy
+- [[CLEANUP]](https://github.com/ivanvotti/ember-svg-jar/pull/63) Use console.warn instead of Ember.Logger [@rwwagner90](https://github.com/rwwagner90)
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v1.0.0...v1.1.0)
+
 ### v1.0.0
 - [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/52) ember-svg-jar can now be used by addons as a `dependency` [@ef4](https://github.com/ef4)
 - [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/62) Ability to suppress asset validation warnings
