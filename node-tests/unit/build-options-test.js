@@ -5,6 +5,16 @@ const buildOptions = require('../../lib/build-options');
 
 const expect = chai.expect;
 
+
+let defaultContainerAttrs = {
+  style: 'position: absolute; width: 0; height: 0;',
+  width: '0',
+  height: '0',
+  version: '1.1',
+  xmlns: 'http://www.w3.org/2000/svg',
+  'xmlns:xlink': 'http://www.w3.org/1999/xlink'
+};
+
 let defaultOpts = {
   rootURL: '/',
   sourceDirs: ['public'],
@@ -34,20 +44,13 @@ let defaultOpts = {
     outputFile: '/assets/symbols.svg',
     prefix: '',
     includeLoader: true,
-    containerAttrs: {
-      style: 'position: absolute; width: 0; height: 0;',
-      width: '0',
-      height: '0',
-      version: '1.1',
-      xmlns: 'http://www.w3.org/2000/svg',
-      'xmlns:xlink': 'http://www.w3.org/1999/xlink'
-    }
+    containerAttrs: defaultContainerAttrs
   }
 };
 
 describe('buildOptions', function() {
   it('returns correct default options', function() {
-    let customOpts = {};
+    let customOpts = null;
     let isUsedByAddon = false;
     let isDevelopment = true;
     let defaultSourceDir = 'public';
@@ -59,7 +62,21 @@ describe('buildOptions', function() {
     return expect(JSON.stringify(options)).to.deep.equal(JSON.stringify(defaultOpts));
   });
 
-  it('returns correct containerAttrs', function() {
+  it('returns correct default containerAttrs', function() {
+    let customOpts = null;
+    let isUsedByAddon = false;
+    let isDevelopment = true;
+    let defaultSourceDir = 'public';
+
+    let options = buildOptions(
+      customOpts, defaultSourceDir, isUsedByAddon, isDevelopment
+    );
+
+    return expect(options.symbol.containerAttrs)
+      .to.deep.equal(defaultContainerAttrs);
+  });
+
+  it('returns correct custom containerAttrs', function() {
     let customOpts = {
       symbol: {
         containerAttrs: {
