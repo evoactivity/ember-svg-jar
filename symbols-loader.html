@@ -8,6 +8,7 @@
     }
     var div = document.createElement('div');
     div.innerHTML = ajax.responseText;
-    document.body.insertBefore(div, document.body.childNodes[0]);
+    div.dataset.testSvgJarSymbols = true;
+    document.querySelector('{{SYMBOLS_SELECTOR}}').appendChild(div);
   };
 </script>
