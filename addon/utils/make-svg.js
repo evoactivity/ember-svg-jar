@@ -18,6 +18,7 @@ export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
   let asset = getInlineAsset(assetId);
 
   if (!asset) {
+    // eslint-disable-next-line no-console
     console.warn(`ember-svg-jar: Missing inline SVG for ${assetId}`);
     return;
   }
