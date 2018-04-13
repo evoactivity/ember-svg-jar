@@ -10,7 +10,7 @@ module('Acceptance | svg-jar helper', function(hooks) {
   test('embeds SVGs with inline strategy', async function(assert) {
     await visit('/inline-strategy');
 
-    let $unknownWrap = findAll('.unknown-wrap');
+    const $unknownWrap = findAll('.unknown-wrap');
     assert.equal($unknownWrap.length, 1, 'unknown-wrap exists');
     assert.equal(findAll('.unknown-wrap svg').length, 0,
       'unknown-wrap is empty');

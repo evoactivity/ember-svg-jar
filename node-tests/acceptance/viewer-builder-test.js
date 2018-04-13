@@ -5,12 +5,12 @@ const chaiAsPromised = require('chai-as-promised');
 const fixture = require('broccoli-fixture');
 const ViewerBuilder = require('../../lib/viewer-builder');
 
-let expect = chai.expect;
+const expect = chai.expect;
 chai.use(chaiAsPromised);
 
 describe('ViewerBuilder', function() {
   it('works', function() {
-    let inputNode = new fixture.Node({
+    const inputNode = new fixture.Node({
       'symbol.json': JSON.stringify([{
         svg: { content: '<path d="optimized"/>', attrs: { viewBox: '0 0 20 40' } },
         originalSvg: '<svg viewBox="0 0 20 40"><path d="original"/></svg>',
@@ -42,12 +42,12 @@ describe('ViewerBuilder', function() {
       }])
     });
 
-    let node = new ViewerBuilder(inputNode, {
+    const node = new ViewerBuilder(inputNode, {
       outputFile: 'svg-jar.json',
       hasManyStrategies: true
     });
 
-    let filesHashPromise = fixture.build(node).then(function(filesHash) {
+    const filesHashPromise = fixture.build(node).then(function(filesHash) {
       filesHash['svg-jar.json'] = JSON.parse(filesHash['svg-jar.json']);
       return filesHash;
     });

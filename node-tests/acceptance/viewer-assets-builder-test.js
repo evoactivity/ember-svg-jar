@@ -5,34 +5,34 @@ const chaiAsPromised = require('chai-as-promised');
 const fixture = require('broccoli-fixture');
 const ViewerAssetsBuilder = require('../../lib/viewer-assets-builder');
 
-let expect = chai.expect;
+const expect = chai.expect;
 chai.use(chaiAsPromised);
 
-let idGens = {
+const idGens = {
   symbol: function(path, options) {
-    let prefix = options.prefix || '';
+    const prefix = options.prefix || '';
     return (`${prefix}${path}`).replace(/[\s]/g, '-');
   },
 
   inline: function(path) { return path; }
 };
 
-let copypastaGens = {
+const copypastaGens = {
   symbol: function(id) { return `{{svg-jar "#${id}"}}`; },
   inline: function(id) { return `{{svg-jar "${id}"}}`; }
 };
 
 describe('ViewerAssetsBuilder', function() {
   it('works for inline strategy', function() {
-    let inputNode = new fixture.Node({
+    const inputNode = new fixture.Node({
       'foo.svg': '<svg viewBox="0 0 13 13"><path d="original"/></svg>',
       __optimized__: {
         'foo.svg': '<svg viewBox="0 0 13 13"><path d="optimized"/></svg>'
       }
     });
 
-    let strategy = 'inline';
-    let node = new ViewerAssetsBuilder(inputNode, {
+    const strategy = 'inline';
+    const node = new ViewerAssetsBuilder(inputNode, {
       strategy: strategy,
       idGen: idGens[strategy],
       copypastaGen: copypastaGens[strategy],
@@ -41,7 +41,7 @@ describe('ViewerAssetsBuilder', function() {
       outputFile: `${strategy}.json`
     });
 
-    let filesHashPromise = fixture.build(node).then(function(filesHash) {
+    const filesHashPromise = fixture.build(node).then(function(filesHash) {
       filesHash['inline.json'] = JSON.parse(filesHash['inline.json']);
       return filesHash;
     });
@@ -65,15 +65,15 @@ describe('ViewerAssetsBuilder', function() {
   });
 
   it('works for symbol strategy', function() {
-    let inputNode = new fixture.Node({
+    const inputNode = new fixture.Node({
       'foo.svg': '<svg viewBox="0 0 20 40"><path d="original"/></svg>',
       __optimized__: {
         'foo.svg': '<svg viewBox="0 0 20 40"><path d="optimized"/></svg>'
       }
     });
 
-    let strategy = 'symbol';
-    let node = new ViewerAssetsBuilder(inputNode, {
+    const strategy = 'symbol';
+    const node = new ViewerAssetsBuilder(inputNode, {
       strategy: strategy,
       idGen: idGens[strategy],
       idGenOpts: { prefix: 'prefix-' },
@@ -83,7 +83,7 @@ describe('ViewerAssetsBuilder', function() {
       outputFile: `${strategy}.json`
     });
 
-    let filesHashPromise = fixture.build(node).then(function(filesHash) {
+    const filesHashPromise = fixture.build(node).then(function(filesHash) {
       filesHash['symbol.json'] = JSON.parse(filesHash['symbol.json']);
       return filesHash;
     });

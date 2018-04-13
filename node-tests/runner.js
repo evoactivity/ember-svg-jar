@@ -21,7 +21,7 @@ function runMocha(mocha) {
   });
 }
 
-let mocha = new Mocha({
+const mocha = new Mocha({
   reporter: 'spec'
 });
 
