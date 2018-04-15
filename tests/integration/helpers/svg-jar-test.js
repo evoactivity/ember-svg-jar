@@ -3,7 +3,6 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-
 module('Integration | Helper | svg-jar', function(hooks) {
   setupRenderingTest(hooks);
 
@@ -12,7 +11,7 @@ module('Integration | Helper | svg-jar', function(hooks) {
     assert.dom('svg').exists();
 
     const expectedSVG = '<svg viewBox="0 0 24 24" height="24" width="24"><circle cx="12" cy="12" r="6" fill="red"></circle></svg>';
-    const actualSVG = this.element.querySelector('svg').parentNode.innerHTML;
+    const actualSVG = this.element.querySelector('svg').outerHTML;
     assert.equal(actualSVG, expectedSVG);
   });
 
@@ -63,5 +62,17 @@ module('Integration | Helper | svg-jar', function(hooks) {
     await render(hbs`{{svg-jar "icon" size=2}}`);
     assert.dom('svg').hasAttribute('height', '48');
     assert.dom('svg').hasAttribute('width', '48');
+  });
+
+  test('it renders correct SVG for symbol strategy', async function(assert) {
+    await render(hbs`{{svg-jar "#icon"}}`);
+    assert.dom('svg use').exists();
+    assert.dom('svg use').hasAttribute('xlink:href', '#icon');
+  });
+
+  test('it allows to set SVG attributes for symbol strategy', async function(assert) {
+    await render(hbs`{{svg-jar "#icon" class="myicon" data-foo="bar"}}`);
+    assert.dom('svg').hasAttribute('class', 'myicon');
+    assert.dom('svg').hasAttribute('data-foo', 'bar');
   });
 });
