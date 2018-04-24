@@ -15,7 +15,7 @@ export function symbolUseFor(assetId, attrs = {}) {
 }
 
 export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
-  const asset = getInlineAsset(assetId);
+  let asset = getInlineAsset(assetId);
 
   if (!asset) {
     // eslint-disable-next-line no-console
@@ -23,8 +23,8 @@ export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
     return;
   }
 
-  const svgAttrs = asset.attrs ? merge(copy(asset.attrs), attrs) : attrs;
-  const { size } = attrs;
+  let svgAttrs = asset.attrs ? merge(copy(asset.attrs), attrs) : attrs;
+  let { size } = attrs;
 
   if (size) {
     svgAttrs.width = parseFloat(svgAttrs.width) * size || svgAttrs.width;
@@ -36,8 +36,8 @@ export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
 }
 
 export default function makeSvg(assetId, attrs = {}, getInlineAsset) {
-  const isSymbol = assetId.lastIndexOf('#', 0) === 0;
-  const svg = isSymbol
+  let isSymbol = assetId.lastIndexOf('#', 0) === 0;
+  let svg = isSymbol
     ? symbolUseFor(assetId, attrs)
     : inlineSvgFor(assetId, getInlineAsset, attrs);
 

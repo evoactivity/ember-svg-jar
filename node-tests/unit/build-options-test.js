@@ -72,7 +72,7 @@ function makeAppStubForAddon(env) {
 
 function expectCanSetOption(optPath, customOpts) {
   this.appStub.options.svgJar = customOpts;
-  const options = buildOptions(this.appStub);
+  let options = buildOptions(this.appStub);
 
   expect(_.get(this.defaultOpts, optPath), `custom ${optPath} differs from the default one`)
     .to.not.deep.equal(_.get(customOpts, optPath));
@@ -90,19 +90,19 @@ describe('buildOptions', function() {
   });
 
   it('returns correct default options for development', function() {
-    const options = buildOptions(this.appStub);
+    let options = buildOptions(this.appStub);
     expect(options).to.deep.equal(this.defaultOpts);
   });
 
   it('returns correct default options for production', function() {
-    const options = buildOptions(makeAppStub('production'));
+    let options = buildOptions(makeAppStub('production'));
     this.defaultOpts.viewer.enabled = false;
     this.defaultOpts.viewer.embed = false;
     expect(options).to.deep.equal(this.defaultOpts);
   });
 
   it('returns correct default options for addon for development', function() {
-    const options = buildOptions(makeAppStubForAddon('development'));
+    let options = buildOptions(makeAppStubForAddon('development'));
     this.defaultOpts.sourceDirs = ['addon-root/addon-public'];
     this.defaultOpts.viewer.enabled = false;
     this.defaultOpts.viewer.embed = false;
@@ -110,7 +110,7 @@ describe('buildOptions', function() {
   });
 
   it('returns correct default options for addon for production', function() {
-    const options = buildOptions(makeAppStubForAddon('production'));
+    let options = buildOptions(makeAppStubForAddon('production'));
     this.defaultOpts.sourceDirs = ['addon-root/addon-public'];
     this.defaultOpts.viewer.enabled = false;
     this.defaultOpts.viewer.embed = false;
@@ -130,9 +130,9 @@ describe('buildOptions', function() {
   });
 
   it('casts "strategy" option as an array', function() {
-    const customOpts = { strategy: 'symbol' };
+    let customOpts = { strategy: 'symbol' };
     this.appStub.options.svgJar = customOpts;
-    const options = buildOptions(this.appStub);
+    let options = buildOptions(this.appStub);
     expect(options.strategy).to.deep.equal([customOpts.strategy]);
   });
 
@@ -195,7 +195,6 @@ describe('buildOptions', function() {
       symbol: { copypastaGen: null }
     });
   });
-
 
   it('allows to set "symbol.outputFile" option', function() {
     this.expectCanSetOption('symbol.outputFile', {

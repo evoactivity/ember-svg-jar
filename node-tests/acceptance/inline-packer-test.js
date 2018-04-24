@@ -12,17 +12,17 @@ chai.use(chaiAsPromised);
 
 describe('InlinePacker', function() {
   it('works', function() {
-    const inputNode = new fixture.Node({
+    let inputNode = new fixture.Node({
       'foo.svg': '<svg viewBox="0 0 1 1"><path d="foo"/></svg>',
       'bar.svg': '<svg height="10px" viewBox="0 0 2 2"><path d="bar"/></svg>'
     });
 
-    const node = new InlinePacker(inputNode, {
+    let node = new InlinePacker(inputNode, {
       idGen: (filePath) => filePath,
       stripPath: true
     });
 
-    const filesHashPromise = fixture.build(node).then(function(filesHash) {
+    let filesHashPromise = fixture.build(node).then(function(filesHash) {
       expect(filesHash.inlined['foo.js'].indexOf('export default ')).to.equal(0);
 
       filesHash.inlined['foo.js'] = JSON.parse(

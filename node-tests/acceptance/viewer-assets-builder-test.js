@@ -9,30 +9,30 @@ const expect = chai.expect;
 chai.use(chaiAsPromised);
 
 const idGens = {
-  symbol: function(path, options) {
-    const prefix = options.prefix || '';
+  symbol: (path, options) => {
+    let prefix = options.prefix || '';
     return (`${prefix}${path}`).replace(/[\s]/g, '-');
   },
 
-  inline: function(path) { return path; }
+  inline: (path) => path
 };
 
 const copypastaGens = {
-  symbol: function(id) { return `{{svg-jar "#${id}"}}`; },
-  inline: function(id) { return `{{svg-jar "${id}"}}`; }
+  symbol: (id) => `{{svg-jar "#${id}"}}`,
+  inline: (id) => `{{svg-jar "${id}"}}`
 };
 
 describe('ViewerAssetsBuilder', function() {
   it('works for inline strategy', function() {
-    const inputNode = new fixture.Node({
+    let inputNode = new fixture.Node({
       'foo.svg': '<svg viewBox="0 0 13 13"><path d="original"/></svg>',
       __optimized__: {
         'foo.svg': '<svg viewBox="0 0 13 13"><path d="optimized"/></svg>'
       }
     });
 
-    const strategy = 'inline';
-    const node = new ViewerAssetsBuilder(inputNode, {
+    let strategy = 'inline';
+    let node = new ViewerAssetsBuilder(inputNode, {
       strategy: strategy,
       idGen: idGens[strategy],
       copypastaGen: copypastaGens[strategy],
@@ -41,7 +41,7 @@ describe('ViewerAssetsBuilder', function() {
       outputFile: `${strategy}.json`
     });
 
-    const filesHashPromise = fixture.build(node).then(function(filesHash) {
+    let filesHashPromise = fixture.build(node).then(function(filesHash) {
       filesHash['inline.json'] = JSON.parse(filesHash['inline.json']);
       return filesHash;
     });
@@ -65,15 +65,15 @@ describe('ViewerAssetsBuilder', function() {
   });
 
   it('works for symbol strategy', function() {
-    const inputNode = new fixture.Node({
+    let inputNode = new fixture.Node({
       'foo.svg': '<svg viewBox="0 0 20 40"><path d="original"/></svg>',
       __optimized__: {
         'foo.svg': '<svg viewBox="0 0 20 40"><path d="optimized"/></svg>'
       }
     });
 
-    const strategy = 'symbol';
-    const node = new ViewerAssetsBuilder(inputNode, {
+    let strategy = 'symbol';
+    let node = new ViewerAssetsBuilder(inputNode, {
       strategy: strategy,
       idGen: idGens[strategy],
       idGenOpts: { prefix: 'prefix-' },
@@ -83,7 +83,7 @@ describe('ViewerAssetsBuilder', function() {
       outputFile: `${strategy}.json`
     });
 
-    const filesHashPromise = fixture.build(node).then(function(filesHash) {
+    let filesHashPromise = fixture.build(node).then(function(filesHash) {
       filesHash['symbol.json'] = JSON.parse(filesHash['symbol.json']);
       return filesHash;
     });

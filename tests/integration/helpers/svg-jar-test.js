@@ -10,8 +10,8 @@ module('Integration | Helper | svg-jar', function(hooks) {
     await render(hbs`{{svg-jar "icon"}}`);
     assert.dom('svg').exists();
 
-    const expectedSVG = '<svg viewBox="0 0 24 24" height="24" width="24"><circle cx="12" cy="12" r="6" fill="red"></circle></svg>';
-    const actualSVG = this.element.querySelector('svg').outerHTML;
+    let expectedSVG = '<svg viewBox="0 0 24 24" height="24" width="24"><circle cx="12" cy="12" r="6" fill="red"></circle></svg>';
+    let actualSVG = this.element.querySelector('svg').outerHTML;
     assert.equal(actualSVG, expectedSVG);
   });
 

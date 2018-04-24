@@ -42,7 +42,7 @@ module('Unit | Utility | make svg', function() {
       }[id];
     }
 
-    const customAttrs = { class: 'custom' };
+    let customAttrs = { class: 'custom' };
     assert.equal(
       inlineSvgFor('icon', assetStore, customAttrs),
       '<svg class="custom">icon</svg>',
@@ -80,7 +80,7 @@ module('Unit | Utility | make svg', function() {
   });
 
   test('formatAttrs works', function(assert) {
-    const result = formatAttrs({
+    let result = formatAttrs({
       attrName: 'attrValue',
       'f:oo': 'bar',
       isnull: null,

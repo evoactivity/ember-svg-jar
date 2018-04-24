@@ -3,7 +3,7 @@
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
-  const app = new EmberAddon(defaults, {
+  let app = new EmberAddon(defaults, {
     svgJar: {
       strategy: ['symbol', 'inline'],
       sourceDirs: ['tests/dummy/public'],

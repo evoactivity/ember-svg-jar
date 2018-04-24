@@ -3,7 +3,7 @@ import { module, test } from 'qunit';
 
 module('Unit | Utility | make helper', function() {
   test('it works', function(assert) {
-    const result = makeHelper();
+    let result = makeHelper();
     assert.ok(result);
   });
 });
