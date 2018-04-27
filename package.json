@@ -26,13 +26,13 @@
     "test": "npm run lint && npm run nodetest && ember test"
   },
   "dependencies": {
-    "broccoli-caching-writer": "^2.3.1",
-    "broccoli-funnel": "^1.0.1",
-    "broccoli-merge-trees": "^1.1.1",
+    "broccoli-caching-writer": "^3.0.3",
+    "broccoli-funnel": "^2.0.1",
+    "broccoli-merge-trees": "^2.0.0",
     "broccoli-string-replace": "^0.1.2",
     "broccoli-svg-optimizer": "^1.0.2",
     "broccoli-symbolizer": "^0.5.0",
-    "cheerio": "^0.20.0",
+    "cheerio": "^0.22.0",
     "ember-cli-babel": "^6.6.0",
     "lodash": "^4.13.1",
     "mkdirp": "^0.5.1",
@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
-    "broccoli-fixture": "^0.1.0",
+    "broccoli-fixture": "^1.0.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "ember-cli": "~3.1.2",

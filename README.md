@@ -27,6 +27,7 @@
 ![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/SVGJar+0.9.1.png)
 
 ### Features
+
 - a visual workflow to find and use your assets the fastest way possible
 - automatic SVG optimization (it can cut file size by half or more)
 - work out of the box (no configuration needed)
