@@ -1,61 +1,51 @@
 'use strict';
 
-var Filter = require('broccoli-persistent-filter');
-var stringify = require('json-stable-stringify');
-var RSVP = require('rsvp');
-var SVGO = require('svgo');
+const PersistentFilter = require('broccoli-persistent-filter');
+const _ = require('lodash');
+const stringify = require('json-stable-stringify');
+const RSVP = require('rsvp');
+const SVGO = require('svgo');
 
-function SVGOFilter(inputNode, _options) {
-  var options = _options || {};
+class SVGOFilter extends PersistentFilter {
+  constructor(inputNode, options) {
+    options = options || {};
 
-  if (!options.hasOwnProperty('persist')) {
-    options.persist = true;
-  }
-
-  Filter.call(this, inputNode, options);
-
-  this.options = options;
-  this.svgo = new SVGO(options.svgoConfig);
-}
-
-SVGOFilter.prototype = Object.create(Filter.prototype);
-SVGOFilter.prototype.constructor = SVGOFilter;
-SVGOFilter.prototype.extensions = ['svg'];
-SVGOFilter.prototype.targetExtension = 'svg';
-
-SVGOFilter.prototype.baseDir = function() {
-  return __dirname;
-};
-
-SVGOFilter.prototype.processString = function(svgContent) {
-  var svgo = this.svgo;
-
-  if (!svgContent) {
-    return '';
-  }
-
-  return new RSVP.Promise(function(resolve, reject) {
-    svgo.optimize(svgContent, function(result) {
-      if (result.error) {
-        reject(result.error);
-      } else {
-        resolve(result.data);
-      }
+    super(inputNode, {
+      name: 'SVGOFilter',
+      extensions: ['svg'],
+      targetExtension: 'svg',
+      persist: _.isUndefined(options.persist) ? true : options.persist,
+      async: _.isUndefined(options.async) ? true : options.async,
+      annotation: options.annotation
     });
-  });
-};
 
-SVGOFilter.prototype.optionsHash = function() {
-  if (!this._optionsHash) {
-    this._optionsHash = stringify(this.options);
+    this.svgo = new SVGO(options.svgoConfig);
+    this.optionsHashString = stringify(options);
   }
 
-  return this._optionsHash;
-};
+  processString(svgContent) {
+    if (!svgContent) {
+      return '';
+    }
 
-SVGOFilter.prototype.cacheKeyProcessString = function(string, relativePath) {
-  return Filter.prototype.cacheKeyProcessString.call(
-    this, string + this.optionsHash(), relativePath);
-};
+    return new RSVP.Promise((resolve, reject) => {
+      this.svgo.optimize(svgContent, (result) => {
+        if (result.error) {
+          reject(result.error);
+        } else {
+          resolve(result.data);
+        }
+      });
+    });
+  }
+
+  cacheKeyProcessString(string, relativePath) {
+    return super.cacheKeyProcessString(string + this.optionsHashString, relativePath);
+  }
+
+  baseDir() {
+    return __dirname;
+  }
+}
 
 module.exports = SVGOFilter;
