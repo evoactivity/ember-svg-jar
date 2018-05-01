@@ -9,7 +9,7 @@ const expect = chai.expect;
 chai.use(chaiAsPromised);
 
 describe('broccoli-svg-optimizer', () => {
-  let inputNode = `${__dirname}/fixtures/input-node`;
+  let inputNode = `${__dirname}/fixtures/index`;
 
   it('optimizes SVG files with persistence', () => {
     let outputNode = fixture.build(new SVGOptimizer(inputNode));
