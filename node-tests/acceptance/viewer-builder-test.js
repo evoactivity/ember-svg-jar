@@ -5,7 +5,7 @@ const chaiAsPromised = require('chai-as-promised');
 const fixture = require('broccoli-fixture');
 const ViewerBuilder = require('../../lib/viewer-builder');
 
-const expect = chai.expect;
+const { expect } = chai;
 chai.use(chaiAsPromised);
 
 describe('ViewerBuilder', function() {

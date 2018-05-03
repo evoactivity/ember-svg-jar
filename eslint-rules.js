@@ -9,7 +9,6 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'array-callback-return': 'off',
     'consistent-return': 'off',
-    'prefer-destructuring': 'off',
     'function-paren-newline': 'off',
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
