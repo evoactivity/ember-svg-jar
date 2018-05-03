@@ -7,7 +7,7 @@ const chaiAsPromised = require('chai-as-promised');
 const fixture = require('broccoli-fixture');
 const InlinePacker = require('../../lib/inline-packer');
 
-const expect = chai.expect;
+const { expect } = chai;
 chai.use(chaiAsPromised);
 
 describe('InlinePacker', function() {

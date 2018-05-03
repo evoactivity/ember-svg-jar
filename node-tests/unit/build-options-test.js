@@ -5,7 +5,7 @@ const chai = require('chai');
 const buildOptions = require('../../lib/build-options');
 const defaultGens = require('../../lib/default-gens');
 
-const expect = chai.expect;
+const { expect } = chai;
 
 const defaultContainerAttrs = {
   style: 'position: absolute; width: 0; height: 0;',
