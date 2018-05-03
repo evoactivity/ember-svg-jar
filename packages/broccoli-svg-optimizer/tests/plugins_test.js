@@ -4,11 +4,12 @@
 
 const fs = require('fs');
 const path = require('path');
-const EOL = require('os').EOL;
+const { EOL } = require('os');
 const SVGO = require('svgo');
 const chai = require('chai');
 
-const expect = chai.expect;
+const { expect } = chai;
+
 const regEOL = new RegExp(EOL, 'g');
 const regFilename = /^(.*)\.(\d+)\.svg$/;
 
@@ -21,15 +22,12 @@ function normalize(svg) {
 // Check if all SVGO plugins work as expected to get ready for breaking changes.
 describe('plugins: all active tests', () => {
   fs.readdirSync(fixturesDir).forEach((svgFilename) => {
-    let match = svgFilename.match(regFilename);
+    let fullFilepath = path.resolve(fixturesDir, svgFilename);
+    let [, pluginName, testIndex] = svgFilename.match(regFilename) || [];
 
-    if (!match) {
+    if (!pluginName) {
       return;
     }
-
-    let pluginName = match[1];
-    let testIndex = match[2];
-    let fullFilepath = path.resolve(fixturesDir, svgFilename);
 
     it(`${pluginName}.${testIndex}`, (done) => {
       fs.readFile(fullFilepath, 'utf8', (err, data) => {
@@ -61,15 +59,12 @@ fixturesDir = `${__dirname}/fixtures/plugins/default-config`;
 // Check if any default SVGO plugin settings are changed to get ready for breaking changes.
 describe('plugins: default config test', () => {
   fs.readdirSync(fixturesDir).forEach((svgFilename) => {
-    let match = svgFilename.match(regFilename);
+    let fullFilepath = path.resolve(fixturesDir, svgFilename);
+    let [, pluginName, testIndex] = svgFilename.match(regFilename) || [];
 
-    if (!match) {
+    if (!pluginName) {
       return;
     }
-
-    let pluginName = match[1];
-    let testIndex = match[2];
-    let fullFilepath = path.resolve(fixturesDir, svgFilename);
 
     it(`${pluginName}.${testIndex}`, (done) => {
       fs.readFile(fullFilepath, 'utf8', (err, data) => {

@@ -1,12 +1,10 @@
-/* eslint node/no-unsupported-features: "off" */
-
 /* Run the script after svgo package upgrade */
 
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
-const EOL = require('os').EOL;
+const { EOL } = require('os');
 const fp = require('lodash/fp');
 const SVGO = require('svgo');
 
