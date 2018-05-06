@@ -3,8 +3,34 @@
 const PersistentFilter = require('broccoli-persistent-filter');
 const _ = require('lodash');
 const stringify = require('json-stable-stringify');
-const RSVP = require('rsvp');
-const SVGO = require('svgo');
+const { Promise } = require('rsvp');
+const DefaultSVGO = require('svgo');
+
+function promisify(optimize) {
+  return (svg) => {
+    return new Promise((resolve, reject) => {
+      optimize(svg, (result) => {
+        if (result.error) {
+          reject(result.error);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  };
+}
+
+function promisifyIfNeeded(optimize) {
+  let isPromise = false;
+
+  try {
+    isPromise = 'then' in optimize('');
+  } catch (e) {
+    // pass
+  }
+
+  return isPromise ? optimize : promisify(optimize);
+}
 
 class SVGOFilter extends PersistentFilter {
   constructor(inputNode, options) {
@@ -15,32 +41,25 @@ class SVGOFilter extends PersistentFilter {
       extensions: ['svg'],
       targetExtension: 'svg',
       persist: _.isUndefined(options.persist) ? true : options.persist,
-      async: _.isUndefined(options.async) ? true : options.async,
+      async: options.async,
       annotation: options.annotation
     });
 
-    this.svgo = new SVGO(options.svgoConfig);
-    this.optionsHashString = stringify(options);
+    let SVGO = options.svgoModule || DefaultSVGO;
+    let svgo = new SVGO(options.svgoConfig);
+    let optimize = svgo.optimize.bind(svgo);
+    this.optimize = promisifyIfNeeded(optimize);
+    this.optionsHash = stringify(options);
   }
 
-  processString(svgContent) {
-    if (!svgContent) {
-      return '';
-    }
-
-    return new RSVP.Promise((resolve, reject) => {
-      this.svgo.optimize(svgContent, (result) => {
-        if (result.error) {
-          reject(result.error);
-        } else {
-          resolve(result.data);
-        }
-      });
-    });
+  processString(svg) {
+    return svg
+      ? this.optimize(svg).then(({ data }) => data)
+      : Promise.resolve('');
   }
 
   cacheKeyProcessString(string, relativePath) {
-    return super.cacheKeyProcessString(string + this.optionsHashString, relativePath);
+    return super.cacheKeyProcessString(string + this.optionsHash, relativePath);
   }
 
   baseDir() {

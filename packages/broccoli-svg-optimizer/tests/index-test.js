@@ -46,7 +46,8 @@ describe('broccoli-svg-optimizer', () => {
           { removeTitle: true },
           { removeDesc: { removeAny: true } }
         ]
-      }
+      },
+      persist: false
     };
     let outputNode = fixture.build(new SVGOptimizer(inputNode, options));
     let OPTIMIZED_CONTENT = (
@@ -57,5 +58,79 @@ describe('broccoli-svg-optimizer', () => {
     return expect(outputNode).to.eventually.deep.equal({
       'test.svg': OPTIMIZED_CONTENT
     });
+  });
+
+  it('works with callback-based SVGO module - success', () => {
+    class CustomSVGO {
+      optimize(svg, callback) {
+        callback({ data: 'callback result' });
+      }
+    }
+
+    let options = {
+      svgoConfig: {},
+      svgoModule: CustomSVGO,
+      persist: false
+    };
+
+    let outputNode = fixture.build(new SVGOptimizer(inputNode, options));
+
+    return expect(outputNode).to.eventually.deep.equal({
+      'test.svg': 'callback result'
+    });
+  });
+
+  it('works with callback-based SVGO module - fail', () => {
+    class CustomSVGO {
+      optimize(svg, callback) {
+        callback({ error: 'callback error' });
+      }
+    }
+
+    let options = {
+      svgoConfig: {},
+      svgoModule: CustomSVGO,
+      persist: false
+    };
+
+    let outputNode = fixture.build(new SVGOptimizer(inputNode, options));
+    return expect(outputNode).to.be.rejectedWith('callback error');
+  });
+
+  it('works with promise-based SVGO module - success', () => {
+    class CustomSVGO {
+      optimize(/* svg */) {
+        return Promise.resolve({ data: 'promise result' });
+      }
+    }
+
+    let options = {
+      svgoConfig: {},
+      svgoModule: CustomSVGO,
+      persist: false
+    };
+
+    let outputNode = fixture.build(new SVGOptimizer(inputNode, options));
+
+    return expect(outputNode).to.eventually.deep.equal({
+      'test.svg': 'promise result'
+    });
+  });
+
+  it('works with promise-based SVGO module - fail', () => {
+    class CustomSVGO {
+      optimize(/* svg */) {
+        return Promise.reject('promise error');
+      }
+    }
+
+    let options = {
+      svgoConfig: {},
+      svgoModule: CustomSVGO,
+      persist: false
+    };
+
+    let outputNode = fixture.build(new SVGOptimizer(inputNode, options));
+    return expect(outputNode).to.be.rejectedWith('promise error');
   });
 });

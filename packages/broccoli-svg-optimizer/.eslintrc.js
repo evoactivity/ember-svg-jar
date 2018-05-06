@@ -24,6 +24,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'prefer-const': 'off',
     'arrow-parens': ['error', 'always'],
+    'arrow-body-style': 'off',
 
     'no-irregular-whitespace': ['error', {
       'skipStrings': true,
