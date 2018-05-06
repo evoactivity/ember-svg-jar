@@ -1345,14 +1345,15 @@ broccoli-string-replace@^0.1.2:
     broccoli-persistent-filter "^1.1.5"
     minimatch "^3.0.3"
 
-broccoli-svg-optimizer@^1.0.2:
+broccoli-svg-optimizer@ivanvotti/broccoli-svg-optimizer#custom-svgo-module:
   version "1.0.2"
-  resolved "https://registry.yarnpkg.com/broccoli-svg-optimizer/-/broccoli-svg-optimizer-1.0.2.tgz#b12e84e65912f3134939cbf766c3fa0b4d0d92d9"
+  resolved "https://codeload.github.com/ivanvotti/broccoli-svg-optimizer/tar.gz/979ca5705b66915a47d18c35bea1450922f7d0c5"
   dependencies:
     broccoli-persistent-filter "^1.2.0"
     json-stable-stringify "^1.0.1"
-    rsvp "^3.2.1"
-    svgo "^0.6.6"
+    lodash "^4.17.10"
+    rsvp "^4.8.2"
+    svgo "0.6.6"
 
 broccoli-symbolizer@^0.5.0:
   version "0.5.0"
@@ -4839,6 +4840,10 @@ lodash@^4.1.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.3.0, lo
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
+lodash@^4.17.10:
+  version "4.17.10"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
+
 log-symbols@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-2.2.0.tgz#5740e1c5d6f0dfda4ad9323b5332107ef6b4c40a"
@@ -6076,7 +6081,7 @@ rsvp@^3.0.14, rsvp@^3.0.16, rsvp@^3.0.17, rsvp@^3.0.18, rsvp@^3.0.21, rsvp@^3.0.
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-3.6.2.tgz#2e96491599a96cde1b515d5674a8f7a91452926a"
 
-rsvp@^4.6.1, rsvp@^4.7.0:
+rsvp@^4.6.1, rsvp@^4.7.0, rsvp@^4.8.2:
   version "4.8.2"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.2.tgz#9d5647108735784eb13418cdddb56f75b919d722"
 
@@ -6604,7 +6609,7 @@ supports-color@^5.3.0:
   dependencies:
     has-flag "^3.0.0"
 
-svgo@^0.6.6:
+svgo@0.6.6:
   version "0.6.6"
   resolved "https://registry.yarnpkg.com/svgo/-/svgo-0.6.6.tgz#b340889036f20f9b447543077d0f5573ed044c08"
   dependencies:
