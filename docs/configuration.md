@@ -262,7 +262,7 @@ The function takes an asset ID and returns a string which will be used as a copy
 Type: `String`  
 Default: `'/assets/symbols.svg'`
 
-A path to the SVG file (symbols-container) that will content all SVG images for this strategy combined as symbol elements.
+A path to the SVG file (symbols-container) that will contain all SVG images for this strategy combined as symbol elements.
 
 The symbols-container file example:
 
