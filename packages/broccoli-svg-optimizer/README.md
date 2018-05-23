@@ -16,7 +16,7 @@ Broccoli plugin for optimizing SVG files by [SVGO](https://github.com/svg/svgo) 
 var SVGOptimizer = require('broccoli-svg-optimizer');
 var outputNode = new SVGOptimizer(inputNode, {
   persist: false,
-  svgoConfig : {
+  svgoConfig: {
     plugins: [
       { removeTitle: true }
     ]
@@ -36,7 +36,7 @@ Enable\disable\configure [SVGO](https://github.com/svg/svgo) plugins to customiz
 Example:
 
 ```js
-svgoConfig : {
+svgoConfig: {
   plugins: [
     { removeUselessStrokeAndFill: false },
     { removeAttrs: { attrs: '(fill|fill-rule)' } },
@@ -44,6 +44,23 @@ svgoConfig : {
     { removeDesc: { removeAny: true } },
   ]
 }
+```
+
+### svgoModule
+
+Type: reference to a custom `svgo` module  
+Default: `svgo` module defined in `broccoli-svg-optimizer` dependencies
+
+Sets custom `svgo` module.
+
+Example:
+
+```js
+const SVGOptimizer = require('broccoli-svg-optimizer');
+
+let outputNode = new SVGOptimizer(inputNode, {
+  svgoModule: require('svgo')
+});
 ```
 
 ### persist
