@@ -1,7 +1,5 @@
 # Configuration options
 
-This file still lacks good descriptions and examples. It will be improved soon.
-
 ## Setting some expectations
 
 SVGJar is configurable via the `svgJar` object in the `ember-cli-build.js` file:
@@ -103,9 +101,31 @@ Remove filepaths from asset IDs.
 Type: `Object` or `Boolean`  
 Default: `{}`
 
-Enable, disable or configure [SVGO](https://github.com/svg/svgo) plugins to customize SVG optimization. Most of the plugins are enabled by default. I'm going to add good examples later. For now, check out [SVGO repository](https://github.com/svg/svgo/tree/master/plugins) for available options.
+**Note:** You can completely disable SVG optimization by setting the option to `false`.
 
-*Note: You can completely disable SVG optimization by setting the option to `false`.*
+***Choosing the version of [SVGO](https://github.com/svg/svgo)***
+
+You can specify which version of `svgo` to use with the `svgoModule` option.
+
+Add the version that you want to use to your `package.json` and then provide its module using the `svgoModule` option:
+
+```javascript
+{
+  svgJar: {
+    optimizer : {
+      svgoModule: require('svgo'),
+
+      plugins: [
+        { removeTitle: true }
+      ]
+    }
+  }
+}
+```
+
+***Enable, disable or configure [SVGO](https://github.com/svg/svgo) plugins***
+
+Most of the plugins are enabled by default. Here is [SVGO v0.6.6 plugins description](https://github.com/svg/svgo/tree/v0.6.6#what-it-can-do).
 
 Example:
 
