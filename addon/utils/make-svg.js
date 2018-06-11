@@ -36,6 +36,12 @@ export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
 }
 
 export default function makeSvg(assetId, attrs = {}, getInlineAsset) {
+  if (!assetId) {
+    // eslint-disable-next-line no-console
+    console.warn('ember-svg-jar: asset name should not be undefined or null');
+    return;
+  }
+
   let isSymbol = assetId.lastIndexOf('#', 0) === 0;
   let svg = isSymbol
     ? symbolUseFor(assetId, attrs)

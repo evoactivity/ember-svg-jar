@@ -10,6 +10,10 @@ module('Unit | Utility | make svg', function() {
     assert.equal(makeSvg('#test'), '<svg ><use xlink:href="#test" /></svg>');
   });
 
+  test('makeSvg does not throw error when assetId is `undefined` or `null`', function(assert) {
+    assert.notOk(makeSvg());
+  });
+
   test('symbolUseFor works', function(assert) {
     assert.equal(symbolUseFor('#test'), '<svg ><use xlink:href="#test" /></svg>');
   });
