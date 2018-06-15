@@ -1,4 +1,4 @@
-import { copy } from '@ember/object/internals';
+import { copy } from 'ember-copy';
 import { merge } from '@ember/polyfills';
 import { isNone } from '@ember/utils';
 import { htmlSafe } from '@ember/string';
