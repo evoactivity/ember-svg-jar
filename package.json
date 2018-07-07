@@ -21,9 +21,10 @@
   },
   "scripts": {
     "prepublishOnly": "npm test",
-    "lint": "eslint ./*.js addon addon-test-support app config lib node-tests server test-support tests",
+    "lint": "eslint .",
     "nodetest": "node node-tests/runner.js",
-    "test": "npm run lint && npm run nodetest && ember test"
+    "test": "npm run lint && npm run nodetest && ember test",
+    "test:all": "ember try:each"
   },
   "dependencies": {
     "broccoli-caching-writer": "^3.0.3",
@@ -40,11 +41,11 @@
     "path-posix": "^1.0.0"
   },
   "devDependencies": {
-    "broccoli-asset-rev": "^2.4.5",
+  "broccoli-asset-rev": "^2.7.0",
     "broccoli-fixture": "^1.0.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
-    "ember-cli": "~3.1.2",
+    "ember-cli": "~3.2.0",
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-eslint": "^4.2.3",
     "ember-cli-htmlbars": "^2.0.1",
@@ -56,13 +57,14 @@
     "ember-cli-uglify": "^2.0.0",
     "ember-disable-prototype-extensions": "^1.1.2",
     "ember-export-application-global": "^2.0.0",
-    "ember-load-initializers": "^1.0.0",
+    "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-native-dom-helpers": "^0.6.2",
     "ember-resolver": "^4.0.0",
-    "ember-source": "~3.1.0",
+    "ember-source": "~3.2.0",
     "ember-source-channel-url": "^1.0.1",
     "ember-try": "^0.2.23",
+    "ember-welcome-page": "^3.0.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-ember": "^5.1.0",
     "eslint-plugin-import": "^2.7.0",
@@ -74,7 +76,7 @@
     "qunit-dom": "^0.6.2"
   },
   "engines": {
-    "node": "6.* || >= 8.*"
+    "node": "6.* || 8.* || >= 10.*"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
