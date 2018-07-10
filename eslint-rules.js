@@ -16,6 +16,7 @@ module.exports = {
     'import/no-dynamic-require': 'off',
     'prefer-const': 'off',
     'arrow-body-style': 'off',
+    'class-methods-use-this': 'off',
 
     'arrow-parens': ['error', 'always'],
 

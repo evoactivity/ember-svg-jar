@@ -18,37 +18,25 @@ describe('InlinePacker', function() {
       'bar.svg': '<svg height="10px" viewBox="0 0 2 2"><path d="bar"/></svg>'
     });
 
-    let node = new InlinePacker(inputNode, {
+    let options = {
       assetIdFor(relativePath) {
         return utils.assetIdFor(relativePath, {
           idGen: (_) => _,
           stripPath: true
         });
       }
-    });
+    };
 
-    let filesHashPromise = fixture.build(node).then(function(filesHash) {
-      expect(filesHash.inlined['foo.js'].indexOf('export default ')).to.equal(0);
+    let node = new InlinePacker(inputNode, options);
+    let actual = fixture.build(node);
 
-      filesHash.inlined['foo.js'] = JSON.parse(
-        filesHash.inlined['foo.js'].replace('export default ', '')
-      );
-
-      expect(filesHash.inlined['bar.js'].indexOf('export default ')).to.equal(0);
-      filesHash.inlined['bar.js'] = JSON.parse(
-        filesHash.inlined['bar.js'].replace('export default ', '')
-      );
-
-      return filesHash;
-    });
-
-    return expect(filesHashPromise).to.eventually.deep.equal({
+    let expected = {
       inlined: {
-        'foo.js':
-        { content: '<path d="foo"/>', attrs: { viewBox: '0 0 1 1' } },
-        'bar.js':
-        { content: '<path d="bar"/>', attrs: { height: '10px', viewBox: '0 0 2 2' } }
+        'foo.js': 'export default {"content":"<path d=\\"foo\\"/>","attrs":{"viewBox":"0 0 1 1"}}',
+        'bar.js': 'export default {"content":"<path d=\\"bar\\"/>","attrs":{"height":"10px","viewBox":"0 0 2 2"}}',
       }
-    });
+    };
+
+    return expect(actual).to.eventually.deep.equal(expected);
   });
 });
