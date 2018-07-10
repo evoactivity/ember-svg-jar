@@ -19,8 +19,8 @@ describe('InlinePacker', function() {
     });
 
     let node = new InlinePacker(inputNode, {
-      assetIdFor(filePath, inputPath) {
-        return utils.assetIdFor(filePath, inputPath, {
+      assetIdFor(relativePath) {
+        return utils.assetIdFor(relativePath, {
           idGen: (_) => _,
           stripPath: true
         });

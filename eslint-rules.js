@@ -15,6 +15,7 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-dynamic-require': 'off',
     'prefer-const': 'off',
+    'arrow-body-style': 'off',
 
     'arrow-parens': ['error', 'always'],
 
