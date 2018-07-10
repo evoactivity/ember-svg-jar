@@ -6,6 +6,7 @@ const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const fixture = require('broccoli-fixture');
 const InlinePacker = require('../../lib/inline-packer');
+const utils = require('../../lib/utils');
 
 const { expect } = chai;
 chai.use(chaiAsPromised);
@@ -18,8 +19,12 @@ describe('InlinePacker', function() {
     });
 
     let node = new InlinePacker(inputNode, {
-      idGen: (filePath) => filePath,
-      stripPath: true
+      assetIdFor(filePath, inputPath) {
+        return utils.assetIdFor(filePath, inputPath, {
+          idGen: (_) => _,
+          stripPath: true
+        });
+      }
     });
 
     let filesHashPromise = fixture.build(node).then(function(filesHash) {
