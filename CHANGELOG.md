@@ -1,9 +1,16 @@
 ## SVGJar Change Log
 
+### v1.2.1
+- [[INTERNAL]](https://github.com/ivanvotti/ember-svg-jar/pull/77) Switch to ember-copy [@wagenet](https://github.com/wagenet)
+- [INTERNAL] Upgrade to ember-cli 3.3.0
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v1.2.0...v1.2.1)
+
 ### v1.2.0
-- [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/72) Ability to specify which version of `svgo` to use for optimizer
+- [[internal]](https://github.com/ivanvotti/ember-svg-jar/pull/72) Ability to specify which version of `svgo` to use for optimizer
 - [INTERNAL] Drop Node 4 support
 - [INTERNAL] Update dependencies & cleanup code
+
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v1.1.0...v1.2.0)
 
 ### v1.1.0
