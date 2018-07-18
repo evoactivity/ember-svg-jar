@@ -2,7 +2,9 @@
 /config/ember-try.js
 /dist
 /tests
+/node-tests
 /tmp
+/coverage
 **/.gitkeep
 .bowerrc
 .editorconfig
@@ -14,7 +16,11 @@
 bower.json
 ember-cli-build.js
 testem.js
+.eslintignore
+eslint-rules.js
 yarn.lock
+yarn-error.log
+.vscode
 
 # ember-try
 .node_modules.ember-try/
