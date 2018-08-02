@@ -133,4 +133,24 @@ describe('broccoli-svg-optimizer', () => {
     let outputNode = fixture.build(new SVGOptimizer(inputNode, options));
     return expect(outputNode).to.be.rejectedWith('promise error');
   });
+
+  it('passes file to optimize', () => {
+    class CustomSVGO {
+      optimize(svg, options) {
+        return Promise.resolve({ data: options && options.path });
+      }
+    }
+
+    let options = {
+      svgoConfig: {},
+      svgoModule: CustomSVGO,
+      persist: false
+    };
+
+    let outputNode = fixture.build(new SVGOptimizer(inputNode, options));
+
+    return expect(outputNode).to.eventually.deep.equal({
+      'test.svg': 'test.svg'
+    });
+  });
 });

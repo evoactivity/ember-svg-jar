@@ -52,9 +52,9 @@ class SVGOFilter extends PersistentFilter {
     this.optionsHash = stringify(options);
   }
 
-  processString(svg) {
+  processString(svg, relativePath) {
     return svg
-      ? this.optimize(svg).then(({ data }) => data)
+      ? this.optimize(svg, { path: relativePath }).then(({ data }) => data)
       : Promise.resolve('');
   }
 
