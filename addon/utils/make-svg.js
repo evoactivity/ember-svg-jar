@@ -1,5 +1,4 @@
-import { copy } from 'ember-copy';
-import { merge } from '@ember/polyfills';
+import { assign } from '@ember/polyfills';
 import { isNone } from '@ember/utils';
 import { htmlSafe } from '@ember/string';
 
@@ -23,7 +22,7 @@ export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
     return;
   }
 
-  let svgAttrs = asset.attrs ? merge(copy(asset.attrs), attrs) : attrs;
+  let svgAttrs = asset.attrs ? assign({}, asset.attrs, attrs) : attrs;
   let { size } = attrs;
 
   if (size) {
