@@ -29,7 +29,7 @@
   "dependencies": {
     "broccoli-caching-writer": "^3.0.3",
     "broccoli-funnel": "^2.0.1",
-    "broccoli-merge-trees": "^2.0.0",
+    "broccoli-merge-trees": "^3.0.1",
     "broccoli-string-replace": "^0.1.2",
     "broccoli-svg-optimizer": "1.1.0",
     "broccoli-symbolizer": "^0.6.0",
