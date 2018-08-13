@@ -41,7 +41,7 @@
     "path-posix": "^1.0.0"
   },
   "devDependencies": {
-    "broccoli-asset-rev": "^2.7.0",
+    "broccoli-asset-rev": "^3.0.0",
     "broccoli-fixture": "^1.0.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
