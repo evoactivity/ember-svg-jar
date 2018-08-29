@@ -34,8 +34,8 @@
     "broccoli-svg-optimizer": "1.1.0",
     "broccoli-symbolizer": "^0.6.0",
     "cheerio": "^0.22.0",
+    "ember-assign-polyfill": "^2.5.0",
     "ember-cli-babel": "^6.6.0",
-    "ember-copy": "^1.0.0",
     "lodash": "^4.13.1",
     "mkdirp": "^0.5.1",
     "path-posix": "^1.0.0"
