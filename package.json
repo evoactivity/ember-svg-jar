@@ -63,7 +63,7 @@
     "ember-resolver": "^4.0.0",
     "ember-source": "~3.3.0",
     "ember-source-channel-url": "^1.0.1",
-    "ember-try": "^0.2.23",
+    "ember-try": "^1.0.0",
     "ember-welcome-page": "^3.0.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-ember": "^5.1.0",
