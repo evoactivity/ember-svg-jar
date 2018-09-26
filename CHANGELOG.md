@@ -1,5 +1,10 @@
 ## SVGJar Change Log
 
+### v1.2.2
+- [[INTERNAL]](https://github.com/ivanvotti/ember-svg-jar/pull/92) Switch from copy to assign [@buschtoens](https://github.com/buschtoens)
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v1.2.1...v1.2.2)
+
 ### v1.2.1
 - [[INTERNAL]](https://github.com/ivanvotti/ember-svg-jar/pull/77) Switch to ember-copy [@wagenet](https://github.com/wagenet)
 - [INTERNAL] Upgrade to ember-cli 3.3.0
