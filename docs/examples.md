@@ -94,3 +94,20 @@ let app = new EmberApp(defaults, {
   }
 });
 ```
+
+#### De-duplicating SVG ids:
+
+```javascript
+let app = new EmberApp(defaults, {
+  svgJar: {
+    strategy: 'inline',
+    optimizer: {
+      // requires svgo@1.0.0 or higher
+      svgoModule: require('svgo'),
+      plugins: [
+        { prefixIds: true }
+      ]
+    }
+  }
+});
+```
