@@ -68,7 +68,7 @@ If you can go IE 9+ and Android 3+, SVG is a better solution than icon fonts. Al
 - Select any SVG there and press `Enter` to copy it to the clipboard.
 - Paste it into any template and see it rendered in your browser.
 
-## Usage
+## Usage in an app
 
 Drag and drop SVG images to your project's `public` directory and copy & paste them from the <a href="http://localhost:4200/ember-svg-jar/index.html" target="_blank">assets viewer</a> to your templates.
 
@@ -90,6 +90,11 @@ By default `ember-svg-jar` looks for SVGs in the `public` directory. To get SVGs
 ```
 
 [Click here for more configuration options](#configuration)
+
+## Usage in an addon
+
+Using `ember-svg-jar` in an addon is the same as in an app, except that in the `package.json`
+of the addon, it should be listed as one of the `dependencies` and not `devDependencies`.
 
 ## Configuration
 
