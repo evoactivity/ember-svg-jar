@@ -72,7 +72,7 @@
     "glob": "^7.0.5",
     "in-publish": "^2.0.0",
     "loader.js": "^4.2.3",
-    "mocha": "^5.0.5",
+    "mocha": "^6.0.0",
     "qunit-dom": "^0.7.0"
   },
   "engines": {
