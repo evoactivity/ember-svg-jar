@@ -26,7 +26,30 @@
 
 ![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/SVGJar+0.9.1.png)
 
-### Features
+## Table of Contents
+
+<!-- toc -->
+
+- [Features](#features)
+- [Why does this matter?](#why-does-this-matter)
+  * [Switching from Font Awesome to SVG will save you 80 Kb or even more:](#switching-from-font-awesome-to-svg-will-save-you-80-kb-or-even-more)
+  * [SVG vs icon fonts](#svg-vs-icon-fonts)
+- [Installation](#installation)
+- [Start in 4 easy steps](#start-in-4-easy-steps)
+- [Usage in an app](#usage-in-an-app)
+  * [Assets from Node modules](#assets-from-node-modules)
+- [Usage in an addon](#usage-in-an-addon)
+- [Configuration](#configuration)
+  * [Helper](#helper)
+- [Compatibility](#compatibility)
+- [FAQ](#faq)
+- [Contributing](#contributing)
+- [Asset viewer](#asset-viewer)
+- [License](#license)
+
+<!-- tocstop -->
+
+## Features
 
 - a visual workflow to find and use your assets the fastest way possible
 - automatic SVG optimization (it can cut file size by half or more)
