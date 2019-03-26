@@ -26,7 +26,30 @@
 
 ![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/SVGJar+0.9.1.png)
 
-### Features
+## Table of Contents
+
+<!-- toc -->
+
+- [Features](#features)
+- [Why does this matter?](#why-does-this-matter)
+  * [Switching from Font Awesome to SVG will save you 80 Kb or even more:](#switching-from-font-awesome-to-svg-will-save-you-80-kb-or-even-more)
+  * [SVG vs icon fonts](#svg-vs-icon-fonts)
+- [Installation](#installation)
+- [Start in 4 easy steps](#start-in-4-easy-steps)
+- [Usage in an app](#usage-in-an-app)
+  * [Assets from Node modules](#assets-from-node-modules)
+- [Usage in an addon](#usage-in-an-addon)
+- [Configuration](#configuration)
+  * [Helper](#helper)
+- [Compatibility](#compatibility)
+- [FAQ](#faq)
+- [Contributing](#contributing)
+- [Asset viewer](#asset-viewer)
+- [License](#license)
+
+<!-- tocstop -->
+
+## Features
 
 - a visual workflow to find and use your assets the fastest way possible
 - automatic SVG optimization (it can cut file size by half or more)
@@ -147,50 +170,9 @@ A: `No, it won't at all. The asset viewer is included in development mode only.`
 Q: `Can it find SVG icons outside of the public directory, e.g. from node_modules?`  
 A: `Yes, it can import SVGs from any directory defined in the sourceDirs array.`
 
-## Development setup
+## Contributing
 
-### Installation
-
-* `git clone <repository-url>` this repository
-* `cd ember-svg-jar`
-* `npm install`
-
-### Building
-
-* `npm run build`
-
-### Running tests and linting
-
-Run all tests and lint code (`npm run lint && npm run nodetest && ember test`):
-
-```shell
-npm test
-```
-
-Test node modules (`src` directory):
-
-```shell
-npm run nodetest
-```
-
-Test Ember related code:
-
-* `ember test`
-* `ember test --server`
-* `ember try:each`
-
-Lint all code (`src`, `addon`, `app`, `node-tests`, `tests` directories)
-
-```shell
-npm run lint
-```
-
-### Running the dummy app
-
-* `ember serve`
-* Visit the app at [http://localhost:4200](http://localhost:4200)
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+See the [Contributing](CONTRIBUTING.md) guide for details.
 
 ## Asset viewer
 
