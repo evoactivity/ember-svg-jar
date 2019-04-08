@@ -1329,9 +1329,10 @@ broccoli-string-replace@^0.1.2:
     broccoli-persistent-filter "^1.1.5"
     minimatch "^3.0.3"
 
-broccoli-svg-optimizer@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/broccoli-svg-optimizer/-/broccoli-svg-optimizer-1.1.0.tgz#5d6e03310298c7a1d22d373508beedc6258590cc"
+broccoli-svg-optimizer@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/broccoli-svg-optimizer/-/broccoli-svg-optimizer-1.2.0.tgz#bee0e67ccb99428619c753ec9862f50fb0b5e32a"
+  integrity sha512-VACthv4SlanZDX16siKDasgcc+30Ml3Jr255tViyVjHoFuqj/h66ZIoHbzmSLkQQOCRBLp4+mXngVs7ezVhkSg==
   dependencies:
     broccoli-persistent-filter "^1.2.0"
     json-stable-stringify "^1.0.1"
