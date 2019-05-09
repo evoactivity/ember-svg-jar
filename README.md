@@ -171,7 +171,7 @@ Q: `Can it find SVG icons outside of the public directory, e.g. from node_module
 A: `Yes, it can import SVGs from any directory defined in the sourceDirs array.`
 
 Q: `Why the SVG files deployed into the dist/assets folder without being fingerprinted?`  
-A: `This is done with the default ember cli behaviour.` For more information see [SVG Fingerprinting](doc/svg-fingerprinting.md).
+A: `This is done with the default ember cli behaviour.` For more information see [SVG Fingerprinting](docs/svg-fingerprinting.md).
 
 ## Contributing
 
