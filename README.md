@@ -165,10 +165,13 @@ The old addon versions <= v0.12.0 are compatible with old Node and Ember 1.10.1 
 ## FAQ
 
 Q: `Will the asset viewer affect my production build size?`  
-A: `No, it won't at all. The asset viewer is included in development mode only.` 
+A: `No, it won't at all. The asset viewer is included in development mode only.`
 
 Q: `Can it find SVG icons outside of the public directory, e.g. from node_modules?`  
 A: `Yes, it can import SVGs from any directory defined in the sourceDirs array.`
+
+Q: `Why the SVG files deployed into the dist/assets folder without being fingerprinted?`  
+A: `This is done with the default ember cli behaviour.` For more information see [SVG Fingerprinting](doc/svg-fingerprinting.md).
 
 ## Contributing
 
