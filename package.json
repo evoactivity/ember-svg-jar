@@ -1,7 +1,7 @@
 {
   "name": "ember-svg-jar",
   "version": "1.2.2",
-  "description": "Best way to embed SVG images into Ember application",
+  "description": "Best way to use SVG images in Ember applications",
   "keywords": [
     "ember-addon"
   ],
@@ -11,7 +11,7 @@
     "doc": "doc",
     "test": "tests"
   },
-  "homepage": "https://svgjar.firebaseapp.com",
+  "homepage": "https://svgjar.web.app",
   "repository": {
     "type": "git",
     "url": "https://github.com/ivanvotti/ember-svg-jar.git"

@@ -1,28 +1,28 @@
-<h1 align="center">
-  <img src="https://cdn.rawgit.com/ivanvotti/ember-svg-jar/master/logo.svg" alt="Logo" width="127px" height="131px">
-  <br>
-  <a href="https://svgjar.firebaseapp.com">Ember SVGJar</a>
-  <br>
-</h1>
-
 <p align="center">
-  <a href="https://travis-ci.org/ivanvotti/ember-svg-jar">
-    <img src="https://travis-ci.org/ivanvotti/ember-svg-jar.svg?branch=master"
-      alt="Build Status">
-  </a>
-  <a href="https://www.npmjs.com/package/ember-svg-jar">
-    <img src="https://badge.fury.io/js/ember-svg-jar.svg"
-      alt="NPM Version">
-  </a>
-  <a href="http://emberobserver.com/addons/ember-svg-jar">
-    <img src="http://emberobserver.com/badges/ember-svg-jar.svg"
-      alt="Ember Observer Score">
+  <a href="https://svgjar.web.app" target="_blank">
+    <img src="https://svgjar.web.app/images/logo-96eaca43925f5d648acc8193b1b9ddd7.png" width="125px" height="120px" alt="Logo">
   </a>
 </p>
 
-<h4 align="center">
-  The best way to embed SVG images into your Ember application
-</h4>
+<h3 align="center">
+  Best way to use SVG images in Ember apps.
+</h3>
+
+<p align="center">
+  <a href="https://travis-ci.org/ivanvotti/ember-svg-jar" target="_blank">
+    <img src="https://travis-ci.org/ivanvotti/ember-svg-jar.svg?branch=master"
+      alt="Build Status">
+  </a>
+  <a href="https://www.npmjs.com/package/ember-svg-jar" target="_blank">
+    <img src="https://img.shields.io/npm/v/ember-svg-jar.svg?color=informational" />
+  </a>
+  <a href="https://www.npmjs.com/package/ember-svg-jar" target="_blank">
+    <img src="https://img.shields.io/npm/dm/ember-svg-jar.svg?color=informational" />
+  </a>
+  <a href="http://emberobserver.com/addons/ember-svg-jar" target="_blank">
+    <img src="http://emberobserver.com/badges/ember-svg-jar.svg" alt="Ember Observer Score">
+  </a>
+</p>
 
 ![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/SVGJar+0.9.1.png)
 
@@ -31,9 +31,6 @@
 <!-- toc -->
 
 - [Features](#features)
-- [Why does this matter?](#why-does-this-matter)
-  * [Switching from Font Awesome to SVG will save you 80 Kb or even more:](#switching-from-font-awesome-to-svg-will-save-you-80-kb-or-even-more)
-  * [SVG vs icon fonts](#svg-vs-icon-fonts)
 - [Installation](#installation)
 - [Start in 4 easy steps](#start-in-4-easy-steps)
 - [Usage in an app](#usage-in-an-app)
@@ -43,6 +40,7 @@
   * [Helper](#helper)
 - [Compatibility](#compatibility)
 - [FAQ](#faq)
+- [Why does this matter?](#why-does-this-matter)
 - [Contributing](#contributing)
 - [Asset viewer](#asset-viewer)
 - [License](#license)
@@ -56,29 +54,6 @@
 - work out of the box (no configuration needed)
 - an easy to use helper `{{svg-jar "asset-name"}}`
 - support for both `inline` and `symbol` embedding methods
-
-## Why does this matter?
-
-[I know why. Just show me how to get started.](https://github.com/ivanvotti/ember-svg-jar#installation)
-
-### Switching from Font Awesome to SVG will save you 80 Kb or even more:
-
-- original Font Awesome is about `149 KB` as TTF and `88.3 KB` as WOFF
-- it includes `634` icons and you need just some of them usually
-- 20 Font Awesome icons in SVGJar will be about 4.3 KB (you save `84 KB` or `145 KB` as TTF)
-- 50 Font Awesome icons in SVGJar will be about `9 KB`
-
-You can get Font Awesome icons as individual SVG files from [font-awesome-svg](https://github.com/ivanvotti/font-awesome-svg):
-
-`git clone git@github.com:ivanvotti/font-awesome-svg.git`
-
-### SVG vs icon fonts
-
-If you can go IE 9+ and Android 3+, SVG is a better solution than icon fonts. Also if your images are multi-coloured or involved in animation, you actually have to use SVG.
-
-- [Why GitHub switched from an icon font to SVG](https://github.com/blog/2112-delivering-octicons-with-svg)
-- ["Inline SVG vs icon fonts" from css-tricks](https://css-tricks.com/icon-fonts-vs-svg/)
-- [Ten reasons to switch from an icon font to SVG](http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/)
 
 ## Installation
 
@@ -172,6 +147,27 @@ A: `Yes, it can import SVGs from any directory defined in the sourceDirs array.`
 
 Q: `Why the SVG files deployed into the dist/assets folder without being fingerprinted?`  
 A: `This is done with the default ember cli behaviour.` For more information see [SVG Fingerprinting](docs/svg-fingerprinting.md).
+
+## Why does this matter?
+
+### SVG vs icon fonts
+
+If you can go IE 9+ and Android 3+, SVG is a better solution than icon fonts. Also if your images are multi-coloured or involved in animation, you actually have to use SVG.
+
+- [Why GitHub switched from an icon font to SVG](https://github.com/blog/2112-delivering-octicons-with-svg)
+- ["Inline SVG vs icon fonts" from css-tricks](https://css-tricks.com/icon-fonts-vs-svg/)
+- [Ten reasons to switch from an icon font to SVG](http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/)
+
+### Switching from Font Awesome to SVG will save you 80 Kb or even more:
+
+- original Font Awesome is about `149 KB` as TTF and `88.3 KB` as WOFF
+- it includes `634` icons and you need just some of them usually
+- 20 Font Awesome icons in SVGJar will be about 4.3 KB (you save `84 KB` or `145 KB` as TTF)
+- 50 Font Awesome icons in SVGJar will be about `9 KB`
+
+You can get Font Awesome icons as individual SVG files from [font-awesome-svg](https://github.com/ivanvotti/font-awesome-svg):
+
+`git clone git@github.com:ivanvotti/font-awesome-svg.git`
 
 ## Contributing
 
