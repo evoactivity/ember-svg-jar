@@ -31,7 +31,7 @@
     "broccoli-funnel": "^2.0.1",
     "broccoli-merge-trees": "^2.0.0",
     "broccoli-string-replace": "^0.1.2",
-    "broccoli-svg-optimizer": "1.2.0",
+    "broccoli-svg-optimizer": "2.0.0",
     "broccoli-symbolizer": "^0.6.0",
     "cheerio": "^0.22.0",
     "ember-assign-polyfill": "^2.5.0",

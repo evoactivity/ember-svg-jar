@@ -7,7 +7,10 @@ module.exports = function(defaults) {
     svgJar: {
       strategy: ['symbol', 'inline'],
       sourceDirs: ['tests/dummy/public'],
-      stripPath: false
+      stripPath: false,
+      optimizer: {
+        plugins: [{ removeTitle: false }, { removeViewBox: false }],
+      }
     }
   });
 
