@@ -1,46 +1,27 @@
-## Development setup
+# How To Contribute
 
-### Installation
+## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone git@github.com:ivanvotti/ember-svg-jar.git`
 * `cd ember-svg-jar`
 * `npm install`
 
-### Building
+## Linting
 
-* `npm run build`
+* `npm run lint:hbs`
+* `npm run lint:js`
+* `npm run lint:js -- --fix`
 
-### Running tests and linting
+## Running tests
 
-Run all tests and lint code (`npm run lint && npm run nodetest && ember test`):
+* `npm test` - Runs all tests including linters.
+* `ember test` – Runs the test suite on the current Ember version
+* `ember test --server` – Runs the test suite in "watch mode"
+* `ember try:each` – Runs the test suite against multiple Ember versions
 
-```shell
-npm test
-```
-
-Test node modules (`src` directory):
-
-```shell
-npm run nodetest
-```
-
-Test Ember related code:
-
-* `ember test`
-* `ember test --server`
-* `ember try:each`
-
-Lint all code (`src`, `addon`, `app`, `node-tests`, `tests` directories)
-
-```shell
-npm run lint
-```
-
-### Running the dummy app
+## Running the dummy application
 
 * `ember serve`
-* Visit the app at [http://localhost:4200](http://localhost:4200)
+* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
-
-
