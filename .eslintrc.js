@@ -1,3 +1,7 @@
+'use strict';
+
+const eslintNodePlugin = require('eslint-plugin-node');
+
 module.exports = {
   root: true,
 
@@ -18,7 +22,7 @@ module.exports = {
   },
 
   parserOptions: {
-    ecmaVersion: 2017,
+    ecmaVersion: 2018,
     sourceType: 'module'
   },
 
@@ -31,6 +35,8 @@ module.exports = {
     {
       files: [
         'eslint-rules.js',
+        '.eslintrc.js',
+        '.template-lintrc.js',
         'index.js',
         'testem.js',
         'ember-cli-build.js',
@@ -56,10 +62,10 @@ module.exports = {
 
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2015
+        ecmaVersion: 2018
       },
 
-      rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
+      rules: Object.assign({}, eslintNodePlugin.configs.recommended.rules, {
         'quote-props': 0
       })
     }

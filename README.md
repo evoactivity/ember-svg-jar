@@ -30,17 +30,20 @@
 
 <!-- toc -->
 
+- [Table of Contents](#table-of-contents)
 - [Features](#features)
 - [Installation](#installation)
 - [Start in 4 easy steps](#start-in-4-easy-steps)
 - [Usage in an app](#usage-in-an-app)
-  * [Assets from Node modules](#assets-from-node-modules)
+  - [Assets from Node modules](#assets-from-node-modules)
 - [Usage in an addon](#usage-in-an-addon)
 - [Configuration](#configuration)
-  * [Helper](#helper)
+  - [Helper](#helper)
 - [Compatibility](#compatibility)
 - [FAQ](#faq)
 - [Why does this matter?](#why-does-this-matter)
+  - [SVG vs icon fonts](#svg-vs-icon-fonts)
+  - [Switching from Font Awesome](#switching-from-font-awesome)
 - [Contributing](#contributing)
 - [Asset viewer](#asset-viewer)
 - [License](#license)
@@ -158,7 +161,7 @@ If you can go IE 9+ and Android 3+, SVG is a better solution than icon fonts. Al
 - ["Inline SVG vs icon fonts" from css-tricks](https://css-tricks.com/icon-fonts-vs-svg/)
 - [Ten reasons to switch from an icon font to SVG](http://ianfeather.co.uk/ten-reasons-we-switched-from-an-icon-font-to-svg/)
 
-### Switching from Font Awesome to SVG will save you 80 Kb or even more:
+### Switching from Font Awesome
 
 - original Font Awesome is about `149 KB` as TTF and `88.3 KB` as WOFF
 - it includes `634` icons and you need just some of them usually
