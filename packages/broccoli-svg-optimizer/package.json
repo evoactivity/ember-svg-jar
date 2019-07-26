@@ -2,6 +2,27 @@
   "name": "broccoli-svg-optimizer",
   "version": "1.2.0",
   "description": "Broccoli plugin for optimizing SVG files with SVGO",
+  "dependencies": {
+    "broccoli-persistent-filter": "^2.3.1",
+    "json-stable-stringify": "^1.0.1",
+    "lodash": "^4.17.15",
+    "rsvp": "^4.8.5",
+    "svgo": "0.6.6"
+  },
+  "devDependencies": {
+    "broccoli": "^3.1.2",
+    "broccoli-fixture": "^1.0.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "mocha": "^6.2.0",
+    "husky": "^3.0.1",
+    "lint-staged": "^9.2.1",
+    "prettier": "^1.18.2"
+  },
   "scripts": {
     "prepublishOnly": "npm test",
     "lint": "eslint ./*.js tests",
@@ -19,35 +40,27 @@
   "bugs": {
     "url": "https://github.com/ivanvotti/broccoli-svg-optimizer/issues"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "**/*.{js,ts}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "keywords": [
     "broccoli",
     "broccoli-plugin",
     "svgo"
   ],
-  "dependencies": {
-    "broccoli-persistent-filter": "^1.2.0",
-    "json-stable-stringify": "^1.0.1",
-    "lodash": "^4.17.10",
-    "rsvp": "^4.8.2",
-    "svgo": "0.6.6"
-  },
-  "devDependencies": {
-    "broccoli": "^1.1.4",
-    "broccoli-fixture": "^1.0.0",
-    "chai": "^4.1.2",
-    "chai-as-promised": "^7.1.1",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-node": "^6.0.1",
-    "mocha": "^5.1.1"
-  },
   "engines": {
-    "node": "6.* || >= 8.*"
-  },
-  "greenkeeper": {
-    "ignore": [
-      "svgo"
-    ]
+    "node": "8.* || >= 10.*"
   }
 }
