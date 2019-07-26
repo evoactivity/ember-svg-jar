@@ -1,0 +1,205 @@
+[
+  { "name": "addClassesToSVGElement", "active": false },
+  {
+    "name": "cleanupAttrs",
+    "active": true,
+    "params": { "newlines": true, "trim": true, "spaces": true }
+  },
+  { "name": "cleanupEnableBackground", "active": true },
+  {
+    "name": "cleanupIDs",
+    "active": true,
+    "params": { "remove": true, "minify": true, "prefix": "" }
+  },
+  {
+    "name": "cleanupListOfValues",
+    "active": false,
+    "params": {
+      "floatPrecision": 3,
+      "leadingZero": true,
+      "defaultPx": true,
+      "convertToPx": true
+    }
+  },
+  {
+    "name": "cleanupNumericValues",
+    "active": true,
+    "params": {
+      "floatPrecision": 3,
+      "leadingZero": true,
+      "defaultPx": true,
+      "convertToPx": true
+    }
+  },
+  { "name": "collapseGroups", "active": true },
+  {
+    "name": "convertColors",
+    "active": true,
+    "params": {
+      "currentColor": false,
+      "names2hex": true,
+      "rgb2hex": true,
+      "shorthex": true,
+      "shortname": true
+    }
+  },
+  {
+    "name": "convertPathData",
+    "active": true,
+    "params": {
+      "applyTransforms": true,
+      "applyTransformsStroked": true,
+      "makeArcs": { "threshold": 2.5, "tolerance": 0.5 },
+      "straightCurves": true,
+      "lineShorthands": true,
+      "curveSmoothShorthands": true,
+      "floatPrecision": 3,
+      "transformPrecision": 5,
+      "removeUseless": true,
+      "collapseRepeated": true,
+      "utilizeAbsolute": true,
+      "leadingZero": true,
+      "negativeExtraSpace": true
+    }
+  },
+  { "name": "convertShapeToPath", "active": true },
+  { "name": "convertStyleToAttrs", "active": true },
+  {
+    "name": "convertTransform",
+    "active": true,
+    "params": {
+      "convertToShorts": true,
+      "floatPrecision": 3,
+      "transformPrecision": 5,
+      "matrixToTransform": true,
+      "shortTranslate": true,
+      "shortScale": true,
+      "shortRotate": true,
+      "removeUseless": true,
+      "collapseIntoOne": true,
+      "leadingZero": true,
+      "negativeExtraSpace": false
+    }
+  },
+  {
+    "name": "mergePaths",
+    "active": true,
+    "params": {
+      "collapseRepeated": true,
+      "leadingZero": true,
+      "negativeExtraSpace": true
+    }
+  },
+  { "name": "minifyStyles", "active": true, "params": { "svgo": {} } },
+  { "name": "moveElemsAttrsToGroup", "active": true },
+  { "name": "moveGroupAttrsToElems", "active": true },
+  { "name": "removeAttrs", "active": false, "params": { "attrs": [] } },
+  { "name": "removeComments", "active": true },
+  { "name": "removeDesc", "active": true, "params": { "removeAny": false } },
+  { "name": "removeDimensions", "active": false },
+  { "name": "removeDoctype", "active": true },
+  {
+    "name": "removeEditorsNSData",
+    "active": true,
+    "params": { "additionalNamespaces": [] }
+  },
+  { "name": "removeEmptyAttrs", "active": true },
+  { "name": "removeEmptyContainers", "active": true },
+  {
+    "name": "removeEmptyText",
+    "active": true,
+    "params": { "text": true, "tspan": true, "tref": true }
+  },
+  {
+    "name": "removeHiddenElems",
+    "active": true,
+    "params": {
+      "displayNone": true,
+      "opacity0": true,
+      "circleR0": true,
+      "ellipseRX0": true,
+      "ellipseRY0": true,
+      "rectWidth0": true,
+      "rectHeight0": true,
+      "patternWidth0": true,
+      "patternHeight0": true,
+      "imageWidth0": true,
+      "imageHeight0": true,
+      "pathEmptyD": true,
+      "polylineEmptyPoints": true,
+      "polygonEmptyPoints": true
+    }
+  },
+  { "name": "removeMetadata", "active": true },
+  { "name": "removeNonInheritableGroupAttrs", "active": true },
+  { "name": "removeRasterImages", "active": false },
+  { "name": "removeStyleElement", "active": false },
+  { "name": "removeTitle", "active": false },
+  {
+    "name": "removeUnknownsAndDefaults",
+    "active": true,
+    "params": {
+      "unknownContent": true,
+      "unknownAttrs": true,
+      "defaultAttrs": true,
+      "uselessOverrides": true,
+      "keepDataAttrs": true
+    }
+  },
+  { "name": "removeUnusedNS", "active": true },
+  { "name": "removeUselessDefs", "active": true },
+  {
+    "name": "removeUselessStrokeAndFill",
+    "active": true,
+    "params": { "stroke": true, "fill": true }
+  },
+  { "name": "removeViewBox", "active": false },
+  { "name": "removeXMLProcInst", "active": true },
+  {
+    "name": "sortAttrs",
+    "active": false,
+    "params": {
+      "order": [
+        "xmlns",
+        "id",
+        "width",
+        "height",
+        "x",
+        "x1",
+        "x2",
+        "y",
+        "y1",
+        "y2",
+        "cx",
+        "cy",
+        "r",
+        "fill",
+        "fill-opacity",
+        "fill-rule",
+        "stroke",
+        "stroke-opacity",
+        "stroke-width",
+        "stroke-miterlimit",
+        "stroke-dashoffset",
+        "d",
+        "points"
+      ]
+    }
+  },
+  {
+    "name": "transformsWithOnePath",
+    "active": false,
+    "params": {
+      "width": false,
+      "height": false,
+      "scale": false,
+      "shiftX": false,
+      "shiftY": false,
+      "hcrop": false,
+      "vcenter": false,
+      "floatPrecision": 3,
+      "leadingZero": true,
+      "negativeExtraSpace": true
+    }
+  }
+]
