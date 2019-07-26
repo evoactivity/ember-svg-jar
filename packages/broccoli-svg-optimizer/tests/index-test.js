@@ -15,8 +15,6 @@ describe('broccoli-svg-optimizer', () => {
     let outputNode = fixture.build(new SVGOptimizer(inputNode));
     let OPTIMIZED_CONTENT = (
       '<svg viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">'
-      + '<title>SVG title</title>'
-      + '<desc>SVG description</desc>'
       + '<path d="M7 6V0H6v6H0v1h6v6h1V7h6V6H7z"/></svg>'
     );
     return expect(outputNode).to.eventually.deep.equal({
@@ -29,8 +27,6 @@ describe('broccoli-svg-optimizer', () => {
     let outputNode = fixture.build(new SVGOptimizer(inputNode, options));
     let OPTIMIZED_CONTENT = (
       '<svg viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">'
-      + '<title>SVG title</title>'
-      + '<desc>SVG description</desc>'
       + '<path d="M7 6V0H6v6H0v1h6v6h1V7h6V6H7z"/></svg>'
     );
 
@@ -43,8 +39,8 @@ describe('broccoli-svg-optimizer', () => {
     let options = {
       svgoConfig: {
         plugins: [
-          { removeTitle: true },
-          { removeDesc: { removeAny: true } }
+          { removeTitle: false },
+          { removeDesc: false }
         ]
       },
       persist: false
@@ -52,6 +48,8 @@ describe('broccoli-svg-optimizer', () => {
     let outputNode = fixture.build(new SVGOptimizer(inputNode, options));
     let OPTIMIZED_CONTENT = (
       '<svg viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">'
+      + '<title>SVG title</title>'
+      + '<desc>SVG description</desc>'
       + '<path d="M7 6V0H6v6H0v1h6v6h1V7h6V6H7z"/></svg>'
     );
 

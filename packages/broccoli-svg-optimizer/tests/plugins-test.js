@@ -1,8 +1,9 @@
-'use strict';
-
 // It's useful for svgo package upgrade to see breaking changes.
 
-const fs = require('fs');
+'use strict';
+
+/* eslint-disable-next-line node/no-unsupported-features/node-builtins */
+const fs = require('fs').promises;
 const path = require('path');
 const { EOL } = require('os');
 const SVGO = require('svgo');
@@ -13,76 +14,38 @@ const { expect } = chai;
 const regEOL = new RegExp(EOL, 'g');
 const regFilename = /^(.*)\.(\d+)\.svg$/;
 
-let fixturesDir = `${__dirname}/fixtures/plugins/all-active`;
-
-function normalize(svg) {
-  return svg.trim().replace(regEOL, '\n');
+function normalize(data) {
+  return data.trim().replace(regEOL, '\n');
 }
 
-// Check if all SVGO plugins work as expected to get ready for breaking changes.
-describe('plugins: all active tests', () => {
-  fs.readdirSync(fixturesDir).forEach((svgFilename) => {
-    let fullFilepath = path.resolve(fixturesDir, svgFilename);
-    let [, pluginName, testIndex] = svgFilename.match(regFilename) || [];
+// Check if all SVGO plugins work as expected to find breaking changes.
+describe('plugins tests', async () => {
+  const fixturesDir = `${__dirname}/fixtures/plugins`;
+  const svgPaths = await fs.readdir(fixturesDir);
+
+  svgPaths.forEach((svgPath) => {
+    let fullFilepath = path.resolve(fixturesDir, svgPath);
+    let [, pluginName, testIndex] = svgPath.match(regFilename) || [];
 
     if (!pluginName) {
       return;
     }
 
-    it(`${pluginName}.${testIndex}`, (done) => {
-      fs.readFile(fullFilepath, 'utf8', (err, data) => {
-        let splitted = normalize(data).split(/\s*@@@\s*/);
-        let originalSVG = splitted[0];
-        let expectedSVG = splitted[1];
-        let pluginParams = splitted[2];
-        let pluginConfig = {};
+    it(`${pluginName}.${testIndex}`, async () => {
+      const fileContent = await fs.readFile(fullFilepath, { encoding: 'utf8' });
+      let [originalSVG, expectedSVG, pluginParams] = normalize(fileContent).split(/\s*@@@\s*/);
+      let pluginConfig = {};
 
-        pluginConfig[pluginName] = (pluginParams) ? JSON.parse(pluginParams) : true;
+      pluginConfig[pluginName] = (pluginParams) ? JSON.parse(pluginParams) : true;
 
-        let svgo = new SVGO({
-          full: true,
-          plugins: [pluginConfig],
-          js2svg: { pretty: true }
-        });
-
-        svgo.optimize(originalSVG, (result) => {
-          expect(normalize(result.data)).to.equal(expectedSVG);
-          done();
-        });
+      let svgo = new SVGO({
+        full: true,
+        plugins: [pluginConfig],
+        js2svg: { pretty: true }
       });
-    });
-  });
-});
 
-fixturesDir = `${__dirname}/fixtures/plugins/default-config`;
-
-// Check if any default SVGO plugin settings are changed to get ready for breaking changes.
-describe('plugins: default config test', () => {
-  fs.readdirSync(fixturesDir).forEach((svgFilename) => {
-    let fullFilepath = path.resolve(fixturesDir, svgFilename);
-    let [, pluginName, testIndex] = svgFilename.match(regFilename) || [];
-
-    if (!pluginName) {
-      return;
-    }
-
-    it(`${pluginName}.${testIndex}`, (done) => {
-      fs.readFile(fullFilepath, 'utf8', (err, data) => {
-        let splitted = normalize(data).split(/\s*@@@\s*/);
-        let originalSVG = splitted[0];
-        let expectedSVG = splitted[1];
-
-        let svgo = new SVGO({
-          full: true,
-          js2svg: { pretty: true },
-          plugins: []
-        });
-
-        svgo.optimize(originalSVG, (result) => {
-          expect(normalize(result.data)).to.equal(expectedSVG);
-          done();
-        });
-      });
+      let { data: actualSVG } = await svgo.optimize(originalSVG, { path: fullFilepath });
+      expect(normalize(actualSVG)).to.equal(expectedSVG);
     });
   });
 });

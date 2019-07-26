@@ -7,7 +7,7 @@
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.15",
     "rsvp": "^4.8.5",
-    "svgo": "0.6.6"
+    "svgo": "1.3.0"
   },
   "devDependencies": {
     "broccoli": "^3.1.2",
@@ -26,8 +26,9 @@
   "scripts": {
     "prepublishOnly": "npm test",
     "lint": "eslint ./*.js tests",
-    "nodetest": "mocha tests/*test.js --timeout 8000",
-    "test": "npm run lint && npm run nodetest"
+    "nodetest": "mocha tests/*test.js --timeout 1000",
+    "test": "npm run lint && npm run nodetest",
+    "update-fixtures": "node ./tests/utils/update-plugin-fixtures.js"
   },
   "main": "index.js",
   "author": "Ivan Votti",
