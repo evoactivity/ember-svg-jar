@@ -4,6 +4,18 @@
 - [BREAKING ENHANCEMENT] Upgrade SVGO from `0.6.6` to `1.3.0`. It's a breaking change that is mostly done to fix [SVGO security issues][reason]. Please note, that `removeTitle` and `removeViewBox` plugins are now active by default. This can cause undesired changes in optimized SVG images. [Read this document][info] to know what exactly changed. To see changes of default SVGO plugins [check out this diff][diff].
 - [CLEANUP] Upgrade ember-cli to `3.11.0`, including related packages
 
+**How to recover the old behaviour:**
+
+```js
+let app = new EmberApp(defaults, {
+  svgJar: {
+    optimizer: {
+      plugins: [{ removeTitle: false }, { removeViewBox: false }],
+    },
+  },
+});
+```
+
 [info]: https://github.com/ivanvotti/broccoli-svg-optimizer/blob/master/docs/0.6.6-to-1.3.0.md
 [diff]: https://github.com/ivanvotti/broccoli-svg-optimizer/commit/58057a2cd521160b1eaba058303774f427cdd1f0#diff-e5d4ccd3cd14c513eca40fc7a5f48182
 [reason]: https://github.com/ivanvotti/broccoli-svg-optimizer/issues/14
