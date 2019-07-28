@@ -30,8 +30,7 @@ const defaultOpts = {
   },
 
   viewer: {
-    enabled: true,
-    embed: true
+    enabled: true
   },
 
   inline: {
@@ -97,7 +96,6 @@ describe('buildOptions', function() {
   it('returns correct default options for production', function() {
     let options = buildOptions(makeAppStub('production'));
     this.defaultOpts.viewer.enabled = false;
-    this.defaultOpts.viewer.embed = false;
     expect(options).to.deep.equal(this.defaultOpts);
   });
 
@@ -105,7 +103,6 @@ describe('buildOptions', function() {
     let options = buildOptions(makeAppStubForAddon('development'));
     this.defaultOpts.sourceDirs = ['addon-root/addon-public'];
     this.defaultOpts.viewer.enabled = false;
-    this.defaultOpts.viewer.embed = false;
     expect(options).to.deep.equal(this.defaultOpts);
   });
 
@@ -113,7 +110,6 @@ describe('buildOptions', function() {
     let options = buildOptions(makeAppStubForAddon('production'));
     this.defaultOpts.sourceDirs = ['addon-root/addon-public'];
     this.defaultOpts.viewer.enabled = false;
-    this.defaultOpts.viewer.embed = false;
     expect(options).to.deep.equal(this.defaultOpts);
   });
 
@@ -163,12 +159,6 @@ describe('buildOptions', function() {
   it('allows to set "viewer.enabled" option', function() {
     this.expectCanSetOption('viewer.enabled', {
       viewer: { enabled: false }
-    });
-  });
-
-  it('allows to set "viewer.embed" option', function() {
-    this.expectCanSetOption('viewer.embed', {
-      viewer: { embed: false }
     });
   });
 
