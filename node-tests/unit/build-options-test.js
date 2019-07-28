@@ -16,7 +16,7 @@ const defaultContainerAttrs = {
   'xmlns:xlink': 'http://www.w3.org/1999/xlink'
 };
 
-const defaultOpts = {
+const defaultsFixture = Object.freeze({
   rootURL: '/',
   sourceDirs: ['public'],
   strategy: ['inline'],
@@ -46,13 +46,14 @@ const defaultOpts = {
     includeLoader: true,
     containerAttrs: defaultContainerAttrs
   }
-};
+});
 
 // SVGJar is used by an app.
-function makeAppStub(env) {
+function makeAppStub(env, svgJarOptions = {}) {
   return {
     env,
     options: {
+      svgJar: svgJarOptions,
       trees: { public: 'public' }
     }
   };
@@ -69,146 +70,137 @@ function makeAppStubForAddon(env) {
   };
 }
 
-function expectCanSetOption(optPath, customOpts) {
-  this.appStub.options.svgJar = customOpts;
-  let options = buildOptions(this.appStub);
+describe('buildOptions: defaults', function() {
+  it('returns correct default options for app in development', function() {
+    let actualOptions = buildOptions(makeAppStub('development'));
+    let expectedOptions = {
+      ...defaultsFixture,
+      sourceDirs: ['public'],
+      viewer: { enabled: true }
+    };
 
-  expect(_.get(this.defaultOpts, optPath), `custom ${optPath} differs from the default one`)
-    .to.not.deep.equal(_.get(customOpts, optPath));
+    expect(actualOptions).to.deep.equal(expectedOptions);
+  });
+
+  it('returns correct default options for app in production', function() {
+    let actualOptions = buildOptions(makeAppStub('production'));
+    let expectedOptions = {
+      ...defaultsFixture,
+      sourceDirs: ['public'],
+      viewer: { enabled: false }
+    };
+
+    expect(actualOptions).to.deep.equal(expectedOptions);
+  });
+
+  it('returns correct default options for addon in development', function() {
+    let actualOptions = buildOptions(makeAppStubForAddon('development'));
+    let expectedOptions = {
+      ...defaultsFixture,
+      sourceDirs: ['addon-root/addon-public'],
+      viewer: { enabled: false }
+    };
+
+    expect(actualOptions).to.deep.equal(expectedOptions);
+  });
+
+  it('returns correct default options for addon in production', function() {
+    let actualOptions = buildOptions(makeAppStubForAddon('production'));
+    let expectedOptions = {
+      ...defaultsFixture,
+      sourceDirs: ['addon-root/addon-public'],
+      viewer: { enabled: false }
+    };
+
+    expect(actualOptions).to.deep.equal(expectedOptions);
+  });
+});
+
+function expectCanSetOption(optPath, optValue) {
+  let svgJarOptions = _.set({}, optPath, optValue);
+  let options = buildOptions(makeAppStub('development', svgJarOptions));
+
+  expect(_.get(defaultsFixture, optPath), `custom ${optPath} differs from the default one`)
+    .to.not.deep.equal(_.get(svgJarOptions, optPath));
   expect(_.get(options, optPath), `${optPath} option has been set`)
-    .to.deep.equal(_.get(customOpts, optPath));
+    .to.deep.equal(_.get(svgJarOptions, optPath));
   expect(_.omit(options, optPath), 'other default options are preserved')
-    .to.deep.equal(_.omit(this.defaultOpts, optPath));
+    .to.deep.equal(_.omit(defaultsFixture, optPath));
 }
 
-describe('buildOptions', function() {
-  beforeEach(function() {
-    this.defaultOpts = _.cloneDeep(defaultOpts);
-    this.appStub = makeAppStub('development');
-    this.expectCanSetOption = expectCanSetOption.bind(this);
-  });
-
-  it('returns correct default options for development', function() {
-    let options = buildOptions(this.appStub);
-    expect(options).to.deep.equal(this.defaultOpts);
-  });
-
-  it('returns correct default options for production', function() {
-    let options = buildOptions(makeAppStub('production'));
-    this.defaultOpts.viewer.enabled = false;
-    expect(options).to.deep.equal(this.defaultOpts);
-  });
-
-  it('returns correct default options for addon for development', function() {
-    let options = buildOptions(makeAppStubForAddon('development'));
-    this.defaultOpts.sourceDirs = ['addon-root/addon-public'];
-    this.defaultOpts.viewer.enabled = false;
-    expect(options).to.deep.equal(this.defaultOpts);
-  });
-
-  it('returns correct default options for addon for production', function() {
-    let options = buildOptions(makeAppStubForAddon('production'));
-    this.defaultOpts.sourceDirs = ['addon-root/addon-public'];
-    this.defaultOpts.viewer.enabled = false;
-    expect(options).to.deep.equal(this.defaultOpts);
-  });
-
+describe('buildOptions: custom options', function() {
   it('allows to set "rootURL" option', function() {
-    this.expectCanSetOption('rootURL', { rootURL: '/custom-root' });
+    expectCanSetOption('rootURL', '/custom-root');
   });
 
   it('allows to set "sourceDirs" option', function() {
-    this.expectCanSetOption('sourceDirs', { sourceDirs: ['custom-dir'] });
+    expectCanSetOption('sourceDirs', ['custom-dir']);
   });
 
   it('allows to set "strategy" option', function() {
-    this.expectCanSetOption('strategy', { strategy: ['symbol'] });
+    expectCanSetOption('strategy', ['symbol']);
   });
 
   it('casts "strategy" option as an array', function() {
-    let customOpts = { strategy: 'symbol' };
-    this.appStub.options.svgJar = customOpts;
-    let options = buildOptions(this.appStub);
-    expect(options.strategy).to.deep.equal([customOpts.strategy]);
+    let svgJarOptions = { strategy: 'symbol' };
+    let options = buildOptions(makeAppStub('development', svgJarOptions));
+
+    expect(options.strategy).to.deep.equal([svgJarOptions.strategy]);
   });
 
   it('allows to set "stripPath" option', function() {
-    this.expectCanSetOption('stripPath', { stripPath: false });
+    expectCanSetOption('stripPath', false);
   });
 
   it('allows to set "optimizer" option', function() {
-    this.expectCanSetOption('optimizer', { optimizer: { plugins: [] } });
+    expectCanSetOption('optimizer.plugins', []);
   });
 
   it('allows to set "persist" option', function() {
-    this.expectCanSetOption('persist', { persist: false });
+    expectCanSetOption('persist', false);
   });
 
   it('allows to set "validations.validateViewBox" option', function() {
-    this.expectCanSetOption('validations.validateViewBox', {
-      validations: { validateViewBox: false }
-    });
+    expectCanSetOption('validations.validateViewBox', false);
   });
 
   it('allows to set "validations.checkForDuplicates" option', function() {
-    this.expectCanSetOption('validations.checkForDuplicates', {
-      validations: { checkForDuplicates: false }
-    });
+    expectCanSetOption('validations.checkForDuplicates', false);
   });
 
   it('allows to set "viewer.enabled" option', function() {
-    this.expectCanSetOption('viewer.enabled', {
-      viewer: { enabled: false }
-    });
+    expectCanSetOption('viewer.enabled', false);
   });
 
   it('allows to set "inline.idGen" option', function() {
-    this.expectCanSetOption('inline.idGen', {
-      inline: { idGen: null }
-    });
+    expectCanSetOption('inline.idGen', null);
   });
 
   it('allows to set "inline.copypastaGen" option', function() {
-    this.expectCanSetOption('inline.copypastaGen', {
-      inline: { copypastaGen: null }
-    });
+    expectCanSetOption('inline.copypastaGen', null);
   });
 
   it('allows to set "symbol.idGen" option', function() {
-    this.expectCanSetOption('symbol.idGen', {
-      symbol: { idGen: null }
-    });
+    expectCanSetOption('symbol.idGen', null);
   });
 
   it('allows to set "symbol.copypastaGen" option', function() {
-    this.expectCanSetOption('symbol.copypastaGen', {
-      symbol: { copypastaGen: null }
-    });
+    expectCanSetOption('symbol.copypastaGen', null);
   });
 
   it('allows to set "symbol.outputFile" option', function() {
-    this.expectCanSetOption('symbol.outputFile', {
-      symbol: { outputFile: '/assets/new-name.svg' }
-    });
+    expectCanSetOption('symbol.outputFile', '/assets/new-name.svg');
   });
 
   it('allows to set "symbol.prefix" option', function() {
-    this.expectCanSetOption('symbol.prefix', {
-      symbol: { prefix: 'icon-' }
-    });
+    expectCanSetOption('symbol.prefix', 'icon-');
   });
 
   it('allows to set "symbol.includeLoader" option', function() {
-    this.expectCanSetOption('symbol.includeLoader', {
-      symbol: { includeLoader: false }
-    });
+    expectCanSetOption('symbol.includeLoader', false);
   });
 
   it('allows to set "symbol.containerAttrs" option', function() {
-    this.expectCanSetOption('symbol.containerAttrs', {
-      symbol: {
-        containerAttrs: { id: 'test-id' }
-      }
-    });
+    expectCanSetOption('symbol.containerAttrs', 'test-id');
   });
 });
