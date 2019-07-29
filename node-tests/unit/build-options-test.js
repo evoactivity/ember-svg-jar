@@ -21,7 +21,13 @@ const defaultsFixture = Object.freeze({
   sourceDirs: ['public'],
   strategy: ['inline'],
   stripPath: true,
-  optimizer: {},
+  optimizer: {
+    plugins: [
+      { removeTitle: false },
+      { removeDesc: { removeAny: false } },
+      { removeViewBox: false }
+    ]
+  },
   persist: true,
 
   validations: {
@@ -120,10 +126,9 @@ function expectCanSetOption(optPath, optValue) {
   let svgJarOptions = _.set({}, optPath, optValue);
   let options = buildOptions(makeAppStub('development', svgJarOptions));
 
-  expect(_.get(defaultsFixture, optPath), `custom ${optPath} differs from the default one`)
-    .to.not.deep.equal(_.get(svgJarOptions, optPath));
-  expect(_.get(options, optPath), `${optPath} option has been set`)
-    .to.deep.equal(_.get(svgJarOptions, optPath));
+  expect(_.get(defaultsFixture, optPath), `option ${optPath} exists in defaults`).to.exist;
+  expect(_.get(defaultsFixture, optPath), `option ${optPath} differs from default one`).to.not.deep.equal(optValue);
+  expect(_.get(options, optPath), `${optPath} option has been set`).to.deep.equal(optValue);
   expect(_.omit(options, optPath), 'other default options are preserved')
     .to.deep.equal(_.omit(defaultsFixture, optPath));
 }
@@ -153,7 +158,7 @@ describe('buildOptions: custom options', function() {
   });
 
   it('allows to set "optimizer" option', function() {
-    expectCanSetOption('optimizer.plugins', []);
+    expectCanSetOption('optimizer', null);
   });
 
   it('allows to set "persist" option', function() {
@@ -202,5 +207,26 @@ describe('buildOptions: custom options', function() {
 
   it('allows to set "symbol.containerAttrs" option', function() {
     expectCanSetOption('symbol.containerAttrs', 'test-id');
+  });
+
+  it('merges custom & default optimizer plugins', function() {
+    let svgJarOptions = {
+      optimizer: {
+        plugins: [
+          { removeViewBox: true },
+          { removeUnusedNS: true },
+          { removeDesc: { removeAny: true } }
+        ]
+      }
+    };
+    let { optimizer: { plugins: actual } } = buildOptions(makeAppStub('development', svgJarOptions));
+    let expected = [
+      { removeTitle: false },
+      { removeDesc: { removeAny: true } },
+      { removeViewBox: true },
+      { removeUnusedNS: true }
+    ];
+
+    expect(actual).to.deep.equal(expected);
   });
 });

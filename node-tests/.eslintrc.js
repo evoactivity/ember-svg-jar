@@ -19,6 +19,7 @@ module.exports = {
 
   rules: {
     'no-param-reassign': 0,
-    'object-shorthand': 0
+    'object-shorthand': 0,
+    'no-unused-expressions': 'off'
   }
 };
