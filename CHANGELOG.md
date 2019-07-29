@@ -1,20 +1,15 @@
 ## SVGJar Change Log
 
+### v2.1.0
+- [ENHANCEMENT] Disable `removeTitle`, `removeViewBox`, and `removeDesc` SVGO plugins by default to preserve the original behaviour and stay a zero-configuration addon.
+- [INTERNAL] Get rid of `viewer.embed` option.
+- [INTERNAL] Improve SVGJar options validation.
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v2.0.0...v2.1.0)
+
 ### v2.0.0
-- [BREAKING ENHANCEMENT] Upgrade SVGO from `0.6.6` to `1.3.0`. It's a breaking change that is mostly done to fix [SVGO security issues][reason]. Please note, that `removeTitle` and `removeViewBox` plugins are now active by default. This can cause undesired changes in optimized SVG images. [Read this document][info] to know what exactly changed. To see changes of default SVGO plugins [check out this diff][diff].
+- [BREAKING ENHANCEMENT] Upgrade SVGO from `0.6.6` to `1.3.0`. It's a breaking change to fix [security issues of SVGO 0.6.6][reason]. In SVGO `1.3.0` most plugins are now active by default (e.g. `removeTitle`, `removeViewBox`). This can cause undesired changes in optimized SVG images. In `ember-svg-jar` `v2.1.0` it's not the case anymore for `removeTitle`, `removeViewBox`, and `removeDesc` plugins. [Read this document][info] to know what exactly changed. To see changes of default SVGO plugins [check out this diff][diff].
 - [CLEANUP] Upgrade ember-cli to `3.11.0`, including related packages
-
-**How to recover the old behaviour:**
-
-```js
-let app = new EmberApp(defaults, {
-  svgJar: {
-    optimizer: {
-      plugins: [{ removeTitle: false }, { removeViewBox: false }],
-    },
-  },
-});
-```
 
 [info]: https://github.com/ivanvotti/broccoli-svg-optimizer/blob/master/docs/0.6.6-to-1.3.0.md
 [diff]: https://github.com/ivanvotti/broccoli-svg-optimizer/commit/58057a2cd521160b1eaba058303774f427cdd1f0#diff-e5d4ccd3cd14c513eca40fc7a5f48182
