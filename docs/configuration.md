@@ -34,7 +34,13 @@ All global options with their default values:
     strategy: 'inline',
     sourceDirs: ['public'],
     stripPath: true,
-    optimizer: {},
+    optimizer: {
+      plugins: [
+        { removeTitle: false },
+        { removeDesc: { removeAny: false } },
+        { removeViewBox: false }
+      ]
+    },
     persist: true,
     rootURL: '/',
     
@@ -125,7 +131,11 @@ Add the version that you want to use to your `package.json` and then provide its
 
 ***Enable, disable or configure [SVGO](https://github.com/svg/svgo) plugins***
 
-Most of the plugins are enabled by default. Here is [SVGO v0.6.6 plugins description](https://github.com/svg/svgo/tree/v0.6.6#what-it-can-do).
+Most SVGO plugins are enabled by default.
+
+For more info:
+- [Plugins defaults for v1.3.0](https://github.com/ivanvotti/broccoli-svg-optimizer/blob/master/docs/plugins-config.json).
+- [Plugins description for v1.3.0](https://github.com/svg/svgo/tree/v1.3.0#what-it-can-do).
 
 Example:
 
@@ -386,12 +396,3 @@ Then the result could look like:
 
 Type: `Boolean`  
 Default: `true` for `development`
-
-Need description...
-
-#### embed
-
-Type: `Boolean`  
-Default: `true` for `development`
-
-Need description...
