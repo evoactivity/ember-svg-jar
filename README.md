@@ -24,7 +24,7 @@
   </a>
 </p>
 
-![](https://s3-us-west-2.amazonaws.com/ivanvotti-uploads/SVGJar+0.9.1.png)
+![](https://svgjar.web.app/images/app-screenshot-adb77f291ccaf5251e42c31eb3b5ddd3.png)
 
 ## Table of Contents
 

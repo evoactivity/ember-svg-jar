@@ -28,14 +28,16 @@
   },
   "dependencies": {
     "broccoli-caching-writer": "^3.0.3",
+    "broccoli-concat": "^3.7.4",
     "broccoli-funnel": "^2.0.2",
     "broccoli-merge-trees": "^3.0.2",
+    "broccoli-persistent-filter": "^2.3.1",
     "broccoli-string-replace": "^0.1.2",
     "broccoli-svg-optimizer": "2.0.0",
-    "broccoli-symbolizer": "^0.6.0",
     "cheerio": "^0.22.0",
     "ember-assign-polyfill": "^2.5.0",
     "ember-cli-babel": "^7.7.3",
+    "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.15",
     "mkdirp": "^0.5.1",
     "path-posix": "^1.0.0"
