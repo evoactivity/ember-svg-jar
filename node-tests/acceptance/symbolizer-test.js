@@ -9,7 +9,9 @@ const Sympolizer = require('../../lib/symbolizer/symbolizer');
 const { expect } = chai;
 chai.use(chaiAsPromised);
 
-describe('Symbolizer', () => {
+describe('Symbolizer', function() {
+  this.timeout(5000);
+
   let inputNode = new fixture.Node({
     'foo.svg': '<svg viewBox="0 0 1 1"><path d="foo"/></svg>',
     'bar.svg': '<svg height="10px" viewBox="0 0 2 2"><path d="bar"/></svg>'

@@ -46,16 +46,15 @@ describe('ViewerAssetsBuilder', function() {
     return expect(filesHashPromise).to.eventually.deep.equal({
       'inline.json': [
         {
-          svg: { content: '<path d="original"/>', attrs: { viewBox: '0 0 13 13' } },
-          width: 13,
-          height: 13,
+          id: 'unknown-foo.svg',
+          svg: '<svg viewBox="0 0 13 13"><path d="original"/></svg>',
+          gridHeight: 13,
+          gridWidth: 13,
           fileName: 'foo.svg',
-          fileDir: '/',
-          fileSize: '0.05 KB',
-          baseSize: '13px',
-          fullBaseSize: '13x13px',
-          copypasta: '{{svg-jar "foo"}}',
-          strategy: strategy
+          fileDir: 'unknown',
+          fileSize: 0.05,
+          strategy: strategy,
+          helper: '{{svg-jar "foo"}}'
         }
       ]
     });
@@ -88,16 +87,15 @@ describe('ViewerAssetsBuilder', function() {
     return expect(filesHashPromise).to.eventually.deep.equal({
       'symbol.json': [
         {
-          svg: { content: '<path d="original"/>', attrs: { viewBox: '0 0 20 40' } },
-          width: 20,
-          height: 40,
+          id: 'unknown-foo.svg',
+          svg: '<svg viewBox="0 0 20 40"><path d="original"/></svg>',
+          gridHeight: 40,
+          gridWidth: 20,
           fileName: 'foo.svg',
-          fileDir: '/',
-          fileSize: '0.05 KB',
-          baseSize: '40px',
-          fullBaseSize: '20x40px',
-          copypasta: '{{svg-jar "#prefix-foo"}}',
-          strategy: strategy
+          fileDir: 'unknown',
+          fileSize: 0.05,
+          strategy: strategy,
+          helper: '{{svg-jar "#prefix-foo"}}',
         }
       ]
     });

@@ -5,25 +5,19 @@ const eslintNodePlugin = require('eslint-plugin-node');
 module.exports = {
   root: true,
 
-  plugins: [
-    'ember'
-  ],
+  plugins: ['ember'],
 
-  extends: [
-    'airbnb-base',
-    'plugin:ember/recommended',
-    './eslint-rules.js'
-  ],
+  extends: ['airbnb-base', 'plugin:ember/recommended', './eslint-rules.js'],
 
   env: {
     browser: true,
     node: false,
-    amd: true
+    amd: true,
   },
 
   parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module'
+    ecmaVersion: 2019,
+    sourceType: 'module',
   },
 
   rules: {
@@ -41,33 +35,26 @@ module.exports = {
         'testem.js',
         'ember-cli-build.js',
         'config/**/*.js',
-        'tests/dummy/config/**/*.js'
+        'tests/dummy/config/**/*.js',
       ],
 
-      excludedFiles: [
-        'lib/**',
-        'app/**',
-        'addon/**',
-        'tests/dummy/app/**'
-      ],
+      excludedFiles: ['lib/**', 'app/**', 'addon/**', 'tests/dummy/app/**'],
 
-      plugins: [
-        'node'
-      ],
+      plugins: ['node'],
 
       env: {
         browser: false,
-        node: true
+        node: true,
       },
 
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2018
+        ecmaVersion: 2018,
       },
 
       rules: Object.assign({}, eslintNodePlugin.configs.recommended.rules, {
-        'quote-props': 0
-      })
-    }
-  ]
+        'quote-props': 0,
+      }),
+    },
+  ],
 };

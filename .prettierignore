@@ -1,0 +1,18 @@
+# unconventional js
+vendor/
+public/
+
+# compiled output
+dist/
+tmp/
+
+# dependencies
+node_modules/
+
+# ember-try
+.node_modules.ember-try/
+bower.json.ember-try
+package.json.ember-try
+
+*.html
+*.js
