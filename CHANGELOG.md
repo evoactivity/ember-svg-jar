@@ -1,5 +1,11 @@
 ## SVGJar Change Log
 
+### v2.2.0
+- [ENHANCEMENT] Improved Assets Viewer. It got faster for big SVG collections and has better UI.
+- [INTERNAL] Cleanup some code.
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v2.1.0...v2.2.0)
+
 ### v2.1.0
 - [ENHANCEMENT] Disable `removeTitle`, `removeViewBox`, and `removeDesc` SVGO plugins by default to preserve the original behaviour and stay a zero-configuration addon.
 - [INTERNAL] Get rid of `viewer.embed` option.
