@@ -52,7 +52,7 @@
 
 ## Features
 
-- a visual workflow to find and use your assets the fastest way possible
+- a <a href="https://svgjar-demo.web.app" target="_blank">visual workflow</a> to find and use your assets the fastest way possible
 - automatic SVG optimization (it can cut file size by half or more)
 - work out of the box (no configuration needed)
 - an easy to use helper `{{svg-jar "asset-name"}}`
@@ -64,10 +64,12 @@
 
 ## Start in 4 easy steps
 
-- Put some SVG files to any place in your project's `public` directory (e.g. get some from [font-awesome-svg](https://github.com/ivanvotti/font-awesome-svg))
+- Put your SVG files to the `public` directory (e.g. [material-design-icons](https://github.com/google/material-design-icons))
 - Run the development server and open this link with Chrome: <a href="http://localhost:4200/ember-svg-jar/index.html" target="_blank">http://localhost:4200/ember-svg-jar/index.html</a>
-- Select any SVG there and press `Enter` to copy it to the clipboard.
+- Select any SVG there and press `Enter` to copy the helper code to the clipboard.
 - Paste it into any template and see it rendered in your browser.
+
+<a href="https://svgjar-demo.web.app" target="_blank">Click here to see the asset viewer demo.</a>
 
 ## Usage in an app
 
@@ -78,16 +80,17 @@ The viewer is available at: <a href="http://localhost:4200/ember-svg-jar/index.h
 ### Assets from Node modules
 
 By default `ember-svg-jar` looks for SVGs in the `public` directory. To get SVGs from `node_modules` packages or any other directory you will need to add them to `ember-cli-build.js` like this:
+
 ```js
-  var app = new EmberApp(defaults, {
-    svgJar: {
-      sourceDirs: [
-        'node_modules/material-design-icons/file/svg/design',
-        'node_modules/material-design-icons/action/svg/design',
-        'public/images/icons'
-      ]
-    }
-  });
+var app = new EmberApp(defaults, {
+  svgJar: {
+    sourceDirs: [
+      'node_modules/material-design-icons/file/svg/design',
+      'node_modules/material-design-icons/action/svg/design',
+      'public/images/icons',
+    ],
+  },
+});
 ```
 
 [Click here for more configuration options](#configuration)
@@ -135,6 +138,7 @@ In this case the result can look like this:
 ## Compatibility
 
 Latest ember-svg-jar `1.X.X` currently supports:
+
 - Node `6.*` || >= `8.*`
 - Ember >= `1.13.13`
 
