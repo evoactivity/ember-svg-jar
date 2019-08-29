@@ -46,12 +46,12 @@ describe('ViewerAssetsBuilder', function() {
     return expect(filesHashPromise).to.eventually.deep.equal({
       'inline.json': [
         {
-          id: 'unknown-foo.svg',
+          id: '0-inline',
           svg: '<svg viewBox="0 0 13 13"><path d="original"/></svg>',
           gridHeight: 13,
           gridWidth: 13,
           fileName: 'foo.svg',
-          fileDir: 'unknown',
+          fileDir: '/root',
           fileSize: 0.05,
           strategy: strategy,
           helper: '{{svg-jar "foo"}}'
@@ -62,7 +62,9 @@ describe('ViewerAssetsBuilder', function() {
 
   it('works for symbol strategy', function() {
     let inputNode = new fixture.Node({
-      'foo.svg': '<svg viewBox="0 0 20 40"><path d="original"/></svg>'
+      'root.svg': '<svg viewBox="0 0 20 40"><path d="original"/></svg>',
+      circles: { 'circle.svg': '<svg width="20" height="40"><path d="original"/></svg>' },
+      logos: { 'logo.svg': '<svg width="20" height="40"><path d="original"/></svg>' }
     });
 
     let strategy = 'symbol';
@@ -87,15 +89,37 @@ describe('ViewerAssetsBuilder', function() {
     return expect(filesHashPromise).to.eventually.deep.equal({
       'symbol.json': [
         {
-          id: 'unknown-foo.svg',
-          svg: '<svg viewBox="0 0 20 40"><path d="original"/></svg>',
-          gridHeight: 40,
+          id: '0-symbol',
+          svg: '<svg width="20" height="40"><path d="original"/></svg>',
           gridWidth: 20,
-          fileName: 'foo.svg',
-          fileDir: 'unknown',
+          gridHeight: 40,
+          fileName: 'circle.svg',
+          fileDir: 'circles',
           fileSize: 0.05,
-          strategy: strategy,
-          helper: '{{svg-jar "#prefix-foo"}}',
+          helper: '{{svg-jar "#prefix-circle"}}',
+          strategy: 'symbol'
+        },
+        {
+          id: '1-symbol',
+          svg: '<svg width="20" height="40"><path d="original"/></svg>',
+          gridWidth: 20,
+          gridHeight: 40,
+          fileName: 'logo.svg',
+          fileDir: 'logos',
+          fileSize: 0.05,
+          helper: '{{svg-jar "#prefix-logo"}}',
+          strategy: 'symbol'
+        },
+        {
+          id: '2-symbol',
+          svg: '<svg viewBox="0 0 20 40"><path d="original"/></svg>',
+          gridWidth: 20,
+          gridHeight: 40,
+          fileName: 'root.svg',
+          fileDir: '/root',
+          fileSize: 0.05,
+          helper: '{{svg-jar "#prefix-root"}}',
+          strategy: 'symbol'
         }
       ]
     });
