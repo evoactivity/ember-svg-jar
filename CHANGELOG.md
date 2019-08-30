@@ -1,5 +1,11 @@
 ## SVGJar Change Log
 
+### v2.2.1
+
+- [[FIX]](https://github.com/ivanvotti/ember-svg-jar/pull/137) Move development dependencies into `devDependencies` [@Turbo87](https://github.com/Turbo87)
+
+[Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v2.2.0...v2.2.1)
+
 ### v2.2.0
 - [ENHANCEMENT] Improved Assets Viewer. It got faster for big SVG collections and has better UI.
 - [INTERNAL] Cleanup some code.
