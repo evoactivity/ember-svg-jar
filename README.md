@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://svgjar.web.app" target="_blank">
-    <img src="https://svgjar.web.app/images/logo-96eaca43925f5d648acc8193b1b9ddd7.png" width="125px" height="120px" alt="Logo">
+    <img src="https://svgjar.web.app/images/logo-96eaca43925f5d648acc8193b1b9ddd7.svg" alt="Logo">
   </a>
 </p>
 
@@ -52,30 +52,31 @@
 
 ## Features
 
-- a <a href="https://svgjar-demo.web.app" target="_blank">visual workflow</a> to find and use your assets the fastest way possible
-- automatic SVG optimization (it can cut file size by half or more)
-- work out of the box (no configuration needed)
-- an easy to use helper `{{svg-jar "asset-name"}}`
-- support for both `inline` and `symbol` embedding methods
+- <a href="https://svgjar-demo.web.app" target="_blank">Visual workflow</a> to find and use SVGs the fastest way possible
+- Automatic SVG optimization (it can cut file size by half or more)
+- Zero configuration
+- Easy to use helper `{{svg-jar "asset-name"}}`
+- Support for both `inline` and `symbol` embedding methods
 
 ## Installation
 
 `$ ember install ember-svg-jar`
 
-## Start in 4 easy steps
+## Start in 3 easy steps
 
-- Put your SVG files to the `public` directory (e.g. [material-design-icons](https://github.com/google/material-design-icons))
-- Run the development server and open this link with Chrome: <a href="http://localhost:4200/ember-svg-jar/index.html" target="_blank">http://localhost:4200/ember-svg-jar/index.html</a>
-- Select any SVG there and press `Enter` to copy the helper code to the clipboard.
-- Paste it into any template and see it rendered in your browser.
+- Drop some SVG images to the `public` directory (e.g. [material-design-icons](https://github.com/google/material-design-icons))
+- Open the [asset viewer](http://localhost:4200/ember-svg-jar/index.html) and select any icon you like
+- Copy the helper code from the viewer and paste it to your template
 
 <a href="https://svgjar-demo.web.app" target="_blank">Click here to see the asset viewer demo.</a>
 
 ## Usage in an app
 
-Drag and drop SVG images to your project's `public` directory and copy & paste them from the <a href="http://localhost:4200/ember-svg-jar/index.html" target="_blank">assets viewer</a> to your templates.
+Place your SVG images to the `public` directory (e.g. `./public/images/my-icon.svg`). Then copy the helper code for your image from the [asset viewer](http://localhost:4200/ember-svg-jar/index.html) or just write it by hand like this: `{{svg-jar "my-icon"}}`.
 
 The viewer is available at: <a href="http://localhost:4200/ember-svg-jar/index.html" target="_blank">http://localhost:4200/ember-svg-jar/index.html</a>
+
+If your `rootURL` is not `/`, then to use the asset viewer you will need to add `rootURL` to the addon [config](https://github.com/ivanvotti/ember-svg-jar/blob/master/docs/configuration.md#global-options).
 
 ### Assets from Node modules
 
@@ -102,7 +103,7 @@ of the addon, it should be listed as one of the `dependencies` and not `devDepen
 
 ## Configuration
 
-**Note:** Ember SVGJar should be useful without any configuration. But it wants to be very configurable when it's time to adjust it for your needs.
+The addon should be useful without any configuration. But it wants to be very configurable when it's time to adjust it for your needs.
 
 - [All configuration options](docs/configuration.md)
 - [Advanced usage examples](docs/examples.md)
