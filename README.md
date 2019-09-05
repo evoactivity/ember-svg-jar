@@ -33,7 +33,7 @@
 - [Table of Contents](#table-of-contents)
 - [Features](#features)
 - [Installation](#installation)
-- [Start in 4 easy steps](#start-in-4-easy-steps)
+- [Start in 3 easy steps](#start-in-3-easy-steps)
 - [Usage in an app](#usage-in-an-app)
   - [Assets from Node modules](#assets-from-node-modules)
 - [Usage in an addon](#usage-in-an-addon)
