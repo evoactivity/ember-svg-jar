@@ -1,0 +1,195 @@
+{
+  "projectName": "ember-svg-jar",
+  "projectOwner": "ivanvotti",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "ember",
+  "contributors": [
+    {
+      "login": "ef4",
+      "name": "Edward Faulkner",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/319282?v=4",
+      "profile": "http://eaf4.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Turbo87",
+      "name": "Tobias Bieniek",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/141300?v=4",
+      "profile": "https://github.com/Turbo87",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "rwwagner90",
+      "name": "Robert Wagner",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2640861?v=4",
+      "profile": "https://shipshape.io",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "wagenet",
+      "name": "Peter Wagenet",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/9835?v=4",
+      "profile": "https://github.com/wagenet",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ryanpatrickcook",
+      "name": "Ryan Cook",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3067243?v=4",
+      "profile": "https://github.com/ryanpatrickcook",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "mupkoo",
+      "name": "Mirko Akov",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1788571?v=4",
+      "profile": "https://github.com/mupkoo",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "mrloop",
+      "name": "Ewan McDougall",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/12345?v=4",
+      "profile": "http://mrloop.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "markcatley",
+      "name": "Mark Catley",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/5198?v=4",
+      "profile": "https://github.com/markcatley",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "john-griffin",
+      "name": "John Griffin",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/19490?v=4",
+      "profile": "http://www.seated.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ilucin",
+      "name": "Ivan Lučin",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/4481706?v=4",
+      "profile": "http://www.facebook.com/lucin.ivan",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "hyjk2000",
+      "name": "James Shih",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/4647136?v=4",
+      "profile": "https://hyjk2000.github.io",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "djsegal",
+      "name": "djsegal",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/3156114?v=4",
+      "profile": "http://seg.al",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "buschtoens",
+      "name": "Jan Buschtöns",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/834636?v=4",
+      "profile": "https://jan.buschtoens.me",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "astronomersiva",
+      "name": "Sivasubramanyam A",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/7725225?v=4",
+      "profile": "https://siva.dev",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "alexdiliberto",
+      "name": "Alex DiLiberto",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/666459?v=4",
+      "profile": "https://alexdiliberto.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Dhaulagiri",
+      "name": "Brian Runnells",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1672302?v=4",
+      "profile": "https://github.com/Dhaulagiri",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jenweber",
+      "name": "Jen Weber",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/16627268?v=4",
+      "profile": "https://jenweber.github.io/portfolio/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "hakilebara",
+      "name": "Frédéric Soumaré",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1991564?v=4",
+      "profile": "http://hakilebara.com",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "kiwiupover",
+      "name": "David Laird",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/647691?v=4",
+      "profile": "http://kiwiupover.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Daan-",
+      "name": "Daan van Etten",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/533152?v=4",
+      "profile": "http://www.lumialabs.com",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
