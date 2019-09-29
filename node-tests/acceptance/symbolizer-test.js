@@ -10,7 +10,7 @@ const { expect } = chai;
 chai.use(chaiAsPromised);
 
 describe('Symbolizer', function() {
-  this.timeout(5000);
+  this.timeout(8000);
 
   let inputNode = new fixture.Node({
     'foo.svg': '<svg viewBox="0 0 1 1"><path d="foo"/></svg>',
