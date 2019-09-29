@@ -178,8 +178,7 @@ Contributions of any kind welcome! See the [Contributing](CONTRIBUTING.md) guide
 Thanks goes to these wonderful people:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
+<!-- prettier-ignore -->
 <table>
   <tr>
     <td align="center"><a href="http://eaf4.com"><img src="https://avatars0.githubusercontent.com/u/319282?v=4" width="100px;" alt="Edward Faulkner"/><br /><sub><b>Edward Faulkner</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=ef4" title="Code">💻</a></td>
@@ -206,11 +205,9 @@ Thanks goes to these wonderful people:
     <td align="center"><a href="http://hakilebara.com"><img src="https://avatars2.githubusercontent.com/u/1991564?v=4" width="100px;" alt="Frédéric Soumaré"/><br /><sub><b>Frédéric Soumaré</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=hakilebara" title="Documentation">📖</a></td>
     <td align="center"><a href="http://kiwiupover.com"><img src="https://avatars3.githubusercontent.com/u/647691?v=4" width="100px;" alt="David Laird"/><br /><sub><b>David Laird</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=kiwiupover" title="Code">💻</a></td>
     <td align="center"><a href="http://www.lumialabs.com"><img src="https://avatars2.githubusercontent.com/u/533152?v=4" width="100px;" alt="Daan van Etten"/><br /><sub><b>Daan van Etten</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=Daan-" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/tcjr"><img src="https://avatars3.githubusercontent.com/u/142243?v=4" width="100px;" alt="Tom Carter"/><br /><sub><b>Tom Carter</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/issues?q=author%3Atcjr" title="Bug reports">🐛</a></td>
   </tr>
 </table>
-
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 

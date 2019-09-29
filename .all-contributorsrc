@@ -189,6 +189,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "tcjr",
+      "name": "Tom Carter",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/142243?v=4",
+      "profile": "https://github.com/tcjr",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7
