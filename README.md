@@ -207,6 +207,9 @@ Thanks goes to these wonderful people:
     <td align="center"><a href="http://www.lumialabs.com"><img src="https://avatars2.githubusercontent.com/u/533152?v=4" width="100px;" alt="Daan van Etten"/><br /><sub><b>Daan van Etten</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=Daan-" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/tcjr"><img src="https://avatars3.githubusercontent.com/u/142243?v=4" width="100px;" alt="Tom Carter"/><br /><sub><b>Tom Carter</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/issues?q=author%3Atcjr" title="Bug reports">🐛</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="http://summerisgone.com"><img src="https://avatars0.githubusercontent.com/u/106999?v=4" width="100px;" alt="Ivan Gromov"/><br /><sub><b>Ivan Gromov</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=summerisgone" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
