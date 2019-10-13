@@ -23,7 +23,7 @@
     "s": "ember s",
     "lint:js": "eslint .",
     "lint:hbs": "ember-template-lint .",
-    "nodetest": "node node-tests/runner.js",
+    "nodetest": "mocha node-tests/**/*-test.js",
     "test": "yarn lint:js && yarn nodetest && ember test",
     "prepublishOnly": "yarn test"
   },
