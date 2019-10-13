@@ -55,6 +55,19 @@ describe('Symbolizer', function() {
     expect(result[this.options.outputFile]).to.include(expected);
   });
 
+  it('sets custom SVG attributes for items with gradients', async function() {
+    this.options.svgAttrs = {
+      width: '10',
+      height: '20',
+    };
+
+    let input = { 'grad.svg': '<svg><defs><linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="grad-1"><stop stop-color="#7EDFB0" offset="0%"></stop><stop stop-color="#48BB78" offset="100%"></stop></linearGradient></defs><g fill-rule="evenodd"><circle fill="url(#grad-1)" cx="33" cy="11" r="11"></circle></g></svg>' };
+    let result = await fixture.build(new Symbolizer(new fixture.Node(input), this.options));
+    let expected = '<svg width="10" height="20">';
+
+    expect(result[this.options.outputFile]).to.include(expected);
+  });
+
   it('sets correct symbol IDs', async function() {
     this.options.makeAssetID = (relativePath) => `test-id-${relativePath}`;
 
