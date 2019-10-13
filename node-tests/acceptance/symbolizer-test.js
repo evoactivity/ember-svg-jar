@@ -91,4 +91,18 @@ describe('Symbolizer', function() {
     let expected = '<symbol id="bar.svg" viewBox="0 0 1 1"><path d="bar"/></symbol>\n<symbol id="foo.svg" viewBox="0 0 2 2"><path d="foo"/></symbol>';
     expect(result[this.options.outputFile]).to.include(expected);
   });
+
+  it('extracts gradients', async function() {
+    let input = {
+      'bar.svg': '<svg width="44px" height="22px" viewBox="0 0 44 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="grad-1"><stop stop-color="#7EDFB0" offset="0%"></stop><stop stop-color="#48BB78" offset="100%"></stop></linearGradient><linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="grad-2"><stop stop-color="#77C9F2" offset="0%"></stop><stop stop-color="#4299E1" offset="100%"></stop></linearGradient></defs><g fill-rule="evenodd"><circle id="bar-1" fill="url(#grad-1)" cx="33" cy="11" r="11"></circle><circle id="bar-2" fill="url(#grad-2)" cx="11" cy="11" r="11"></circle></g></svg>',
+      'foo.svg': '<svg width="44px" height="22px" viewBox="0 0 44 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="grad-1"><stop stop-color="#7EDFB0" offset="0%"></stop><stop stop-color="#48BB78" offset="100%"></stop></linearGradient><linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="grad-2"><stop stop-color="#77C9F2" offset="0%"></stop><stop stop-color="#4299E1" offset="100%"></stop></linearGradient></defs><g fill-rule="evenodd"><circle id="foo-1" fill="url(#grad-1)" cx="33" cy="11" r="11"></circle><circle id="foo-2" fill="url(#grad-2)" cx="11" cy="11" r="11"></circle></g></svg>'
+    };
+
+    let actual = await fixture.build(new Symbolizer(new fixture.Node(input), this.options));
+    let expected = {
+      'symbols.svg': '<svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="bar.svg-grad-1"><stop stop-color="#7EDFB0" offset="0%"/><stop stop-color="#48BB78" offset="100%"/></linearGradient><linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="bar.svg-grad-2"><stop stop-color="#77C9F2" offset="0%"/><stop stop-color="#4299E1" offset="100%"/></linearGradient><linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="foo.svg-grad-1"><stop stop-color="#7EDFB0" offset="0%"/><stop stop-color="#48BB78" offset="100%"/></linearGradient><linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="foo.svg-grad-2"><stop stop-color="#77C9F2" offset="0%"/><stop stop-color="#4299E1" offset="100%"/></linearGradient></defs><symbol id="foo.svg" viewBox="0 0 44 22"><g fill-rule="evenodd"><circle id="foo-1" fill="url(#foo.svg-grad-1)" cx="33" cy="11" r="11"/><circle id="foo-2" fill="url(#foo.svg-grad-2)" cx="11" cy="11" r="11"/></g></symbol><symbol id="bar.svg" viewBox="0 0 44 22"><g fill-rule="evenodd"><circle id="bar-1" fill="url(#bar.svg-grad-1)" cx="33" cy="11" r="11"/><circle id="bar-2" fill="url(#bar.svg-grad-2)" cx="11" cy="11" r="11"/></g></symbol></svg>'
+    };
+
+    return expect(actual).to.deep.equal(expected);
+  });
 });
