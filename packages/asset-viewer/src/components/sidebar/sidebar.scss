@@ -1,0 +1,64 @@
+@import '../../styles/settings/index';
+
+.sidebar {
+  width: 238px;
+  padding: $gutter;
+  padding-right: $gutter - $scroll-size;
+  overflow-y: scroll;
+  background-color: $gray-100;
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: $scroll-thumb-color;
+  }
+}
+
+.sidebar__section {
+  &:not(:first-child) {
+    margin-top: $size-3;
+  }
+}
+
+.sidebar__title {
+  padding: $size-3;
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: $semi-bold;
+  color: $gray-550;
+}
+
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: $size-10;
+  padding: 0 $size-3;
+  border-radius: $radius-1;
+  color: $gray-600;
+  transition: background-color 200ms ease-out;
+
+  &:hover {
+    background-color: $gray-300;
+  }
+
+  &.is-active {
+    background-color: $gray-300;
+    color: $indigo-800;
+  }
+}
+
+.sidebar__icon {
+  flex-shrink: 0;
+  margin-right: $size-2;
+  opacity: 0.9;
+}
+
+.sidebar__text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,12 @@
+@import '../../styles/settings/index';
+
+.assets {
+  flex: 1;
+  overflow: hidden;
+
+  &--placeholder {
+    display: flex;
+    overflow-y: hidden;
+    margin-top: -$size-16;
+  }
+}

@@ -1,0 +1,23 @@
+@import '../../styles/settings/index';
+
+.notifier {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: fixed;
+  right: $gutter;
+  bottom: $gutter;
+}
+
+.notifier__item {
+  max-width: 20em;
+  padding: $size-2 $size-3;
+  background-color: hsl(232, 32%, 26%);
+  border-radius: $radius-1;
+  color: $white;
+  z-index: $z-index-tooltip;
+
+  & + & {
+    margin-top: $gutter;
+  }
+}

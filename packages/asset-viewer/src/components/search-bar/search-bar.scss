@@ -1,0 +1,77 @@
+@import '../../styles/settings/index';
+
+.search-bar {
+  position: relative;
+  height: $size-9;
+  width: 100%;
+  max-width: 280px;
+  border-radius: $radius-1;
+}
+
+.search-bar__label {
+  position: absolute;
+  top: 51%;
+  left: $size-3;
+  transform: translateY(-50%);
+  color: $gray-500;
+  z-index: 150;
+  cursor: text;
+}
+
+.search-bar__input {
+  width: 100%;
+  min-height: 38px;
+  padding: 0 $size-10;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: $gray-550;
+  background-color: $gray-100;
+  border: 2px solid transparent;
+  border-radius: $radius-1;
+  transition: all 200ms ease-out;
+
+  &:hover {
+    background-color: $gray-200;
+  }
+
+  &:focus {
+    border-color: $indigo-500;
+    background-color: $white;
+    color: $gray-600;
+    outline: none !important;
+  }
+
+  &::placeholder {
+    color: $gray-550;
+  }
+
+  &:focus::placeholder {
+    color: $gray-400;
+  }
+}
+
+.search-bar__reset {
+  position: absolute;
+  top: 50%;
+  right: $size-2;
+  transform: translateY(-50%);
+  color: $gray-500;
+  opacity: 0.4;
+  z-index: 150;
+  transition: all 200ms ease-out;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:active {
+    color: $gray-550;
+  }
+
+  svg {
+    max-width: $size-5;
+  }
+}

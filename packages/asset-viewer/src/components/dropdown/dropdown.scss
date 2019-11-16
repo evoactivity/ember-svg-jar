@@ -1,0 +1,109 @@
+@import '../../styles/settings/index';
+
+$dropdown-color: $white;
+$dropdown-offset: $size-2;
+$dropdown-translate-offset: $size-2;
+$dropdown-arrow-size: $size-3;
+$dropdown-arrow-offset: -$dropdown-arrow-size / 2;
+
+$dropdown-content-shadow: 0 0 1px 1px hsla(232, 50%, 5%, 0.08),
+  0 2px 12px hsla(232, 50%, 5%, 0.12);
+$dropdown-arrow-shadow: 0 0 1px 1px hsla(232, 50%, 5%, 0.08),
+  0 0 12px hsla(232, 50%, 5%, 0.12);
+
+.dropdown {
+  z-index: $z-index-dropdown;
+}
+
+.dropdown__content {
+  position: relative;
+  background-color: $dropdown-color;
+  border-radius: $radius-1;
+  box-shadow: $dropdown-content-shadow;
+  will-change: transform, opacity;
+
+  [data-placement*='top'] > & {
+    margin-bottom: $dropdown-offset;
+  }
+
+  [data-placement*='right'] > & {
+    margin-left: $dropdown-offset;
+  }
+
+  [data-placement*='bottom'] > & {
+    margin-top: $dropdown-offset;
+  }
+
+  [data-placement*='left'] > & {
+    margin-right: $dropdown-offset;
+  }
+}
+
+.dropdown__arrow {
+  position: absolute;
+  height: $dropdown-arrow-size;
+  width: $dropdown-arrow-size;
+  transform: rotate(45deg);
+  border-radius: 2px;
+  box-shadow: $dropdown-arrow-shadow;
+  background-color: $dropdown-color;
+  z-index: -1;
+
+  [data-placement*='top'] & {
+    bottom: 0;
+    margin-bottom: $dropdown-arrow-offset;
+  }
+
+  [data-placement*='right'] & {
+    left: 0;
+    margin-left: $dropdown-arrow-offset;
+  }
+
+  [data-placement*='bottom'] & {
+    top: 0;
+    margin-top: $dropdown-arrow-offset;
+  }
+
+  [data-placement*='left'] & {
+    right: 0;
+    margin-right: $dropdown-arrow-offset;
+  }
+}
+
+.dropdown__list {
+  padding: $size-2;
+  border-radius: $radius-1;
+  background-color: $white;
+}
+
+.dropdown__item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: $size-8;
+  padding: 0 $size-3 0 $size-1;
+  border-radius: $radius-1;
+  color: $gray-600;
+  cursor: pointer;
+
+  &:hover {
+    background: $gray-100;
+  }
+
+  &:active {
+    background-color: $gray-200;
+  }
+
+  &:before {
+    content: '';
+    width: $size-3;
+    margin-right: $size-1;
+    font-size: $font-size-xs;
+    text-align: center;
+    color: $green-500;
+  }
+
+  &.is-active:before {
+    content: '●';
+  }
+}

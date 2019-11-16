@@ -1,0 +1,116 @@
+@import '../../styles/settings/index';
+
+.code-block {
+  margin: 0;
+  padding: $gutter;
+  overflow: auto;
+  overflow-x: scroll;
+  background-color: $gray-50;
+  border-radius: $radius-1;
+  border: 1px solid $gray-300;
+  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: $font-size-lg;
+  color: #333;
+  text-align: left;
+  line-height: 1.4;
+  white-space: pre;
+  word-spacing: normal;
+  hyphens: none;
+  direction: ltr;
+  tab-size: 4;
+  user-select: text;
+
+  &::-webkit-scrollbar {
+    height: 2px;
+  }
+
+  & * {
+    user-select: text;
+  }
+
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #969896;
+  }
+
+  .token.punctuation {
+    color: $indigo-900;
+  }
+
+  .token.string,
+  .token.atrule,
+  .token.attr-value {
+    color: $green-700;
+  }
+
+  .token.variable {
+    color: $indigo-700;
+  }
+
+  .token.property,
+  .token.tag {
+    color: $green-700;
+  }
+
+  .token.boolean,
+  .token.number {
+    color: $blue-700;
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.attr-value .punctuation:first-child,
+  .token.keyword,
+  .token.regex,
+  .token.important {
+    color: #795da3;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string {
+    color: #a71d5d;
+  }
+
+  .namespace {
+    opacity: 0.7;
+  }
+}
+
+.code-block.line-numbers {
+  position: relative;
+  padding-left: $gutter * 2;
+  counter-reset: linenumber;
+
+  code {
+    position: relative;
+    white-space: inherit;
+  }
+
+  .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: -$gutter * 2.4;
+    width: 3em; // works for line-numbers below 1000 lines
+    letter-spacing: -1px;
+    user-select: none;
+  }
+
+  .line-numbers-rows > span {
+    pointer-events: none;
+    display: block;
+    counter-increment: linenumber;
+  }
+
+  .line-numbers-rows > span:before {
+    content: counter(linenumber);
+    color: rgba(27, 31, 35, 0.2);
+    display: block;
+    padding-right: 0.8em;
+    text-align: right;
+  }
+}

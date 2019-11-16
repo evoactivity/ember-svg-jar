@@ -1,0 +1,43 @@
+@import '../../styles/settings/index';
+
+.drawer {
+  display: flex;
+  position: fixed;
+  z-index: $z-index-modal;
+  will-change: transform;
+
+  &--top {
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &--bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &--left {
+    top: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &--right {
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.drawer__overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: hsla(232, 50%, 5%, 0.8);
+  z-index: $z-index-modal-overlay;
+  will-change: opacity;
+}

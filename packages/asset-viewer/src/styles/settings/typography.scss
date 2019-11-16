@@ -1,0 +1,33 @@
+/* Font family */
+
+$font-family: 'Ubuntu', system-ui, -apple-system, BlinkMacSystemFont,
+  'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+/* Font size */
+
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-md: 1rem; // 16px
+$font-size-lg: 1.125rem; // 18px
+$font-size-xl: 1.25rem; // 20px
+$font-size-2xl: 1.5rem; // 24px
+$font-size-3xl: 1.875rem; // 30px
+$font-size-4xl: 2.25rem; // 36px
+$font-size-5xl: 2.75rem; // 44px
+$font-size-6xl: 3.25rem; // 52px
+$font-size-7xl: 4rem; // 64px
+
+/* Line height */
+
+$line-height-none: 1;
+$line-height-xs: 1.25;
+$line-height-sm: 1.375;
+$line-height-md: 1.5;
+$line-height-lg: 1.625;
+$line-height-xl: 1.7;
+
+/* Font weights */
+
+$regular: 400;
+$semi-bold: 500;
+$bold: 700;

@@ -1,0 +1,125 @@
+@import '../../styles/settings/index';
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background-color: $white;
+  border-left: 1px solid $gray-300;
+  overflow-y: auto;
+
+  .drawer > & {
+    border: 0;
+  }
+
+  @media screen and (min-width: $breakpoint-xl) {
+    width: 320px;
+  }
+}
+
+.pane__file {
+  display: flex;
+  align-items: center;
+  color: $gray-600;
+}
+
+.pane__file-icon {
+  flex-shrink: 0;
+  margin-right: $size-2;
+  opacity: 0.9;
+}
+
+.pane__file-name {
+  margin-right: $gutter;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pane__file-button {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.pane__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: $size-12;
+  border-top: 1px solid $gray-300;
+  border-bottom: 1px solid $gray-300;
+  background-color: $gray-50;
+  padding: $size-3 $gutter;
+}
+
+.pane__title {
+  font-size: $font-size-xs;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: $semi-bold;
+  color: $gray-550;
+}
+
+.pane__content {
+  padding: $gutter;
+}
+
+.pane__preview {
+  min-height: 122px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h6v6H0V0zm6 6h6v6H6V6z' fill='%23F3F4F8' fill-rule='evenodd'/%3E%3C/svg%3E");
+  border-radius: $radius-1;
+  border: 1px solid $gray-300;
+  overflow: hidden;
+  color: $indigo-950;
+
+  svg {
+    width: $size-9;
+    height: $size-9;
+  }
+}
+
+.pane__section {
+  &--header {
+    padding: 2px;
+  }
+
+  &--footer {
+    margin-top: auto;
+    border-top: 1px solid $gray-300;
+  }
+}
+
+.pane__info-item {
+  display: flex;
+  margin-bottom: $size-3;
+  justify-content: space-between;
+}
+
+.pane__info-title {
+  margin-right: $size-2;
+  flex-grow: 1;
+  flex-shrink: 0;
+  color: $gray-550;
+  text-transform: capitalize;
+}
+
+.pane__info-text {
+  max-width: 130px;
+  text-align: right;
+  color: $gray-500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pane__range {
+  position: absolute !important;
+  top: 0;
+  right: $gutter;
+  max-width: 100px;
+  height: 100%;
+}

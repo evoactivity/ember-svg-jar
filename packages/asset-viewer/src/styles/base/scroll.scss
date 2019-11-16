@@ -1,0 +1,14 @@
+::-webkit-scrollbar {
+  width: $scroll-size;
+  height: $scroll-size;
+  cursor: default;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: $radius-1;
+  background-color: $scroll-thumb-color;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background-color: transparent;
+}

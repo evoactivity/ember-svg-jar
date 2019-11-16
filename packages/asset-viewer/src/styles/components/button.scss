@@ -1,0 +1,61 @@
+.btn {
+  display: flex;
+  align-items: center;
+  height: $size-9;
+  padding: 0 $size-4;
+  border: 1px solid transparent;
+  border-radius: $radius-1;
+  background-color: $gray-100;
+  color: $gray-550;
+  font-size: $font-size-md;
+  transition: background-color 200ms ease-out, border-color 200ms ease-out;
+
+  &:hover {
+    background-color: $gray-200;
+    color: $gray-600;
+  }
+
+  &:active {
+    background-color: $gray-300;
+    color: $gray-600;
+  }
+
+  &--small {
+    height: $size-8;
+    font-size: $font-size-sm;
+  }
+
+  &--full {
+    width: 100%;
+    justify-content: center;
+  }
+
+  &--icon-only {
+    padding-left: $size-2;
+    padding-right: $size-2;
+  }
+
+  svg {
+    opacity: 0.85;
+  }
+}
+
+.btn--primary {
+  background-color: $green-500;
+  color: $white;
+
+  &:hover {
+    background-color: $green-500;
+    color: $white;
+  }
+
+  &:active {
+    background-color: $green-700;
+    color: $white;
+  }
+}
+
+.btn--outline {
+  background-color: transparent;
+  border-color: $gray-300;
+}

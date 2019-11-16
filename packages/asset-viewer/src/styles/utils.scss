@@ -1,0 +1,31 @@
+/* Utilities */
+
+.u-nowrap {
+  white-space: nowrap !important;
+}
+
+.u-ml-auto {
+  margin-left: auto !important;
+}
+
+.u-mr-auto {
+  margin-right: auto !important;
+}
+
+.u-truncate {
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+}
+
+.u-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+}

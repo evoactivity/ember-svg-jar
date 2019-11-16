@@ -1,0 +1,40 @@
+@import '../../styles/settings/index';
+
+.placeholder {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder__icon {
+  margin-bottom: $size-3;
+}
+
+.placeholder__title {
+  margin-bottom: $size-1;
+  font-size: $font-size-md;
+  font-weight: $semi-bold;
+  text-transform: capitalize;
+  color: hsl(231, 28%, 60%);
+}
+
+.placeholder__text {
+  max-width: 500px;
+  overflow: hidden;
+  font-size: $font-size-md;
+  line-height: 2;
+  text-align: center;
+  text-overflow: ellipsis;
+  color: $gray-500;
+
+  b {
+    display: inline-block;
+    margin: 0 2px;
+    padding: 0 $size-2;
+    line-height: 1.3;
+    border-radius: $radius-1;
+    border: 1px solid $gray-400;
+    white-space: nowrap;
+  }
+}

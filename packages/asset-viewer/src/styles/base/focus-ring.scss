@@ -1,0 +1,12 @@
+/*
+  Only show the focus ring to tabbing users.
+  Add `.is-tabbing` class to the `body` element with JS.
+*/
+
+:focus {
+  outline: 0;
+}
+
+.is-tabbing :not([tabindex='-1']):focus {
+  outline: 3px solid $indigo-600;
+}

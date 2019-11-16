@@ -1,0 +1,59 @@
+@import '../../styles/settings/index';
+
+.shortcuts-bar {
+  flex: 1;
+  background-color: $gray-100;
+  padding: $gutter * 3;
+}
+
+.shortcuts-bar__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: $gutter * 1.6;
+  opacity: 0.4;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+}
+
+.shortcuts-bar__title {
+  margin-bottom: $gutter * 3;
+  font-size: $font-size-2xl;
+  text-align: center;
+  color: $indigo-950;
+}
+
+.shortcuts-bar__list {
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: $gutter $gutter * 2;
+}
+
+.shortcuts-bar__item {
+  display: flex;
+  align-items: center;
+}
+
+.shortcuts-bar__keys {
+  width: $size-20;
+  margin-right: $gutter;
+  text-align: right;
+}
+
+.shortcuts-bar__key {
+  display: inline-block;
+  min-width: $size-10;
+  padding: $size-2 $size-3;
+  border-radius: $radius-1;
+  background-color: $indigo-950;
+  font-family: $font-family;
+  font-weight: $regular;
+  color: $white;
+  text-align: center;
+  text-transform: capitalize;
+}

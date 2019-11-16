@@ -1,0 +1,27 @@
+<svg viewBox="0 0 24 32"
+  xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="svg-jar-logo-red">
+      <stop stop-color="#FBA5A4" offset="0%"/>
+      <stop stop-color="#F66C6B" offset="100%"/>
+    </linearGradient>
+    <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="svg-jar-logo-yellow">
+      <stop stop-color="#FFDF74" offset="0%"/>
+      <stop stop-color="#FFBC40" offset="80%"/>
+    </linearGradient>
+    <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="svg-jar-logo-blue">
+      <stop stop-color="#7ED4FD" offset="0%"/>
+      <stop stop-color="#48A9F9" offset="80%"/>
+    </linearGradient>
+    <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="svg-jar-logo-purple">
+      <stop stop-color="#ABB2FF" offset="0%"/>
+      <stop stop-color="#7E85FF" offset="100%"/>
+    </linearGradient>
+  </defs>
+  <g fill-rule="nonzero" fill="none">
+    <path d="M24.001 20.594v3.914a7 7 0 0 1-5.802 6.897 39.22 39.22 0 0 1-6.72.595c-1.92 0-3.794-.152-5.623-.455a7.055 7.055 0 0 1-.601-.127L24 20.594h.001z" fill="url(#svg-jar-logo-red)" transform="translate(-.001)"/>
+    <path d="M24.001 11v7.046L2.834 30.266a6.998 6.998 0 0 1-2.833-5.627v-.381l23.972-13.84c.019.191.028.386.028.582z" fill="url(#svg-jar-logo-yellow)" transform="translate(-.001)"/>
+    <path d="M22.001 1.362V4a1 1 0 0 1-1 1h-3a6 6 0 0 1 5.329 3.24L0 21.71v-7.645L22.001 1.362z" fill="url(#svg-jar-logo-blue)" transform="translate(-.001)"/>
+    <path d="M19.947 0L.001 11.517V11a6 6 0 0 1 6-6h-3a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1h16.947-.001z" fill="url(#svg-jar-logo-purple)" transform="translate(-.001)"/>
+  </g>
+</svg>

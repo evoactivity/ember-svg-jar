@@ -1,0 +1,40 @@
+@import '../../styles/settings/index';
+
+.actions-bar {
+  display: flex;
+  position: sticky;
+  top: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: $size-2;
+  background-color: $white;
+  box-shadow: 0 1px 5px hsla(232, 40%, 50%, 0.1);
+
+  @media screen and (min-width: $breakpoint-sm) {
+    padding: $gutter;
+  }
+}
+
+.actions-bar__section {
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-right: $size-2;
+    flex: 1;
+
+    @media screen and (min-width: $breakpoint-sm) {
+      margin-right: $gutter;
+    }
+  }
+}
+
+.actions-bar__item {
+  &:not(:last-child) {
+    margin-right: $size-2;
+
+    @media screen and (min-width: $breakpoint-sm) {
+      margin-right: $gutter;
+    }
+  }
+}

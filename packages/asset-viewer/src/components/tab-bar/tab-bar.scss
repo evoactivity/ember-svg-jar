@@ -1,0 +1,93 @@
+@import '../../styles/settings/index';
+
+$tab-bar-gutter: $size-2;
+$tab-bar-gutter-sm: $size-2;
+
+.tab-bar {
+  display: flex;
+  flex-direction: row;
+  padding: $tab-bar-gutter;
+  align-items: center;
+  background-color: $indigo-700;
+
+  @media screen and (min-width: $breakpoint-sm) {
+    flex-direction: column;
+    padding: $tab-bar-gutter-sm;
+  }
+}
+
+.tab-bar__logo {
+  margin: 0 $gutter 0 $size-2;
+  transition: opacity 250ms ease-out;
+  will-change: opacity;
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  svg {
+    width: $size-5;
+  }
+
+  @media screen and (min-width: $breakpoint-sm) {
+    margin: $size-3 0 $size-5;
+  }
+}
+
+.tab-bar__section {
+  display: flex;
+  flex-direction: row;
+
+  &:last-child {
+    margin-left: auto;
+  }
+
+  @media screen and (min-width: $breakpoint-sm) {
+    display: flex;
+    flex-direction: column;
+
+    &:last-child {
+      margin-top: auto;
+    }
+  }
+}
+
+.tab-bar__item {
+  &:not(:last-child) {
+    margin-right: $tab-bar-gutter;
+  }
+
+  @media screen and (min-width: $breakpoint-sm) {
+    &:not(:last-child) {
+      margin-right: 0;
+      margin-bottom: $tab-bar-gutter-sm;
+    }
+  }
+}
+
+.tab-bar__tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $size-9;
+  width: $size-9;
+  border-radius: $radius-1;
+  color: $indigo-100;
+  transition: background-color 200ms ease-out, color 200ms ease-out,
+    transform 200ms ease-out;
+
+  &:hover,
+  &.is-active {
+    background-color: $indigo-600;
+    color: $white;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  @media screen and (min-width: $breakpoint-sm) {
+    height: $size-10;
+    width: $size-10;
+  }
+}

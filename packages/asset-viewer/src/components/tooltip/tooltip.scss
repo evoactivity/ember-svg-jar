@@ -1,0 +1,66 @@
+@import '../../styles/settings/index';
+
+$tooltip-color: hsl(232, 32%, 26%);
+$tooltip-offset: $size-2;
+$tooltip-translate-offset: $size-2;
+$tooltip-arrow-size: $size-2;
+$tooltip-arrow-offset: -$tooltip-arrow-size / 2;
+
+.tooltip {
+  z-index: $z-index-tooltip;
+}
+
+.tooltip__content {
+  position: relative;
+  padding: $size-2 $size-3;
+  background-color: $tooltip-color;
+  border-radius: $radius-1;
+  color: $white;
+  will-change: transform, opacity;
+
+  [data-placement*='top'] > & {
+    margin-bottom: $tooltip-offset;
+  }
+
+  [data-placement*='right'] > & {
+    margin-left: $tooltip-offset;
+  }
+
+  [data-placement*='bottom'] > & {
+    margin-top: $tooltip-offset;
+  }
+
+  [data-placement*='left'] > & {
+    margin-right: $tooltip-offset;
+  }
+}
+
+.tooltip__arrow {
+  position: absolute;
+  height: $tooltip-arrow-size;
+  width: $tooltip-arrow-size;
+  transform: rotate(45deg);
+  border-radius: 1px;
+  background-color: $tooltip-color;
+  z-index: -1;
+
+  [data-placement*='top'] & {
+    bottom: 0;
+    margin-bottom: $tooltip-arrow-offset;
+  }
+
+  [data-placement*='right'] & {
+    left: 0;
+    margin-left: $tooltip-arrow-offset;
+  }
+
+  [data-placement*='bottom'] & {
+    top: 0;
+    margin-top: $tooltip-arrow-offset;
+  }
+
+  [data-placement*='left'] & {
+    right: 0;
+    margin-right: $tooltip-arrow-offset;
+  }
+}
