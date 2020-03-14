@@ -216,7 +216,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "alexlafroscia",
+      "name": "Alex LaFroscia",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1645881?v=4",
+      "profile": "https://alexlafroscia.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
