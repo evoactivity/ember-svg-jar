@@ -3,7 +3,7 @@ export const BREAKPOINTS = {
   large: '(min-width: 1200px)',
 };
 
-const publicURL = typeof window !== 'undefined' && window.SVG_JAR_PUBLIC_URL
+const publicURL = typeof window !== 'undefined' && typeof window.SVG_JAR_PUBLIC_URL !== 'undefined'
   ? window.SVG_JAR_PUBLIC_URL
   : '/';
 
