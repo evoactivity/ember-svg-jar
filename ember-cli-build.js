@@ -12,8 +12,8 @@ module.exports = function(defaults) {
   });
 
   if ('@embroider/webpack' in app.dependencies()) {
-    const { Webpack } = require('@embroider/webpack'); // eslint-disable-line node/no-extraneous-require
-    return require('@embroider/compat') // eslint-disable-line node/no-extraneous-require global-require
+    const { Webpack } = require('@embroider/webpack'); // eslint-disable-line
+    return require('@embroider/compat') // eslint-disable-line
       .compatBuild(app, Webpack, {
         packagerOptions: {
           webpackConfig: {
