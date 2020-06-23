@@ -11,5 +11,16 @@ module.exports = function(defaults) {
     }
   });
 
+  if ('@embroider/webpack' in app.dependencies()) {
+    const { Webpack } = require('@embroider/webpack'); // eslint-disable-line
+    return require('@embroider/compat') // eslint-disable-line
+      .compatBuild(app, Webpack, {
+        packagerOptions: {
+          webpackConfig: {
+            devtool: false,
+          },
+        },
+      });
+  }
   return app.toTree();
 };
