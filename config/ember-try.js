@@ -122,7 +122,17 @@ module.exports = async function() {
             '@ember/jquery': '^0.5.1'
           }
         }
-      }
+      },
+      {
+        name: 'embroider-tests',
+        npm: {
+          devDependencies: {
+            '@embroider/core': '*',
+            '@embroider/webpack': '*',
+            '@embroider/compat': '*',
+          },
+        },
+      },
     ]
   };
 };
