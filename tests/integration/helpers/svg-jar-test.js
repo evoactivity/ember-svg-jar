@@ -31,9 +31,36 @@ module('Integration | Helper | svg-jar', function(hooks) {
   });
 
   test('it allows to set SVG attributes', async function(assert) {
-    await render(hbs`{{svg-jar "icon" class="myicon" data-foo="bar"}}`);
+    await render(hbs`{{svg-jar "icon" class="myicon" data-foo="bar" role="img"}}`);
     assert.dom('svg').hasAttribute('class', 'myicon');
     assert.dom('svg').hasAttribute('data-foo', 'bar');
+    assert.dom('svg').hasAttribute('role', 'img');
+    assert.dom('svg').doesNotHaveAttribute('aria-labelledby');
+  });
+
+  test('it adds SVG accessibility elements', async function(assert) {
+    await render(hbs`{{svg-jar "icon" class="myicon" title="Green rectangle" desc="A light green rectangle"}}`);
+    assert.dom('title').hasText('Green rectangle');
+    assert.dom('title').hasAttribute('id', 'title');
+
+    assert.dom('desc').hasText('A light green rectangle');
+    assert.dom('desc').hasAttribute('id', 'desc');
+
+    assert.dom('svg').hasAttribute('class', 'myicon');
+    assert.dom('svg').hasAttribute('aria-labelledby', 'title desc');
+
+    assert.dom('svg').doesNotHaveAttribute('title');
+    assert.dom('svg').doesNotHaveAttribute('desc');
+  });
+
+  test('it escapes html passed into attributes', async function(assert) {
+    await render(hbs`{{svg-jar "icon" title="<script>alert('evil javascript')</script>" desc="<div>evil string</div>"}}`);
+
+    assert.dom('title').hasText("<script>alert('evil javascript')</script>");
+    assert.equal(document.querySelector('#title').children.length, 0);
+
+    assert.dom('desc').hasText('<div>evil string</div>');
+    assert.equal(document.querySelector('#desc').children.length, 0);
   });
 
   test('it allows to override original SVG attributes', async function(assert) {
@@ -71,8 +98,35 @@ module('Integration | Helper | svg-jar', function(hooks) {
   });
 
   test('it allows to set SVG attributes for symbol strategy', async function(assert) {
-    await render(hbs`{{svg-jar "#icon" class="myicon" data-foo="bar"}}`);
+    await render(hbs`{{svg-jar "#icon" class="myicon" data-foo="bar" role="img"}}`);
     assert.dom('svg').hasAttribute('class', 'myicon');
     assert.dom('svg').hasAttribute('data-foo', 'bar');
+    assert.dom('svg').hasAttribute('role', 'img');
+    assert.dom('svg').doesNotHaveAttribute('aria-labelledby');
+  });
+
+  test('it adds SVG accessibility elements for symbol strategy', async function(assert) {
+    await render(hbs`{{svg-jar "#icon" class="myicon" title="Green rectangle" desc="A light green rectangle"}}`);
+    assert.dom('title').hasText('Green rectangle');
+    assert.dom('title').hasAttribute('id', 'title');
+
+    assert.dom('desc').hasText('A light green rectangle');
+    assert.dom('desc').hasAttribute('id', 'desc');
+
+    assert.dom('svg').hasAttribute('class', 'myicon');
+    assert.dom('svg').hasAttribute('aria-labelledby', 'title desc');
+
+    assert.dom('svg').doesNotHaveAttribute('title');
+    assert.dom('svg').doesNotHaveAttribute('desc');
+  });
+
+  test('it escapes html passed into attributes for symbol strategy', async function(assert) {
+    await render(hbs`{{svg-jar "#icon" title="<script>alert('evil javascript')</script>" desc="<div>evil string</div>"}}`);
+
+    assert.dom('title').hasText("<script>alert('evil javascript')</script>");
+    assert.equal(document.querySelector('#title').children.length, 0);
+
+    assert.dom('desc').hasText('<div>evil string</div>');
+    assert.equal(document.querySelector('#desc').children.length, 0);
   });
 });

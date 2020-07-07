@@ -108,6 +108,25 @@ In this case the result can look like this:
 <svg><use xlink:href="#my-cool-icon"></use></svg>
 ```
 
+### Accessibility
+
+Pass `title`, `desc`, and `role` as properties to the helper in order to include accessible elements or attributes. `aria-labelledby` will be automatically added and point to `title` and/or `desc` if they are included.
+
+Writing this:
+
+```handlebars
+{{svg-jar "my-cool-icon" role="img" title="Icon" desc="A very cool icon"}}
+```
+
+Will create an SVG that looks like this:
+
+```handlebars
+<svg role="img" aria-labelledby="title desc">
+  <title id="title">Icon</title>
+  <desc id="desc">A very cool icon<desc>
+</svg>
+```
+
 ### Assets from Node modules
 
 By default `ember-svg-jar` looks for SVGs in the `public` directory. To get SVGs from `node_modules` packages or any other directory you will need to add them to `ember-cli-build.js` like this:

@@ -2,7 +2,10 @@ import { module, test } from 'qunit';
 import makeSvg, {
   formatAttrs,
   inlineSvgFor,
-  symbolUseFor
+  symbolUseFor,
+  createAriaLabel,
+  createAccessibilityElements,
+  sanitizeAttrs
 } from 'ember-svg-jar/utils/make-svg';
 
 module('Unit | Utility | make svg', function() {
@@ -88,8 +91,39 @@ module('Unit | Utility | make svg', function() {
       attrName: 'attrValue',
       'f:oo': 'bar',
       isnull: null,
-      isundefined: undefined
+      isundefined: undefined,
+      title: 'Title'
     });
     assert.equal(result, 'attrName="attrValue" f:oo="bar"');
+  });
+
+  test('createAriaLabel works', function(assert) {
+    let result = createAriaLabel({
+      title: 'Title',
+      desc: 'This is the title'
+    });
+    assert.equal(result, 'aria-labelledby="title desc"');
+
+    result = createAriaLabel({});
+    assert.equal(result, '');
+  });
+
+  test('createAccessibilityElements works', function(assert) {
+    let result = createAccessibilityElements({
+      title: 'Title',
+      desc: 'This is the title'
+    });
+    assert.equal(result, '<title id="title">Title</title><desc id="desc">This is the title</desc>');
+  });
+
+  test('sanitizeAttrs works', function(assert) {
+    let result = sanitizeAttrs({
+      title: '<script>Title</script>',
+      desc: '<div>This is the title</div>'
+    });
+    assert.deepEqual(result, {
+      title: '&lt;script&gt;Title&lt;/script&gt;',
+      desc: '&lt;div&gt;This is the title&lt;/div&gt;'
+    });
   });
 });
