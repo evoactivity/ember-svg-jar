@@ -15,11 +15,10 @@ module.exports = function(defaults) {
     const { Webpack } = require('@embroider/webpack'); // eslint-disable-line
     return require('@embroider/compat') // eslint-disable-line
       .compatBuild(app, Webpack, {
-        packagerOptions: {
-          webpackConfig: {
-            devtool: false,
-          },
-        },
+        staticAddonTestSupportTrees: true,
+        staticAddonTrees: true,
+        staticHelpers: true,
+        staticComponents: true,
       });
   }
   return app.toTree();
