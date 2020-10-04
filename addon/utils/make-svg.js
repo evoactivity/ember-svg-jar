@@ -17,8 +17,6 @@ export function getInlineSvgValues(assetId, getInlineAsset, attrs = {}) {
   let asset = getInlineAsset(assetId);
 
   if (!asset) {
-    // eslint-disable-next-line no-console
-    console.warn(`ember-svg-jar: Missing inline SVG for ${assetId}`);
     return;
   }
 
@@ -50,6 +48,11 @@ export default function makeSvg(assetId, attrs = {}, getInlineAsset, getTemplate
   }
 
   let processedValues = getInlineSvgValues(assetId, getInlineAsset, attrs);
+  if (!processedValues) {
+    // eslint-disable-next-line no-console
+    console.warn(`ember-svg-jar: Missing inline SVG for ${assetId}`);
+    return;
+  }
   let svg = getTemplate(processedValues);
 
   return htmlSafe(svg);
