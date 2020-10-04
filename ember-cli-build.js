@@ -12,7 +12,7 @@ module.exports = function(defaults) {
   });
 
   app.import('node_modules/ember-source/dist/ember-template-compiler.js');
-  
+
   if ('@embroider/webpack' in app.dependencies()) {
     const { Webpack } = require('@embroider/webpack'); // eslint-disable-line
     return require('@embroider/compat') // eslint-disable-line

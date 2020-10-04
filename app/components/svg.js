@@ -1,7 +1,8 @@
 import Component from '@ember/component';
 import { compileTemplate as compile } from '@ember/template-compilation';
-import { svgJar } from '../helpers/svg-jar';
+import { tagName } from '@ember-decorators/component';
 import { formatAttrs } from 'ember-svg-jar/utils/make-svg';
+import { svgJar } from '../helpers/svg-jar';
 
 
 const InlineSvgAsHbsTemplate = ({ attrs, content }) => `
@@ -13,11 +14,10 @@ const InlineSvgAsHbsTemplate = ({ attrs, content }) => `
 </svg>
 `;
 
+@tagName('')
 export default class SvgComponent extends Component {
-  tagName = '';
 
-  get layout(){
-	  console.log(svgJar(this.name, InlineSvgAsHbsTemplate).string)
+  get layout() {
     return compile(svgJar(this.name, {}, InlineSvgAsHbsTemplate).string)
   }
 }

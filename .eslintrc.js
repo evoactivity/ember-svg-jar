@@ -4,6 +4,7 @@ const eslintNodePlugin = require('eslint-plugin-node');
 
 module.exports = {
   root: true,
+  parser: 'babel-eslint',
 
   plugins: ['ember'],
 
