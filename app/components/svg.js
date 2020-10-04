@@ -16,8 +16,7 @@ const InlineSvgAsHbsTemplate = ({ attrs, content }) => `
 
 @tagName('')
 export default class SvgComponent extends Component {
-
   get layout() {
-    return compile(svgJar(this.name, {}, InlineSvgAsHbsTemplate).string)
+    return compile(svgJar(this.name, {}, InlineSvgAsHbsTemplate).string);
   }
 }
