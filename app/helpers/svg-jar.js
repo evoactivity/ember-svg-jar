@@ -1,7 +1,7 @@
 import makeHelper from 'ember-svg-jar/utils/make-helper';
-import makeSVG from 'ember-svg-jar/utils/make-svg';
+import makeSVG, { formatAttrs } from 'ember-svg-jar/utils/make-svg';
 
-function getInlineAsset(assetId) {
+export function getInlineAsset(assetId) {
   try {
     /* eslint-disable global-require */
     return require(`ember-svg-jar/inlined/${assetId}`).default;
@@ -10,8 +10,10 @@ function getInlineAsset(assetId) {
   }
 }
 
-export function svgJar(assetId, svgAttrs) {
-  return makeSVG(assetId, svgAttrs, getInlineAsset);
+const InlineSvgTemplate = ({ attrs, content }) => `<svg ${formatAttrs(attrs)}>${content}</svg>`;
+
+export function svgJar(assetId, svgAttrs, template = InlineSvgTemplate) {
+  return makeSVG(assetId, svgAttrs, getInlineAsset, template);
 }
 
 export default makeHelper(svgJar);

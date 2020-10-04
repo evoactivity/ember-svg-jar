@@ -13,7 +13,7 @@ export function symbolUseFor(assetId, attrs = {}) {
   return `<svg ${formatAttrs(attrs)}><use xlink:href="${assetId}" /></svg>`;
 }
 
-export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
+export function getInlineSvgValues(assetId, getInlineAsset, attrs = {}) {
   let asset = getInlineAsset(assetId);
 
   if (!asset) {
@@ -31,10 +31,13 @@ export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
     delete svgAttrs.size;
   }
 
-  return `<svg ${formatAttrs(svgAttrs)}>${asset.content}</svg>`;
+  return {
+    attrs: svgAttrs,
+    content: asset.content
+  };
 }
 
-export default function makeSvg(assetId, attrs = {}, getInlineAsset) {
+export default function makeSvg(assetId, attrs = {}, getInlineAsset, getTemplate) {
   if (!assetId) {
     // eslint-disable-next-line no-console
     console.warn('ember-svg-jar: asset name should not be undefined or null');
@@ -42,9 +45,12 @@ export default function makeSvg(assetId, attrs = {}, getInlineAsset) {
   }
 
   let isSymbol = assetId.lastIndexOf('#', 0) === 0;
-  let svg = isSymbol
-    ? symbolUseFor(assetId, attrs)
-    : inlineSvgFor(assetId, getInlineAsset, attrs);
+  if (isSymbol) {
+    return symbolUseFor(assetId, attrs);
+  }
+
+  let processedValues = getInlineSvgValues(assetId, getInlineAsset, attrs);
+  let svg = getTemplate(processedValues);
 
   return htmlSafe(svg);
 }
