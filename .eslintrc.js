@@ -41,8 +41,6 @@ module.exports = {
 
       excludedFiles: ['lib/**', 'app/**', 'addon/**', 'tests/dummy/app/**'],
 
-      plugins: ['node'],
-
       env: {
         browser: false,
         node: true,
