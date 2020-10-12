@@ -39,6 +39,12 @@ const defaultsFixture = Object.freeze({
     enabled: true
   },
 
+  hbs: {
+    idGen: defaultGens.hbsIdGen,
+    copypastaGen: defaultGens.hbsCopypastaGen,
+    prefix: 'svg-jar/'
+  },
+
   inline: {
     idGen: defaultGens.inlineIdGen,
     copypastaGen: defaultGens.inlineCopypastaGen
