@@ -39,6 +39,7 @@
     "broccoli-plugin": "^3.0.0",
     "broccoli-string-replace": "^0.1.2",
     "broccoli-svg-optimizer": "2.0.0",
+    "broccoli-file-creator": "^2.1.1",
     "cheerio": "^0.22.0",
     "console-ui": "^3.1.1",
     "ember-assign-polyfill": "^2.5.0",
@@ -47,7 +48,8 @@
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.15",
     "mkdirp": "^0.5.1",
-    "path-posix": "^1.0.0"
+    "path-posix": "^1.0.0",
+    "ember-cli-htmlbars": "^3.0.1"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
