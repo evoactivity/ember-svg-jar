@@ -15,6 +15,7 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-dynamic-require': 'off',
     'prefer-const': 'off',
+    'template-curly-spacing': 'off',
 
     'arrow-parens': ['error', 'always'],
 
