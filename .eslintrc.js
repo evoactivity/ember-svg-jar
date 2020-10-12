@@ -1,29 +1,30 @@
 'use strict';
 
-const eslintNodePlugin = require('eslint-plugin-node');
-
 module.exports = {
   root: true,
-
-  plugins: ['ember'],
-
-  extends: ['airbnb-base', 'plugin:ember/recommended', './eslint-rules.js'],
-
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: 'module',
+    ecmaFeatures: {
+      legacyDecorators: true
+    }
+  },
+  plugins: [
+    'ember'
+  ],
+  extends: [
+    'airbnb-base',
+    'eslint:recommended',
+    'plugin:ember/recommended',
+    './eslint-rules.js'
+  ],
   env: {
     browser: true,
     node: false,
     amd: true,
   },
-
-  parserOptions: {
-    ecmaVersion: 2019,
-    sourceType: 'module',
-  },
-
-  rules: {
-    // add your custom rules here
-  },
-
+  rules: {},
   overrides: [
     // for Ember node files
     {
@@ -46,15 +47,8 @@ module.exports = {
         browser: false,
         node: true,
       },
-
-      parserOptions: {
-        sourceType: 'script',
-        ecmaVersion: 2018,
-      },
-
-      rules: Object.assign({}, eslintNodePlugin.configs.recommended.rules, {
-        'quote-props': 0,
-      }),
-    },
-  ],
+      plugins: ['node'],
+      extends: ['plugin:node/recommended']
+    }
+  ]
 };

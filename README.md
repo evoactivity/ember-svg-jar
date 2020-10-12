@@ -36,6 +36,10 @@
 
 ![](https://svgjar.web.app/images/app-screenshot-adb77f291ccaf5251e42c31eb3b5ddd3.png)
 
+- Ember.js v3.12 or above
+- Ember CLI v2.13 or above
+- Node.js v10 or above
+
 ## Table of Contents
 
 - [🍩 Features](#-features)
@@ -217,6 +221,7 @@ Thanks goes to these wonderful people:
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## 🆓 License
