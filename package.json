@@ -42,7 +42,6 @@
     "broccoli-file-creator": "^2.1.1",
     "cheerio": "^0.22.0",
     "console-ui": "^3.1.1",
-    "ember-assign-polyfill": "^2.5.0",
     "ember-cli-babel": "^7.22.1",
     "ember-cli-htmlbars": "^5.3.1",
     "json-stable-stringify": "^1.0.1",
