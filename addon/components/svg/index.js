@@ -34,6 +34,9 @@ export default class Svg extends Component {
     let invokationName = await loadSvg(this.args.name);
     if (!this.isDestroyed || !this.isDestroying) {
       this._lastValue = invokationName;
+      if (this.args.onIconLoad && typeof this.args.onIconLoad === 'function') {
+        this.args.onIconLoad();
+      }
     }
   }
 
