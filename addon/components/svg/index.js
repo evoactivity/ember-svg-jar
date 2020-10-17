@@ -1,12 +1,10 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import { task } from 'ember-concurrency';
 import resolveAsset from 'ember-cli-resolve-asset';
 import { action } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 
 export default class Svg extends Component {
-  @tracked loading = false;
   constructor() {
     super(...arguments);
     this.loadSvg.perform(this.args.name);
