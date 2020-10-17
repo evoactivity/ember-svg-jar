@@ -12,9 +12,7 @@ export async function loadSvg(name) {
     if (window.require(componentDefinedName)) {
       return invokationName;
     }
-  } catch (e) {
-    throw new Error(e);
-  }
+  } catch (e) {} // eslint-disable-line
 
   const assetPath = await resolveAsset(`${componentDefinedName}.js`);
   await import(assetPath);
