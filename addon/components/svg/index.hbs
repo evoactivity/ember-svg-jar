@@ -1,3 +1,13 @@
-{{!-- {{#let (component @name) as |Svg|}}
-  <Svg ...attributes />
-{{/let}} --}}
+{{#if this.loadSvg.lastSuccessful}}
+  {{#let (component this.loadSvg.lastSuccessful.value) as |Svg|}}
+    <Svg
+      {{did-update this.updateSvg @name}}
+      @title={{@title}}
+      @titleId={{this.titleId}}
+      aria-label={{@ariaLabel}}
+      aria-hidden={{this.isAriaHidden}}
+      aria-labelledby={{this.titleId}}
+      ...attributes
+    />
+  {{/let}}
+{{/if}}
