@@ -6,44 +6,42 @@ import { action } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 
 export default class Svg extends Component {
+  @tracked loading = false;
+  constructor() {
+    super(...arguments);
+    this.loadSvg.perform(this.args.name);
+  }
 
-	@tracked loading = false;
+  @action
+  updateSvg() {
+    this.loadSvg.perform(this.args.name);
+  }
 
-	constructor() {
-		super(...arguments);
-		this.loadSvg.perform(this.args.name);
-	}
+  @(task(function* () {
+    let componentDefinedName = `ember-svg-jar/components/${this.args.name}`;
+    let invokationName = `ember-svg-jar@${this.args.name}`;
+    try {
+      if (window.require(componentDefinedName)) {
+        return invokationName;
+      }
+    } catch (e) {
+      throw new Error(e);
+    }
 
-	@action
-	updateSvg() {
-		this.loadSvg.perform(this.args.name);
-	}
-
-	@(task(function*() {
-		let componentDefinedName = `ember-svg-jar/components/${this.args.name}`;
-		let invokationName = `ember-svg-jar@${this.args.name}`;
-		try {
-			if(window.require(componentDefinedName)) {
-				return invokationName;
-			}
-		}catch(e) {}
-
-		const assetPath = yield resolveAsset(`${componentDefinedName}.js`);
-		yield import(assetPath);
-		return invokationName;
+    const assetPath = yield resolveAsset(`${componentDefinedName}.js`);
+    yield import(assetPath);
+    return invokationName;
   }))
-	loadSvg;
+  loadSvg;
 
+  get isAriaHidden() {
+    return (!this.args.ariaLabel && !this.args.ariaLabelledBy && !this.args.title);
+  }
 
-	get isAriaHidden() {
-		return (
-			!this.args.ariaLabel && !this.args.ariaLabelledBy && !this.args.title
-		)
-	}
-
-	get titleId() {
-		if(!this.args.ariaLabel && !this.args.ariaLabelledBy && this.args.title) {
-			return guidFor(`${this.args.name}-${this.title}`);
-		}
-	}
+  get titleId() {
+    if (!this.args.ariaLabel && !this.args.ariaLabelledBy && this.args.title) {
+      return guidFor(`${this.args.name}-${this.title}`);
+    }
+    return '';
+  }
 }
