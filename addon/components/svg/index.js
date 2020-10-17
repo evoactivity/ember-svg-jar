@@ -1,36 +1,41 @@
 import Component from '@glimmer/component';
-import { task } from 'ember-concurrency';
+import { tracked } from '@glimmer/tracking';
 import resolveAsset from 'ember-cli-resolve-asset';
 import { action } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 
+
+export async function loadSvg(name) {
+  let componentDefinedName = `ember-svg-jar/components/${name}`;
+  let invokationName = `ember-svg-jar@${name}`;
+  try {
+    if (window.require(componentDefinedName)) {
+      return invokationName;
+    }
+  } catch (e) {
+    throw new Error(e);
+  }
+
+  const assetPath = await resolveAsset(`${componentDefinedName}.js`);
+  await import(assetPath);
+  return invokationName;
+}
+
 export default class Svg extends Component {
   constructor() {
     super(...arguments);
-    this.loadSvg.perform(this.args.name);
+    this.updateSvg();
   }
+
+  @tracked _lastValue = null;
 
   @action
-  updateSvg() {
-    this.loadSvg.perform(this.args.name);
-  }
-
-  @(task(function* () {
-    let componentDefinedName = `ember-svg-jar/components/${this.args.name}`;
-    let invokationName = `ember-svg-jar@${this.args.name}`;
-    try {
-      if (window.require(componentDefinedName)) {
-        return invokationName;
-      }
-    } catch (e) {
-      throw new Error(e);
+  async updateSvg() {
+    let invokationName = await loadSvg(this.args.name);
+    if (!this.isDestroyed || !this.isDestroying) {
+      this._lastValue = invokationName;
     }
-
-    const assetPath = yield resolveAsset(`${componentDefinedName}.js`);
-    yield import(assetPath);
-    return invokationName;
-  }))
-  loadSvg;
+  }
 
   get isAriaHidden() {
     return (!this.args.ariaLabel && !this.args.ariaLabelledBy && !this.args.title);

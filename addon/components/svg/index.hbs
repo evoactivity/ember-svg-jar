@@ -1,5 +1,5 @@
-{{#if this.loadSvg.lastSuccessful}}
-  {{#let (component this.loadSvg.lastSuccessful.value) as |Svg|}}
+{{#if this._lastValue}}
+  {{#let (component this._lastValue) as |Svg|}}
     <Svg
       {{did-update this.updateSvg @name}}
       @title={{@title}}
