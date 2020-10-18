@@ -1,6 +1,6 @@
 {{#if this._lastValue}}
-  {{#let (component this._lastValue) as |Svg|}}
-    <Svg
+  {{#let (component this._lastValue) as |SvgJar|}}
+    <SvgJar
       {{did-update this.updateSvg @name}}
       @title={{@title}}
       @titleId={{this.titleId}}
@@ -9,5 +9,6 @@
       aria-labelledby={{this.titleId}}
       ...attributes
     />
+    {{!-- <Svg::Accessibility /> --}}
   {{/let}}
 {{/if}}
