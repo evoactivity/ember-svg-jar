@@ -181,7 +181,7 @@ let app = new EmberApp(defaults, {
 #### validations
 
 Type: `Object`  
-Default: `{ validateViewBox: true, checkForDuplicates: true }`
+Default: `{ throwOnFailure: false, validateViewBox: true, checkForDuplicates: true }`
 
 By default SVGJar checks your assets with some validations and emits warning
 messages if it finds any problems. You can suppress the warnings by setting
@@ -191,6 +191,9 @@ particular validations to `false`.
 
 `checkForDuplicates` -- It shows all assets with not unique asset IDs. Asset IDs
 must be unique to embed SVGs correctly.
+
+You can also set `throwOnFailure` to `true` if you would prefer for the build
+to fail if a validation was unsuccessful.
 
 Example (we only disable `validateViewBox` here):
 

@@ -31,6 +31,7 @@ const defaultsFixture = Object.freeze({
   persist: true,
 
   validations: {
+    throwOnFailure: false,
     validateViewBox: true,
     checkForDuplicates: true
   },
