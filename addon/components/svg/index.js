@@ -5,14 +5,28 @@ import { action } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 
 
-export async function loadSvg(name) {
+function needsLoading(name) {
   let componentDefinedName = `ember-svg-jar/components/${name}`;
-  let invokationName = `ember-svg-jar@${name}`;
   try {
     if (window.require(componentDefinedName)) {
-      return invokationName;
+      return false;
     }
   } catch (e) {} // eslint-disable-line
+
+  return true;
+}
+
+function getInvocationName(name) {
+  return `ember-svg-jar@${name}`;
+}
+
+export async function loadSvg(name) {
+  let componentDefinedName = `ember-svg-jar/components/${name}`;
+  let invokationName = getInvocationName(name);
+
+  if (!needsLoading(name)) {
+    return invokationName;
+  }
 
   const assetPath = await resolveAsset(`${componentDefinedName}.js`);
   await import(assetPath);
@@ -25,16 +39,28 @@ export default class Svg extends Component {
     this.updateSvg();
   }
 
-  @tracked _lastValue = null;
+  @tracked _svgComponentName = null;
 
   @action
   async updateSvg() {
-    let invokationName = await loadSvg(this.args.name);
-    if (!this.isDestroyed || !this.isDestroying) {
-      this._lastValue = invokationName;
-      if (this.args.onIconLoad && typeof this.args.onIconLoad === 'function') {
-        this.args.onIconLoad();
+    if (needsLoading(this.args.name)) {
+      if (this.args.loadingSvg && needsLoading(this.args.loadingSvg)) {
+        // maybe we didn't bundle the loadingSvg, it will be there for the next one.
+        loadSvg(this.args.loadingSvg);
+      } else {
+        this._svgComponentName = getInvocationName(this.args.loadingSvg);
       }
+
+      let invokationName = await loadSvg(this.args.name);
+      if (!this.isDestroyed || !this.isDestroying) {
+        this._svgComponentName = invokationName;
+        this.isLoading = false;
+        if (this.args.onIconLoad && typeof this.args.onIconLoad === 'function') {
+          this.args.onIconLoad();
+        }
+      }
+    } else {
+      this._svgComponentName = getInvocationName(this.args.name);
     }
   }
 

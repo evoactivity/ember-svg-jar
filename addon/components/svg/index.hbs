@@ -1,5 +1,5 @@
-{{#if this._lastValue}}
-  {{#let (component this._lastValue) as |SvgJar|}}
+{{#if this._svgComponentName}}
+  {{#let (component this._svgComponentName) as |SvgJar|}}
     <SvgJar
       {{did-update this.updateSvg @name}}
       @title={{@title}}
