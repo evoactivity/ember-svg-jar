@@ -53,6 +53,17 @@ module('Integration | Helper | svg-jar', function(hooks) {
     assert.dom('svg').doesNotHaveAttribute('desc');
   });
 
+  test('it allows to set a11y SVG attributes for decorative images', async function(assert) {
+    await render(hbs`{{svg-jar "icon" role="presentation"}}`);
+    assert.dom('svg').hasAttribute('role', 'presentation');
+
+    await render(hbs`{{svg-jar "icon" role="none"}}`);
+    assert.dom('svg').hasAttribute('role', 'none');
+
+    await render(hbs`{{svg-jar "icon" aria-hidden="true"}}`);
+    assert.dom('svg').hasAttribute('aria-hidden', 'true');
+  });
+
   test('it escapes html passed into attributes', async function(assert) {
     await render(hbs`{{svg-jar "icon" title="<script>alert('evil javascript')</script>" desc="<div>evil string</div>"}}`);
 
@@ -118,6 +129,17 @@ module('Integration | Helper | svg-jar', function(hooks) {
 
     assert.dom('svg').doesNotHaveAttribute('title');
     assert.dom('svg').doesNotHaveAttribute('desc');
+  });
+
+  test('it allows to set a11y SVG attributes for decorative images for symbol strategy', async function(assert) {
+    await render(hbs`{{svg-jar "#icon" role="presentation"}}`);
+    assert.dom('svg').hasAttribute('role', 'presentation');
+
+    await render(hbs`{{svg-jar "#icon" role="none"}}`);
+    assert.dom('svg').hasAttribute('role', 'none');
+
+    await render(hbs`{{svg-jar "#icon" aria-hidden="true"}}`);
+    assert.dom('svg').hasAttribute('aria-hidden', 'true');
   });
 
   test('it escapes html passed into attributes for symbol strategy', async function(assert) {
