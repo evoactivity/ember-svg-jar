@@ -75,13 +75,15 @@ module('Integration | Helper | svg-jar', function(hooks) {
   });
 
   test('it allows to override original SVG attributes', async function(assert) {
-    await render(hbs`{{svg-jar "icon"}}`);
+    await render(hbs`{{svg-jar "icon" title="Green rectangle"}}`);
     assert.dom('svg').hasAttribute('viewBox', '0 0 24 24');
     assert.dom('svg').hasAttribute('height', '24');
+    assert.dom('title').hasText('Green rectangle');
 
-    await render(hbs`{{svg-jar "icon" viewBox="0 0 50 50" height="50"}}`);
+    await render(hbs`{{svg-jar "icon" viewBox="0 0 50 50" height="50" title="Red circle"}}`);
     assert.dom('svg').hasAttribute('viewBox', '0 0 50 50');
     assert.dom('svg').hasAttribute('height', '50');
+    assert.dom('title').hasText('Red circle');
   });
 
   test('it allows to remove original attributes', async function(assert) {

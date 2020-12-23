@@ -28,6 +28,7 @@ export function createAccessibilityElements(attrs) {
     if (sanitizedAttrs[tag]) {
       return elements.concat(`<${tag} id="${tag}">${sanitizedAttrs[tag]}</${tag}>`);
     }
+    return elements;
   }, '');
 }
 

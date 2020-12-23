@@ -116,6 +116,13 @@ module('Unit | Utility | make svg', function() {
     assert.equal(result, '<title id="title">Title</title><desc id="desc">This is the title</desc>');
   });
 
+  test('createAccessibilityElements works with just one element', function(assert) {
+    let result = createAccessibilityElements({
+      title: 'Title',
+    });
+    assert.equal(result, '<title id="title">Title</title>');
+  });
+
   test('sanitizeAttrs works', function(assert) {
     let result = sanitizeAttrs({
       title: '<script>Title</script>',
