@@ -52,7 +52,7 @@ export default class Svg extends Component {
           this._svgComponentName = getInvocationName(this.args.loadingSvg);
         }
       }
-
+      
       let invokationName = await loadSvg(this.args.name);
       if (!this.isDestroyed || !this.isDestroying) {
         this._svgComponentName = invokationName;
