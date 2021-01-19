@@ -44,11 +44,13 @@ export default class Svg extends Component {
   @action
   async updateSvg() {
     if (needsLoading(this.args.name)) {
-      if (this.args.loadingSvg && needsLoading(this.args.loadingSvg)) {
-        // maybe we didn't bundle the loadingSvg, it will be there for the next one.
-        loadSvg(this.args.loadingSvg);
-      } else {
-        this._svgComponentName = getInvocationName(this.args.loadingSvg);
+      if (this.args.loadingSvg) {
+        if (needsLoading(this.args.loadingSvg)) {
+          // maybe we didn't bundle the loadingSvg, it will be there for the next one.
+          loadSvg(this.args.loadingSvg);
+        } else {
+          this._svgComponentName = getInvocationName(this.args.loadingSvg);
+        }
       }
 
       let invokationName = await loadSvg(this.args.name);
