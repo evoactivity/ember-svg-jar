@@ -21,10 +21,12 @@
   },
   "scripts": {
     "s": "ember s",
+    "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
     "lint:js": "eslint .",
     "lint:hbs": "ember-template-lint .",
-    "nodetest": "mocha node-tests/**/*-test.js",
-    "test": "yarn lint:js && yarn nodetest && ember test",
+    "test": "npm-run-all lint:* test:*",
+    "test:ember": "ember test",
+    "test:node": "mocha node-tests/**/*-test.js",
     "prepublishOnly": "yarn test"
   },
   "dependencies": {
@@ -82,6 +84,7 @@
     "lint-staged": "^9.2.5",
     "loader.js": "^4.7.0",
     "mocha": "^6.2.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
     "qunit-dom": "^0.9.0"
   },
@@ -97,7 +100,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn lint:js && yarn nodetest"
+      "pre-push": "yarn test"
     }
   },
   "lint-staged": {

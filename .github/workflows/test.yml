@@ -44,13 +44,15 @@ jobs:
         run: yarn install --no-lockfile
 
       - name: Run tests (floating dependencies)
-        run: yarn test:ember
+        run: |
+          yarn test:ember
+          yarn test:node
 
       - name: Install dependencies
         run: yarn install
 
       - name: Run tests
-        run: yarn ember:try-one ember-default
+        run: node_modules/.bin/ember try:one ember-default
 
   try-one:
     name: Additional Tests
@@ -81,4 +83,4 @@ jobs:
         run: yarn install
 
       - name: Run tests
-        run: yarn ember try:one ${{ matrix.scenario }}
+        run: node_modules/.bin/ember try:one ${{ matrix.scenario }}
