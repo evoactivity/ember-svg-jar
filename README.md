@@ -19,8 +19,8 @@
 </p>
 
 <p align="center">
-  <a href="https://travis-ci.org/ivanvotti/ember-svg-jar" target="_blank">
-    <img src="https://travis-ci.org/ivanvotti/ember-svg-jar.svg?branch=master"
+  <a href="https://github.com/ivanvotti/ember-svg-jar/actions?query=workflow%3ATest" target="_blank">
+    <img src="https://github.com/ivanvotti/ember-svg-jar/workflows/Test/badge.svg?branch=master"
       alt="Build Status">
   </a>
   <a href="https://www.npmjs.com/package/ember-svg-jar" target="_blank">
@@ -217,6 +217,7 @@ Thanks goes to these wonderful people:
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## 🆓 License
