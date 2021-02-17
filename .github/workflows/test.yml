@@ -1,0 +1,84 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  CI: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Lint Workflow
+        run: |
+          yarn lint:js
+          yarn lint:hbs
+
+  test:
+    name: Tests
+    needs: [lint]
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies (no lockfile)
+        run: yarn install --no-lockfile
+
+      - name: Run tests (floating dependencies)
+        run: yarn test:ember
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run tests
+        run: yarn ember:try-one ember-default
+
+  try-one:
+    name: Additional Tests
+    needs: [test]
+    runs-on: [ubuntu-latest]
+
+    strategy:
+      matrix:
+        scenario:
+          - ember-lts-2.8
+          - ember-lts-2.12
+          - ember-lts-2.16
+          - ember-lts-3.4
+          - ember-lts-3.8
+          - ember-release
+          - ember-beta
+          - ember-canary
+          - ember-default-with-jquery
+          - embroider-tests
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run tests
+        run: yarn ember try:one ${{ matrix.scenario }}
