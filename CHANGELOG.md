@@ -1,5 +1,19 @@
 ## SVGJar Change Log
 
+### v2.3.0
+
+- [[ENHANCEMENT]](https://github.com/ivanvotti/ember-svg-jar/pull/142) Extract references from symbol to svg-level `<defs/>` tag
+- [[ENHANCEMENT]](https://github.com/ivanvotti/ember-svg-jar/pull/167) Add `validations.throwOnFailure` option
+- [[ENHANCEMENT]](https://github.com/ivanvotti/ember-svg-jar/pull/161) Add a11y options
+- [[INTERNAL]](https://github.com/ivanvotti/ember-svg-jar/pull/172) Fix `htmlSafe` import
+- [INTERNAL] CI uses Github Actions
+- [INTERNAL] Numerous dependency updates
+- [INTERNAL] Add Embroider tests
+
+### v2.3.0
+
+Bad release. Hiccups on my first publish of this package. Sorry :( @jherdman
+
 ### v2.2.1
 
 - [[FIX]](https://github.com/ivanvotti/ember-svg-jar/pull/137) Move development dependencies into `devDependencies` [@Turbo87](https://github.com/Turbo87)
@@ -7,12 +21,14 @@
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v2.2.0...v2.2.1)
 
 ### v2.2.0
+
 - [ENHANCEMENT] Improved Assets Viewer. It got faster for big SVG collections and has better UI.
 - [INTERNAL] Cleanup some code.
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v2.1.0...v2.2.0)
 
 ### v2.1.0
+
 - [ENHANCEMENT] Disable `removeTitle`, `removeViewBox`, and `removeDesc` SVGO plugins by default to preserve the original behaviour and stay a zero-configuration addon.
 - [INTERNAL] Get rid of `viewer.embed` option.
 - [INTERNAL] Improve SVGJar options validation.
@@ -20,6 +36,7 @@
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v2.0.0...v2.1.0)
 
 ### v2.0.0
+
 - [BREAKING ENHANCEMENT] Upgrade SVGO from `0.6.6` to `1.3.0`. It's a breaking change to fix [security issues of SVGO 0.6.6][reason]. In SVGO `1.3.0` most plugins are now active by default (e.g. `removeTitle`, `removeViewBox`). This can cause undesired changes in optimized SVG images. In `ember-svg-jar` `v2.1.0` it's not the case anymore for `removeTitle`, `removeViewBox`, and `removeDesc` plugins. [Read this document][info] to know what exactly changed. To see changes of default SVGO plugins [check out this diff][diff].
 - [CLEANUP] Upgrade ember-cli to `3.11.0`, including related packages
 
@@ -30,17 +47,20 @@
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v1.2.2...v2.0.0)
 
 ### v1.2.2
+
 - [[INTERNAL]](https://github.com/ivanvotti/ember-svg-jar/pull/92) Switch from copy to assign [@buschtoens](https://github.com/buschtoens)
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v1.2.1...v1.2.2)
 
 ### v1.2.1
+
 - [[INTERNAL]](https://github.com/ivanvotti/ember-svg-jar/pull/77) Switch to ember-copy [@wagenet](https://github.com/wagenet)
 - [INTERNAL] Upgrade to ember-cli 3.3.0
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v1.2.0...v1.2.1)
 
 ### v1.2.0
+
 - [[internal]](https://github.com/ivanvotti/ember-svg-jar/pull/72) Ability to specify which version of `svgo` to use for optimizer
 - [INTERNAL] Drop Node 4 support
 - [INTERNAL] Update dependencies & cleanup code
@@ -48,12 +68,14 @@
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v1.1.0...v1.2.0)
 
 ### v1.1.0
+
 - [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/64) Add `containerAttrs` option for symbol strategy
 - [[CLEANUP]](https://github.com/ivanvotti/ember-svg-jar/pull/63) Use console.warn instead of Ember.Logger [@rwwagner90](https://github.com/rwwagner90)
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v1.0.0...v1.1.0)
 
 ### v1.0.0
+
 - [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/52) ember-svg-jar can now be used by addons as a `dependency` [@ef4](https://github.com/ef4)
 - [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/62) Ability to suppress asset validation warnings
 - [CLEANUP] The addon is now fully consumable as a Git dependency, without any build step
@@ -64,6 +86,7 @@
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.12.0...v1.0.0)
 
 ### v0.12.0
+
 - [[ENHANCEMENT]](https://github.com/ivanvotti/ember-svg-jar/pull/50) Adding `tests/dummy/public` to `sourceDirs` for addons [#29](https://github.com/ivanvotti/ember-svg-jar/issues/29) + Ember-CLI 2.17.1 [@rwwagner90](https://github.com/rwwagner90)
 - [[CLEANUP]](https://github.com/ivanvotti/ember-svg-jar/pull/48) Fix deprecations [@ryanpatrickcook](https://github.com/ryanpatrickcook)
 - [[CLEANUP]](https://github.com/ivanvotti/ember-svg-jar/pull/42) Latest Ember CLI v2.14.1, Chrome Testing, yarn.lock [@alexdiliberto](https://github.com/alexdiliberto)
@@ -71,22 +94,26 @@
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.11.0...v0.12.0)
 
 ### v0.11.0
+
 - [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/40) Add basic Windows support
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.10.3...v0.11.0)
 
 ### v0.10.3
+
 - [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/37) Add rootURL option
 - [[CLEANUP]](https://github.com/ivanvotti/ember-svg-jar/pull/36) Upgrade to ember-cli 2.13.1 [@john-griffin](https://github.com/john-griffin)
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.10.1...v0.10.3)
 
 ### v0.10.1
+
 - [[BUGFIX]](https://github.com/ivanvotti/ember-svg-jar/pull/35) Fix calculating optimizedSvg file size [#32](https://github.com/ivanvotti/ember-svg-jar/issues/32) [@ilucin](https://github.com/ilucin)
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.10.0...v0.10.1)
 
 ### v0.10.0
+
 - [[CLEANUP]](https://github.com/ivanvotti/ember-svg-jar/pull/30) Fix treeForAddon deprecation warning #27 [@ef4](https://github.com/ef4)
 - [[BUGFIX]](https://github.com/ivanvotti/ember-svg-jar/pull/21) Fix a problem with .DS_Store #20 [@mupkoo](https://github.com/mupkoo)
 - [CLEANUP] Upgrade ember-cli to 2.12.1 and related packages
@@ -95,18 +122,21 @@
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.9.3...v0.10.0)
 
 ### v0.9.3
+
 - [INTERNAL] The viewer builder skips emtpy SVG
 - [INTERNAL] Upgrade broccoli-svg-optimizer
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.9.2...v0.9.3)
 
 ### v0.9.2
+
 - [[ENHANCEMENT]](https://github.com/ivanvotti/ember-svg-jar/pull/16) Ability to import `svgJar` helper to use outside of templates [@djsegal](https://github.com/djsegal)
 - [CLEANUP] Refactor helper's code and tests
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.9.1...v0.9.2)
 
 ### v0.9.1
+
 - [[FEATURE]](https://github.com/ivanvotti/ember-svg-jar/pull/13) Helper supports `size` attribute `{{svg-jar "asset-name" size=2}}`
 - [ENHANCEMENT] The viewer now shows asset base size as `24x20px` in details
 - [ENHANCEMENT] The viewer allows to copy optimized asset code to clipboard
@@ -115,6 +145,7 @@
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.9.0...v0.9.1)
 
 ### v0.9.0
+
 - [FEATURE] The viewer allows downloading selected assets
 - [FEATURE] The viewer allows copying selected assets' code to the clipboard
 - [FEATURE] The viewer now shows original and optimized file sizes
@@ -127,20 +158,22 @@ If you prefer the old behavior, just add the code below to the `ember-cli-build.
 ```javascript
 let app = new EmberApp(defaults, {
   svgJar: {
-    stripPath: false
-  }
+    stripPath: false,
+  },
 });
 ```
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.8.3...v0.9.0)
 
 ### v0.8.3
+
 - [BUGFIX] Custom helper attrs shouldn't affect the inline assets store
 - [DOC] Add CHANGELOG.md
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.8.2...v0.8.3)
 
 ### v0.8.2
+
 - [FEATURE] `svg-jar` helper can now bind any passed attributes to created SVG elements
 - [CLEANUP] Upgrade ember-cli to 2.7.0
 - [CLEANUP] Add more tests & clean up the helper's code
@@ -148,17 +181,20 @@ let app = new EmberApp(defaults, {
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.8.1...v0.8.2)
 
 ### v0.8.1
+
 - [BUGFIX] The viewer correctly shows SVGs with undefined height & width
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.8.0...v0.8.1)
 
 ### v0.8.0
+
 - [FEATURE] Add support for old Ember versions
 - [ENHANCEMENT] Add sidebar links to the viewer
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.7.0...v0.8.0)
 
 ### v0.7.0
+
 - [ENHANCEMENT] Apply stripPath before idGen
 - [CLEANUP] Unify access to strategy specific options
 - [DOC] Add documentation for all configuration options
@@ -166,12 +202,14 @@ let app = new EmberApp(defaults, {
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.6.1...v0.7.0)
 
 ### v0.6.1
+
 - [CLEANUP] Add acceptance tests
 - [DOC] Improve readme
 
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.6.0...v0.6.1)
 
 ### v0.6.0
+
 - [CLEANUP] Improve assets validation
 - [CLEANUP] Switch to ES6 for broccoli modules
 - [CLEANUP] Add ESLint and cleanup the code
@@ -181,6 +219,7 @@ let app = new EmberApp(defaults, {
 [Full changelog](https://github.com/ivanvotti/ember-svg-jar/compare/v0.5.0...v0.6.0)
 
 ### v0.5.0
+
 - [FEATURE] Add stripPath option
 - [FEATURE] Add assets validation to ensure unique asset IDs
 - [FEATURE] Make the `optimizer` a strategy specific option
