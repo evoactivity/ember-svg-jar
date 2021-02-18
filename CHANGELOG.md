@@ -1,6 +1,6 @@
 ## SVGJar Change Log
 
-### v2.3.0
+### v2.3.1
 
 - [[ENHANCEMENT]](https://github.com/ivanvotti/ember-svg-jar/pull/142) Extract references from symbol to svg-level `<defs/>` tag
 - [[ENHANCEMENT]](https://github.com/ivanvotti/ember-svg-jar/pull/167) Add `validations.throwOnFailure` option
