@@ -11,6 +11,30 @@
   "commitConvention": "ember",
   "contributors": [
     {
+      "login": "ivanvotti",
+      "name": "Ivan Votti",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1476221?v=4",
+      "profile": "https://ivanvotti.com/",
+      "contributions": [
+        "code",
+        "doc",
+        "design",
+        "ideas"
+      ]
+    },
+    {
+      "login": "jherdman",
+      "name": "James Herdman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3300?v=4",
+      "profile": "https://github.com/jherdman",
+      "contributions": [
+        "code",
+        "review",
+        "maintenance",
+        "bug"
+      ]
+    },
+    {
       "login": "ef4",
       "name": "Edward Faulkner",
       "avatar_url": "https://avatars0.githubusercontent.com/u/319282?v=4",
@@ -227,10 +251,19 @@
       ]
     },
     {
-      "login": "jherdman",
-      "name": "James Herdman",
-      "avatar_url": "https://avatars.githubusercontent.com/u/3300?v=4",
-      "profile": "https://github.com/jherdman",
+      "login": "ljknight",
+      "name": "Laura Knight",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11436149?v=4",
+      "profile": "https://github.com/ljknight",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "betocantu93",
+      "name": "Alberto Cantú Gómez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9092644?v=4",
+      "profile": "https://betocantu93.com/",
       "contributions": [
         "code"
       ]
