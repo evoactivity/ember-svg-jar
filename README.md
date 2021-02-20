@@ -201,37 +201,40 @@ Thanks goes to these wonderful people:
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="http://eaf4.com"><img src="https://avatars0.githubusercontent.com/u/319282?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Edward Faulkner</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=ef4" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/Turbo87"><img src="https://avatars2.githubusercontent.com/u/141300?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tobias Bieniek</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=Turbo87" title="Code">💻</a></td>
-    <td align="center"><a href="https://shipshape.io"><img src="https://avatars3.githubusercontent.com/u/2640861?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Robert Wagner</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=rwwagner90" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/wagenet"><img src="https://avatars3.githubusercontent.com/u/9835?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Peter Wagenet</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=wagenet" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/ryanpatrickcook"><img src="https://avatars2.githubusercontent.com/u/3067243?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ryan Cook</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=ryanpatrickcook" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/mupkoo"><img src="https://avatars0.githubusercontent.com/u/1788571?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mirko Akov</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=mupkoo" title="Code">💻</a></td>
-    <td align="center"><a href="http://mrloop.com"><img src="https://avatars3.githubusercontent.com/u/12345?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ewan McDougall</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=mrloop" title="Code">💻</a></td>
+    <td align="center"><a href="https://ivanvotti.com/"><img src="https://avatars.githubusercontent.com/u/1476221?v=4" width="100px;" alt=""/><br /><sub><b>Ivan Votti</b></sub></a></td>
+    <td align="center"><a href="https://github.com/jherdman"><img src="https://avatars.githubusercontent.com/u/3300?v=4" width="100px;" alt=""/><br /><sub><b>James Herdman</b></sub></a></td>
+    <td align="center"><a href="http://eaf4.com"><img src="https://avatars0.githubusercontent.com/u/319282?v=4" width="100px;" alt=""/><br /><sub><b>Edward Faulkner</b></sub></a></td>
+    <td align="center"><a href="https://github.com/Turbo87"><img src="https://avatars2.githubusercontent.com/u/141300?v=4" width="100px;" alt=""/><br /><sub><b>Tobias Bieniek</b></sub></a></td>
+    <td align="center"><a href="https://shipshape.io"><img src="https://avatars3.githubusercontent.com/u/2640861?v=4" width="100px;" alt=""/><br /><sub><b>Robert Wagner</b></sub></a></td>
+    <td align="center"><a href="https://github.com/wagenet"><img src="https://avatars3.githubusercontent.com/u/9835?v=4" width="100px;" alt=""/><br /><sub><b>Peter Wagenet</b></sub></a></td>
+    <td align="center"><a href="https://github.com/ryanpatrickcook"><img src="https://avatars2.githubusercontent.com/u/3067243?v=4" width="100px;" alt=""/><br /><sub><b>Ryan Cook</b></sub></a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/markcatley"><img src="https://avatars0.githubusercontent.com/u/5198?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mark Catley</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=markcatley" title="Code">💻</a></td>
-    <td align="center"><a href="http://www.seated.com"><img src="https://avatars1.githubusercontent.com/u/19490?v=4?s=100" width="100px;" alt=""/><br /><sub><b>John Griffin</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=john-griffin" title="Code">💻</a></td>
-    <td align="center"><a href="http://www.facebook.com/lucin.ivan"><img src="https://avatars3.githubusercontent.com/u/4481706?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ivan Lučin</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=ilucin" title="Code">💻</a></td>
-    <td align="center"><a href="https://hyjk2000.github.io"><img src="https://avatars1.githubusercontent.com/u/4647136?v=4?s=100" width="100px;" alt=""/><br /><sub><b>James Shih</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=hyjk2000" title="Code">💻</a></td>
-    <td align="center"><a href="http://seg.al"><img src="https://avatars1.githubusercontent.com/u/3156114?v=4?s=100" width="100px;" alt=""/><br /><sub><b>djsegal</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=djsegal" title="Code">💻</a></td>
-    <td align="center"><a href="https://jan.buschtoens.me"><img src="https://avatars0.githubusercontent.com/u/834636?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jan Buschtöns</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=buschtoens" title="Code">💻</a></td>
-    <td align="center"><a href="https://siva.dev"><img src="https://avatars1.githubusercontent.com/u/7725225?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sivasubramanyam A</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=astronomersiva" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/mupkoo"><img src="https://avatars0.githubusercontent.com/u/1788571?v=4" width="100px;" alt=""/><br /><sub><b>Mirko Akov</b></sub></a></td>
+    <td align="center"><a href="http://mrloop.com"><img src="https://avatars3.githubusercontent.com/u/12345?v=4" width="100px;" alt=""/><br /><sub><b>Ewan McDougall</b></sub></a></td>
+    <td align="center"><a href="https://github.com/markcatley"><img src="https://avatars0.githubusercontent.com/u/5198?v=4" width="100px;" alt=""/><br /><sub><b>Mark Catley</b></sub></a></td>
+    <td align="center"><a href="http://www.seated.com"><img src="https://avatars1.githubusercontent.com/u/19490?v=4" width="100px;" alt=""/><br /><sub><b>John Griffin</b></sub></a></td>
+    <td align="center"><a href="http://www.facebook.com/lucin.ivan"><img src="https://avatars3.githubusercontent.com/u/4481706?v=4" width="100px;" alt=""/><br /><sub><b>Ivan Lučin</b></sub></a></td>
+    <td align="center"><a href="https://hyjk2000.github.io"><img src="https://avatars1.githubusercontent.com/u/4647136?v=4" width="100px;" alt=""/><br /><sub><b>James Shih</b></sub></a></td>
+    <td align="center"><a href="http://seg.al"><img src="https://avatars1.githubusercontent.com/u/3156114?v=4" width="100px;" alt=""/><br /><sub><b>djsegal</b></sub></a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://alexdiliberto.com"><img src="https://avatars0.githubusercontent.com/u/666459?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex DiLiberto</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=alexdiliberto" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/Dhaulagiri"><img src="https://avatars1.githubusercontent.com/u/1672302?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Brian Runnells</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=Dhaulagiri" title="Code">💻</a></td>
-    <td align="center"><a href="https://jenweber.github.io/portfolio/"><img src="https://avatars1.githubusercontent.com/u/16627268?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jen Weber</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=jenweber" title="Documentation">📖</a></td>
-    <td align="center"><a href="http://hakilebara.com"><img src="https://avatars2.githubusercontent.com/u/1991564?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Frédéric Soumaré</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=hakilebara" title="Documentation">📖</a></td>
-    <td align="center"><a href="http://kiwiupover.com"><img src="https://avatars3.githubusercontent.com/u/647691?v=4?s=100" width="100px;" alt=""/><br /><sub><b>David Laird</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=kiwiupover" title="Code">💻</a></td>
-    <td align="center"><a href="http://www.lumialabs.com"><img src="https://avatars2.githubusercontent.com/u/533152?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Daan van Etten</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=Daan-" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/tcjr"><img src="https://avatars3.githubusercontent.com/u/142243?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tom Carter</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/issues?q=author%3Atcjr" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://jan.buschtoens.me"><img src="https://avatars0.githubusercontent.com/u/834636?v=4" width="100px;" alt=""/><br /><sub><b>Jan Buschtöns</b></sub></a></td>
+    <td align="center"><a href="https://siva.dev"><img src="https://avatars1.githubusercontent.com/u/7725225?v=4" width="100px;" alt=""/><br /><sub><b>Sivasubramanyam A</b></sub></a></td>
+    <td align="center"><a href="https://alexdiliberto.com"><img src="https://avatars0.githubusercontent.com/u/666459?v=4" width="100px;" alt=""/><br /><sub><b>Alex DiLiberto</b></sub></a></td>
+    <td align="center"><a href="https://github.com/Dhaulagiri"><img src="https://avatars1.githubusercontent.com/u/1672302?v=4" width="100px;" alt=""/><br /><sub><b>Brian Runnells</b></sub></a></td>
+    <td align="center"><a href="https://jenweber.github.io/portfolio/"><img src="https://avatars1.githubusercontent.com/u/16627268?v=4" width="100px;" alt=""/><br /><sub><b>Jen Weber</b></sub></a></td>
+    <td align="center"><a href="http://hakilebara.com"><img src="https://avatars2.githubusercontent.com/u/1991564?v=4" width="100px;" alt=""/><br /><sub><b>Frédéric Soumaré</b></sub></a></td>
+    <td align="center"><a href="http://kiwiupover.com"><img src="https://avatars3.githubusercontent.com/u/647691?v=4" width="100px;" alt=""/><br /><sub><b>David Laird</b></sub></a></td>
   </tr>
   <tr>
-    <td align="center"><a href="http://summerisgone.com"><img src="https://avatars0.githubusercontent.com/u/106999?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ivan Gromov</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=summerisgone" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/ro0gr"><img src="https://avatars2.githubusercontent.com/u/875361?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ruslan Hrabovyi</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=ro0gr" title="Code">💻</a></td>
-    <td align="center"><a href="https://alexlafroscia.com"><img src="https://avatars2.githubusercontent.com/u/1645881?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex LaFroscia</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=alexlafroscia" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/jherdman"><img src="https://avatars.githubusercontent.com/u/3300?v=4?s=100" width="100px;" alt=""/><br /><sub><b>James Herdman</b></sub></a><br /><a href="https://github.com/ivanvotti/ember-svg-jar/commits?author=jherdman" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.lumialabs.com"><img src="https://avatars2.githubusercontent.com/u/533152?v=4" width="100px;" alt=""/><br /><sub><b>Daan van Etten</b></sub></a></td>
+    <td align="center"><a href="https://github.com/tcjr"><img src="https://avatars3.githubusercontent.com/u/142243?v=4" width="100px;" alt=""/><br /><sub><b>Tom Carter</b></sub></a></td>
+    <td align="center"><a href="http://summerisgone.com"><img src="https://avatars0.githubusercontent.com/u/106999?v=4" width="100px;" alt=""/><br /><sub><b>Ivan Gromov</b></sub></a></td>
+    <td align="center"><a href="https://github.com/ro0gr"><img src="https://avatars2.githubusercontent.com/u/875361?v=4" width="100px;" alt=""/><br /><sub><b>Ruslan Hrabovyi</b></sub></a></td>
+    <td align="center"><a href="https://alexlafroscia.com"><img src="https://avatars2.githubusercontent.com/u/1645881?v=4" width="100px;" alt=""/><br /><sub><b>Alex LaFroscia</b></sub></a></td>
+    <td align="center"><a href="https://github.com/ljknight"><img src="https://avatars.githubusercontent.com/u/11436149?v=4" width="100px;" alt=""/><br /><sub><b>Laura Knight</b></sub></a></td>
+    <td align="center"><a href="https://betocantu93.com/"><img src="https://avatars.githubusercontent.com/u/9092644?v=4" width="100px;" alt=""/><br /><sub><b>Alberto Cantú Gómez</b></sub></a></td>
   </tr>
 </table>
 
