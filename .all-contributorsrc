@@ -225,6 +225,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "jherdman",
+      "name": "James Herdman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3300?v=4",
+      "profile": "https://github.com/jherdman",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
