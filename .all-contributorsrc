@@ -225,6 +225,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ljknight",
+      "name": "Laura Knight",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11436149?v=4",
+      "profile": "https://github.com/ljknight",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
