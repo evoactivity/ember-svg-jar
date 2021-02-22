@@ -6,17 +6,23 @@
 /bower_components/
 
 # misc
+/.all-contributorsrc
 /.bowerrc
 /.editorconfig
 /.ember-cli
 /.env*
 /.eslintignore
 /.eslintrc.js
+/.github/
 /.gitignore
+/.prettierignore
+/.prettierrc
 /.template-lintrc.js
+/.tool-versions
 /.travis.yml
 /.watchmanconfig
 /bower.json
+/CONTRIBUTING.md
 /config/ember-try.js
 /dist
 /tests
@@ -39,6 +45,7 @@ eslint-rules.js
 yarn.lock
 yarn-error.log
 .vscode
+/public/static/**/*.map
 
 # ember-try
 /.node_modules.ember-try/
