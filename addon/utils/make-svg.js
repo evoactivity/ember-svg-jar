@@ -4,13 +4,38 @@ import { htmlSafe } from '@ember/template';
 
 const accessibilityElements = ['title', 'desc'];
 
+const ESC = {
+  '"': '&quot;',
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;'
+};
+
+function matcher(char) {
+  return ESC[char];
+}
+
+function escapeText(text) {
+  if (typeof text !== 'string') {
+    return '';
+  }
+
+  if (text.indexOf('>') > -1
+    || text.indexOf('<') > -1
+    || text.indexOf('&') > -1
+    || text.indexOf('"') > -1
+  ) {
+    return text.replace(/[&"<>]/g, matcher);
+  }
+
+  return text;
+}
+
 export function sanitizeAttrs(attrs) {
   let attrsCopy = Object.assign({}, attrs);
 
   Object.keys(attrsCopy).forEach((key) => {
-    let element = document.createElement('div');
-    element.innerText = attrsCopy[key];
-    attrsCopy[key] = element.innerHTML;
+    attrsCopy[key] = escapeText(attrsCopy[key]);
   });
 
   return attrsCopy;
