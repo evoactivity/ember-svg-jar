@@ -1,5 +1,14 @@
 ## SVGJar Change Log
 
+### v2.3.3
+
+- [[ENHANCEMENT]](https://github.com/ivanvotti/ember-svg-jar/pull/184) Improve FastBoot compatibilitiy
+- [[INTERNAL]](https://github.com/ivanvotti/ember-svg-jar/pull/177) Improve npmignore
+
+### v2.3.2
+
+Do not use
+
 ### v2.3.1
 
 - [[ENHANCEMENT]](https://github.com/ivanvotti/ember-svg-jar/pull/142) Extract references from symbol to svg-level `<defs/>` tag
