@@ -268,6 +268,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "SergeAstapov",
+      "name": "Sergey Astapov",
+      "avatar_url": "https://avatars.githubusercontent.com/u/322983?v=4",
+      "profile": "https://github.com/SergeAstapov",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

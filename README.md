@@ -236,6 +236,9 @@ Thanks goes to these wonderful people:
     <td align="center"><a href="https://github.com/ljknight"><img src="https://avatars.githubusercontent.com/u/11436149?v=4" width="100px;" alt=""/><br /><sub><b>Laura Knight</b></sub></a></td>
     <td align="center"><a href="https://betocantu93.com/"><img src="https://avatars.githubusercontent.com/u/9092644?v=4" width="100px;" alt=""/><br /><sub><b>Alberto Cantú Gómez</b></sub></a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/SergeAstapov"><img src="https://avatars.githubusercontent.com/u/322983?v=4" width="100px;" alt=""/><br /><sub><b>Sergey Astapov</b></sub></a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
