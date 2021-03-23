@@ -185,10 +185,10 @@ You can get Font Awesome icons as individual SVG files from [font-awesome-svg](h
 
 ## 👓 Compatibility
 
-Latest ember-svg-jar `2.X.X` currently supports:
+Latest ember-svg-jar currently supports:
 
-- Node `8.* || >= 10.*`
-- Ember >= `2.X.X`
+- Node `10.* || >= 12`
+- Ember any active v3 LTS, or release.
 
 ## 💟 Contributors
 

@@ -19,18 +19,18 @@ module.exports = {
     'arrow-parens': ['error', 'always'],
 
     'no-irregular-whitespace': ['error', {
-      'skipStrings': true,
-      'skipComments': true
+      skipStrings: true,
+      skipComments: true
     }],
 
     'space-before-function-paren': ['error', {
-      'anonymous': 'never',
-      'named': 'never'
+      anonymous: 'never',
+      named: 'never'
     }],
 
     'generator-star-spacing': ['error', {
-      'before': false,
-      'after': true
+      before: false,
+      after: true
     }]
   }
 };
