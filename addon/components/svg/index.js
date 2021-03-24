@@ -69,9 +69,23 @@ export default class Svg extends Component {
     return (!this.args.ariaLabel && !this.args.ariaLabelledBy && !this.args.title);
   }
 
+  get ariaLabelledBy() {
+    if (this.titleId || this.descId) {
+      return `${this.titleId} ${this.descId}`.trim();
+    }
+    return '';
+  }
+
   get titleId() {
     if (!this.args.ariaLabel && !this.args.ariaLabelledBy && this.args.title) {
       return guidFor(`${this.args.name}-${this.title}`);
+    }
+    return '';
+  }
+
+  get descId() {
+    if (!this.args.ariaLabel && !this.args.ariaLabelledBy && this.args.desc) {
+      return guidFor(`${this.args.name}-${this.desc}`);
     }
     return '';
   }
