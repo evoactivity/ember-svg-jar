@@ -31,6 +31,7 @@
     "prepublishOnly": "yarn lint:js && yarn test:node"
   },
   "dependencies": {
+    "@embroider/util": "^0.37.0",
     "broccoli-caching-writer": "^3.0.3",
     "broccoli-concat": "^3.7.4",
     "broccoli-funnel": "^2.0.2",
@@ -61,9 +62,9 @@
     "chai-as-promised": "^7.1.1",
     "ember-cli": "~3.21.1",
     "ember-cli-dependency-checker": "^3.2.0",
-    "ember-cli-ifa": "^0.10.0",
     "ember-cli-fastboot": "^2.2.3",
     "ember-cli-fastboot-testing": "^0.5.0",
+    "ember-cli-ifa": "^0.10.0",
     "ember-cli-inject-live-reload": "^2.0.2",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.0",

@@ -1,19 +1,18 @@
 {{! template-lint-disable no-curly-component-invocation}}
-
-{{!-- The following component displays Ember's default welcome message. --}}
+{{! The following component displays Ember's default welcome message. }}
 <WelcomePage />
-{{!-- Feel free to remove this! --}}
-
+{{! Feel free to remove this! }}
 <div class="inline-icon">
-  {{svg-jar "icon"}}
+  {{svg-jar 'icon'}}
 </div>
-
 <div class="inline-accessible-icon">
-  {{svg-jar "icon" title="dummy title" desc="dummy dec"}}
+  {{svg-jar 'icon' title='dummy title' desc='dummy dec'}}
 </div>
 
-<div class="hbs-accessible-icon">
-  <Svg @name="svg/icon" @title="My super title" @desc="My Super desc" @role="img"/>
-</div>
-
+<Svg
+  @name="svg/icon"
+  @title="My super title"
+  @desc="My Super desc"
+  @role="img"
+/>
 {{outlet}}
