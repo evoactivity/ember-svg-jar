@@ -4,23 +4,10 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
-
     svgJar: {
       strategy: ['symbol', 'inline', 'hbs'],
       sourceDirs: ['tests/dummy/public'],
       stripPath: false
-    },
-    // ember-cli-resolve-asset config
-    ifa: {
-      enabled: true,
-    },
-    fingerprint: {
-      prepend: '/',
-      enabled: true,
-      generateAssetMap: true,
-    },
-    'ember-fetch': {
-      preferNative: true // Recommended to enable faster preloading for browsers that support it.
     }
   });
 
