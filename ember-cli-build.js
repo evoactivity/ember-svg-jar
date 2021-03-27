@@ -21,5 +21,6 @@ module.exports = function(defaults) {
         staticComponents: true,
       });
   }
-  return app.toTree();
+  const { maybeEmbroider } = require('@embroider/test-setup');
+  return maybeEmbroider(app);
 };
