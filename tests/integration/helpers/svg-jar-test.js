@@ -153,4 +153,16 @@ module('Integration | Helper | svg-jar', function(hooks) {
     assert.dom('desc').hasText('<div>evil string</div>');
     assert.equal(document.querySelector('#desc').children.length, 0);
   });
+
+  module('template-only', function () {
+    test('renders correct SVG image', async function (assert) {
+      await render(hbs`<Svg @name="icon" />`);
+
+      assert.dom('svg').exists();
+
+      let expectedSVG = '<svg viewBox="0 0 24 24" height="24" width="24"><circle cx="12" cy="12" r="6" fill="red"></circle></svg>';
+      let actualSVG = this.element.querySelector('svg').outerHTML;
+      assert.equal(actualSVG, expectedSVG);
+    });
+  });
 });
