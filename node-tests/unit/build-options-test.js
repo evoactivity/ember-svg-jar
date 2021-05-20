@@ -31,18 +31,13 @@ const defaultsFixture = Object.freeze({
   persist: true,
 
   validations: {
+    throwOnFailure: false,
     validateViewBox: true,
     checkForDuplicates: true
   },
 
   viewer: {
     enabled: true
-  },
-
-  hbs: {
-    idGen: defaultGens.hbsIdGen,
-    copypastaGen: defaultGens.hbsCopypastaGen,
-    prefix: 'svg/'
   },
 
   inline: {
