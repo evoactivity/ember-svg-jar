@@ -11,15 +11,7 @@ module.exports = function(defaults) {
     }
   });
 
-  if ('@embroider/webpack' in app.dependencies()) {
-    const { Webpack } = require('@embroider/webpack'); // eslint-disable-line
-    return require('@embroider/compat') // eslint-disable-line
-      .compatBuild(app, Webpack, {
-        staticAddonTestSupportTrees: true,
-        staticAddonTrees: true,
-        staticHelpers: true,
-        staticComponents: true,
-      });
-  }
-  return app.toTree();
+  // eslint-disable-next-line global-require
+  const { maybeEmbroider } = require('@embroider/test-setup');
+  return maybeEmbroider(app);
 };

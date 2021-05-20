@@ -69,7 +69,8 @@ jobs:
           - ember-canary
           - ember-default
           - ember-default-with-jquery
-          - embroider-tests
+          - embroider-safe
+          - embroider-optimized
 
     steps:
       - uses: actions/checkout@v2
