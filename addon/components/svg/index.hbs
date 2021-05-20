@@ -1,16 +1,13 @@
 {{#if this._svgComponentName}}
   {{#let (component this._svgComponentName) as |SvgJar|}}
     <SvgJar
+      {{did-update this.updateSvg @name}}
       @title={{@title}}
       @titleId={{this.titleId}}
-      @desc={{@desc}}
-      @descId={{this.descId}}
-      role={{@role}}
       aria-label={{@ariaLabel}}
       aria-hidden={{this.isAriaHidden}}
-      aria-labelledby={{this.ariaLabelledBy}}
+      aria-labelledby={{this.titleId}}
       ...attributes
-      {{did-update this.updateSvg @name}}
     />
   {{/let}}
 {{/if}}
