@@ -46,13 +46,12 @@
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.15",
     "mkdirp": "^0.5.1",
-    "path-posix": "^1.0.0",
-    "webpack": "^5.37.0"
+    "path-posix": "^1.0.0"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
     "@ember/render-modifiers": "^1.0.2",
-    "@embroider/test-setup": "^0.40.0",
+    "@embroider/test-setup": "^0.41.0",
     "@glimmer/component": "^1.0.1",
     "@glimmer/tracking": "^1.0.1",
     "all-contributors-cli": "^6.9.1",
