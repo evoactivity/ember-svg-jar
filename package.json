@@ -42,7 +42,7 @@
     "cheerio": "^0.22.0",
     "console-ui": "^3.1.1",
     "ember-cli-babel": "^7.26.6",
-    "ember-cli-htmlbars": "^5.3.1",
+    "ember-cli-htmlbars": "^5.7.1",
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.15",
     "mkdirp": "^0.5.1",
