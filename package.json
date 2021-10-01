@@ -78,7 +78,6 @@
     "ember-source-channel-url": "^3.0.0",
     "ember-template-lint": "^2.11.0",
     "ember-try": "^1.4.0",
-    "ember-welcome-page": "^3.0.0",
     "eslint": "^7.8.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-ember": "^8.13.0",
