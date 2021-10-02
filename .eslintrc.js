@@ -83,5 +83,10 @@ module.exports = {
         ecmaVersion: 2015,
       },
     },
+    {
+      // Ember Test files:
+      files: ['tests/**/*-test.{js,ts}'],
+      extends: ['plugin:qunit/recommended'],
+    },
   ],
 };

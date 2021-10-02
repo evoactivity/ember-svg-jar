@@ -85,6 +85,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-qunit": "^6.2.0",
     "glob": "^7.2.0",
     "husky": "^3.0.4",
     "in-publish": "^2.0.0",
