@@ -48,6 +48,24 @@ module.exports = {
       },
       plugins: ['node'],
       extends: ['plugin:node/recommended']
+    },
+    // node-tests
+    {
+      files: './node-tests/**/*.js',
+      env: {
+        browser: false,
+        node: true,
+        mocha: true
+      },
+      parserOptions: {
+        sourceType: 'script',
+        ecmaVersion: 2018
+      },
+      rules: {
+        'no-param-reassign': 0,
+        'object-shorthand': 0,
+        'no-unused-expressions': 'off'
+      }
     }
   ]
 };
