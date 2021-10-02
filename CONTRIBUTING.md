@@ -12,8 +12,8 @@
 
 Run node tests to test any module in `lib` directory:
 
-- `yarn nodetest` - Runs node tests.
-- `yarn nodetest --watch` - Runs node tests in "watch mode"
+- `yarn test:node` - Runs node tests.
+- `yarn test:node --watch` - Runs node tests in "watch mode"
 
 Run ember tests to test anything related to `svg-jar` helper & symbols injection:
 
@@ -24,7 +24,7 @@ Run ember tests to test anything related to `svg-jar` helper & symbols injection
 ## Linting
 
 - `yarn run lint:js`
-- `yarn run lint:js -- --fix`
+- `yarn run lint:js:fix`
 
 ## Running the dummy application
 
