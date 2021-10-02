@@ -51,6 +51,7 @@
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
     "@ember/render-modifiers": "^1.0.2",
+    "@ember/test-helpers": "^2.4.2",
     "@embroider/test-setup": "^0.45.0",
     "@glimmer/component": "^1.0.1",
     "@glimmer/tracking": "^1.0.1",
@@ -60,6 +61,7 @@
     "broccoli-fixture": "^1.0.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "ember-auto-import": "^2.2.0",
     "ember-cli": "~3.21.1",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-fastboot": "^2.2.3",
@@ -71,7 +73,7 @@
     "ember-export-application-global": "^2.0.1",
     "ember-load-initializers": "^2.1.1",
     "ember-maybe-import-regenerator": "^1.0.0",
-    "ember-qunit": "^4.6.0",
+    "ember-qunit": "^5.1.4",
     "ember-resolver": "^8.0.2",
     "ember-source": "~3.21.1",
     "ember-source-channel-url": "^3.0.0",
@@ -87,10 +89,12 @@
     "in-publish": "^2.0.0",
     "lint-staged": "^9.2.5",
     "loader.js": "^4.7.0",
-    "mocha": "^6.2.0",
+    "mocha": "^9.1.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
-    "qunit-dom": "^1.4.0"
+    "qunit": "^2.17.2",
+    "qunit-dom": "^2.0.0",
+    "webpack": "5"
   },
   "engines": {
     "node": "10.* || >= 12"
