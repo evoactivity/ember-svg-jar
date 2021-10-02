@@ -28,18 +28,15 @@ module.exports = {
     // for Ember node files
     {
       files: [
-        '.eslintrc.js',
+        './.eslintrc.js',
         './.prettierrc.js',
-        '.template-lintrc.js',
-        'index.js',
-        'testem.js',
-        'ember-cli-build.js',
-        'config/**/*.js',
-        'tests/dummy/config/**/*.js',
+        './.template-lintrc.js',
+        './index.js',
+        './testem.js',
+        './ember-cli-build.js',
+        './config/**/*.js',
+        './tests/dummy/config/**/*.js',
       ],
-
-      excludedFiles: ['lib/**', 'app/**', 'addon/**', 'tests/dummy/app/**'],
-
       env: {
         browser: false,
         node: true,
