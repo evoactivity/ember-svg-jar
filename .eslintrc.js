@@ -32,6 +32,7 @@ module.exports = {
     {
       files: [
         '.eslintrc.js',
+        './.prettierrc.js',
         '.template-lintrc.js',
         'index.js',
         'testem.js',
