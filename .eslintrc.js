@@ -7,30 +7,29 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
-      legacyDecorators: true
-    }
+      legacyDecorators: true,
+    },
   },
-  plugins: [
-    'ember'
-  ],
+  plugins: ['ember', 'prettier'],
   extends: [
-    'airbnb-base',
     'eslint:recommended',
     'plugin:ember/recommended',
-    './eslint-rules.js'
+    'plugin:prettier/recommended',
   ],
   env: {
     browser: true,
     node: false,
     amd: true,
   },
-  rules: {},
+  rules: {
+    'prettier/prettier': 'error',
+  },
   overrides: [
     // for Ember node files
     {
       files: [
-        'eslint-rules.js',
         '.eslintrc.js',
+        './.prettierrc.js',
         '.template-lintrc.js',
         'index.js',
         'testem.js',
@@ -46,7 +45,43 @@ module.exports = {
         node: true,
       },
       plugins: ['node'],
-      extends: ['plugin:node/recommended']
-    }
-  ]
+      extends: ['plugin:node/recommended'],
+    },
+    // node-tests
+    {
+      files: './node-tests/**/*.js',
+      env: {
+        browser: false,
+        node: true,
+        mocha: true,
+      },
+      parserOptions: {
+        sourceType: 'script',
+        ecmaVersion: 2018,
+      },
+      rules: {
+        'no-param-reassign': 0,
+        'object-shorthand': 0,
+        'no-unused-expressions': 'off',
+      },
+    },
+    // lib
+    {
+      files: './lib/**/*.js',
+      plugins: ['node'],
+      extends: ['plugin:node/recommended'],
+      rules: {
+        'node/no-unpublished-require': 'off',
+        'no-shadow': 'off',
+      },
+      env: {
+        browser: false,
+        node: true,
+      },
+      parserOptions: {
+        sourceType: 'script',
+        ecmaVersion: 2015,
+      },
+    },
+  ],
 };

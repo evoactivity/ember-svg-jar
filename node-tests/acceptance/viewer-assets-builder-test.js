@@ -11,18 +11,18 @@ chai.use(chaiAsPromised);
 
 const idGens = {
   symbol: (path, { prefix }) => `${prefix}${path}`.replace(/[\s]/g, '-'),
-  inline: (path) => path
+  inline: path => path,
 };
 
 const copypastaGens = {
-  symbol: (id) => `{{svg-jar "#${id}"}}`,
-  inline: (id) => `{{svg-jar "${id}"}}`
+  symbol: id => `{{svg-jar "#${id}"}}`,
+  inline: id => `{{svg-jar "${id}"}}`,
 };
 
-describe('ViewerAssetsBuilder', function() {
-  it('works for inline strategy', function() {
+describe('ViewerAssetsBuilder', function () {
+  it('works for inline strategy', function () {
     let inputNode = new fixture.Node({
-      'foo.svg': '<svg viewBox="0 0 13 13"><path d="original"/></svg>'
+      'foo.svg': '<svg viewBox="0 0 13 13"><path d="original"/></svg>',
     });
 
     let strategy = 'inline';
@@ -33,12 +33,12 @@ describe('ViewerAssetsBuilder', function() {
       makeAssetID(relativePath) {
         return makeIDForPath(relativePath, {
           idGen: idGens[strategy],
-          stripPath: true
+          stripPath: true,
         });
-      }
+      },
     });
 
-    let filesHashPromise = fixture.build(node).then(function(filesHash) {
+    let filesHashPromise = fixture.build(node).then(function (filesHash) {
       filesHash['inline.json'] = JSON.parse(filesHash['inline.json']);
       return filesHash;
     });
@@ -54,17 +54,21 @@ describe('ViewerAssetsBuilder', function() {
           fileDir: '/root',
           fileSize: 0.05,
           strategy: strategy,
-          helper: '{{svg-jar "foo"}}'
-        }
-      ]
+          helper: '{{svg-jar "foo"}}',
+        },
+      ],
     });
   });
 
-  it('works for symbol strategy', function() {
+  it('works for symbol strategy', function () {
     let inputNode = new fixture.Node({
       'root.svg': '<svg viewBox="0 0 20 40"><path d="original"/></svg>',
-      circles: { 'circle.svg': '<svg width="20" height="40"><path d="original"/></svg>' },
-      logos: { 'logo.svg': '<svg width="20" height="40"><path d="original"/></svg>' }
+      circles: {
+        'circle.svg': '<svg width="20" height="40"><path d="original"/></svg>',
+      },
+      logos: {
+        'logo.svg': '<svg width="20" height="40"><path d="original"/></svg>',
+      },
     });
 
     let strategy = 'symbol';
@@ -76,12 +80,12 @@ describe('ViewerAssetsBuilder', function() {
         return makeIDForPath(relativePath, {
           idGen: idGens[strategy],
           stripPath: true,
-          prefix: 'prefix-'
+          prefix: 'prefix-',
         });
-      }
+      },
     });
 
-    let filesHashPromise = fixture.build(node).then(function(filesHash) {
+    let filesHashPromise = fixture.build(node).then(function (filesHash) {
       filesHash['symbol.json'] = JSON.parse(filesHash['symbol.json']);
       return filesHash;
     });
@@ -97,7 +101,7 @@ describe('ViewerAssetsBuilder', function() {
           fileDir: 'circles',
           fileSize: 0.05,
           helper: '{{svg-jar "#prefix-circle"}}',
-          strategy: 'symbol'
+          strategy: 'symbol',
         },
         {
           id: '1-symbol',
@@ -108,7 +112,7 @@ describe('ViewerAssetsBuilder', function() {
           fileDir: 'logos',
           fileSize: 0.05,
           helper: '{{svg-jar "#prefix-logo"}}',
-          strategy: 'symbol'
+          strategy: 'symbol',
         },
         {
           id: '2-symbol',
@@ -119,9 +123,9 @@ describe('ViewerAssetsBuilder', function() {
           fileDir: '/root',
           fileSize: 0.05,
           helper: '{{svg-jar "#prefix-root"}}',
-          strategy: 'symbol'
-        }
-      ]
+          strategy: 'symbol',
+        },
+      ],
     });
   });
 });

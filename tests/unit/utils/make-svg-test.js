@@ -5,27 +5,33 @@ import makeSvg, {
   symbolUseFor,
   createAriaLabel,
   createAccessibilityElements,
-  sanitizeAttrs
+  sanitizeAttrs,
 } from 'ember-svg-jar/utils/make-svg';
 
-module('Unit | Utility | make svg', function() {
-  test('makeSvg works', function(assert) {
+module('Unit | Utility | make svg', function () {
+  test('makeSvg works', function (assert) {
     assert.equal(makeSvg('#test'), '<svg ><use xlink:href="#test" /></svg>');
   });
 
-  test('makeSvg does not throw error when assetId is `undefined` or `null`', function(assert) {
+  test('makeSvg does not throw error when assetId is `undefined` or `null`', function (assert) {
     assert.notOk(makeSvg());
   });
 
-  test('symbolUseFor works', function(assert) {
-    assert.equal(symbolUseFor('#test'), '<svg ><use xlink:href="#test" /></svg>');
+  test('symbolUseFor works', function (assert) {
+    assert.equal(
+      symbolUseFor('#test'),
+      '<svg ><use xlink:href="#test" /></svg>'
+    );
   });
 
-  test('inlineSvgFor with original attrs', function(assert) {
+  test('inlineSvgFor with original attrs', function (assert) {
     function assetStore(id) {
       return {
-        'with-attrs': { content: 'with-attrs content', attrs: { class: 'foo' } },
-        'no-attrs': { content: 'no-attrs content' }
+        'with-attrs': {
+          content: 'with-attrs content',
+          attrs: { class: 'foo' },
+        },
+        'no-attrs': { content: 'no-attrs content' },
       }[id];
     }
 
@@ -42,10 +48,10 @@ module('Unit | Utility | make svg', function() {
     );
   });
 
-  test('inlineSvgFor with custom attrs', function(assert) {
+  test('inlineSvgFor with custom attrs', function (assert) {
     function assetStore(id) {
       return {
-        icon: { content: 'icon', attrs: { class: 'original' } }
+        icon: { content: 'icon', attrs: { class: 'original' } },
       }[id];
     }
 
@@ -57,11 +63,11 @@ module('Unit | Utility | make svg', function() {
     );
   });
 
-  test('inlineSvgFor with size attr', function(assert) {
+  test('inlineSvgFor with size attr', function (assert) {
     let customAttrs;
     function assetStore(id) {
       return {
-        icon: { content: 'icon', attrs: { width: '5px', height: '10px' } }
+        icon: { content: 'icon', attrs: { width: '5px', height: '10px' } },
       }[id];
     }
 
@@ -86,21 +92,21 @@ module('Unit | Utility | make svg', function() {
     );
   });
 
-  test('formatAttrs works', function(assert) {
+  test('formatAttrs works', function (assert) {
     let result = formatAttrs({
       attrName: 'attrValue',
       'f:oo': 'bar',
       isnull: null,
       isundefined: undefined,
-      title: 'Title'
+      title: 'Title',
     });
     assert.equal(result, 'attrName="attrValue" f:oo="bar"');
   });
 
-  test('createAriaLabel works', function(assert) {
+  test('createAriaLabel works', function (assert) {
     let result = createAriaLabel({
       title: 'Title',
-      desc: 'This is the title'
+      desc: 'This is the title',
     });
     assert.equal(result, 'aria-labelledby="title desc"');
 
@@ -108,29 +114,32 @@ module('Unit | Utility | make svg', function() {
     assert.equal(result, '');
   });
 
-  test('createAccessibilityElements works', function(assert) {
+  test('createAccessibilityElements works', function (assert) {
     let result = createAccessibilityElements({
       title: 'Title',
-      desc: 'This is the title'
+      desc: 'This is the title',
     });
-    assert.equal(result, '<title id="title">Title</title><desc id="desc">This is the title</desc>');
+    assert.equal(
+      result,
+      '<title id="title">Title</title><desc id="desc">This is the title</desc>'
+    );
   });
 
-  test('createAccessibilityElements works with just one element', function(assert) {
+  test('createAccessibilityElements works with just one element', function (assert) {
     let result = createAccessibilityElements({
       title: 'Title',
     });
     assert.equal(result, '<title id="title">Title</title>');
   });
 
-  test('sanitizeAttrs works', function(assert) {
+  test('sanitizeAttrs works', function (assert) {
     let result = sanitizeAttrs({
       title: '<script>Title</script>',
-      desc: '<div>This is the title</div>'
+      desc: '<div>This is the title</div>',
     });
     assert.deepEqual(result, {
       title: '&lt;script&gt;Title&lt;/script&gt;',
-      desc: '&lt;div&gt;This is the title&lt;/div&gt;'
+      desc: '&lt;div&gt;This is the title&lt;/div&gt;',
     });
   });
 });

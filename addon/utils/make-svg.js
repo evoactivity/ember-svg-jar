@@ -8,7 +8,7 @@ const ESC = {
   '"': '&quot;',
   '&': '&amp;',
   '<': '&lt;',
-  '>': '&gt;'
+  '>': '&gt;',
 };
 
 function matcher(char) {
@@ -20,10 +20,11 @@ function escapeText(text) {
     return '';
   }
 
-  if (text.indexOf('>') > -1
-    || text.indexOf('<') > -1
-    || text.indexOf('&') > -1
-    || text.indexOf('"') > -1
+  if (
+    text.indexOf('>') > -1 ||
+    text.indexOf('<') > -1 ||
+    text.indexOf('&') > -1 ||
+    text.indexOf('"') > -1
   ) {
     return text.replace(/[&"<>]/g, matcher);
   }
@@ -34,7 +35,7 @@ function escapeText(text) {
 export function sanitizeAttrs(attrs) {
   let attrsCopy = Object.assign({}, attrs);
 
-  Object.keys(attrsCopy).forEach((key) => {
+  Object.keys(attrsCopy).forEach(key => {
     attrsCopy[key] = escapeText(attrsCopy[key]);
   });
 
@@ -51,7 +52,9 @@ export function createAccessibilityElements(attrs) {
 
   return accessibilityElements.reduce((elements, tag) => {
     if (sanitizedAttrs[tag]) {
-      return elements.concat(`<${tag} id="${tag}">${sanitizedAttrs[tag]}</${tag}>`);
+      return elements.concat(
+        `<${tag} id="${tag}">${sanitizedAttrs[tag]}</${tag}>`
+      );
     }
     return elements;
   }, '');
@@ -64,19 +67,25 @@ export function createAriaLabel(attrs) {
     return '';
   }
 
-  return `aria-labelledby="${accessibilityElements.filter((tag) => attrs[tag]).join(' ')}"`;
+  return `aria-labelledby="${accessibilityElements
+    .filter(tag => attrs[tag])
+    .join(' ')}"`;
 }
 
 export function formatAttrs(attrs) {
   return Object.keys(attrs)
-    .filter((attr) => !(accessibilityElements.includes(attr)))
-    .map((key) => !isNone(attrs[key]) && `${key}="${attrs[key]}"`)
-    .filter((attr) => attr)
+    .filter(attr => !accessibilityElements.includes(attr))
+    .map(key => !isNone(attrs[key]) && `${key}="${attrs[key]}"`)
+    .filter(attr => attr)
     .join(' ');
 }
 
 export function symbolUseFor(assetId, attrs = {}) {
-  return `<svg ${formatAttrs(attrs)}${createAriaLabel(attrs)}><use xlink:href="${assetId}" />${createAccessibilityElements(attrs)}</svg>`;
+  return `<svg ${formatAttrs(attrs)}${createAriaLabel(
+    attrs
+  )}><use xlink:href="${assetId}" />${createAccessibilityElements(
+    attrs
+  )}</svg>`;
 }
 
 export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
@@ -97,7 +106,9 @@ export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
     delete svgAttrs.size;
   }
 
-  return `<svg ${formatAttrs(svgAttrs)}${createAriaLabel(attrs)}>${createAccessibilityElements(attrs)}${asset.content}</svg>`;
+  return `<svg ${formatAttrs(svgAttrs)}${createAriaLabel(
+    attrs
+  )}>${createAccessibilityElements(attrs)}${asset.content}</svg>`;
 }
 
 export default function makeSvg(assetId, attrs = {}, getInlineAsset) {

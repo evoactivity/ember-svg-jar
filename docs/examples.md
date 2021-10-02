@@ -5,8 +5,8 @@
 ```javascript
 let app = new EmberApp(defaults, {
   svgJar: {
-    sourceDirs: ['svgs', 'public/images/svg']
-  }
+    sourceDirs: ['svgs', 'public/images/svg'],
+  },
 });
 ```
 
@@ -16,9 +16,9 @@ let app = new EmberApp(defaults, {
 let app = new EmberApp(defaults, {
   svgJar: {
     inline: {
-      idGen: (filePath) => filePath.replace(/\./g, '-')
-    }
-  }
+      idGen: filePath => filePath.replace(/\./g, '-'),
+    },
+  },
 });
 ```
 
@@ -27,8 +27,8 @@ let app = new EmberApp(defaults, {
 ```javascript
 let app = new EmberApp(defaults, {
   svgJar: {
-    strategy: 'symbol'
-  }
+    strategy: 'symbol',
+  },
 });
 ```
 
@@ -41,9 +41,9 @@ let app = new EmberApp(defaults, {
 
     symbol: {
       sourceDirs: ['public/images/icons'],
-      prefix: 'icon-'
-    }
-  }
+      prefix: 'icon-',
+    },
+  },
 });
 ```
 
@@ -55,9 +55,9 @@ let app = new EmberApp(defaults, {
     strategy: 'symbol',
 
     symbol: {
-      copypastaGen: (svgID) => `<svg><use xlink:href="#${svgID}"></use></svg>`
-    }
-  }
+      copypastaGen: svgID => `<svg><use xlink:href="#${svgID}"></use></svg>`,
+    },
+  },
 });
 ```
 
@@ -71,9 +71,10 @@ let app = new EmberApp(defaults, {
     symbol: {
       includeLoader: false,
       outputFile: '/assets/symbol-defs.svg',
-      copypastaGen: (svgID) => `<svg><use xlink:href="/assets/symbol-defs.svg#${svgID}"></use></svg>`
-    }
-  }
+      copypastaGen: svgID =>
+        `<svg><use xlink:href="/assets/symbol-defs.svg#${svgID}"></use></svg>`,
+    },
+  },
 });
 ```
 
@@ -85,12 +86,12 @@ let app = new EmberApp(defaults, {
     strategy: ['symbol', 'inline'],
 
     symbol: {
-      sourceDirs: ['public/images/svg/icons']
+      sourceDirs: ['public/images/svg/icons'],
     },
 
     inline: {
-      sourceDirs: ['public/images/svg/illustrations']
-    }
-  }
+      sourceDirs: ['public/images/svg/illustrations'],
+    },
+  },
 });
 ```

@@ -87,25 +87,25 @@ Use the `svg-jar` helper to embed SVG images to your application's templates.
 For the default `inline` embedding strategy you can write:
 
 ```handlebars
-{{svg-jar "my-cool-icon" class="icon" width="24px"}}
+{{svg-jar 'my-cool-icon' class='icon' width='24px'}}
 ```
 
 The helper takes an asset ID and optional attributes that will be added to the created SVG element. The example above will create an SVG like this:
 
 ```handlebars
-<svg class="icon" width="24px">...</svg>
+<svg class='icon' width='24px'>...</svg>
 ```
 
 For the `symbol` strategy you will need to add `#` to the asset ID like this:
 
 ```handlebars
-{{svg-jar "#my-cool-icon"}}
+{{svg-jar '#my-cool-icon'}}
 ```
 
 In this case the result can look like this:
 
 ```handlebars
-<svg><use xlink:href="#my-cool-icon"></use></svg>
+<svg><use xlink:href='#my-cool-icon'></use></svg>
 ```
 
 ### Accessibility
@@ -115,7 +115,7 @@ Pass `title`, `desc`, and `role` as properties to the helper in order to include
 Writing this:
 
 ```handlebars
-{{svg-jar "my-cool-icon" role="img" title="Icon" desc="A very cool icon"}}
+{{svg-jar 'my-cool-icon' role='img' title='Icon' desc='A very cool icon'}}
 ```
 
 Will create an SVG that looks like this:
