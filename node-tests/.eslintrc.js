@@ -1,9 +1,7 @@
 'use strict';
 
 module.exports = {
-  extends: [
-    '../eslint-rules.js'
-  ],
+  extends: [],
 
   env: {
     browser: false,

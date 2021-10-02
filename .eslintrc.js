@@ -16,7 +16,6 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
-    './eslint-rules.js'
   ],
   env: {
     browser: true,
@@ -28,7 +27,6 @@ module.exports = {
     // for Ember node files
     {
       files: [
-        'eslint-rules.js',
         '.eslintrc.js',
         '.template-lintrc.js',
         'index.js',
