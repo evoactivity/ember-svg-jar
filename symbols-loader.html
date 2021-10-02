@@ -2,9 +2,9 @@
   var ajax = new XMLHttpRequest();
   ajax.open('GET', '{{SYMBOLS_URL}}', true);
   ajax.send();
-  ajax.onload = function(e) {
+  ajax.onload = function (e) {
     if (this.status === 404) {
-       return;
+      return;
     }
     var div = document.createElement('div');
     div.innerHTML = ajax.responseText;

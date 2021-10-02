@@ -7,17 +7,14 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
-      legacyDecorators: true
-    }
+      legacyDecorators: true,
+    },
   },
-  plugins: [
-    'ember',
-    'prettier',
-  ],
+  plugins: ['ember', 'prettier'],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
-    "plugin:prettier/recommended"
+    'plugin:prettier/recommended',
   ],
   env: {
     browser: true,
@@ -25,7 +22,7 @@ module.exports = {
     amd: true,
   },
   rules: {
-    "prettier/prettier": "error"
+    'prettier/prettier': 'error',
   },
   overrides: [
     // for Ember node files
@@ -48,7 +45,7 @@ module.exports = {
         node: true,
       },
       plugins: ['node'],
-      extends: ['plugin:node/recommended']
+      extends: ['plugin:node/recommended'],
     },
     // node-tests
     {
@@ -56,39 +53,35 @@ module.exports = {
       env: {
         browser: false,
         node: true,
-        mocha: true
+        mocha: true,
       },
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2018
+        ecmaVersion: 2018,
       },
       rules: {
         'no-param-reassign': 0,
         'object-shorthand': 0,
-        'no-unused-expressions': 'off'
-      }
+        'no-unused-expressions': 'off',
+      },
     },
     // lib
     {
       files: './lib/**/*.js',
-      plugins: [
-        'node'
-      ],
-      extends: [
-        'plugin:node/recommended',
-      ],
+      plugins: ['node'],
+      extends: ['plugin:node/recommended'],
       rules: {
         'node/no-unpublished-require': 'off',
-        'no-shadow': 'off'
+        'no-shadow': 'off',
       },
       env: {
         browser: false,
-        node: true
+        node: true,
       },
       parserOptions: {
         sourceType: 'script',
-        ecmaVersion: 2015
-      }
-    }
-  ]
+        ecmaVersion: 2015,
+      },
+    },
+  ],
 };

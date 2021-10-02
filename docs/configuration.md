@@ -9,8 +9,8 @@ SVGJar is configurable via the `svgJar` object in the `ember-cli-build.js` file:
 
 let app = new EmberApp(defaults, {
   svgJar: {
-    strategy: 'inline'
-  }
+    strategy: 'inline',
+  },
 });
 ```
 
@@ -19,7 +19,7 @@ To make examples cleaner, we are going to use only this part:
 ```javascript
 {
   svgJar: {
-    strategy: 'inline'
+    strategy: 'inline';
   }
 }
 ```
@@ -43,7 +43,7 @@ All global options with their default values:
     },
     persist: true,
     rootURL: '/',
-    
+
     validations: {
       validateViewBox: true,
       checkForDuplicates: true
@@ -90,8 +90,8 @@ Example:
 ```javascript
 let app = new EmberApp(defaults, {
   svgJar: {
-    sourceDirs: ['svgs', 'public/images/svg']
-  }
+    sourceDirs: ['svgs', 'public/images/svg'],
+  },
 });
 ```
 
@@ -109,7 +109,7 @@ Default: `{}`
 
 **Note:** You can completely disable SVG optimization by setting the option to `false`.
 
-***Choosing the version of [SVGO](https://github.com/svg/svgo)***
+**_Choosing the version of [SVGO](https://github.com/svg/svgo)_**
 
 You can specify which version of `svgo` to use with the `svgoModule` option.
 
@@ -129,11 +129,12 @@ Add the version that you want to use to your `package.json` and then provide its
 }
 ```
 
-***Enable, disable or configure [SVGO](https://github.com/svg/svgo) plugins***
+**_Enable, disable or configure [SVGO](https://github.com/svg/svgo) plugins_**
 
 Most SVGO plugins are enabled by default.
 
 For more info:
+
 - [Plugins defaults for v1.3.0](https://github.com/ivanvotti/broccoli-svg-optimizer/blob/master/docs/plugins-config.json).
 - [Plugins description for v1.3.0](https://github.com/svg/svgo/tree/v1.3.0#what-it-can-do).
 
@@ -142,11 +143,8 @@ Example:
 ```js
 {
   svgJar: {
-    optimizer : {
-      plugins: [
-        { removeUselessStrokeAndFill: false },
-        { removeTitle: true }
-      ]
+    optimizer: {
+      plugins: [{ removeUselessStrokeAndFill: false }, { removeTitle: true }];
     }
   }
 }
@@ -173,8 +171,8 @@ let isDevelopment = EmberApp.env() === 'development';
 
 let app = new EmberApp(defaults, {
   svgJar: {
-    rootURL: (isDevelopment && '/myapp/') || '/'
-  }
+    rootURL: (isDevelopment && '/myapp/') || '/',
+  },
 });
 ```
 
@@ -201,7 +199,7 @@ Example (we only disable `validateViewBox` here):
 {
   svgJar: {
     validations: {
-      validateViewBox: false
+      validateViewBox: false;
     }
   }
 }
@@ -239,7 +237,7 @@ This option accepts a function which takes a relative SVG filepath and returns a
 #### copypastaGen
 
 Type: `Function`  
-Default: ``(assetId) => `{{svg-jar "${assetId}"}}` ``
+Default: `` (assetId) => `{{svg-jar "${assetId}"}}`  ``
 
 The function takes an asset ID and returns a string which will be used as a copypasta in the assets viewer.
 
@@ -279,14 +277,14 @@ All the `symbol` strategy options with their default values:
 #### idGen
 
 Type: `Function`  
-Default: ``(path, { prefix }) => `${prefix}${path}`.replace(/[\s]/g, '-')``
+Default: `` (path, { prefix }) => `${prefix}${path}`.replace(/[\s]/g, '-') ``
 
 This option accepts a function which takes a relative SVG filepath and a symbol ID prefix. It returns a string which will be used as the asset ID.
 
 #### copypastaGen
 
 Type: `Function`  
-Default: ``(assetId) => `{{svg-jar "#${assetId}"}}` ``
+Default: `` (assetId) => `{{svg-jar "#${assetId}"}}`  ``
 
 The function takes an asset ID and returns a string which will be used as a copypasta in the assets viewer.
 
@@ -331,7 +329,7 @@ The loader example:
   var ajax = new XMLHttpRequest();
   ajax.open('GET', '{{outputFilepath}}', true);
   ajax.send();
-  ajax.onload = function(e) {
+  ajax.onload = function (e) {
     var div = document.createElement('div');
     div.innerHTML = ajax.responseText;
     document.body.insertBefore(div, document.body.childNodes[0]);
@@ -358,10 +356,17 @@ Default:
 It sets attributes for the symbols container. By default it should make the container invisible for most browsers and the result could look like this:
 
 ```handlebars
-  <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <symbol id="icon-foo" viewBox="0 0 16 16"><path d=""/></symbol>
-    <symbol id="icon-bar" viewBox="0 0 24 24"><path d=""/></symbol>
-  </svg>
+<svg
+  style='position: absolute; width: 0; height: 0;'
+  width='0'
+  height='0'
+  version='1.1'
+  xmlns='http://www.w3.org/2000/svg'
+  xmlns:xlink='http://www.w3.org/1999/xlink'
+>
+  <symbol id='icon-foo' viewBox='0 0 16 16'><path d=''></path></symbol>
+  <symbol id='icon-bar' viewBox='0 0 24 24'><path d=''></path></symbol>
+</svg>
 ```
 
 By setting `containerAttrs` you will lose all the default container attributes.
@@ -387,10 +392,10 @@ Example of rewriting the default `containerAttrs`:
 Then the result could look like:
 
 ```handlebars
-  <svg id="my-container-id" width="0">
-    <symbol id="icon-foo" viewBox="0 0 16 16"><path d=""/></symbol>
-    <symbol id="icon-bar" viewBox="0 0 24 24"><path d=""/></symbol>
-  </svg>
+<svg id='my-container-id' width='0'>
+  <symbol id='icon-foo' viewBox='0 0 16 16'><path d=''></path></symbol>
+  <symbol id='icon-bar' viewBox='0 0 24 24'><path d=''></path></symbol>
+</svg>
 ```
 
 ## Viewer options

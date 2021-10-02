@@ -5,11 +5,11 @@ export default function makeHelper(helperFunc) {
   let helper;
 
   if (Helper && Helper.helper) {
-    helper = Helper.helper(function([assetId], options) {
+    helper = Helper.helper(function ([assetId], options) {
       return helperFunc(assetId, options);
     });
   } else {
-    helper = Ember.Handlebars.makeBoundHelper(function(assetId, options) {
+    helper = Ember.Handlebars.makeBoundHelper(function (assetId, options) {
       return helperFunc(assetId, options.hash || {});
     });
   }
