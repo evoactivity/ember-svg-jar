@@ -1,4 +1,3 @@
-import { assign } from '@ember/polyfills';
 import { isNone } from '@ember/utils';
 import { htmlSafe } from '@ember/template';
 
@@ -97,7 +96,7 @@ export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
     return;
   }
 
-  let svgAttrs = asset.attrs ? assign({}, asset.attrs, attrs) : attrs;
+  let svgAttrs = asset.attrs ? Object.assign({}, asset.attrs, attrs) : attrs;
   let { size } = attrs;
 
   if (size) {
