@@ -1,5 +1,16 @@
 ## SVGJar Change Log
 
+### v2.3.4
+
+Note that this release likely does not work with Ember v4+. The released version of
+ember-cli-fastboot has an unaddressed problems with modern Ember
+(see https://github.com/ember-fastboot/ember-cli-fastboot/issues/829). If you find this
+_not_ to be the case for you, please open an issue with this project so that I can remove
+this notice. My assurance that these versions don't work is entirely based upon the
+ember-try-scenario matrix failing for these versions.
+
+- [[FIX]](https://github.com/ivanvotti/ember-svg-jar/pull/206) Resolve Ember.assign deprecation
+
 ### v2.3.3
 
 - [[ENHANCEMENT]](https://github.com/ivanvotti/ember-svg-jar/pull/184) Improve FastBoot compatibilitiy
