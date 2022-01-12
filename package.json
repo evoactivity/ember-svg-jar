@@ -48,8 +48,7 @@
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1",
     "safe-stable-stringify": "^2.2.0",
-    "lodash": "^4.17.15",
-    "path-posix": "^1.0.0"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
