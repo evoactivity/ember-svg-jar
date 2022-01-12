@@ -31,7 +31,8 @@
     "test:ember": "ember test",
     "test:node": "mocha node-tests/**/*-test.js",
     "test:ember-compatibility": "ember try:each",
-    "prepublishOnly": "yarn lint:js && yarn test:node"
+    "prepublishOnly": "yarn lint:js && yarn test:node",
+    "prepare": "husky install"
   },
   "dependencies": {
     "broccoli-caching-writer": "^3.0.3",
@@ -89,9 +90,9 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-qunit": "^6.2.0",
     "glob": "^7.2.0",
-    "husky": "^3.0.4",
+    "husky": ">=6",
     "in-publish": "^2.0.0",
-    "lint-staged": "^9.2.5",
+    "lint-staged": ">=10",
     "loader.js": "^4.7.0",
     "mocha": "^9.1.0",
     "npm-run-all": "^4.1.5",
@@ -112,18 +113,12 @@
       "ember": ">=1.13.13"
     }
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn lint:js && yarn test:ember && yarn test:node"
-    }
-  },
   "lint-staged": {
     "**/*.{json,html,yml,css,scss,md}": [
       "prettier --write"
     ],
     "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
+      "eslint --cache --fix"
     ]
   }
 }
