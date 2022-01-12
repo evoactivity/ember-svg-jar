@@ -13,6 +13,7 @@
 /coverage/
 !.*
 .eslintcache
+/public/static/
 
 # ember-try
 /.node_modules.ember-try/

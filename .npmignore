@@ -16,6 +16,7 @@
 /.eslintrc.js
 /.github/
 /.gitignore
+/.husky/
 /.prettierignore
 /.prettierrc.js
 /.template-lintrc.js
