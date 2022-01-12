@@ -12,7 +12,7 @@ module('Acceptance | inline-svg', function (hooks) {
     let expectedSVG =
       '<svg viewBox="0 0 24 24" height="24" width="24"><circle cx="12" cy="12" r="6" fill="red"></circle></svg>';
     let actualSVG = find('.inline-icon > svg').outerHTML;
-    assert.equal(actualSVG, expectedSVG);
+    assert.strictEqual(actualSVG, expectedSVG);
   });
 
   test('inline accessible svg is injected to the document', async function (assert) {
@@ -22,6 +22,6 @@ module('Acceptance | inline-svg', function (hooks) {
     let expectedSVG =
       '<svg viewBox="0 0 24 24" height="24" width="24" aria-labelledby="title desc"><title id="title">dummy title</title><desc id="desc">dummy dec</desc><circle cx="12" cy="12" r="6" fill="red"></circle></svg>';
     let actualSVG = find('.inline-accessible-icon > svg').outerHTML;
-    assert.equal(actualSVG, expectedSVG);
+    assert.strictEqual(actualSVG, expectedSVG);
   });
 });

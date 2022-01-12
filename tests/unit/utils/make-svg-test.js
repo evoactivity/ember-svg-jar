@@ -10,7 +10,10 @@ import makeSvg, {
 
 module('Unit | Utility | make svg', function () {
   test('makeSvg works', function (assert) {
-    assert.equal(makeSvg('#test'), '<svg ><use xlink:href="#test" /></svg>');
+    assert.strictEqual(
+      makeSvg('#test').toString(),
+      '<svg ><use xlink:href="#test" /></svg>'
+    );
   });
 
   test('makeSvg does not throw error when assetId is `undefined` or `null`', function (assert) {
@@ -18,7 +21,7 @@ module('Unit | Utility | make svg', function () {
   });
 
   test('symbolUseFor works', function (assert) {
-    assert.equal(
+    assert.strictEqual(
       symbolUseFor('#test'),
       '<svg ><use xlink:href="#test" /></svg>'
     );
@@ -35,13 +38,13 @@ module('Unit | Utility | make svg', function () {
       }[id];
     }
 
-    assert.equal(
+    assert.strictEqual(
       inlineSvgFor('with-attrs', assetStore),
       '<svg class="foo">with-attrs content</svg>',
       'with original attrs'
     );
 
-    assert.equal(
+    assert.strictEqual(
       inlineSvgFor('no-attrs', assetStore),
       '<svg >no-attrs content</svg>',
       'with undefined original attrs'
@@ -56,7 +59,7 @@ module('Unit | Utility | make svg', function () {
     }
 
     let customAttrs = { class: 'custom' };
-    assert.equal(
+    assert.strictEqual(
       inlineSvgFor('icon', assetStore, customAttrs),
       '<svg class="custom">icon</svg>',
       'can rewrite original attrs'
@@ -71,21 +74,21 @@ module('Unit | Utility | make svg', function () {
       }[id];
     }
 
-    assert.equal(
+    assert.strictEqual(
       inlineSvgFor('icon', assetStore),
       '<svg width="5px" height="10px">icon</svg>',
       "doesn't change height and width if sizeFactor is undefined"
     );
 
     customAttrs = { size: 2 };
-    assert.equal(
+    assert.strictEqual(
       inlineSvgFor('icon', assetStore, customAttrs),
       '<svg width="10" height="20">icon</svg>',
       'can double original height and width'
     );
 
     customAttrs = { height: '1px', size: 3 };
-    assert.equal(
+    assert.strictEqual(
       inlineSvgFor('icon', assetStore, customAttrs),
       '<svg width="15" height="3">icon</svg>',
       'can triple original width and custom height'
@@ -100,7 +103,7 @@ module('Unit | Utility | make svg', function () {
       isundefined: undefined,
       title: 'Title',
     });
-    assert.equal(result, 'attrName="attrValue" f:oo="bar"');
+    assert.strictEqual(result, 'attrName="attrValue" f:oo="bar"');
   });
 
   test('createAriaLabel works', function (assert) {
@@ -108,10 +111,10 @@ module('Unit | Utility | make svg', function () {
       title: 'Title',
       desc: 'This is the title',
     });
-    assert.equal(result, 'aria-labelledby="title desc"');
+    assert.strictEqual(result, 'aria-labelledby="title desc"');
 
     result = createAriaLabel({});
-    assert.equal(result, '');
+    assert.strictEqual(result, '');
   });
 
   test('createAccessibilityElements works', function (assert) {
@@ -119,7 +122,7 @@ module('Unit | Utility | make svg', function () {
       title: 'Title',
       desc: 'This is the title',
     });
-    assert.equal(
+    assert.strictEqual(
       result,
       '<title id="title">Title</title><desc id="desc">This is the title</desc>'
     );
@@ -129,7 +132,7 @@ module('Unit | Utility | make svg', function () {
     let result = createAccessibilityElements({
       title: 'Title',
     });
-    assert.equal(result, '<title id="title">Title</title>');
+    assert.strictEqual(result, '<title id="title">Title</title>');
   });
 
   test('sanitizeAttrs works', function (assert) {

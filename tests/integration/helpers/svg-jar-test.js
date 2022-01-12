@@ -13,7 +13,7 @@ module('Integration | Helper | svg-jar', function (hooks) {
     let expectedSVG =
       '<svg viewBox="0 0 24 24" height="24" width="24"><circle cx="12" cy="12" r="6" fill="red"></circle></svg>';
     let actualSVG = this.element.querySelector('svg').outerHTML;
-    assert.equal(actualSVG, expectedSVG);
+    assert.strictEqual(actualSVG, expectedSVG);
   });
 
   test('it supports nested assets', async function (assert) {
@@ -75,10 +75,10 @@ module('Integration | Helper | svg-jar', function (hooks) {
     );
 
     assert.dom('title').hasText("<script>alert('evil javascript')</script>");
-    assert.equal(document.querySelector('#title').children.length, 0);
+    assert.strictEqual(document.querySelector('#title').children.length, 0);
 
     assert.dom('desc').hasText('<div>evil string</div>');
-    assert.equal(document.querySelector('#desc').children.length, 0);
+    assert.strictEqual(document.querySelector('#desc').children.length, 0);
   });
 
   test('it allows to override original SVG attributes', async function (assert) {
@@ -163,9 +163,9 @@ module('Integration | Helper | svg-jar', function (hooks) {
     );
 
     assert.dom('title').hasText("<script>alert('evil javascript')</script>");
-    assert.equal(document.querySelector('#title').children.length, 0);
+    assert.strictEqual(document.querySelector('#title').children.length, 0);
 
     assert.dom('desc').hasText('<div>evil string</div>');
-    assert.equal(document.querySelector('#desc').children.length, 0);
+    assert.strictEqual(document.querySelector('#desc').children.length, 0);
   });
 });
