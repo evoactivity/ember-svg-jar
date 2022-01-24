@@ -120,6 +120,7 @@ jobs:
           steps.cache-dependencies.outputs.cache-hit != 'true'
 
       - name: Test
+        working-directory: packages/ember-svg-jar
         run: |
           yarn test:node
           yarn test:ember --launch ${{ matrix.browser }}
@@ -162,6 +163,7 @@ jobs:
         run: yarn install --no-lockfile --non-interactive
 
       - name: Test
+        working-directory: packages/ember-svg-jar
         run: |
           yarn test:node
           yarn test:ember --launch ${{ matrix.browser }}
@@ -223,4 +225,5 @@ jobs:
       - name: Test
         env:
           EMBER_TRY_SCENARIO: ${{ matrix.ember-try-scenario }}
+        working-directory: packages/ember-svg-jar
         run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
