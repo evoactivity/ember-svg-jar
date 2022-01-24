@@ -16,10 +16,8 @@ var SVGOptimizer = require('broccoli-svg-optimizer');
 var outputNode = new SVGOptimizer(inputNode, {
   persist: false,
   svgoConfig: {
-    plugins: [
-      { removeTitle: true }
-    ]
-  }
+    plugins: [{ removeTitle: true }],
+  },
 });
 ```
 
@@ -41,7 +39,7 @@ svgoConfig: {
     { removeAttrs: { attrs: '(fill|fill-rule)' } },
     { removeTitle: true },
     { removeDesc: { removeAny: true } },
-  ]
+  ];
 }
 ```
 
@@ -58,7 +56,7 @@ Example:
 const SVGOptimizer = require('broccoli-svg-optimizer');
 
 let outputNode = new SVGOptimizer(inputNode, {
-  svgoModule: require('svgo')
+  svgoModule: require('svgo'),
 });
 ```
 

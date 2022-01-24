@@ -1,15 +1,13 @@
 'use strict';
 
 const PersistentFilter = require('broccoli-persistent-filter');
-const _ = require('lodash');
-const stringify = require('json-stable-stringify');
-const { Promise } = require('rsvp');
+const stringify = require('safe-stable-stringify');
 const DefaultSVGO = require('svgo');
 
 function promisify(optimize) {
-  return (svg) => {
+  return svg => {
     return new Promise((resolve, reject) => {
-      optimize(svg, (result) => {
+      optimize(svg, result => {
         if (result.error) {
           reject(result.error);
         } else {
@@ -40,9 +38,9 @@ class SVGOFilter extends PersistentFilter {
       name: 'SVGOFilter',
       extensions: ['svg'],
       targetExtension: 'svg',
-      persist: _.isUndefined(options.persist) ? true : options.persist,
+      persist: typeof options.persist === 'undefined' ? true : options.persist,
       async: options.async,
-      annotation: options.annotation
+      annotation: options.annotation,
     });
 
     let SVGO = options.svgoModule || DefaultSVGO;
