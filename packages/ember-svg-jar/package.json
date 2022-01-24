@@ -31,9 +31,7 @@
     "test": "npm-run-all lint test:*",
     "test:ember": "ember test",
     "test:node": "mocha node-tests/**/*-test.js",
-    "test:ember-compatibility": "ember try:each",
-    "prepublishOnly": "yarn lint:js && yarn test:node",
-    "prepare": "husky install"
+    "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
     "broccoli-caching-writer": "^3.0.3",
