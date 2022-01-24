@@ -19,6 +19,7 @@
     "url": "https://github.com/ivanvotti/broccoli-svg-optimizer/issues"
   },
   "scripts": {
+    "lerna:lint-staged": "lint-staged",
     "lint": "eslint ./*.js tests",
     "test": "mocha tests/*test.js --timeout 1000"
   },
@@ -44,12 +45,10 @@
   },
   "lint-staged": {
     "**/*.{json,md}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ],
     "**/*.{js,ts}": [
-      "eslint --fix",
-      "git add"
+      "eslint --cache --fix"
     ]
   },
   "engines": {
