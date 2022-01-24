@@ -29,7 +29,7 @@
 #$ packageManager: yarn
 #
 
-name: CI
+name: ember-svg-jar CI
 
 on:
   push:
