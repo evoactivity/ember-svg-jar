@@ -76,6 +76,7 @@ jobs:
           steps.cache-dependencies.outputs.cache-hit != 'true'
 
       - name: Lint
+        working-directory: packages/ember-svg-jar
         run: yarn lint
 
   test:
