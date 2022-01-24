@@ -2,6 +2,26 @@
   "name": "broccoli-svg-optimizer",
   "version": "2.0.0",
   "description": "Broccoli plugin for optimizing SVG files with SVGO",
+  "keywords": [
+    "broccoli",
+    "broccoli-plugin",
+    "svgo"
+  ],
+  "license": "MIT",
+  "author": "Ivan Votti <ivanvotti@gmail.com>",
+  "main": "index.js",
+  "homepage": "https://github.com/ivanvotti/broccoli-svg-optimizer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivanvotti/broccoli-svg-optimizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ivanvotti/broccoli-svg-optimizer/issues"
+  },
+  "scripts": {
+    "lint": "eslint ./*.js tests",
+    "test": "mocha tests/*test.js --timeout 1000"
+  },
   "dependencies": {
     "broccoli-persistent-filter": "^2.3.1",
     "json-stable-stringify": "^1.0.1",
@@ -18,33 +38,9 @@
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^9.1.0",
+    "lint-staged": ">=10",
     "mocha": "^6.2.0",
-    "husky": "^3.0.1",
-    "lint-staged": "^9.2.1",
     "prettier": "^1.18.2"
-  },
-  "scripts": {
-    "prepublishOnly": "npm test",
-    "lint": "eslint ./*.js tests",
-    "nodetest": "mocha tests/*test.js --timeout 1000",
-    "test": "npm run lint && npm run nodetest",
-    "update-fixtures": "node ./tests/utils/update-plugin-fixtures.js"
-  },
-  "main": "index.js",
-  "author": "Ivan Votti",
-  "license": "MIT",
-  "homepage": "https://github.com/ivanvotti/broccoli-svg-optimizer",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ivanvotti/broccoli-svg-optimizer.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ivanvotti/broccoli-svg-optimizer/issues"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "**/*.{json,md}": [
@@ -56,12 +52,7 @@
       "git add"
     ]
   },
-  "keywords": [
-    "broccoli",
-    "broccoli-plugin",
-    "svgo"
-  ],
   "engines": {
-    "node": "8.* || >= 10.*"
+    "node": "12.* || 14.* || >= 16"
   }
 }
