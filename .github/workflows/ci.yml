@@ -71,8 +71,6 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
-        if: |
-          steps.cache-dependencies.outputs.cache-hit != 'true'
 
       - name: Lint
         working-directory: packages/ember-svg-jar
@@ -115,8 +113,6 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
-        if: |
-          steps.cache-dependencies.outputs.cache-hit != 'true'
 
       - name: Test
         working-directory: packages/ember-svg-jar
@@ -216,8 +212,6 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
-        if: |
-          steps.cache-dependencies.outputs.cache-hit != 'true'
 
       - name: Test
         env:
