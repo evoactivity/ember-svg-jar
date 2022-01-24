@@ -2,7 +2,7 @@
 
 const PersistentFilter = require('broccoli-persistent-filter');
 const _ = require('lodash');
-const stringify = require('json-stable-stringify');
+const stringify = require('safe-stable-stringify');
 const { Promise } = require('rsvp');
 const DefaultSVGO = require('svgo');
 
