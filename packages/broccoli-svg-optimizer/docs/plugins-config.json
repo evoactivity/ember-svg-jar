@@ -1,0 +1,252 @@
+[
+  { "name": "addAttributesToSVGElement", "active": false },
+  { "name": "addClassesToSVGElement", "active": false },
+  {
+    "name": "cleanupAttrs",
+    "active": true,
+    "params": { "newlines": true, "trim": true, "spaces": true }
+  },
+  { "name": "cleanupEnableBackground", "active": true },
+  {
+    "name": "cleanupIDs",
+    "active": true,
+    "params": {
+      "remove": true,
+      "minify": true,
+      "prefix": "",
+      "preserve": [],
+      "preservePrefixes": [],
+      "force": false
+    }
+  },
+  {
+    "name": "cleanupListOfValues",
+    "active": false,
+    "params": {
+      "floatPrecision": 3,
+      "leadingZero": true,
+      "defaultPx": true,
+      "convertToPx": true
+    }
+  },
+  {
+    "name": "cleanupNumericValues",
+    "active": true,
+    "params": {
+      "floatPrecision": 3,
+      "leadingZero": true,
+      "defaultPx": true,
+      "convertToPx": true
+    }
+  },
+  { "name": "collapseGroups", "active": true },
+  {
+    "name": "convertColors",
+    "active": true,
+    "params": {
+      "currentColor": false,
+      "names2hex": true,
+      "rgb2hex": true,
+      "shorthex": true,
+      "shortname": true
+    }
+  },
+  { "name": "convertEllipseToCircle", "active": true },
+  {
+    "name": "convertPathData",
+    "active": true,
+    "params": {
+      "applyTransforms": true,
+      "applyTransformsStroked": true,
+      "makeArcs": { "threshold": 2.5, "tolerance": 0.5 },
+      "straightCurves": true,
+      "lineShorthands": true,
+      "curveSmoothShorthands": true,
+      "floatPrecision": 3,
+      "transformPrecision": 5,
+      "removeUseless": true,
+      "collapseRepeated": true,
+      "utilizeAbsolute": true,
+      "leadingZero": true,
+      "negativeExtraSpace": true,
+      "noSpaceAfterFlags": true,
+      "forceAbsolutePath": false
+    }
+  },
+  {
+    "name": "convertShapeToPath",
+    "active": true,
+    "params": { "convertArcs": false }
+  },
+  {
+    "name": "convertStyleToAttrs",
+    "active": true,
+    "params": { "keepImportant": false }
+  },
+  {
+    "name": "convertTransform",
+    "active": true,
+    "params": {
+      "convertToShorts": true,
+      "floatPrecision": 3,
+      "transformPrecision": 5,
+      "matrixToTransform": true,
+      "shortTranslate": true,
+      "shortScale": true,
+      "shortRotate": true,
+      "removeUseless": true,
+      "collapseIntoOne": true,
+      "leadingZero": true,
+      "negativeExtraSpace": false
+    }
+  },
+  {
+    "name": "inlineStyles",
+    "active": true,
+    "params": {
+      "onlyMatchedOnce": true,
+      "removeMatchedSelectors": true,
+      "useMqs": ["", "screen"],
+      "usePseudos": [""]
+    }
+  },
+  {
+    "name": "mergePaths",
+    "active": true,
+    "params": {
+      "collapseRepeated": true,
+      "force": false,
+      "leadingZero": true,
+      "negativeExtraSpace": true,
+      "noSpaceAfterFlags": true
+    }
+  },
+  {
+    "name": "minifyStyles",
+    "active": true,
+    "params": {
+      "usage": { "force": false, "ids": true, "classes": true, "tags": true }
+    }
+  },
+  { "name": "moveElemsAttrsToGroup", "active": true },
+  { "name": "moveGroupAttrsToElems", "active": true },
+  {
+    "name": "prefixIds",
+    "active": false,
+    "params": { "delim": "__", "prefixIds": true, "prefixClassNames": true }
+  },
+  { "name": "removeAttributesBySelector", "active": false },
+  {
+    "name": "removeAttrs",
+    "active": false,
+    "params": {
+      "elemSeparator": ":",
+      "preserveCurrentColor": false,
+      "attrs": []
+    }
+  },
+  { "name": "removeComments", "active": true },
+  { "name": "removeDesc", "active": true, "params": { "removeAny": true } },
+  { "name": "removeDimensions", "active": false },
+  { "name": "removeDoctype", "active": true },
+  {
+    "name": "removeEditorsNSData",
+    "active": true,
+    "params": { "additionalNamespaces": [] }
+  },
+  {
+    "name": "removeElementsByAttr",
+    "active": false,
+    "params": { "id": [], "class": [] }
+  },
+  { "name": "removeEmptyAttrs", "active": true },
+  { "name": "removeEmptyContainers", "active": true },
+  {
+    "name": "removeEmptyText",
+    "active": true,
+    "params": { "text": true, "tspan": true, "tref": true }
+  },
+  {
+    "name": "removeHiddenElems",
+    "active": true,
+    "params": {
+      "isHidden": true,
+      "displayNone": true,
+      "opacity0": true,
+      "circleR0": true,
+      "ellipseRX0": true,
+      "ellipseRY0": true,
+      "rectWidth0": true,
+      "rectHeight0": true,
+      "patternWidth0": true,
+      "patternHeight0": true,
+      "imageWidth0": true,
+      "imageHeight0": true,
+      "pathEmptyD": true,
+      "polylineEmptyPoints": true,
+      "polygonEmptyPoints": true
+    }
+  },
+  { "name": "removeMetadata", "active": true },
+  { "name": "removeNonInheritableGroupAttrs", "active": true },
+  { "name": "removeOffCanvasPaths", "active": false },
+  { "name": "removeRasterImages", "active": false },
+  { "name": "removeScriptElement", "active": false },
+  { "name": "removeStyleElement", "active": false },
+  { "name": "removeTitle", "active": true },
+  {
+    "name": "removeUnknownsAndDefaults",
+    "active": true,
+    "params": {
+      "unknownContent": true,
+      "unknownAttrs": true,
+      "defaultAttrs": true,
+      "uselessOverrides": true,
+      "keepDataAttrs": true,
+      "keepAriaAttrs": true,
+      "keepRoleAttr": false
+    }
+  },
+  { "name": "removeUnusedNS", "active": true },
+  { "name": "removeUselessDefs", "active": true },
+  {
+    "name": "removeUselessStrokeAndFill",
+    "active": true,
+    "params": {
+      "stroke": true,
+      "fill": true,
+      "removeNone": false,
+      "hasStyleOrScript": false
+    }
+  },
+  { "name": "removeViewBox", "active": true },
+  { "name": "removeXMLNS", "active": false },
+  { "name": "removeXMLProcInst", "active": true },
+  { "name": "reusePaths", "active": false },
+  {
+    "name": "sortAttrs",
+    "active": false,
+    "params": {
+      "order": [
+        "id",
+        "width",
+        "height",
+        "x",
+        "x1",
+        "x2",
+        "y",
+        "y1",
+        "y2",
+        "cx",
+        "cy",
+        "r",
+        "fill",
+        "stroke",
+        "marker",
+        "d",
+        "points"
+      ]
+    }
+  },
+  { "name": "sortDefsChildren", "active": true }
+]

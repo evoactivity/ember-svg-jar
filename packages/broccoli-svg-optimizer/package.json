@@ -1,0 +1,57 @@
+{
+  "name": "broccoli-svg-optimizer",
+  "version": "2.0.0",
+  "description": "Broccoli plugin for optimizing SVG files with SVGO",
+  "keywords": [
+    "broccoli",
+    "broccoli-plugin",
+    "svgo"
+  ],
+  "license": "MIT",
+  "author": "Ivan Votti <ivanvotti@gmail.com>",
+  "main": "index.js",
+  "homepage": "https://github.com/ivanvotti/broccoli-svg-optimizer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivanvotti/broccoli-svg-optimizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ivanvotti/broccoli-svg-optimizer/issues"
+  },
+  "scripts": {
+    "lerna:lint-staged": "lint-staged",
+    "lint": "eslint ./*.js tests",
+    "test": "mocha tests/*test.js --timeout 1000"
+  },
+  "dependencies": {
+    "broccoli-persistent-filter": "^2.3.1",
+    "json-stable-stringify": "^1.0.1",
+    "lodash": "^4.17.15",
+    "rsvp": "^4.8.5",
+    "svgo": "1.3.0"
+  },
+  "devDependencies": {
+    "broccoli": "^3.1.2",
+    "broccoli-fixture": "^1.0.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "lint-staged": ">=10",
+    "mocha": "^6.2.0",
+    "prettier": "^1.18.2"
+  },
+  "lint-staged": {
+    "**/*.{json,md}": [
+      "prettier --write"
+    ],
+    "**/*.{js,ts}": [
+      "eslint --cache --fix"
+    ]
+  },
+  "engines": {
+    "node": "12.* || 14.* || >= 16"
+  }
+}
