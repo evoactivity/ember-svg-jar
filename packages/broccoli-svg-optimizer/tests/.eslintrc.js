@@ -1,9 +1,9 @@
 module.exports = {
   env: {
-    mocha: true
+    mocha: true,
   },
 
   rules: {
-    'prefer-promise-reject-errors': 'off'
-  }
+    'prefer-promise-reject-errors': 'off',
+  },
 };

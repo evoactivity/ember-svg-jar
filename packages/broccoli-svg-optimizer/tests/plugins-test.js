@@ -23,7 +23,7 @@ describe('plugins tests', async () => {
   const fixturesDir = `${__dirname}/fixtures/plugins`;
   const svgPaths = await fs.readdir(fixturesDir);
 
-  svgPaths.forEach((svgPath) => {
+  svgPaths.forEach(svgPath => {
     let fullFilepath = path.resolve(fixturesDir, svgPath);
     let [, pluginName, testIndex] = svgPath.match(regFilename) || [];
 
@@ -33,18 +33,21 @@ describe('plugins tests', async () => {
 
     it(`${pluginName}.${testIndex}`, async () => {
       const fileContent = await fs.readFile(fullFilepath, { encoding: 'utf8' });
-      let [originalSVG, expectedSVG, pluginParams] = normalize(fileContent).split(/\s*@@@\s*/);
+      let [originalSVG, expectedSVG, pluginParams] =
+        normalize(fileContent).split(/\s*@@@\s*/);
       let pluginConfig = {};
 
-      pluginConfig[pluginName] = (pluginParams) ? JSON.parse(pluginParams) : true;
+      pluginConfig[pluginName] = pluginParams ? JSON.parse(pluginParams) : true;
 
       let svgo = new SVGO({
         full: true,
         plugins: [pluginConfig],
-        js2svg: { pretty: true }
+        js2svg: { pretty: true },
       });
 
-      let { data: actualSVG } = await svgo.optimize(originalSVG, { path: fullFilepath });
+      let { data: actualSVG } = await svgo.optimize(originalSVG, {
+        path: fullFilepath,
+      });
       expect(normalize(actualSVG)).to.equal(expectedSVG);
     });
   });
