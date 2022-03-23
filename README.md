@@ -54,7 +54,7 @@
 
 ## 🍩 Features
 
-Here's some of useful features:
+Here's some of the useful features:
 
 - <a href="https://svgjar-demo.web.app" target="_blank">Visual workflow</a> to find and use SVGs the fastest way possible
 - Automatic SVG optimization (it can cut file size by half or more)
