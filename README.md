@@ -159,8 +159,8 @@ of the addon, it should be listed as one of the `dependencies` and not `devDepen
 
 The addon should be useful without any configuration. But it wants to be very configurable when it's time to adjust it for your needs.
 
-- [All configuration options](docs/configuration.md)
-- [Advanced usage examples](docs/examples.md)
+- [All configuration options](packages/ember-svg-jar/docs/configuration.md)
+- [Advanced usage examples](packages/ember-svg-jar/docs/examples.md)
 
 ## ❓ FAQ
 
