@@ -1,5 +1,6 @@
 import { isNone } from '@ember/utils';
 import { htmlSafe } from '@ember/template';
+import { guidFor } from '@ember/object/internals';
 
 const accessibilityElements = ['title', 'desc'];
 
@@ -42,17 +43,16 @@ export function sanitizeAttrs(attrs) {
 }
 
 export function createAccessibilityElements(attrs) {
-  const sanitizedAttrs = sanitizeAttrs(attrs);
-  const { title, desc } = sanitizedAttrs;
+  const { title, desc } = attrs;
 
   if (!title && !desc) {
     return '';
   }
 
   return accessibilityElements.reduce((elements, tag) => {
-    if (sanitizedAttrs[tag]) {
+    if (attrs[tag]) {
       return elements.concat(
-        `<${tag} id="${tag}">${sanitizedAttrs[tag]}</${tag}>`
+        `<${tag} id="${attrs[tag].id}">${attrs[tag].text}</${tag}>`
       );
     }
     return elements;
@@ -62,12 +62,15 @@ export function createAccessibilityElements(attrs) {
 export function createAriaLabel(attrs) {
   const { title, desc } = attrs;
 
+
   if (!title && !desc) {
     return '';
   }
 
+
   return `aria-labelledby="${accessibilityElements
     .filter(tag => attrs[tag])
+    .map(tag => attrs[tag].id)
     .join(' ')}"`;
 }
 
@@ -110,11 +113,23 @@ export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
   )}>${createAccessibilityElements(attrs)}${asset.content}</svg>`;
 }
 
-export default function makeSvg(assetId, attrs = {}, getInlineAsset) {
+export default function makeSvg(assetId, attrsOrig = {}, getInlineAsset) {
   if (!assetId) {
     // eslint-disable-next-line no-console
     console.warn('ember-svg-jar: asset name should not be undefined or null');
     return;
+  }
+
+  const attrs = sanitizeAttrs(attrsOrig);
+
+  if (attrs.title) {
+    attrs.title = { text: attrs.title };
+    attrs.title.id = guidFor(attrs.title);
+  }
+
+  if (attrs.desc) {
+    attrs.desc = { text: attrs.desc };
+    attrs.desc.id = guidFor(attrs.desc);
   }
 
   let isSymbol = assetId.lastIndexOf('#', 0) === 0;
