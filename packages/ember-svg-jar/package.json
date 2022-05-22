@@ -55,6 +55,7 @@
     "@embroider/test-setup": "^0.50.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
+    "@types/ember__component": "^4.0.8",
     "all-contributors-cli": "^6.9.1",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
