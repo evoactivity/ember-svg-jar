@@ -23,9 +23,4 @@ export interface SvgJarSignature {
   Return: SvgJarReturn;
 }
 
-// export default function svgJar<SvgJarSignature>(
-//   positional: SvgJarPositional,
-//   named: SvgJarAttrs
-// ): SVGElement;
-
-export default class SvgJar extends Helper<SvgJarSignature> { }
+export default class SvgJar extends Helper<SvgJarSignature> {}
