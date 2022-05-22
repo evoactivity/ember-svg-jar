@@ -114,5 +114,12 @@
     "**/*.{js,jsx,ts,tsx}": [
       "eslint --cache --fix"
     ]
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "types/*"
+      ]
+    }
   }
 }
