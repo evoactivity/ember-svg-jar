@@ -11,16 +11,16 @@
 <p align="center">
   <a href="https://svgjar-demo.web.app" target="_blank">🎮 View Live Demo</a>
   ·
-  <a href="https://github.com/ivanvotti/ember-svg-jar/issues/new?template=---bug-report.md">🐞 Report Bug</a>
+  <a href="https://github.com/voltidev/ember-svg-jar/issues/new?template=---bug-report.md">🐞 Report Bug</a>
   ·
-  <a href="https://github.com/ivanvotti/ember-svg-jar/issues/new?template=---feature-request.md">🍩 Request Feature</a>
+  <a href="https://github.com/voltidev/ember-svg-jar/issues/new?template=---feature-request.md">🍩 Request Feature</a>
   ·
-  <a href="https://github.com/ivanvotti/ember-svg-jar/issues/new?template=---question.md">🤔  Ask Question</a>
+  <a href="https://github.com/voltidev/ember-svg-jar/issues/new?template=---question.md">🤔  Ask Question</a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/ivanvotti/ember-svg-jar/actions?query=workflow%3ATest" target="_blank">
-    <img src="https://github.com/ivanvotti/ember-svg-jar/workflows/Test/badge.svg?branch=master"
+  <a href="https://github.com/voltidev/ember-svg-jar/actions?query=workflow%3ATest" target="_blank">
+    <img src="https://github.com/voltidev/ember-svg-jar/workflows/Test/badge.svg?branch=master"
       alt="Build Status">
   </a>
   <a href="https://www.npmjs.com/package/ember-svg-jar" target="_blank">
@@ -78,7 +78,7 @@ Place your SVG images to the `public` directory (e.g. `./public/images/my-icon.s
 
 The viewer is available at: <a href="http://localhost:4200/ember-svg-jar/index.html" target="_blank">http://localhost:4200/ember-svg-jar/index.html</a>
 
-If your `rootURL` is not `/`, then to use the asset viewer you will need to add `rootURL` to the addon [config](https://github.com/ivanvotti/ember-svg-jar/blob/master/docs/configuration.md#global-options).
+If your `rootURL` is not `/`, then to use the asset viewer you will need to add `rootURL` to the addon [config](https://github.com/voltidev/ember-svg-jar/blob/master/docs/configuration.md#global-options).
 
 ### Helper
 
@@ -181,7 +181,7 @@ The addon should be useful without any configuration. But it wants to be very co
 - 20 Font Awesome icons in SVGJar will be about 4.3 KB (you save `84 KB` or `145 KB` as TTF)
 - 50 Font Awesome icons in SVGJar will be about `9 KB`
 
-You can get Font Awesome icons as individual SVG files from [font-awesome-svg](https://github.com/ivanvotti/font-awesome-svg).
+You can get Font Awesome icons as individual SVG files from [font-awesome-svg](https://github.com/voltidev/font-awesome-svg).
 
 ## 👓 Compatibility
 
@@ -202,7 +202,7 @@ Thanks goes to these wonderful people:
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://ivanvotti.com/"><img src="https://avatars.githubusercontent.com/u/1476221?v=4" width="100px;" alt=""/><br /><sub><b>Ivan Votti</b></sub></a></td>
+    <td align="center"><a href="https://volti.dev/"><img src="https://avatars.githubusercontent.com/u/1476221?v=4" width="100px;" alt=""/><br /><sub><b>Ivan Volti</b></sub></a></td>
     <td align="center"><a href="https://github.com/jherdman"><img src="https://avatars.githubusercontent.com/u/3300?v=4" width="100px;" alt=""/><br /><sub><b>James Herdman</b></sub></a></td>
     <td align="center"><a href="http://eaf4.com"><img src="https://avatars0.githubusercontent.com/u/319282?v=4" width="100px;" alt=""/><br /><sub><b>Edward Faulkner</b></sub></a></td>
     <td align="center"><a href="https://github.com/Turbo87"><img src="https://avatars2.githubusercontent.com/u/141300?v=4" width="100px;" alt=""/><br /><sub><b>Tobias Bieniek</b></sub></a></td>
@@ -253,5 +253,5 @@ This project is distributed under the MIT license.
 
 ---
 
-GitHub [@ivanvotti](https://github.com/ivanvotti) &nbsp;&middot;&nbsp;
-Twitter [@ivanvotti](https://twitter.com/ivanvotti)
+GitHub [@voltidev](https://github.com/voltidev) &nbsp;&middot;&nbsp;
+Twitter [@voltidev](https://twitter.com/voltidev)

@@ -6,7 +6,7 @@
     "ember-addon"
   ],
   "license": "MIT",
-  "author": "Ivan Votti <ivanvotti@gmail.com>",
+  "author": "Ivan Volti <voltidev@gmail.com>",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -14,10 +14,10 @@
   "homepage": "https://svgjar.web.app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ivanvotti/ember-svg-jar.git"
+    "url": "https://github.com/voltidev/ember-svg-jar.git"
   },
   "bugs": {
-    "url": "https://github.com/ivanvotti/ember-svg-jar/issues"
+    "url": "https://github.com/voltidev/ember-svg-jar/issues"
   },
   "scripts": {
     "s": "ember s",

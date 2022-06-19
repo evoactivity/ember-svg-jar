@@ -135,7 +135,7 @@ Most SVGO plugins are enabled by default.
 
 For more info:
 
-- [Plugins defaults for v1.3.0](https://github.com/ivanvotti/broccoli-svg-optimizer/blob/master/docs/plugins-config.json).
+- [Plugins defaults for v1.3.0](https://github.com/voltidev/broccoli-svg-optimizer/blob/master/docs/plugins-config.json).
 - [Plugins description for v1.3.0](https://github.com/svg/svgo/tree/v1.3.0#what-it-can-do).
 
 Example:

@@ -8,15 +8,15 @@
     "svgo"
   ],
   "license": "MIT",
-  "author": "Ivan Votti <ivanvotti@gmail.com>",
+  "author": "Ivan Volti <voltidev@gmail.com>",
   "main": "index.js",
-  "homepage": "https://github.com/ivanvotti/broccoli-svg-optimizer",
+  "homepage": "https://github.com/voltidev/broccoli-svg-optimizer",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ivanvotti/broccoli-svg-optimizer.git"
+    "url": "https://github.com/voltidev/broccoli-svg-optimizer.git"
   },
   "bugs": {
-    "url": "https://github.com/ivanvotti/broccoli-svg-optimizer/issues"
+    "url": "https://github.com/voltidev/broccoli-svg-optimizer/issues"
   },
   "scripts": {
     "lerna:lint-staged": "lint-staged",

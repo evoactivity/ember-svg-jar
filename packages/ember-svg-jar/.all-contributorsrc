@@ -1,6 +1,6 @@
 {
   "projectName": "ember-svg-jar",
-  "projectOwner": "ivanvotti",
+  "projectOwner": "voltidev",
   "repoType": "github",
   "repoHost": "https://github.com",
   "files": [
@@ -12,10 +12,10 @@
   "contributorTemplate": "<a href=\"<%= contributor.profile %>\"><img src=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>px;\" alt=\"\"/><br /><sub><b><%= contributor.name %></b></sub></a>",
   "contributors": [
     {
-      "login": "ivanvotti",
-      "name": "Ivan Votti",
+      "login": "voltidev",
+      "name": "Ivan Volti",
       "avatar_url": "https://avatars.githubusercontent.com/u/1476221?v=4",
-      "profile": "https://ivanvotti.com/",
+      "profile": "https://volti.dev/",
       "contributions": [
         "code",
         "doc",
