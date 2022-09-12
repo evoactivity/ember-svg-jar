@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const cheerio = require('cheerio');
+const cheerio = require('cheerio').default;
 const path = require('path').posix;
 const osPathSep = require('path').sep;
 const _ = require('lodash');

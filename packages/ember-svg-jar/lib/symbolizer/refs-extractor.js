@@ -2,7 +2,7 @@
 
 const path = require('path').posix;
 const Plugin = require('broccoli-plugin');
-const cheerio = require('cheerio');
+const cheerio = require('cheerio').default;
 const formatAttrs = require('./format-attrs');
 const { readFile, saveToFile } = require('../utils');
 
