@@ -62,11 +62,9 @@ export function createAccessibilityElements(attrs) {
 export function createAriaLabel(attrs) {
   const { title, desc } = attrs;
 
-
   if (!title && !desc) {
     return '';
   }
-
 
   return `aria-labelledby="${accessibilityElements
     .filter(tag => attrs[tag])
