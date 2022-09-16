@@ -2,7 +2,7 @@
 
 ## Installation
 
-- `git clone git@github.com:ivanvotti/ember-svg-jar.git`
+- `git clone git@github.com:voltidev/ember-svg-jar.git`
 - `cd ember-svg-jar`
 - `yarn install`
 
