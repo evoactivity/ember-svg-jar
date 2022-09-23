@@ -89,9 +89,7 @@ export function createAriaLabel(attrs) {
 export function formatAttrs(attrs) {
   return Object.keys(attrs)
     .filter(attr => !accessibilityElements.includes(attr))
-    .map(key => {
-      return !isNone(attrs[key]) && `${key}="${attrs[key]}"`;
-    })
+    .map(key => !isNone(attrs[key]) && `${key}="${attrs[key]}"`)
     .filter(attr => attr)
     .join(' ');
 }
