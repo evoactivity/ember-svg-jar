@@ -16,9 +16,9 @@ function matcher(char) {
 }
 
 function escapeText(text) {
-  if (typeof text !== 'string') {
-    return '';
-  }
+  if (typeof text === 'number') return text;
+  if (text === null) return null;
+  if (typeof text !== 'string') return '';
 
   if (
     text.indexOf('>') > -1 ||
@@ -40,6 +40,20 @@ export function sanitizeAttrs(attrs) {
   });
 
   return attrsCopy;
+}
+
+export function generateAccessibilityIds(attrs) {
+  if (attrs.title) {
+    attrs.title = { text: attrs.title };
+    attrs.title.id = guidFor(attrs.title);
+  }
+
+  if (attrs.desc) {
+    attrs.desc = { text: attrs.desc };
+    attrs.desc.id = guidFor(attrs.desc);
+  }
+
+  return attrs;
 }
 
 export function createAccessibilityElements(attrs) {
@@ -75,7 +89,9 @@ export function createAriaLabel(attrs) {
 export function formatAttrs(attrs) {
   return Object.keys(attrs)
     .filter(attr => !accessibilityElements.includes(attr))
-    .map(key => !isNone(attrs[key]) && `${key}="${attrs[key]}"`)
+    .map(key => {
+      return !isNone(attrs[key]) && `${key}="${attrs[key]}"`;
+    })
     .filter(attr => attr)
     .join(' ');
 }
@@ -111,24 +127,15 @@ export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
   )}>${createAccessibilityElements(attrs)}${asset.content}</svg>`;
 }
 
-export default function makeSvg(assetId, attrsOrig = {}, getInlineAsset) {
+export default function makeSvg(assetId, attrs = {}, getInlineAsset) {
   if (!assetId) {
     // eslint-disable-next-line no-console
     console.warn('ember-svg-jar: asset name should not be undefined or null');
     return;
   }
 
-  const attrs = sanitizeAttrs(attrsOrig);
-
-  if (attrs.title) {
-    attrs.title = { text: attrs.title };
-    attrs.title.id = guidFor(attrs.title);
-  }
-
-  if (attrs.desc) {
-    attrs.desc = { text: attrs.desc };
-    attrs.desc.id = guidFor(attrs.desc);
-  }
+  attrs = sanitizeAttrs(attrs);
+  attrs = generateAccessibilityIds(attrs);
 
   let isSymbol = assetId.lastIndexOf('#', 0) === 0;
   let svg = isSymbol
