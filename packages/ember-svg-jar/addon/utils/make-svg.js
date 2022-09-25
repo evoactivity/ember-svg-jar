@@ -1,5 +1,6 @@
 import { isNone } from '@ember/utils';
 import { htmlSafe } from '@ember/template';
+import { guidFor } from '@ember/object/internals';
 
 const accessibilityElements = ['title', 'desc'];
 
@@ -15,9 +16,9 @@ function matcher(char) {
 }
 
 function escapeText(text) {
-  if (typeof text !== 'string') {
-    return '';
-  }
+  if (typeof text === 'number') return text;
+  if (text === null) return null;
+  if (typeof text !== 'string') return '';
 
   if (
     text.indexOf('>') > -1 ||
@@ -41,18 +42,31 @@ export function sanitizeAttrs(attrs) {
   return attrsCopy;
 }
 
+export function generateAccessibilityIds(attrs) {
+  if (attrs.title) {
+    attrs.title = { text: attrs.title };
+    attrs.title.id = guidFor(attrs.title);
+  }
+
+  if (attrs.desc) {
+    attrs.desc = { text: attrs.desc };
+    attrs.desc.id = guidFor(attrs.desc);
+  }
+
+  return attrs;
+}
+
 export function createAccessibilityElements(attrs) {
-  const sanitizedAttrs = sanitizeAttrs(attrs);
-  const { title, desc } = sanitizedAttrs;
+  const { title, desc } = attrs;
 
   if (!title && !desc) {
     return '';
   }
 
   return accessibilityElements.reduce((elements, tag) => {
-    if (sanitizedAttrs[tag]) {
+    if (attrs[tag]) {
       return elements.concat(
-        `<${tag} id="${tag}">${sanitizedAttrs[tag]}</${tag}>`
+        `<${tag} id="${attrs[tag].id}">${attrs[tag].text}</${tag}>`
       );
     }
     return elements;
@@ -68,6 +82,7 @@ export function createAriaLabel(attrs) {
 
   return `aria-labelledby="${accessibilityElements
     .filter(tag => attrs[tag])
+    .map(tag => attrs[tag].id)
     .join(' ')}"`;
 }
 
@@ -116,6 +131,9 @@ export default function makeSvg(assetId, attrs = {}, getInlineAsset) {
     console.warn('ember-svg-jar: asset name should not be undefined or null');
     return;
   }
+
+  attrs = sanitizeAttrs(attrs);
+  attrs = generateAccessibilityIds(attrs);
 
   let isSymbol = assetId.lastIndexOf('#', 0) === 0;
   let svg = isSymbol

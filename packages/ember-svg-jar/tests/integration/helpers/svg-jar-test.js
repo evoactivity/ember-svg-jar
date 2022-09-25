@@ -55,15 +55,15 @@ module('Integration | Helper | svg-jar', function (hooks) {
     );
 
     assert.dom('title').hasText('Green rectangle');
-    assert.dom('title').hasAttribute('id', 'title');
+    assert.dom('title').hasAttribute('id');
 
     assert.dom('desc').hasText('A light green rectangle');
-    assert.dom('desc').hasAttribute('id', 'desc');
+    assert.dom('desc').hasAttribute('id');
 
     assert
       .dom('[data-test-icon="true"]')
       .hasAttribute('class', 'myicon')
-      .hasAttribute('aria-labelledby', 'title desc')
+      .hasAttribute('aria-labelledby')
       .doesNotHaveAttribute('title')
       .doesNotHaveAttribute('desc');
   });
@@ -89,10 +89,13 @@ module('Integration | Helper | svg-jar', function (hooks) {
     );
 
     assert.dom('title').hasText("<script>alert('evil javascript')</script>");
-    assert.strictEqual(document.querySelector('#title').children.length, 0);
+    assert.strictEqual(
+      document.querySelector('svg > title').children.length,
+      0
+    );
 
     assert.dom('desc').hasText('<div>evil string</div>');
-    assert.strictEqual(document.querySelector('#desc').children.length, 0);
+    assert.strictEqual(document.querySelector('desc').children.length, 0);
   });
 
   test('it allows to override original SVG attributes', async function (assert) {
@@ -171,15 +174,15 @@ module('Integration | Helper | svg-jar', function (hooks) {
     );
 
     assert.dom('title').hasText('Green rectangle');
-    assert.dom('title').hasAttribute('id', 'title');
+    assert.dom('title').hasAttribute('id');
 
     assert.dom('desc').hasText('A light green rectangle');
-    assert.dom('desc').hasAttribute('id', 'desc');
+    assert.dom('desc').hasAttribute('id');
 
     assert
       .dom('[data-test-id="one"]')
       .hasAttribute('class', 'myicon')
-      .hasAttribute('aria-labelledby', 'title desc')
+      .hasAttribute('aria-labelledby')
       .doesNotHaveAttribute('title')
       .doesNotHaveAttribute('desc');
   });
@@ -205,9 +208,9 @@ module('Integration | Helper | svg-jar', function (hooks) {
     );
 
     assert.dom('title').hasText("<script>alert('evil javascript')</script>");
-    assert.strictEqual(document.querySelector('#title').children.length, 0);
+    assert.strictEqual(document.querySelector('svg title').children.length, 0);
 
     assert.dom('desc').hasText('<div>evil string</div>');
-    assert.strictEqual(document.querySelector('#desc').children.length, 0);
+    assert.strictEqual(document.querySelector('svg desc').children.length, 0);
   });
 });

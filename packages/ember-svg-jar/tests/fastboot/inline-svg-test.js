@@ -23,8 +23,9 @@ module('FastBoot | inline-svg', function (hooks) {
     assert.dom('.inline-accessible-icon > svg').exists();
 
     let expectedSVG =
-      '<svg viewBox="0 0 24 24" height="24" width="24" aria-labelledby="title desc"><title id="title">dummy title</title><desc id="desc">dummy dec</desc><circle cx="12" cy="12" r="6" fill="red"></circle></svg>';
+      /<svg viewBox="0 0 24 24" height="24" width="24" aria-labelledby=".*?"><title id=".*?">dummy title<\/title><desc id=".*?">dummy dec<\/desc><circle cx="12" cy="12" r="6" fill="red"><\/circle><\/svg>/;
     let actualSVG = find('.inline-accessible-icon > svg').outerHTML;
-    assert.strictEqual(actualSVG, expectedSVG);
+
+    assert.true(!!actualSVG.match(expectedSVG));
   });
 });

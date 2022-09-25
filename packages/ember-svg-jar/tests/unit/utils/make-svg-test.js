@@ -108,10 +108,10 @@ module('Unit | Utility | make svg', function () {
 
   test('createAriaLabel works', function (assert) {
     let result = createAriaLabel({
-      title: 'Title',
-      desc: 'This is the title',
+      title: { text: 'Title', id: 'ember1' },
+      desc: { text: 'This is the title', id: 'ember2' },
     });
-    assert.strictEqual(result, 'aria-labelledby="title desc"');
+    assert.strictEqual(result, 'aria-labelledby="ember1 ember2"');
 
     result = createAriaLabel({});
     assert.strictEqual(result, '');
@@ -119,20 +119,20 @@ module('Unit | Utility | make svg', function () {
 
   test('createAccessibilityElements works', function (assert) {
     let result = createAccessibilityElements({
-      title: 'Title',
-      desc: 'This is the title',
+      title: { text: 'Title', id: 'ember1' },
+      desc: { text: 'This is the title', id: 'ember2' },
     });
     assert.strictEqual(
       result,
-      '<title id="title">Title</title><desc id="desc">This is the title</desc>'
+      '<title id="ember1">Title</title><desc id="ember2">This is the title</desc>'
     );
   });
 
   test('createAccessibilityElements works with just one element', function (assert) {
     let result = createAccessibilityElements({
-      title: 'Title',
+      title: { text: 'Title', id: 'ember1' },
     });
-    assert.strictEqual(result, '<title id="title">Title</title>');
+    assert.strictEqual(result, '<title id="ember1">Title</title>');
   });
 
   test('sanitizeAttrs works', function (assert) {
