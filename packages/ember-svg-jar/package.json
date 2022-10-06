@@ -1,6 +1,6 @@
 {
   "name": "ember-svg-jar",
-  "version": "2.3.5",
+  "version": "2.4.0",
   "description": "Best way to use SVG images in Ember applications",
   "keywords": [
     "ember-addon"
@@ -41,7 +41,7 @@
     "broccoli-persistent-filter": "^3.1.2",
     "broccoli-plugin": "^4.0.7",
     "broccoli-string-replace": "^0.1.2",
-    "broccoli-svg-optimizer": "2.0.0",
+    "broccoli-svg-optimizer": "^2.1.0",
     "cheerio": "^1.0.0-rc.12",
     "console-ui": "^3.1.1",
     "ember-cli-babel": "^7.26.6",
