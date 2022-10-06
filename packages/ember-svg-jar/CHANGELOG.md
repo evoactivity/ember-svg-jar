@@ -1,5 +1,11 @@
 ## SVGJar Change Log
 
+### v2.4.0
+
+- [[FEATURE]](https://github.com/voltidev/ember-svg-jar/pull/226) types for Glint
+- [[FIX]](https://github.com/voltidev/ember-svg-jar/pull/224) guidFor for unique IDs
+- [[FIX]](https://github.com/voltidev/ember-svg-jar/pull/228) resolve Cheero vulnerability
+
 ### v2.3.4
 
 Note that this release likely does not work with Ember v4+. The released version of
