@@ -1,5 +1,9 @@
 ## SVGJar Change Log
 
+### v2.4.1
+
+- [[FIX]](https://github.com/voltidev/ember-svg-jar/pull/234) fix asset viewer integration
+
 ### v2.4.0
 
 - [[FEATURE]](https://github.com/voltidev/ember-svg-jar/pull/226) types for Glint
