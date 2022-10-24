@@ -45,11 +45,11 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 1
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
 
@@ -59,7 +59,7 @@ jobs:
 
       - name: Cache package manager's global cache and node_modules
         id: cache-dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ${{ steps.global-cache-dir-path.outputs.dir }}
@@ -87,11 +87,11 @@ jobs:
         browser: [Chrome]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 1
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
 
@@ -101,7 +101,7 @@ jobs:
 
       - name: Cache package manager's global cache and node_modules
         id: cache-dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ${{ steps.global-cache-dir-path.outputs.dir }}
@@ -131,11 +131,11 @@ jobs:
         browser: [Chrome]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 1
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
 
@@ -145,7 +145,7 @@ jobs:
 
       - name: Cache package manager's global cache and node_modules
         id: cache-dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ${{ steps.global-cache-dir-path.outputs.dir }}
@@ -171,7 +171,8 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        ember-try-scenario: [
+        ember-try-scenario:
+          [
             ember-lts-3.20,
             ember-lts-3.24,
             ember-lts-3.28,
@@ -185,11 +186,11 @@ jobs:
           ]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 1
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
 
@@ -199,7 +200,7 @@ jobs:
 
       - name: Cache package manager's global cache and node_modules
         id: cache-dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ${{ steps.global-cache-dir-path.outputs.dir }}
