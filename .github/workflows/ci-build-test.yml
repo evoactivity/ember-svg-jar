@@ -1,0 +1,30 @@
+name: monorepo build test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+env:
+  NODE_VERSION: '14'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '${{ env.NODE_VERSION }}'
+          cache: 'yarn'
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - run: yarn lerna run build
