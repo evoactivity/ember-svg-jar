@@ -52,22 +52,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
-
-      - name: Get package manager's global cache path
-        id: global-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache package manager's global cache and node_modules
-        id: cache-dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            ${{ steps.global-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-${{ matrix.node-version }}-2-${{
-            hashFiles('**/yarn.lock'
-            ) }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-
+          cache: 'yarn'
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
@@ -94,22 +79,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
-
-      - name: Get package manager's global cache path
-        id: global-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache package manager's global cache and node_modules
-        id: cache-dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            ${{ steps.global-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-${{ matrix.node-version }}-2-${{
-            hashFiles('**/yarn.lock'
-            ) }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-
+          cache: 'yarn'
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
@@ -138,20 +108,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
-
-      - name: Get package manager's global cache path
-        id: global-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache package manager's global cache and node_modules
-        id: cache-dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            ${{ steps.global-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-${{ matrix.node-version }}-2-floating-deps
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-
+          cache: 'yarn'
 
       - name: Install Dependencies
         run: yarn install --no-lockfile --non-interactive
@@ -193,22 +150,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
-
-      - name: Get package manager's global cache path
-        id: global-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache package manager's global cache and node_modules
-        id: cache-dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            ${{ steps.global-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-${{ matrix.node-version }}-2-${{
-            hashFiles('**/yarn.lock'
-            ) }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-
+          cache: 'yarn'
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
