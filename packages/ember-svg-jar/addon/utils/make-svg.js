@@ -1,6 +1,17 @@
 import { isNone } from '@ember/utils';
 import { htmlSafe } from '@ember/template';
-import { guidFor } from '@ember/object/internals';
+
+/**
+ * This taken from https://github.com/emberjs/ember.js/blob/089a021b1b5c5f8ea1cb574fcd841a73af7b2031/packages/%40ember/-internals/glimmer/lib/helpers/unique-id.ts#L44
+ * In the future it should be possible to import this function like
+ * `import { uniqueId } from '@ember/helper`
+ * see https://github.com/emberjs/ember.js/pull/20165
+ */
+function uniqueId() {
+  return ([3e7] + -1e3 + -4e3 + -2e3 + -1e11).replace(/[0-3]/g, a =>
+    ((a * 4) ^ ((Math.random() * 16) >> (a & 2))).toString(16)
+  );
+}
 
 const accessibilityElements = ['title', 'desc'];
 
@@ -44,13 +55,17 @@ export function sanitizeAttrs(attrs) {
 
 export function generateAccessibilityIds(attrs) {
   if (attrs.title) {
-    attrs.title = { text: attrs.title };
-    attrs.title.id = guidFor(attrs.title);
+    attrs.title = {
+      id: uniqueId(),
+      text: attrs.title,
+    };
   }
 
   if (attrs.desc) {
-    attrs.desc = { text: attrs.desc };
-    attrs.desc.id = guidFor(attrs.desc);
+    attrs.desc = {
+      id: uniqueId(),
+      text: attrs.desc,
+    };
   }
 
   return attrs;

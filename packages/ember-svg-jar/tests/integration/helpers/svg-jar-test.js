@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { find, render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Helper | svg-jar', function (hooks) {
@@ -66,6 +66,44 @@ module('Integration | Helper | svg-jar', function (hooks) {
       .hasAttribute('aria-labelledby')
       .doesNotHaveAttribute('title')
       .doesNotHaveAttribute('desc');
+  });
+
+  test('it adds unqiue ids to SVG accessibility elements when multiple svg-jar instances use the same text for title or desc', async function (assert) {
+    await render(
+      hbs`
+       {{svg-jar "icon" class="myicon" title="Green rectangle" desc="A light green rectangle" data-test-icon="true" data-test-id="one"}}
+       {{svg-jar "icon" class="myicon" title="Green rectangle" desc="A light green rectangle" data-test-icon="true" data-test-id="two"}}`
+    );
+
+    assert
+      .dom('[data-test-id="one"] title')
+      .hasText('Green rectangle')
+      .hasAttribute('id');
+
+    assert
+      .dom('[data-test-id="one"] desc')
+      .hasText('A light green rectangle')
+      .hasAttribute('id');
+
+    assert
+      .dom('[data-test-id="two"] title')
+      .hasText('Green rectangle')
+      .hasAttribute('id');
+
+    assert
+      .dom('[data-test-id="two"] desc')
+      .hasText('A light green rectangle')
+      .hasAttribute('id');
+
+    assert.notEqual(
+      find('[data-test-id="one"] title').id,
+      find('[data-test-id="two"] title').id
+    );
+
+    assert.notEqual(
+      find('[data-test-id="one"] desc').id,
+      find('[data-test-id="two"] desc').id
+    );
   });
 
   test('it allows to set a11y SVG attributes for decorative images', async function (assert) {
