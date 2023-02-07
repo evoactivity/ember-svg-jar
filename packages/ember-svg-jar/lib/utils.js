@@ -1,7 +1,6 @@
 'use strict';
 
 const fs = require('fs');
-const cheerio = require('cheerio').default;
 const path = require('path').posix;
 const osPathSep = require('path').sep;
 const _ = require('lodash');
@@ -30,6 +29,8 @@ function makeIDForPath(relativePath, { idGen, stripPath, prefix }) {
 }
 
 function svgDataFor(svgContent) {
+  const cheerio = require('cheerio').default;
+
   let $svg = cheerio.load(svgContent, { xmlMode: true })('svg');
 
   return {
