@@ -251,4 +251,10 @@ module('Integration | Helper | svg-jar', function (hooks) {
     assert.dom('desc').hasText('<div>evil string</div>');
     assert.strictEqual(document.querySelector('svg desc').children.length, 0);
   });
+
+  test('it can handle files with apostrophes in their names', async function (assert) {
+    await render(hbs`{{svg-jar "apos'trophe" data-test-id="one"}}`);
+
+    assert.dom('[data-test-id="one"]').exists();
+  });
 });
