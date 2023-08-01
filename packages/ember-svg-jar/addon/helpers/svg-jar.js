@@ -1,14 +1,13 @@
 import { helper } from '@ember/component/helper';
 import makeSVG from 'ember-svg-jar/utils/make-svg';
-import assets from '../inlined';
 
 function getInlineAsset(assetId) {
   let result = null;
   try {
-    result = require('ember-svg-jar/inlined/' + assetId).default;
+    result = require(`ember-svg-jar/inlined/${assetId}`).default;
   } catch (err) {}
   try {
-    result = importSync('./inlined/' + assetId).default;
+    result = importSync(`../inlined/${assetId}`).default;
   } catch (err) {}
   return result;
 }
