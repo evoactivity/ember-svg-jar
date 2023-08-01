@@ -1,5 +1,11 @@
 ## SVGJar Change Log
 
+### v2.4.4
+
+- [[FIX]](https://github.com/ghedamat/ember-svg-jar/pull/254) Simplify inline strategy so multiple versions of ember-svg-jar do not overwrite index.js
+- [[FEATURE]](https://github.com/ghedamat/ember-svg-jar/pull/249) Speed up requiring index.js file
+- [[FIX]](https://github.com/ghedamat/ember-svg-jar/pull/247) Fix file missing error on embroider when using custom rootURL
+
 ### v2.4.3
 
 - [[FIX]](https://github.com/voltidev/ember-svg-jar/pull/252) Proper fixes for embroider
