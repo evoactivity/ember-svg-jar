@@ -40,7 +40,7 @@ describe('InlinePacker', function () {
           'export default {"content":"<path d=\\"foo\\"/>","attrs":{"viewBox":"0 0 1 1"}}',
         'bar.js':
           'export default {"content":"<path d=\\"bar\\"/>","attrs":{"height":"10px","viewBox":"0 0 2 2"}}',
-        },
+      },
     };
 
     return expect(actual).to.eventually.deep.equal(expected);
