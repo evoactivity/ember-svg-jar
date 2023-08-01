@@ -40,8 +40,6 @@ describe('InlinePacker', function () {
           'export default {"content":"<path d=\\"foo\\"/>","attrs":{"viewBox":"0 0 1 1"}}',
         'bar.js':
           'export default {"content":"<path d=\\"bar\\"/>","attrs":{"height":"10px","viewBox":"0 0 2 2"}}',
-        'index.js':
-          "import { importSync } from '@embroider/macros';\n      const obj = {\n        ['apost\\'rophe']: function() { return importSync('./apost\\'rophe'); },\n['bar']: function() { return importSync('./bar'); },\n['foo']: function() { return importSync('./foo'); }\n      }; export default obj;",
       },
     };
 

@@ -55,19 +55,6 @@ class InlinePacker extends CachingWriter {
 
       assets.push(jsName);
     });
-
-    // Generate index.js that contains methods to import each asset
-    const contents = `import { importSync } from '@embroider/macros';
-      const obj = {
-        ${assets
-          .map(asset => {
-            const assetName = asset.replace(/'/g, "\\'");
-            return `['${assetName}']: function() { return importSync('./${assetName}'); }`;
-          })
-          .join(',\n')}
-      }; export default obj;`;
-
-    saveToFile(path.join(outputPath, `index.js`), contents);
   }
 }
 
