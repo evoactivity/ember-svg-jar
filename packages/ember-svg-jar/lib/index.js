@@ -2,21 +2,18 @@
 
 const fs = require('fs');
 const _ = require('lodash');
-const Funnel = require('broccoli-funnel');
-const MergeTrees = require('broccoli-merge-trees');
-const SVGOptimizer = require('broccoli-svg-optimizer');
-const broccoliReplace = require('broccoli-string-replace');
-const Symbolizer = require('./symbolizer/symbolizer');
-const InlinePacker = require('./inline-packer');
-const ViewerAssetsBuilder = require('./viewer-assets-builder');
-const ViewerBuilder = require('./viewer-builder');
-const buildOptions = require('./build-options');
 const { makeIDForPath } = require('./utils');
-const prepareSymbolLoaderScript = require('./prepare-symbol-loader-script');
 
 function mergeTreesIfNeeded(trees, options) {
+  if (trees.length === 1) {
+    return trees[0];
+  }
+
   let mergedOptions = _.assign({ overwrite: true }, options);
-  return trees.length === 1 ? trees[0] : new MergeTrees(trees, mergedOptions);
+
+  const MergeTrees = require('broccoli-merge-trees');
+
+  return new MergeTrees(trees, mergedOptions);
 }
 
 module.exports = {
@@ -28,6 +25,9 @@ module.exports = {
 
   included(app) {
     this._super.included.apply(this, arguments);
+
+    const buildOptions = require('./build-options');
+
     this.svgJarOptions = buildOptions(app);
   },
 
@@ -40,6 +40,8 @@ module.exports = {
 
       // Add viewer assets to public dir
       let svgJarPublicTree = this._super.treeForPublic.apply(this, arguments);
+
+      const broccoliReplace = require('broccoli-string-replace');
 
       svgJarPublicTree = broccoliReplace(svgJarPublicTree, {
         files: ['**/index.html'],
@@ -78,6 +80,8 @@ module.exports = {
       const outputFile = this.optionFor('symbol', 'outputFile');
       const isTestEnv = app.environment === 'test';
 
+      const prepareSymbolLoaderScript = require('./prepare-symbol-loader-script');
+
       return prepareSymbolLoaderScript(rootURL, outputFile, isTestEnv);
     }
 
@@ -103,6 +107,8 @@ module.exports = {
   originalSvgsFor(strategy) {
     let sourceDirs = this.sourceDirsFor(strategy);
 
+    const Funnel = require('broccoli-funnel');
+
     return new Funnel(mergeTreesIfNeeded(sourceDirs), {
       include: ['**/*.svg'],
     });
@@ -110,6 +116,8 @@ module.exports = {
 
   optimizedSvgsFor(strategy, originalSvgs) {
     let optimizerConfig = this.optionFor(strategy, 'optimizer');
+
+    const SVGOptimizer = require('broccoli-svg-optimizer');
 
     return new SVGOptimizer(originalSvgs, {
       svgoConfig: _.omit(optimizerConfig, 'svgoModule'),
@@ -132,6 +140,8 @@ module.exports = {
       let stripPath = this.optionFor(strategy, 'stripPath');
       let prefix = this.optionFor(strategy, 'prefix');
 
+      const ViewerAssetsBuilder = require('./viewer-assets-builder');
+
       return new ViewerAssetsBuilder(this.svgsFor(strategy), {
         strategy,
         validationConfig: this.svgJarOptions.validations,
@@ -143,6 +153,8 @@ module.exports = {
       });
     });
 
+    const ViewerBuilder = require('./viewer-builder');
+
     return new ViewerBuilder(mergeTreesIfNeeded(viewerBuilderTrees), {
       outputFile: 'svg-jar-viewer.json',
     });
@@ -151,6 +163,8 @@ module.exports = {
   getInlineStrategyTree() {
     let idGen = this.optionFor('inline', 'idGen');
     let stripPath = this.optionFor('inline', 'stripPath');
+
+    const InlinePacker = require('./inline-packer');
 
     return new InlinePacker(this.svgsFor('inline'), {
       makeAssetID(relativePath) {
@@ -163,6 +177,8 @@ module.exports = {
     let idGen = this.optionFor('symbol', 'idGen');
     let stripPath = this.optionFor('symbol', 'stripPath');
     let prefix = this.optionFor('symbol', 'prefix');
+
+    const Symbolizer = require('./symbolizer/symbolizer');
 
     return new Symbolizer(this.svgsFor('symbol'), {
       outputFile: this.optionFor('symbol', 'outputFile'),
