@@ -16,6 +16,8 @@ describe('InlinePacker', function () {
     let inputNode = new fixture.Node({
       'foo.svg': '<svg viewBox="0 0 1 1"><path d="foo"/></svg>',
       'bar.svg': '<svg height="10px" viewBox="0 0 2 2"><path d="bar"/></svg>',
+      "apost'rophe.svg":
+        '<svg height="10px" viewBox="0 0 2 2"><path d="bar"/></svg>',
     });
 
     let options = {
@@ -32,10 +34,14 @@ describe('InlinePacker', function () {
 
     let expected = {
       inlined: {
+        "apost'rophe.js":
+          'export default {"content":"<path d=\\"bar\\"/>","attrs":{"height":"10px","viewBox":"0 0 2 2"}}',
         'foo.js':
           'export default {"content":"<path d=\\"foo\\"/>","attrs":{"viewBox":"0 0 1 1"}}',
         'bar.js':
           'export default {"content":"<path d=\\"bar\\"/>","attrs":{"height":"10px","viewBox":"0 0 2 2"}}',
+        'index.js':
+          "import { importSync } from '@embroider/macros';\n      const obj = {\n        ['apost\\'rophe']: function() { return importSync('./apost\\'rophe'); },\n['bar']: function() { return importSync('./bar'); },\n['foo']: function() { return importSync('./foo'); }\n      }; export default obj;",
       },
     };
 

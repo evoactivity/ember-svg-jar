@@ -42,14 +42,32 @@ class InlinePacker extends CachingWriter {
     let outputPath = path.join(toPosixPath(this.outputPath), 'inlined');
     let { makeAssetID } = this.options;
 
+    const assets = [];
+
     this.listFiles().forEach(_filePath => {
-      let filePath = toPosixPath(_filePath);
-      let relativePath = relativePathFor(filePath, inputPath);
-      let modulePath = path.join(outputPath, `${makeAssetID(relativePath)}.js`);
-      let svgData = svgDataFor(readFile(filePath));
+      const filePath = toPosixPath(_filePath);
+      const relativePath = relativePathFor(filePath, inputPath);
+      const jsName = makeAssetID(relativePath);
+      const modulePath = path.join(outputPath, `${jsName}.js`);
+      const svgData = svgDataFor(readFile(filePath));
 
       saveToFile(modulePath, `export default ${JSON.stringify(svgData)}`);
+
+      assets.push(jsName);
     });
+
+    // Generate index.js that contains methods to import each asset
+    const contents = `import { importSync } from '@embroider/macros';
+      const obj = {
+        ${assets
+          .map(asset => {
+            const assetName = asset.replace(/'/g, "\\'");
+            return `['${assetName}']: function() { return importSync('./${assetName}'); }`;
+          })
+          .join(',\n')}
+      }; export default obj;`;
+
+    saveToFile(path.join(outputPath, `index.js`), contents);
   }
 }
 

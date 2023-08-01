@@ -1,5 +1,14 @@
 ## SVGJar Change Log
 
+### v2.4.3
+
+- [[FIX]](https://github.com/voltidev/ember-svg-jar/pull/252) Proper fixes for embroider
+- [[FIX]](https://github.com/voltidev/ember-svg-jar/244) Use `uniqueId` for recurring `title` and `desc`
+
+### v2.4.2
+
+- [[FIX]](https://github.com/voltidev/ember-svg-jar/pull/238) first embroider fixes
+
 ### v2.4.1
 
 - [[FIX]](https://github.com/voltidev/ember-svg-jar/pull/234) fix asset viewer integration
