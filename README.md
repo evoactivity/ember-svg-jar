@@ -172,7 +172,6 @@ declare module '@glint/environment-ember-loose/registry' {
 
 Should you want to manage the registry by yourself, then omit this import, and instead add the entries in your app by explicitly importing the types of the helper from this addon.
 
-> Note that Glint itself is still under active development, and as such breaking changes might occur. Therefore, Glint support by this addon is also considered experimental, and not covered by our SemVer contract!
 
 ### Usage in an addon
 
