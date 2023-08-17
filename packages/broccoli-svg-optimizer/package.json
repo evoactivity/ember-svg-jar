@@ -26,7 +26,7 @@
   "dependencies": {
     "broccoli-persistent-filter": "^3.1.2",
     "safe-stable-stringify": "^2.2.0",
-    "svgo": "1.3.0"
+    "svgo": "^2.0.0"
   },
   "devDependencies": {
     "broccoli": "^3.1.2",

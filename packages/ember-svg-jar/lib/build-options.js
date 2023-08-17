@@ -59,9 +59,9 @@ function buildOptions(app) {
     stripPath: true,
     optimizer: {
       plugins: [
-        { removeTitle: false },
-        { removeDesc: { removeAny: false } },
-        { removeViewBox: false },
+        { name: 'removeTitle', active: false },
+        { name: 'removeDesc', params: { removeAny: false } },
+        { name: 'removeViewBox', active: false },
       ],
     },
     persist: true,

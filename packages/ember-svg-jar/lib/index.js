@@ -120,8 +120,8 @@ module.exports = {
     const SVGOptimizer = require('broccoli-svg-optimizer');
 
     return new SVGOptimizer(originalSvgs, {
-      svgoConfig: _.omit(optimizerConfig, 'svgoModule'),
-      svgoModule: optimizerConfig.svgoModule,
+      svgoConfig: _.omit(optimizerConfig, 'svgoOptimize'),
+      svgoOptimize: optimizerConfig.svgoOptimize,
       persist: this.svgJarOptions.persist,
     });
   },

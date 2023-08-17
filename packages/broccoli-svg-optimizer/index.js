@@ -2,33 +2,7 @@
 
 const PersistentFilter = require('broccoli-persistent-filter');
 const stringify = require('safe-stable-stringify');
-const DefaultSVGO = require('svgo');
-
-function promisify(optimize) {
-  return svg => {
-    return new Promise((resolve, reject) => {
-      optimize(svg, result => {
-        if (result.error) {
-          reject(result.error);
-        } else {
-          resolve(result);
-        }
-      });
-    });
-  };
-}
-
-function promisifyIfNeeded(optimize) {
-  let isPromise = false;
-
-  try {
-    isPromise = 'then' in optimize('');
-  } catch (e) {
-    // pass
-  }
-
-  return isPromise ? optimize : promisify(optimize);
-}
+const { optimize: svgoOptimize } = require('svgo');
 
 class SVGOFilter extends PersistentFilter {
   constructor(inputNode, options) {
@@ -43,17 +17,22 @@ class SVGOFilter extends PersistentFilter {
       annotation: options.annotation,
     });
 
-    let SVGO = options.svgoModule || DefaultSVGO;
-    let svgo = new SVGO(options.svgoConfig);
-    let optimize = svgo.optimize.bind(svgo);
-    this.optimize = promisifyIfNeeded(optimize);
+    this.svgoConfig = options.svgoConfig || {};
+    this.svgoOptimize = options.svgoOptimize || svgoOptimize;
     this.optionsHash = stringify(options);
   }
 
   processString(svg, relativePath) {
-    return svg
-      ? this.optimize(svg, { path: relativePath }).then(({ data }) => data)
-      : Promise.resolve('');
+    if (svg) {
+      const { data } = this.svgoOptimize(svg, {
+        ...this.svgoConfig,
+        path: relativePath,
+      });
+
+      return data;
+    }
+
+    return '';
   }
 
   cacheKeyProcessString(string, relativePath) {
