@@ -120,7 +120,7 @@
   "typesVersions": {
     "*": {
       "*": [
-        "types/*"
+        "addon/*"
       ]
     }
   }
