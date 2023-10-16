@@ -5,6 +5,7 @@ type SvgJarAssetId = string;
 type SvgJarPositional = [SvgJarAssetId];
 
 interface SvgJarAttrs {
+  fill?: string | null;
   width?: string | null;
   height?: string | null;
   class?: string | null;
