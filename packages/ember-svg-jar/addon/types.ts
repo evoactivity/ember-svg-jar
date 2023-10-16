@@ -5,12 +5,12 @@ type SvgJarAssetId = string;
 type SvgJarPositional = [SvgJarAssetId];
 
 interface SvgJarAttrs {
-  width?: string;
-  height?: string;
-  class?: string;
-  role?: string;
-  title?: string;
-  desc?: string;
+  width?: string | null;
+  height?: string | null;
+  class?: string | null;
+  role?: string | null;
+  title?: string | null;
+  desc?: string | null;
 }
 
 type SvgJarReturn = SVGElement;
