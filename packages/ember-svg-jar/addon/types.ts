@@ -8,6 +8,7 @@ interface SvgJarAttrs {
   fill?: string | null;
   width?: string | null;
   height?: string | null;
+  aria-hidden?: "true" | "false" | null;
   class?: string | null;
   role?: string | null;
   title?: string | null;
