@@ -170,8 +170,24 @@ declare module '@glint/environment-ember-loose/registry' {
 }
 ```
 
-Should you want to manage the registry by yourself, then omit this import, and instead add the entries in your app by explicitly importing the types of the helper from this addon.
+Should you want to manage the registry by yourself or are using strict mode, then omit this import, and instead add the entries in your app by explicitly importing the types of the helper from this addon. In `types/ember-svg-jar/helpers/svg-jar.d.ts`:
 
+```ts
+import SvgJar from 'ember-svg-jar/helpers/svg-jar';
+import type SvgJarType from 'ember-svg-jar/types';
+
+declare module 'ember-svg-jar/helpers/svg-jar' {
+  export default SvgJar as SvgJarType;
+}
+```
+
+### Strict mode import
+
+When importing the helper for strict mode, you can find it here:
+
+```js
+import svgJar from 'ember-svg-jar/helpers/svg-jar';
+```
 
 ### Usage in an addon
 
