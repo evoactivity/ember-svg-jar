@@ -29,7 +29,7 @@ function makeIDForPath(relativePath, { idGen, stripPath, prefix }) {
 }
 
 function svgDataFor(svgContent) {
-  const cheerio = require('cheerio').default;
+  const cheerio = require('cheerio');
 
   let $svg = cheerio.load(svgContent, { xmlMode: true })('svg');
 

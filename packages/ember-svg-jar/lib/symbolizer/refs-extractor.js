@@ -2,7 +2,7 @@
 
 const path = require('path').posix;
 const Plugin = require('broccoli-plugin');
-const cheerio = require('cheerio').default;
+const cheerio = require('cheerio');
 const formatAttrs = require('./format-attrs');
 const { readFile, saveToFile } = require('../utils');
 
@@ -25,28 +25,24 @@ function extractDefs(svgContent) {
   let $defs = $newSvg('defs');
 
   $svg('symbol').each((_, element) => {
-    const $symbol = cheerio(element);
-    const extractedRefIds = cheerio('[id]', $symbol)
-      .filter((_, elementWithId) =>
-        $symbol.html().includes(`#${cheerio(elementWithId).attr('id')}`)
-      )
+    const $symbol = cheerio.load(element, null, true);
+    const symbolId = $svg(element).attr('id');
+    const extractedRefIds = $symbol('[id]')
+      .filter((_, elementWithId) => {
+        return $symbol.html().includes(`#${$symbol(elementWithId).attr('id')}`);
+      })
       .map((_, referencedEl) => {
-        const $referencedEl = cheerio(referencedEl);
+        const $referencedEl = $symbol(referencedEl);
         const refId = $referencedEl.attr('id');
-        $referencedEl.attr('id', `${$symbol.attr('id')}-${refId}`);
+        $referencedEl.attr('id', `${symbolId}-${refId}`);
         $referencedEl.remove();
         $defs.append($referencedEl);
         return refId;
       });
-    cheerio('defs', $symbol).remove();
-    let symbolHtml = `<symbol ${formatAttrs(
-      $symbol.attr()
-    )}>${$symbol.html()}</symbol>`;
+    $symbol('defs').remove();
+    let symbolHtml = $symbol.html();
     extractedRefIds.each((_, refId) => {
-      symbolHtml = symbolHtml.replace(
-        `#${refId}`,
-        `#${$symbol.attr('id')}-${refId}`
-      );
+      symbolHtml = symbolHtml.replace(`#${refId}`, `#${symbolId}-${refId}`);
     });
     $defs.after(symbolHtml);
   });
@@ -63,7 +59,6 @@ module.exports = class RefsExtractor extends Plugin {
   build() {
     let outputSvgPath = path.join(this.outputPath, this.outputFile);
     let inputSvgPath = path.join(this.inputPaths[0], this.outputFile);
-
     saveToFile(outputSvgPath, extractDefs(readFile(inputSvgPath)));
   }
 };

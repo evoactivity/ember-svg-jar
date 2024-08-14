@@ -11,7 +11,7 @@ const crypto = require('crypto');
 const _ = require('lodash');
 const PersistentFilter = require('broccoli-persistent-filter');
 const stringify = require('safe-stable-stringify');
-const cheerio = require('cheerio').default;
+const cheerio = require('cheerio');
 const consoleUI = require('../console-ui');
 const formatAttrs = require('./format-attrs');
 
