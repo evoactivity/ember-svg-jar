@@ -43,7 +43,7 @@
     "broccoli-plugin": "^4.0.7",
     "broccoli-string-replace": "^0.1.2",
     "broccoli-svg-optimizer": "^2.1.0",
-    "cheerio": "^1.0.0-rc.12",
+    "cheerio": "^1.0.0",
     "console-ui": "^3.1.1",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1",
