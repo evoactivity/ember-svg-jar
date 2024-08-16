@@ -1,0 +1,20 @@
+{
+  "solution": {
+    "broccoli-svg-optimizer": {
+      "oldVersion": "2.1.0"
+    },
+    "ember-svg-jar": {
+      "impact": "minor",
+      "oldVersion": "2.4.9",
+      "newVersion": "2.5.0",
+      "constraints": [
+        {
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        }
+      ],
+      "pkgJSONPath": "./packages/ember-svg-jar/package.json"
+    }
+  },
+  "description": "## Release (2024-08-16)\n\nember-svg-jar 2.5.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-svg-jar`\n  * [#269](https://github.com/evoactivity/ember-svg-jar/pull/269) upgrade cheerio to 1.0 (fixes build) ([@sly7-7](https://github.com/sly7-7))\n\n#### Committers: 1\n- Sylvain Mina ([@sly7-7](https://github.com/sly7-7))\n"
+}
