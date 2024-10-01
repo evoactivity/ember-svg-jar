@@ -5,8 +5,8 @@
     },
     "ember-svg-jar": {
       "impact": "minor",
-      "oldVersion": "2.4.9",
-      "newVersion": "2.5.0",
+      "oldVersion": "2.5.0",
+      "newVersion": "2.6.0",
       "constraints": [
         {
           "impact": "minor",
@@ -16,5 +16,5 @@
       "pkgJSONPath": "./packages/ember-svg-jar/package.json"
     }
   },
-  "description": "## Release (2024-08-16)\n\nember-svg-jar 2.5.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-svg-jar`\n  * [#269](https://github.com/evoactivity/ember-svg-jar/pull/269) upgrade cheerio to 1.0 (fixes build) ([@sly7-7](https://github.com/sly7-7))\n\n#### Committers: 1\n- Sylvain Mina ([@sly7-7](https://github.com/sly7-7))\n"
+  "description": "## Release (2024-10-01)\n\nember-svg-jar 2.6.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-svg-jar`\n  * [#271](https://github.com/evoactivity/ember-svg-jar/pull/271) Allow arbitrary attributes to be passed ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n\n#### Committers: 1\n- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n"
 }
