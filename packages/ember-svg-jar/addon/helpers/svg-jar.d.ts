@@ -13,6 +13,7 @@ interface SvgJarAttrs {
   role?: string | null;
   title?: string | null;
   desc?: string | null;
+  [key: string]: unknown
 }
 
 type SvgJarReturn = SVGElement;
