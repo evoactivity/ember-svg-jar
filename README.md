@@ -210,7 +210,7 @@ The addon should be useful without any configuration. But it wants to be very co
 **A:** Yes, it can import SVGs from any directory defined in the sourceDirs array.
 
 **Q:** `Why the SVG files deployed into the dist/assets folder without being fingerprinted?`  
-**A:** This is done with the default ember cli behaviour. For more information see [SVG Fingerprinting](docs/svg-fingerprinting.md).
+**A:** This is done with the default ember cli behaviour. For more information see [SVG Fingerprinting](packages/ember-svg-jar/docs/svg-fingerprinting.md).
 
 **Q:** `Why does this matter?`
 
