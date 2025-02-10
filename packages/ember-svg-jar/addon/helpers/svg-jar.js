@@ -3,6 +3,7 @@ import makeSVG from 'ember-svg-jar/utils/make-svg';
 import { importSync } from '@embroider/macros';
 
 function getInlineAsset(assetId) {
+  assetId = assetId.replace(/[/\\]/g, '-');
   let result = null;
   try {
     result = require(`ember-svg-jar/inlined/${assetId}`).default;
