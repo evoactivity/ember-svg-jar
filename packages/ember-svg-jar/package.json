@@ -1,6 +1,6 @@
 {
   "name": "ember-svg-jar",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "Best way to use SVG images in Ember applications",
   "keywords": [
     "ember-addon"
