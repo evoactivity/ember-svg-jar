@@ -1,5 +1,20 @@
 # Changelog
 
+## Release (2025-02-10)
+
+ember-svg-jar 2.6.1 (patch)
+
+#### :bug: Bug Fix
+* `ember-svg-jar`
+  * [#278](https://github.com/evoactivity/ember-svg-jar/pull/278) Fix for vite, new stripPath strategy ([@evoactivity](https://github.com/evoactivity))
+
+#### :memo: Documentation
+* [#275](https://github.com/evoactivity/ember-svg-jar/pull/275) Fix link to fingerprinting docs ([@HeroicEric](https://github.com/HeroicEric))
+
+#### Committers: 2
+- Eric Kelly ([@HeroicEric](https://github.com/HeroicEric))
+- Liam Potter ([@evoactivity](https://github.com/evoactivity))
+
 ## Release (2024-10-01)
 
 ember-svg-jar 2.6.0 (minor)

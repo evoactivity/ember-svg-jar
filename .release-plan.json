@@ -4,17 +4,17 @@
       "oldVersion": "2.1.0"
     },
     "ember-svg-jar": {
-      "impact": "minor",
-      "oldVersion": "2.5.0",
-      "newVersion": "2.6.0",
+      "impact": "patch",
+      "oldVersion": "2.6.0",
+      "newVersion": "2.6.1",
       "constraints": [
         {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
         }
       ],
       "pkgJSONPath": "./packages/ember-svg-jar/package.json"
     }
   },
-  "description": "## Release (2024-10-01)\n\nember-svg-jar 2.6.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-svg-jar`\n  * [#271](https://github.com/evoactivity/ember-svg-jar/pull/271) Allow arbitrary attributes to be passed ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n\n#### Committers: 1\n- Robbie Wagner ([@RobbieTheWagner](https://github.com/RobbieTheWagner))\n"
+  "description": "## Release (2025-02-10)\n\nember-svg-jar 2.6.1 (patch)\n\n#### :bug: Bug Fix\n* `ember-svg-jar`\n  * [#278](https://github.com/evoactivity/ember-svg-jar/pull/278) Fix for vite, new stripPath strategy ([@evoactivity](https://github.com/evoactivity))\n\n#### :memo: Documentation\n* [#275](https://github.com/evoactivity/ember-svg-jar/pull/275) Fix link to fingerprinting docs ([@HeroicEric](https://github.com/HeroicEric))\n\n#### Committers: 2\n- Eric Kelly ([@HeroicEric](https://github.com/HeroicEric))\n- Liam Potter ([@evoactivity](https://github.com/evoactivity))\n"
 }
