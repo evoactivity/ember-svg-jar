@@ -5,6 +5,7 @@
   "keywords": [
     "ember-addon"
   ],
+  "packageManager": "yarn@1.22.22",
   "license": "MIT",
   "author": "Ivan Volti <voltidev@gmail.com>",
   "directories": {

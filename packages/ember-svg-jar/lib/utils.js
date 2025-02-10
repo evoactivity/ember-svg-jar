@@ -20,9 +20,16 @@ function relativePathFor(filePath, inputPath) {
   return filePath.replace(`${inputPath}${path.sep}`, '');
 }
 
+function relativePathToSingleFilename(filePath) {
+  return filePath.replace(/[/\\]/g, '-');
+}
+
 function makeIDForPath(relativePath, { idGen, stripPath, prefix }) {
   return fp.pipe(
-    relative => (stripPath ? path.basename(relative) : relative),
+    relative =>
+      stripPath
+        ? path.basename(relative)
+        : relativePathToSingleFilename(relative),
     stripExtension,
     normalizedPath => idGen(normalizedPath, { prefix })
   )(relativePath);
