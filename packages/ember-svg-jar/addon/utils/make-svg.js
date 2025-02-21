@@ -109,8 +109,12 @@ export function formatAttrs(attrs) {
     .join(' ');
 }
 
+export function createSvgAttributes(attrs) {
+  return [formatAttrs(attrs), createAriaLabel(attrs)].filter(Boolean).join(' ');
+}
+
 export function symbolUseFor(assetId, attrs = {}) {
-  return `<svg ${formatAttrs(attrs)}${createAriaLabel(
+  return `<svg ${createSvgAttributes(
     attrs
   )}><use xlink:href="${assetId}" />${createAccessibilityElements(
     attrs
@@ -135,9 +139,9 @@ export function inlineSvgFor(assetId, getInlineAsset, attrs = {}) {
     delete svgAttrs.size;
   }
 
-  return `<svg ${formatAttrs(svgAttrs)}${createAriaLabel(
+  return `<svg ${createSvgAttributes(svgAttrs)}>${createAccessibilityElements(
     attrs
-  )}>${createAccessibilityElements(attrs)}${asset.content}</svg>`;
+  )}${asset.content}</svg>`;
 }
 
 export default function makeSvg(assetId, attrs = {}, getInlineAsset) {
