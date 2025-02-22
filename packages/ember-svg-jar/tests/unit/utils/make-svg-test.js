@@ -95,6 +95,24 @@ module('Unit | Utility | make svg', function () {
     );
   });
 
+  test('inlineSvgFor with custom attrs including title', function (assert) {
+    function assetStore(id) {
+      return {
+        icon: { content: 'icon', attrs: { class: 'original' } },
+      }[id];
+    }
+
+    let customAttrs = {
+      class: 'custom',
+      title: { id: 'foo', text: 'lorem ipsum' },
+    };
+    assert.strictEqual(
+      inlineSvgFor('icon', assetStore, customAttrs),
+      '<svg class="custom" aria-labelledby="foo"><title id="foo">lorem ipsum</title>icon</svg>',
+      'can rewrite original attrs'
+    );
+  });
+
   test('formatAttrs works', function (assert) {
     let result = formatAttrs({
       attrName: 'attrValue',
