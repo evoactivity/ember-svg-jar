@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-02-22)
+
+ember-svg-jar 2.6.2 (patch)
+
+#### :bug: Bug Fix
+* `ember-svg-jar`
+  * [#279](https://github.com/evoactivity/ember-svg-jar/pull/279) Ensure whitespace between aria-labelledby attribute ([@SergeAstapov](https://github.com/SergeAstapov))
+
+#### Committers: 1
+- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))
+
 ## Release (2025-02-10)
 
 ember-svg-jar 2.6.1 (patch)
