@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-05-27)
+
+ember-svg-jar 2.6.3 (patch)
+
+#### :bug: Bug Fix
+* `ember-svg-jar`
+  * [#282](https://github.com/evoactivity/ember-svg-jar/pull/282) Fix asset viewer affecting the SVGs themselves ([@tniezurawski](https://github.com/tniezurawski))
+
+#### Committers: 1
+- Tomek Nieżurawski ([@tniezurawski](https://github.com/tniezurawski))
+
 ## Release (2025-02-22)
 
 ember-svg-jar 2.6.2 (patch)
