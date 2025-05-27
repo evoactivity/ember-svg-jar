@@ -8,18 +8,18 @@ module.exports = async function () {
     useYarn: true,
     scenarios: [
       {
-        name: 'ember-lts-3.20',
+        name: 'ember-lts-4.12',
         npm: {
           devDependencies: {
-            'ember-source': '~3.20.5',
+            'ember-source': '~4.12.0',
           },
         },
       },
       {
-        name: 'ember-lts-3.24',
+        name: 'ember-lts-5.4',
         npm: {
           devDependencies: {
-            'ember-source': '~3.24.3',
+            'ember-source': '~5.4.0',
           },
         },
       },
@@ -52,34 +52,6 @@ module.exports = async function () {
         npm: {
           devDependencies: {
             'ember-source': await getChannelURL('canary'),
-          },
-        },
-      },
-      {
-        name: 'ember-default-with-jquery',
-        env: {
-          EMBER_OPTIONAL_FEATURES: JSON.stringify({
-            'jquery-integration': true,
-          }),
-        },
-        npm: {
-          devDependencies: {
-            '@ember/jquery': '^1.1.0',
-          },
-        },
-      },
-      {
-        name: 'ember-classic',
-        env: {
-          EMBER_OPTIONAL_FEATURES: JSON.stringify({
-            'application-template-wrapper': true,
-            'default-async-observers': false,
-            'template-only-glimmer-components': false,
-          }),
-        },
-        npm: {
-          ember: {
-            edition: 'classic',
           },
         },
       },
