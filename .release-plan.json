@@ -5,8 +5,8 @@
     },
     "ember-svg-jar": {
       "impact": "patch",
-      "oldVersion": "2.6.1",
-      "newVersion": "2.6.2",
+      "oldVersion": "2.6.2",
+      "newVersion": "2.6.3",
       "constraints": [
         {
           "impact": "patch",
@@ -16,5 +16,5 @@
       "pkgJSONPath": "./packages/ember-svg-jar/package.json"
     }
   },
-  "description": "## Release (2025-02-22)\n\nember-svg-jar 2.6.2 (patch)\n\n#### :bug: Bug Fix\n* `ember-svg-jar`\n  * [#279](https://github.com/evoactivity/ember-svg-jar/pull/279) Ensure whitespace between aria-labelledby attribute ([@SergeAstapov](https://github.com/SergeAstapov))\n\n#### Committers: 1\n- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))\n"
+  "description": "## Release (2025-05-27)\n\nember-svg-jar 2.6.3 (patch)\n\n#### :bug: Bug Fix\n* `ember-svg-jar`\n  * [#282](https://github.com/evoactivity/ember-svg-jar/pull/282) Fix asset viewer affecting the SVGs themselves ([@tniezurawski](https://github.com/tniezurawski))\n\n#### Committers: 1\n- Tomek Nieżurawski ([@tniezurawski](https://github.com/tniezurawski))\n"
 }
