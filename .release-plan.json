@@ -4,17 +4,17 @@
       "oldVersion": "2.1.0"
     },
     "ember-svg-jar": {
-      "impact": "patch",
-      "oldVersion": "2.6.2",
-      "newVersion": "2.6.3",
+      "impact": "minor",
+      "oldVersion": "2.6.3",
+      "newVersion": "2.7.0",
       "constraints": [
         {
-          "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
         }
       ],
       "pkgJSONPath": "./packages/ember-svg-jar/package.json"
     }
   },
-  "description": "## Release (2025-05-27)\n\nember-svg-jar 2.6.3 (patch)\n\n#### :bug: Bug Fix\n* `ember-svg-jar`\n  * [#282](https://github.com/evoactivity/ember-svg-jar/pull/282) Fix asset viewer affecting the SVGs themselves ([@tniezurawski](https://github.com/tniezurawski))\n\n#### Committers: 1\n- Tomek Nieżurawski ([@tniezurawski](https://github.com/tniezurawski))\n"
+  "description": "## Release (2025-09-08)\n\nember-svg-jar 2.7.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-svg-jar`\n  * [#285](https://github.com/evoactivity/ember-svg-jar/pull/285) Bun support ([@hexadecy](https://github.com/hexadecy))\n\n#### Committers: 1\n- Michel Couillard ([@hexadecy](https://github.com/hexadecy))\n"
 }

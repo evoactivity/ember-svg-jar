@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-09-08)
+
+ember-svg-jar 2.7.0 (minor)
+
+#### :rocket: Enhancement
+* `ember-svg-jar`
+  * [#285](https://github.com/evoactivity/ember-svg-jar/pull/285) Bun support ([@hexadecy](https://github.com/hexadecy))
+
+#### Committers: 1
+- Michel Couillard ([@hexadecy](https://github.com/hexadecy))
+
 ## Release (2025-05-27)
 
 ember-svg-jar 2.6.3 (patch)
