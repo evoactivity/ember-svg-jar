@@ -42,7 +42,7 @@
     "broccoli-merge-trees": "^4.2.0",
     "broccoli-persistent-filter": "^3.1.2",
     "broccoli-plugin": "^4.0.7",
-    "broccoli-string-replace": "^0.1.2",
+    "broccoli-replace": "^2.0.2",
     "broccoli-svg-optimizer": "^2.1.0",
     "cheerio": "^1.0.0",
     "console-ui": "^3.1.1",

@@ -41,14 +41,16 @@ module.exports = {
       // Add viewer assets to public dir
       let svgJarPublicTree = this._super.treeForPublic.apply(this, arguments);
 
-      const broccoliReplace = require('broccoli-string-replace');
+      const broccoliReplace = require('broccoli-replace');
 
       svgJarPublicTree = broccoliReplace(svgJarPublicTree, {
         files: ['**/index.html'],
-        pattern: {
-          match: /\{\{ROOT_URL\}\}/g,
-          replacement: this.svgJarOptions.rootURL,
-        },
+        patterns: [
+          {
+            match: /\{\{ROOT_URL\}\}/g,
+            replacement: this.svgJarOptions.rootURL,
+          },
+        ],
       });
 
       trees.push(svgJarPublicTree);
