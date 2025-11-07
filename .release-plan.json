@@ -4,17 +4,17 @@
       "oldVersion": "2.1.0"
     },
     "ember-svg-jar": {
-      "impact": "minor",
-      "oldVersion": "2.6.3",
-      "newVersion": "2.7.0",
+      "impact": "patch",
+      "oldVersion": "2.7.0",
+      "newVersion": "2.7.1",
       "constraints": [
         {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
         }
       ],
       "pkgJSONPath": "./packages/ember-svg-jar/package.json"
     }
   },
-  "description": "## Release (2025-09-08)\n\nember-svg-jar 2.7.0 (minor)\n\n#### :rocket: Enhancement\n* `ember-svg-jar`\n  * [#285](https://github.com/evoactivity/ember-svg-jar/pull/285) Bun support ([@hexadecy](https://github.com/hexadecy))\n\n#### Committers: 1\n- Michel Couillard ([@hexadecy](https://github.com/hexadecy))\n"
+  "description": "## Release (2025-11-07)\n\nember-svg-jar 2.7.1 (patch)\n\n#### :bug: Bug Fix\n* `ember-svg-jar`\n  * [#288](https://github.com/evoactivity/ember-svg-jar/pull/288) Pin cheerio dep ([@evoactivity](https://github.com/evoactivity))\n\n#### Committers: 1\n- Liam Potter ([@evoactivity](https://github.com/evoactivity))\n"
 }
