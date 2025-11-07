@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-11-07)
+
+ember-svg-jar 2.7.1 (patch)
+
+#### :bug: Bug Fix
+* `ember-svg-jar`
+  * [#288](https://github.com/evoactivity/ember-svg-jar/pull/288) Pin cheerio dep ([@evoactivity](https://github.com/evoactivity))
+
+#### Committers: 1
+- Liam Potter ([@evoactivity](https://github.com/evoactivity))
+
 ## Release (2025-09-08)
 
 ember-svg-jar 2.7.0 (minor)
