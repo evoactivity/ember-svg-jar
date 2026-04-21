@@ -1,3 +1,6 @@
+> [!WARNING]
+> Ember SVG Jar is now in maintenance mode. The next generation of SVG tooling can be found in [`@svg-jar/plugin`](https://github.com/svg-jar/plugin). More information about this can be found in the pinned issue https://github.com/evoactivity/ember-svg-jar/issues/290
+
 <p align="center">
   <a href="https://svgjar.web.app" target="_blank">
     <img src="https://svgjar.web.app/images/logo-96eaca43925f5d648acc8193b1b9ddd7.svg" alt="Logo">
