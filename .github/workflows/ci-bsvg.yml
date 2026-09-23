@@ -18,16 +18,18 @@ jobs:
         with:
           fetch-depth: 1
 
+      - uses: pnpm/action-setup@v6
+
       - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Lint and test
         working-directory: packages/broccoli-svg-optimizer
         run: |
-          yarn lint
-          yarn test
+          pnpm lint
+          pnpm test

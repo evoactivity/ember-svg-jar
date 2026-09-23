@@ -5,16 +5,10 @@
     "type": "git",
     "url": "https://github.com/evoactivity/ember-svg-jar.git"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "devDependencies": {
     "husky": "^9.1.7",
-    "lerna": "^10.0.1",
+    "lint-staged": "^17.5.1",
     "release-plan": "^0.20.0"
   },
-  "volta": {
-    "node": "24.21.0",
-    "yarn": "1.22.22"
-  }
+  "packageManager": "pnpm@12.5.1"
 }

@@ -19,7 +19,6 @@
     "url": "https://github.com/voltidev/broccoli-svg-optimizer/issues"
   },
   "scripts": {
-    "lerna:lint-staged": "lint-staged",
     "lint": "eslint ./*.js tests",
     "test": "mocha tests/*test.js --timeout 1000"
   },
@@ -38,7 +37,6 @@
     "eslint-plugin-n": "^18.3.0",
     "eslint-plugin-prettier": "^5.5.6",
     "globals": "^17.12.0",
-    "lint-staged": "^17.5.1",
     "mocha": "^12.0.2",
     "prettier": "^3.9.9"
   },

@@ -1,1 +1,1 @@
-yarn lerna run --concurrency=1 --stream --since=HEAD lerna:lint-staged
+pnpm exec lint-staged

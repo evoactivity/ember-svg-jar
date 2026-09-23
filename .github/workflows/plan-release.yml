@@ -52,15 +52,16 @@ jobs:
         with:
           fetch-depth: 0
           ref: 'master'
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: yarn install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
       - name: 'Generate Explanation and Prep Changelogs'
         id: explanation
         run: |
           set +e
-          npx release-plan prepare 2> >(tee -a release-plan-stderr.txt >&2)
+          pnpm release-plan prepare 2> >(tee -a release-plan-stderr.txt >&2)
 
           if [ $? -ne 0 ]; then
             echo 'text<<EOF' >> $GITHUB_OUTPUT

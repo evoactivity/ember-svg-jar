@@ -49,17 +49,19 @@ jobs:
         with:
           fetch-depth: 1
 
+      - uses: pnpm/action-setup@v6
+
       - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
         working-directory: packages/ember-svg-jar
-        run: yarn lint
+        run: pnpm lint
 
   test:
     name: Tests
@@ -76,19 +78,21 @@ jobs:
         with:
           fetch-depth: 1
 
+      - uses: pnpm/action-setup@v6
+
       - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Test
         working-directory: packages/ember-svg-jar
         run: |
-          yarn test:node
-          yarn test:ember --launch ${{ matrix.browser }}
+          pnpm test:node
+          pnpm test:ember --launch ${{ matrix.browser }}
 
   floating-dependencies:
     name: Floating Dependencies
@@ -105,19 +109,21 @@ jobs:
         with:
           fetch-depth: 1
 
+      - uses: pnpm/action-setup@v6
+
       - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install Dependencies
-        run: yarn install --no-lockfile --non-interactive
+        run: pnpm install --no-frozen-lockfile --no-prefer-frozen-lockfile
 
       - name: Test
         working-directory: packages/ember-svg-jar
         run: |
-          yarn test:node
-          yarn test:ember --launch ${{ matrix.browser }}
+          pnpm test:node
+          pnpm test:ember --launch ${{ matrix.browser }}
 
   try-scenarios:
     name: Tests - ${{ matrix.ember-try-scenario }}
@@ -147,13 +153,15 @@ jobs:
         with:
           fetch-depth: 1
 
+      - uses: pnpm/action-setup@v6
+
       - uses: actions/setup-node@v3
         with:
           node-version: '${{ env.NODE_VERSION }}'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Test
         env:
