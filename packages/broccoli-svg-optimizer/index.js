@@ -2,7 +2,8 @@
 
 const PersistentFilter = require('broccoli-persistent-filter');
 const stringify = require('safe-stable-stringify');
-const DefaultSVGO = require('svgo');
+const defaultSvgo = require('svgo');
+const { toModernConfig } = require('./svgo-config');
 
 function promisify(optimize) {
   return svg => {
@@ -30,6 +31,32 @@ function promisifyIfNeeded(optimize) {
   return isPromise ? optimize : promisify(optimize);
 }
 
+// svgo 1 exported a class. svgo 2 and later export an `optimize` function
+// that takes the config on each call.
+function createOptimizer(svgoModule, svgoConfig) {
+  if (typeof svgoModule === 'function') {
+    let svgo = new svgoModule(svgoConfig);
+    return promisifyIfNeeded(svgo.optimize.bind(svgo));
+  }
+
+  let config = toModernConfig(svgoConfig);
+
+  return (svg, { path }) => {
+    try {
+      let result = svgoModule.optimize(
+        svg,
+        Object.assign({}, config, { path })
+      );
+      // svgo 2 returns errors instead of throwing them.
+      return result.error
+        ? Promise.reject(result.modernError || result.error)
+        : Promise.resolve(result);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  };
+}
+
 class SVGOFilter extends PersistentFilter {
   constructor(inputNode, options) {
     options = options || {};
@@ -43,10 +70,10 @@ class SVGOFilter extends PersistentFilter {
       annotation: options.annotation,
     });
 
-    let SVGO = options.svgoModule || DefaultSVGO;
-    let svgo = new SVGO(options.svgoConfig);
-    let optimize = svgo.optimize.bind(svgo);
-    this.optimize = promisifyIfNeeded(optimize);
+    this.optimize = createOptimizer(
+      options.svgoModule || defaultSvgo,
+      options.svgoConfig
+    );
     this.optionsHash = stringify(options);
   }
 
