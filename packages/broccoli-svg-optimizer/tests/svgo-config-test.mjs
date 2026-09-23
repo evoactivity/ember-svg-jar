@@ -1,12 +1,10 @@
-'use strict';
-
-const { expect } = require('chai');
-const {
+import { expect } from 'chai';
+import {
   convertLegacyConfig,
   formatPathDataLikeSvgo1,
   isLegacyConfig,
   toModernConfig,
-} = require('../svgo-config');
+} from '../svgo-config.js';
 
 function pluginNames(config) {
   return config.plugins.map(plugin => plugin.name);

@@ -1,5 +1,5 @@
-const { expect } = require('chai');
-const prepareScript = require('../../lib/prepare-symbol-loader-script');
+import { expect } from 'chai';
+import prepareScript from '../../lib/prepare-symbol-loader-script.js';
 
 describe('prepare-symbol-loader-script', function () {
   it('injects rootURL at target file', function () {

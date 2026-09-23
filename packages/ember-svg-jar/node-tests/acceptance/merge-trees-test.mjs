@@ -1,9 +1,7 @@
-'use strict';
-
-const chai = require('chai');
-const chaiAsPromised = require('chai-as-promised');
-const fixture = require('broccoli-fixture');
-const MergeTrees = require('../../lib/merge-trees');
+import * as chai from 'chai';
+import chaiAsPromised from 'chai-as-promised';
+import fixture from 'broccoli-fixture';
+import MergeTrees from '../../lib/merge-trees.js';
 
 const { expect } = chai;
 chai.use(chaiAsPromised);

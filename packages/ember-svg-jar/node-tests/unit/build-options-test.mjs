@@ -1,9 +1,7 @@
-'use strict';
-
-const _ = require('lodash');
-const chai = require('chai');
-const buildOptions = require('../../lib/build-options');
-const defaultGens = require('../../lib/default-gens');
+import _ from 'lodash';
+import * as chai from 'chai';
+import buildOptions from '../../lib/build-options.js';
+import defaultGens from '../../lib/default-gens.js';
 
 const { expect } = chai;
 

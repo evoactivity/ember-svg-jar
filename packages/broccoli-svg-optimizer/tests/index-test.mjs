@@ -1,15 +1,14 @@
-'use strict';
-
-const fixture = require('broccoli-fixture');
-const chai = require('chai');
-const chaiAsPromised = require('chai-as-promised');
-const SVGOptimizer = require('../');
+import fixture from 'broccoli-fixture';
+import { fileURLToPath } from 'node:url';
+import * as chai from 'chai';
+import chaiAsPromised from 'chai-as-promised';
+import SVGOptimizer from '../index.js';
 
 const { expect } = chai;
 chai.use(chaiAsPromised);
 
 describe('broccoli-svg-optimizer', () => {
-  let inputNode = `${__dirname}/fixtures/index`;
+  let inputNode = fileURLToPath(new URL('fixtures/index', import.meta.url));
 
   it('optimizes SVG files with persistence', () => {
     let outputNode = fixture.build(new SVGOptimizer(inputNode));

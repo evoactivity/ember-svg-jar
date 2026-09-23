@@ -1,9 +1,7 @@
-'use strict';
-
-const { EOL } = require('os');
-const { stripVTControlCharacters } = require('util');
-const chai = require('chai');
-const consoleUI = require('../../lib/console-ui');
+import { EOL } from 'os';
+import { stripVTControlCharacters } from 'util';
+import * as chai from 'chai';
+import consoleUI from '../../lib/console-ui.js';
 
 const { expect } = chai;
 

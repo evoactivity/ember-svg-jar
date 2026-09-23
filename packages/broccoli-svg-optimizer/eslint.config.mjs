@@ -16,9 +16,15 @@ export default [
     },
   },
   {
-    files: ['tests/**/*.js'],
+    ...n.configs['flat/recommended-module'],
+    files: ['tests/**/*.mjs'],
     languageOptions: {
-      globals: globals.mocha,
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.node,
+        ...globals.mocha,
+      },
     },
   },
 ];

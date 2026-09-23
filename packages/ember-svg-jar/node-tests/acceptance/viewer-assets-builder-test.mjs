@@ -1,10 +1,8 @@
-'use strict';
-
-const chai = require('chai');
-const chaiAsPromised = require('chai-as-promised');
-const fixture = require('broccoli-fixture');
-const ViewerAssetsBuilder = require('../../lib/viewer-assets-builder');
-const { makeIDForPath } = require('../../lib/utils');
+import * as chai from 'chai';
+import chaiAsPromised from 'chai-as-promised';
+import fixture from 'broccoli-fixture';
+import ViewerAssetsBuilder from '../../lib/viewer-assets-builder.js';
+import { makeIDForPath } from '../../lib/utils.js';
 
 const { expect } = chai;
 chai.use(chaiAsPromised);

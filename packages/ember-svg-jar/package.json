@@ -29,7 +29,7 @@
     "lint:js:fix": "eslint . --fix",
     "test": "npm-run-all lint test:*",
     "test:ember": "ember test",
-    "test:node": "mocha node-tests/**/*-test.js",
+    "test:node": "mocha node-tests/**/*-test.mjs",
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
@@ -60,8 +60,8 @@
     "all-contributors-cli": "^6.26.1",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-fixture": "^1.0.0",
-    "chai": "^5.3.3",
-    "chai-as-promised": "^7.1.2",
+    "chai": "^6.2.2",
+    "chai-as-promised": "^8.0.2",
     "ember-auto-import": "^2.13.1",
     "ember-cli": "~7.3.0",
     "ember-cli-dependency-checker": "^3.3.3",
@@ -108,7 +108,7 @@
     "**/*.{json,html,yml,css,scss,md}": [
       "prettier --write"
     ],
-    "**/*.{js,jsx,ts,tsx}": [
+    "**/*.{js,mjs,jsx,ts,tsx}": [
       "eslint --cache --fix"
     ]
   },

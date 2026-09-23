@@ -1,8 +1,6 @@
-'use strict';
-
-const fixture = require('broccoli-fixture');
-const chai = require('chai');
-const Symbolizer = require('../../lib/symbolizer/symbolizer');
+import fixture from 'broccoli-fixture';
+import * as chai from 'chai';
+import Symbolizer from '../../lib/symbolizer/symbolizer.js';
 
 const { expect } = chai;
 

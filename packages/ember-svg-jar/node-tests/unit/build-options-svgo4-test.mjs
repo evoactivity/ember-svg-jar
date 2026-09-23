@@ -1,7 +1,5 @@
-'use strict';
-
-const chai = require('chai');
-const buildOptions = require('../../lib/build-options');
+import * as chai from 'chai';
+import buildOptions from '../../lib/build-options.js';
 
 const { expect } = chai;
 

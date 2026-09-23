@@ -18,7 +18,7 @@ const nodeFiles = [
 const allNodeFiles = [
   ...nodeFiles,
   'lib/**/*.js',
-  'node-tests/**/*.js',
+  'node-tests/**/*.mjs',
   'eslint.config.mjs',
 ];
 
@@ -71,10 +71,10 @@ export default [
     },
   },
   {
-    files: ['node-tests/**/*.js'],
+    files: ['node-tests/**/*.mjs'],
     languageOptions: {
-      sourceType: 'script',
-      ecmaVersion: 2018,
+      sourceType: 'module',
+      ecmaVersion: 'latest',
       globals: {
         ...globals.node,
         ...globals.mocha,
