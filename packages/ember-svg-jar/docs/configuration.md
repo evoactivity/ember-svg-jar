@@ -109,44 +109,52 @@ Default: `{}`
 
 **Note:** You can completely disable SVG optimization by setting the option to `false`.
 
-**_Choosing the version of [SVGO](https://github.com/svg/svgo)_**
+**_Configuring [SVGO](https://github.com/svg/svgo)_**
 
-You can specify which version of `svgo` to use with the `svgoModule` option.
+SVGJar uses SVGO 4 through [broccoli-svg-optimizer](https://github.com/evoactivity/ember-svg-jar/tree/master/packages/broccoli-svg-optimizer). The `plugins` list can use the SVGO 4 format or the SVGO 1 format.
 
-Add the version that you want to use to your `package.json` and then provide its module using the `svgoModule` option:
-
-```javascript
-{
-  svgJar: {
-    optimizer : {
-      svgoModule: require('svgo'),
-
-      plugins: [
-        { removeTitle: true }
-      ]
-    }
-  }
-}
-```
-
-**_Enable, disable or configure [SVGO](https://github.com/svg/svgo) plugins_**
-
-Most SVGO plugins are enabled by default.
-
-For more info:
-
-- [Plugins defaults for v1.3.0](https://github.com/voltidev/broccoli-svg-optimizer/blob/master/docs/plugins-config.json).
-- [Plugins description for v1.3.0](https://github.com/svg/svgo/tree/v1.3.0#what-it-can-do).
-
-Example:
+In the SVGO 4 format, plugins are listed by name and `preset-default` enables the SVGO 4 default plugins. The list is passed to SVGO as it is. See the [SVGO plugin list](https://svgo.dev/docs/plugins/) for available plugins and params.
 
 ```js
 {
   svgJar: {
     optimizer: {
-      plugins: [{ removeUselessStrokeAndFill: false }, { removeTitle: true }];
-    }
-  }
+      plugins: [
+        'preset-default',
+        'removeTitle',
+        { name: 'removeAttrs', params: { attrs: 'fill' } },
+      ],
+    },
+  },
+}
+```
+
+In the SVGO 1 format, each plugin is an object with the plugin name as its key. These plugins are merged with the SVGJar defaults (`removeTitle`, `removeDesc` and `removeViewBox` turned off) and then converted to SVGO 4, starting from the plugins that SVGO 1.3.0 enabled by default. See the [plugin defaults for v1.3.0](https://github.com/evoactivity/ember-svg-jar/blob/master/packages/broccoli-svg-optimizer/docs/plugins-config.json).
+
+```js
+{
+  svgJar: {
+    optimizer: {
+      plugins: [{ removeUselessStrokeAndFill: false }, { removeTitle: true }],
+    },
+  },
+}
+```
+
+The two formats cannot be mixed in one list. Output from the SVGO 1 format is close to SVGO 1 output but not always identical. The [broccoli-svg-optimizer README](https://github.com/evoactivity/ember-svg-jar/tree/master/packages/broccoli-svg-optimizer#svgoconfig) lists the differences.
+
+**_Choosing the version of SVGO_**
+
+You can use a different version of `svgo` with the `svgoModule` option. Add the version that you want to your `package.json` and pass its module:
+
+```js
+{
+  svgJar: {
+    optimizer: {
+      svgoModule: require('svgo'),
+      plugins: ['preset-default'],
+    },
+  },
 }
 ```
 

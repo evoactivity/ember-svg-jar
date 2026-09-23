@@ -109,7 +109,7 @@ module.exports = {
   originalSvgsFor(strategy) {
     let sourceDirs = this.sourceDirsFor(strategy);
 
-    const Funnel = require('broccoli-funnel');
+    const { Funnel } = require('broccoli-funnel');
 
     return new Funnel(mergeTreesIfNeeded(sourceDirs), {
       include: ['**/*.svg'],

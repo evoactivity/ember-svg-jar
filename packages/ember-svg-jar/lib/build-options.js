@@ -21,7 +21,21 @@ function getPluginName(plugin) {
   return Object.keys(plugin)[0];
 }
 
+// svgo 4 plugins are listed by name, either as a string or as an object
+// with a `name`. svgo 1 plugins are objects keyed by the plugin name.
+function isSvgo4Plugin(plugin) {
+  return (
+    typeof plugin === 'string' || (_.isPlainObject(plugin) && 'name' in plugin)
+  );
+}
+
 function mergeOptimizerPlugins(defaultPlugins, customPlugins) {
+  // The default plugins use the svgo 1 format. svgo 4 keeps title, desc and
+  // viewBox by default, so svgo 4 plugin lists are used as they are.
+  if (customPlugins.length > 0 && customPlugins.every(isSvgo4Plugin)) {
+    return customPlugins;
+  }
+
   let modifiedPlugins = defaultPlugins.map(defaultPlugin => {
     let pluginName = getPluginName(defaultPlugin);
     let customPlugin = customPlugins.find(
