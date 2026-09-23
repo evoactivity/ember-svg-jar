@@ -6,23 +6,27 @@ on:
       - master
   pull_request:
 
-env:
-  NODE_VERSION: '24'
-
 jobs:
   lint_and_test:
-    name: Lint and test
+    name: Lint and test - Node ${{ matrix.node }}
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        # The oldest Node versions allowed by engines, and the current one.
+        node: ['20.19', '22.12', '24']
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 1
 
       - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v7
         with:
-          node-version: '${{ env.NODE_VERSION }}'
+          node-version: '${{ matrix.node }}'
           cache: 'pnpm'
 
       - name: Install Dependencies
