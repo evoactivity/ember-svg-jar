@@ -1,5 +1,17 @@
 # Changelog
 
+## Release (2026-09-24)
+
+* broccoli-svg-optimizer 3.0.0 (major)
+* ember-svg-jar 3.0.0 (major)
+
+#### :boom: Breaking Change
+* `broccoli-svg-optimizer`, `ember-svg-jar`
+  * [#292](https://github.com/evoactivity/ember-svg-jar/pull/292) Update all dependencies, remove known vulnerabilities, move to pnpm ([@evoactivity](https://github.com/evoactivity))
+
+#### Committers: 1
+- Liam ([@evoactivity](https://github.com/evoactivity))
+
 ## Release (2025-11-07)
 
 ember-svg-jar 2.7.1 (patch)
