@@ -1,19 +1,21 @@
 'use strict';
 
-const UI = require('console-ui');
-
-const ui = new UI({
-  inputStream: process.stdin,
-  outputStream: process.stderr,
-  errorStream: process.stderr,
-});
+const { EOL } = require('os');
 
 const prefix = '[ember-svg-jar]';
 
+function yellow(text) {
+  let useColor = process.stderr.isTTY && !('NO_COLOR' in process.env);
+  return useColor ? `\u001b[33m${text}\u001b[39m` : text;
+}
+
 module.exports = {
+  // Same output as console-ui's writeWarnLine: a yellow "WARNING:" line on
+  // stderr, after an empty line.
   warn: message => {
-    ui.write('\n');
-    ui.writeWarnLine(`${prefix} ${message}`);
+    process.stderr.write(
+      `${EOL}${yellow(`WARNING: ${prefix} ${message}`)}${EOL}`
+    );
   },
 
   error: message => {

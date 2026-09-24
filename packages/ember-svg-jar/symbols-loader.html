@@ -1,7 +1,6 @@
 <script>
   var ajax = new XMLHttpRequest();
-  ajax.open('GET', '{{SYMBOLS_URL}}', true);
-  ajax.send();
+  ajax.open('GET', '{{SYMBOLS_URL}}', {{SYMBOLS_ASYNC}});
   ajax.onload = function (e) {
     if (this.status === 404) {
       return;
@@ -9,6 +8,16 @@
     var div = document.createElement('div');
     div.innerHTML = ajax.responseText;
     div.dataset.testSvgJarSymbols = true;
-    document.querySelector('{{SYMBOLS_SELECTOR}}').appendChild(div);
+
+    // A synchronous request can finish before the target element is parsed.
+    var insert = function () {
+      document.querySelector('{{SYMBOLS_SELECTOR}}').appendChild(div);
+    };
+    if (document.querySelector('{{SYMBOLS_SELECTOR}}')) {
+      insert();
+    } else {
+      document.addEventListener('DOMContentLoaded', insert);
+    }
   };
+  ajax.send();
 </script>

@@ -2,18 +2,20 @@
 
 ## Installation
 
-- `git clone git@github.com:voltidev/ember-svg-jar.git`
+- `git clone git@github.com:evoactivity/ember-svg-jar.git`
 - `cd ember-svg-jar`
-- `yarn install`
+- `pnpm install`
+
+This repo uses [pnpm](https://pnpm.io). The pnpm and Node versions are set in `.prototools` for [proto](https://moonrepo.dev/proto). The commands below run from `packages/ember-svg-jar`.
 
 ## Running tests
 
-`yarn test` - Runs all tests including linters.
+`pnpm test` - Runs all tests including linters.
 
 Run node tests to test any module in `lib` directory:
 
-- `yarn test:node` - Runs node tests.
-- `yarn test:node --watch` - Runs node tests in "watch mode"
+- `pnpm test:node` - Runs node tests.
+- `pnpm test:node --watch` - Runs node tests in "watch mode"
 
 Run ember tests to test anything related to `svg-jar` helper & symbols injection:
 
@@ -21,10 +23,12 @@ Run ember tests to test anything related to `svg-jar` helper & symbols injection
 - `ember test --server` – Runs the test suite in "watch mode"
 - `ember try:each` – Runs the test suite against multiple Ember versions
 
+After `ember try`, pnpm can leave the last scenario's packages in `node_modules`. Run `rm -rf node_modules packages/*/node_modules && pnpm install` from the repo root to restore them.
+
 ## Linting
 
-- `yarn run lint:js`
-- `yarn run lint:js:fix`
+- `pnpm lint:js`
+- `pnpm lint:js:fix`
 
 ## Running the dummy application
 

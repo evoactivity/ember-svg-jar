@@ -4,16 +4,14 @@ const fs = require('fs');
 const _ = require('lodash');
 const { makeIDForPath } = require('./utils');
 
-function mergeTreesIfNeeded(trees, options) {
+function mergeTreesIfNeeded(trees) {
   if (trees.length === 1) {
     return trees[0];
   }
 
-  let mergedOptions = _.assign({ overwrite: true }, options);
+  const MergeTrees = require('./merge-trees');
 
-  const MergeTrees = require('broccoli-merge-trees');
-
-  return new MergeTrees(trees, mergedOptions);
+  return new MergeTrees(trees);
 }
 
 module.exports = {
@@ -109,11 +107,15 @@ module.exports = {
   originalSvgsFor(strategy) {
     let sourceDirs = this.sourceDirsFor(strategy);
 
-    const Funnel = require('broccoli-funnel');
+    const { Funnel } = require('broccoli-funnel');
 
-    return new Funnel(mergeTreesIfNeeded(sourceDirs), {
-      include: ['**/*.svg'],
-    });
+    // Pick the SVGs from each source dir before merging, so the merge only
+    // copies SVG files.
+    let svgTrees = sourceDirs.map(
+      sourceDir => new Funnel(sourceDir, { include: ['**/*.svg'] })
+    );
+
+    return mergeTreesIfNeeded(svgTrees);
   },
 
   optimizedSvgsFor(strategy, originalSvgs) {

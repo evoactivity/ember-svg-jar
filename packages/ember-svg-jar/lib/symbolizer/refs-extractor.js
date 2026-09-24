@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path').posix;
-const Plugin = require('broccoli-plugin');
+const Plugin = require('broccoli-plugin').default;
 const cheerio = require('cheerio');
 const formatAttrs = require('./format-attrs');
 const { readFile, saveToFile } = require('../utils');

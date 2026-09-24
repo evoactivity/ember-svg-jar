@@ -1,0 +1,17 @@
+packages:
+  - packages/*
+allowBuilds:
+  core-js: false
+  fsevents: false
+# Dev-only packages that pull in versions with known vulnerabilities and have
+# no fixed release of their own. Each entry only replaces the vulnerable
+# versions.
+overrides:
+  '@babel/runtime@<7.26.10': ^7.26.10
+  'braces@<3.0.3': ^3.0.3
+  'clean-css@<4.1.11': ^5.3.3
+  'cookie@<0.7.0': ^0.7.2
+  'got@<11.8.5': ^11.8.6
+  'merge@<2.1.1': ^2.1.1
+  'micromatch@<4.0.8': ^4.0.8
+  'tmp@<0.2.6': ^0.2.6
